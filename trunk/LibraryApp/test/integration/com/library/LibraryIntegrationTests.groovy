@@ -57,4 +57,4 @@ class LibraryIntegrationTests extends GroovyTestCase {
 		
 		assertFalse Library.exists(foundLibrary.id)
 	}
-}
+}	
