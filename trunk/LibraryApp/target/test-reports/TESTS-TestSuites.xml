@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuites>
-  <testsuite errors="1" failures="0" hostname="nh-7868f7430b85" id="0" name="LibraryIntegrationTests" package="com.library" tests="1" time="1.0" timestamp="2011-06-02T03:12:29">
+  <testsuite errors="0" failures="0" hostname="nh-7868f7430b85" id="0" name="LibraryIntegrationTests" package="com.library" tests="3" time="1.016" timestamp="2011-06-05T19:59:03">
       <properties />
 
-      <testcase classname="com.library.LibraryIntegrationTests" name="testFirstSaveEver" time="0.968">
-          <error message="Cannot invoke method getLibraryId() on null object" type="java.lang.NullPointerException">java.lang.NullPointerException: Cannot invoke method getLibraryId() on null object
-	at com.library.LibraryIntegrationTests.testFirstSaveEver(LibraryIntegrationTests.groovy:23)
-</error>
+      <testcase classname="com.library.LibraryIntegrationTests" name="testNewLibrary" time="0.891" />
 
-      </testcase>
+      <testcase classname="com.library.LibraryIntegrationTests" name="testModifLibrary" time="0.015" />
 
-      <system-out><![CDATA[--Output from testFirstSaveEver--
+      <testcase classname="com.library.LibraryIntegrationTests" name="testDeleteLibrary" time="0.094" />
+
+      <system-out><![CDATA[--Output from testNewLibrary--
+--Output from testModifLibrary--
+--Output from testDeleteLibrary--
 ]]></system-out>
 
-      <system-err><![CDATA[--Output from testFirstSaveEver--
+      <system-err><![CDATA[--Output from testNewLibrary--
+--Output from testModifLibrary--
+--Output from testDeleteLibrary--
 ]]></system-err>
 
   </testsuite>
