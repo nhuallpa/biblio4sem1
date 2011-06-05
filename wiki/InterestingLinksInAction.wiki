@@ -1,7 +1,9 @@
 #labels Phase-Design
-
 Remote Access in Group
 http://www.teamviewer.com/es/index.aspx
 
 Framework for build Mocks
 http://mockito.org/
+
+SVN and Grails
+http://nooku.assembla.com/wiki/show/iw2010_yab/grails_vs_subversion
