@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Book {
 
+	private Long bookId;
 	private String title;
 	private String subject;
 	private Long ISBN;
@@ -12,20 +13,26 @@ public class Book {
 	private List<String> tags;
 	private Library library;
 	
-	public Book(Long ISBN){
+	public Book(Long ISBN, Library lib){
 		this.ISBN = ISBN;
+		this.library = lib;
 		this.listOfComments = new ArrayList<Comment>();
 		this.tags = new ArrayList<String>();
 	}
 	
-	public int getScore(){
-		return 0;
+	public float getScore(){
+		float score = 0;
+		for(Comment aComment : listOfComments){
+			score = score + aComment.getScore();
+		}
+		return score;
 	}
 	
 	public void addComment(Comment aComment){
 		this.listOfComments.add(aComment);
 	}
 	
+	//3 tags iguales --> similar
 	public List<Book> similarsToMe(){
 		return null;
 	}
@@ -34,8 +41,10 @@ public class Book {
 		return title;
 	}
 	
-	public void reserveMe(){
+	public void reserveMe(User user){
 		
+		Reservation reserved = new Reservation(user, this, library);
+		library.addReservation(reserved);
 	}
 	
 	public void categorizeMe(String tag){
@@ -80,6 +89,39 @@ public class Book {
 
 	public Long getISBN() {
 		return ISBN;
+	}
+
+	public void setBookId(Long bookId) {
+		this.bookId = bookId;
+	}
+
+	public Long getBookId() {
+		return bookId;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((bookId == null) ? 0 : bookId.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Book other = (Book) obj;
+		if (bookId == null) {
+			if (other.bookId != null)
+				return false;
+		} else if (!bookId.equals(other.bookId))
+			return false;
+		return true;
 	}
 	
 	

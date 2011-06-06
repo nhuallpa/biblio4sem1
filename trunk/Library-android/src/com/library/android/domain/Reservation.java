@@ -17,7 +17,13 @@ public class Reservation {
 	}
 	
 	public boolean isReserved(long reservaId){
-		return false;
+		boolean encontrado = false;
+		
+		for(int i = 0; i < library.getListOfReservations().size() && !encontrado; i++){
+			encontrado = library.getListOfReservations().get(i).equals(this);
+		}
+		
+		return encontrado;
 	}
 	
 	public boolean isDelivered(long reservaId){
@@ -66,6 +72,31 @@ public class Reservation {
 
 	public void setLibrary(Library library) {
 		this.library = library;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((book == null) ? 0 : book.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Reservation other = (Reservation) obj;
+		if (book == null) {
+			if (other.book != null)
+				return false;
+		} else if (!book.equals(other.book))
+			return false;
+		return true;
 	}
 	
 	
