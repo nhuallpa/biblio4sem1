@@ -57,4 +57,34 @@ class LibraryIntegrationTests extends GroovyTestCase {
 		
 		assertFalse Library.exists(foundLibrary.id)
 	}
+	
+	void testEvilSave() {
+		Library library = new Library(libraryId: libId,
+									  name: nameNew,
+									  homepage: 'not-a-url',
+									  email: 'not-a-email')
+		assertFalse library.validate()
+		assertTrue library.hasErrors()
+		def errors = library.errors
+		
+		assertEquals "url.invalid", errors.getFieldError("homepage").code
+		assertEquals "email.invalid", errors.getFieldError("email").code
+	}
+	
+	void testHealSave() {
+		Library library = new Library(libraryId: libId,
+									  name: nameNew,
+									  homepage: 'not-a-url',
+									  email: 'not-a-email')
+		assertFalse library.validate()
+		assertTrue library.hasErrors()
+		assertNull library.save()
+		
+		library.email = 'qwerty@g.com'
+		library.homepage = 'http://www.google.com'
+		
+		assertTrue library.validate()
+		assertNotNull library.save()
+	}
 }	
+
