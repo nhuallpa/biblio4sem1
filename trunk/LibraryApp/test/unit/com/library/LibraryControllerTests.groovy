@@ -2,7 +2,7 @@ package com.library
 
 import grails.test.*
 
-class LibraryTests extends GrailsUnitTestCase {
+class LibraryControllerTests extends ControllerUnitTestCase {
     protected void setUp() {
         super.setUp()
     }
@@ -12,6 +12,6 @@ class LibraryTests extends GrailsUnitTestCase {
     }
 
     void testSomething() {
-		
+
     }
 }
