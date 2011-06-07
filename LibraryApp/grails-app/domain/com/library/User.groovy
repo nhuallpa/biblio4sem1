@@ -27,7 +27,11 @@ class User {
 	
 	static mapping = {
 		location lazy: false
+		reservations lazy: false
+		comments lazy: false
 	}
+	
+	static hasMany = [comments : Comment, reservations : Reservation]
 	
 	void makeReservation(Book aBook) {
 		

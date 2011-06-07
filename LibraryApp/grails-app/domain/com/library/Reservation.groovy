@@ -1,35 +1,34 @@
 package com.library
 
 class Reservation {
-
-	String libraryId
-	String name
-	byte[] photo
-	String homepage
-	String email
-	String phone
 	
-	Location location
+	Book book
+	User user
+	Date reservationDate
+	String state
+	Library library
+	
 
     static constraints = {
-		libraryId(size: 3..20, unique: true)
-		name(size: 3..60)
-		photo(nullable: true)
-		homepage(url: true, nullable: true)
-		email(email: true, nullable: true)
-		phone(nullable: true)
-		location(nullable: true)
+		book(unique: true)
+		state(size: 3..15)
     }
 	
-	static mapping = {
-		location lazy: false
-	}
+	static belongsTo = [User]
 	
-	void toComment(String comment, String User) {
+	void isReserved(String comment, String User) {
 		
 	}
 	
-	Boolean isNearOf(Location location, Integer maxDistanceKm) {
-		return false;
+	void isDelivereded(String comment, String User) {
+	
+    }
+	
+	Reservation(Book aBook, User aUser){
+		this.book = aBook
+		this.user = aUser
+		//this.library = book.library
+		this.state = "Reserved Waiting"
 	}
+
 }
