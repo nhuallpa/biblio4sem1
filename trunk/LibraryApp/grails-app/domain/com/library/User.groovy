@@ -96,6 +96,11 @@ class User {
 		
 	}
 	
+	void returnBook(aBook){
+		
+		
+	}
+	
 	void addReservation(Reservation aReservation, Book aBook){
 		aBook.reserveMe()
 		reservations.add aReservation
