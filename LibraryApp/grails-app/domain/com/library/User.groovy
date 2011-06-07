@@ -35,22 +35,38 @@ class User {
 	
 	void makeReservation(Book aBook) {
 		
+		Reservation aReservation = new Reservation(aBook,this)
+		addReservation(aReservation,aBook)
+		
+	}
+	
+	/* Alguien tiene que crearlo en la library */
+	void returnBook (Book aBook){
+		aBook.returnMe()
+		
+		reservations.remove aBook
 	}
 	
 	void addBookComment(Book aBook, String aString ){
+		aBook.comment(aString)
 			
 	}
 	
 	void addLibraryComment(Library aLibrary, String aString ){
-	
+		aLibrary.comment(aString)
     }
 	
-	void addUserComment(User aUser, String aString ){
+	void comment(String aString){
+		Comment aComment = new Comment(this, aString)
+		comments.add aComment
+	}
 	
+	void addUserComment(User aUser, String aString ){
+		aUser.comment(aString)		
     }
 	
 	List<Book> lookSimilars(Book aBook){
-		
+		return aBook.similarsToMe()
 	}
 	
 	long getScore(){
@@ -58,19 +74,32 @@ class User {
 	}
 	
 	void categorizeBook(Book aBook, String tag){
-		
+		aBook.categorizeMe()
 	}
 	
 	List<Reservation> lookMyReservations(){
-		
+		return this.reservations
 	}
 	
-	void cancelReservation(Reservation aReservation){
+	void cancelReservation(Book aBook){
+		aBook.cancelReservation()
+		
+		for ( o in reservations){
+			if ( o.getBook() == aBook )
+				reservations.remove o	
+		}
+	}
+	
+	void pullOutBook(aBook){
+		//Check if is reserved to this user
+		aBook.retireMe()
 		
 	}
 	
 	void addReservation(Reservation aReservation, Book aBook){
-		
+		aBook.reserveMe()
+		reservations.add aReservation
+
 	}
 	
 	List<Book> lookBooksOnCategory(String tag){
