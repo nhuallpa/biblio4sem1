@@ -12,10 +12,9 @@ import android.widget.Toast;
 
 public class LoginActivity extends Activity {
 	
-	private static String NAME_DATA = "name";
-	private static String PASS_DATA = "pass";
-	
-		
+	public static String NAME_DATA = "name";
+	public static String PASS_DATA = "pass";
+			
 	private EditText nameText;
 	private EditText passText;
 	private Button loginButton;
