@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+  android:id="@+id/login_relative"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent">
+  
+  <TextView	
+  		android:id="@+id/title_login"
+  		android:layout_width="wrap_content"
+  		android:layout_height="wrap_content"
+  		android:text="Biblioteca 2.0"
+  		android:layout_marginTop="10dip"
+  		android:layout_centerHorizontal="true">
+  	</TextView>
+  
+    	
+  	<TextView
+  		android:id="@+id/text_name_login"
+  		android:layout_width="wrap_content"
+  		android:layout_height="wrap_content"
+  		android:layout_below="@id/title_login"
+  		android:layout_marginLeft="8dip"
+  		android:layout_marginTop="40dip"
+  		android:text="Name: ">
+  	</TextView>
+  	
+  	<EditText
+  		android:id="@+id/name_login"
+  		android:layout_width="200dip"
+  		android:textSize="15dip"
+  		
+  		android:layout_below="@id/title_login"
+  		android:layout_marginLeft="29dip"
+  		android:layout_marginTop="20dip"
+  		android:layout_toRightOf="@id/text_name_login"
+  		android:hint="Your login name" 
+  		android:layout_height="wrap_content">
+  	
+  	</EditText>
+  
+  	
+  	
+  
+  		 <TextView
+  		android:id="@+id/text_pass_login"
+  		android:layout_width="wrap_content"
+  		android:layout_height="wrap_content"
+  		android:layout_below="@id/text_name_login"
+  		android:layout_marginLeft="8dip"
+  		android:layout_marginTop="63dip"
+  		android:text="Password: ">
+  	</TextView>
+  	
+  	<EditText
+  		android:id="@+id/pass_login"
+  		android:layout_width="200dip"
+  		android:textSize="15dip"
+  		android:password="true"
+  		android:layout_below="@id/name_login"
+  		android:layout_marginLeft="8dip"
+  		android:layout_marginTop="20dip"
+  		android:layout_toRightOf="@id/text_pass_login"
+  		android:hint="Your password" 
+  		android:layout_height="wrap_content">
+  	
+  	</EditText>
+  
+  
+  	
+  	
+  	
+  	<Button
+  		android:id="@+id/login_button"
+  		android:layout_width="wrap_content"
+  		android:layout_height="wrap_content"
+  		android:text="Login"
+  		android:layout_centerHorizontal="true"
+  		android:layout_marginTop="10dip"
+  		
+  		android:layout_below="@id/pass_login">
+  	</Button>
+  	
+</RelativeLayout>
