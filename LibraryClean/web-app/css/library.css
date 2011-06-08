@@ -1,0 +1,29 @@
+body {
+	margin: 0px;
+}
+
+#header div {
+	background-color:white;
+	float:left;
+	font: 1.5em/2 Arial, Helvetica, sans-serif;
+}
+#header h1 {
+	padding-top: 1.5em;
+	padding-left: 7em;
+	font: 1.5em/2 Arial, Helvetica, sans-serif;
+}
+#content {
+	clear: both;
+}
+
+#footer {
+	clear: both;	
+	background-color: #7295DB;
+	height: 100px;
+	
+}
+#footer span {
+	padding-left: 20px;
+	font: 1.5em/2 Arial, Helvetica, sans-serif;
+}
+
