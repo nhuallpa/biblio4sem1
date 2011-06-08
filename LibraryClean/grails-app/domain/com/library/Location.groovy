@@ -11,7 +11,7 @@ class Location {
 	
 	String latitude
 	String longitude
-	
+
     static constraints = {
 		country(maxsize: 60,nullable:true)
 		city(maxsize: 60, nullable:true)
