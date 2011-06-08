@@ -10,7 +10,6 @@ class User {
 	List<Integer> score = new ArrayList<Integer>()
 	List<Reservation> reservations = new ArrayList<Reservation>()
 	List<Comment> comments = new ArrayList<Comment>()
-	List<Integer> pepe
 	
 	
 	Location location
@@ -38,7 +37,7 @@ class User {
 	void makeReservation(Book aBook) {
 		
 		Reservation aReservation = new Reservation(aBook,this)
-		addReservation(aReservation,aBook)
+		this.addReservation(aReservation,aBook)
 		
 	}
 	
@@ -46,7 +45,7 @@ class User {
 	void returnBook (Book aBook){
 		aBook.returnMe()
 		
-		reservations.remove aBook
+		this.reservations?.remove aBook
 	}
 	
 	void addBookComment(Book aBook, String aString, Integer score ){
@@ -59,7 +58,7 @@ class User {
     }
 	
 	void comment(User sourceUser, String aString, Integer score){
-		Comment aComment = new Comment(user:this, description:aString, sourceUser:sourceUser, score: score)
+		Comment aComment = new Comment(thingCommented:this, description:aString, sourceUser:sourceUser, score: score)
 		this.comments?.add(aComment)
 		this.score?.add score
 	}
@@ -109,7 +108,7 @@ class User {
 	
 	void addReservation(Reservation aReservation, Book aBook){
 		aBook.reserveMe()
-		reservations.add aReservation
+		this.reservations?.add aReservation
 
 	}
 	

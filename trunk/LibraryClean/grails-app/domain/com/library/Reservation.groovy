@@ -20,6 +20,13 @@ class Reservation {
 	
 	static belongsTo = [User]
 	
+	Reservation(Book aBook, User aUser){
+		this.book = aBook
+		this.user = aUser
+		this.state = "Reserved - Waiting"
+		this.library = aBook?.library
+	}
+	
 	Boolean isReserved(String comment, String User) {
 		if ( state == "Reserved - Waiting") return true
 		return false
@@ -30,11 +37,4 @@ class Reservation {
 		return false
     }
 	
-	Reservation(Book aBook, User aUser){
-		this.book = aBook
-		this.user = aUser
-		//this.library = book.library
-		this.state = "Reserved - Waiting"
-	}
-
 }
