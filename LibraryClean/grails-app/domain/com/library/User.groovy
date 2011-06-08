@@ -15,7 +15,7 @@ class User {
 	Location location
 
     static constraints = {
-		name(size: 3..60)
+		name(size: 3..60, nullable:true)
 		photo(nullable: true)
 		homepage(url: true, nullable: true)
 		email(email: true, nullable: true, unique: true)

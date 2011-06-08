@@ -10,8 +10,8 @@ class Reservation {
 	
 
     static constraints = {
-		book(unique: true)
-		state(size: 3..15)
+		book(unique: true,nullable:true)
+		state(size: 3..60)
 		user(unique:true)
 		reservationDate(nullable:true)
 		library(unique:true)
@@ -21,7 +21,7 @@ class Reservation {
 	static belongsTo = [User]
 	
 	Reservation(Book aBook, User aUser){
-		this.book = aBook
+		this.setBook(aBook)
 		this.user = aUser
 		this.state = "Reserved - Waiting"
 		this.library = aBook?.library
