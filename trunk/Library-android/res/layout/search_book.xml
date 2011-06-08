@@ -22,21 +22,46 @@
   		android:layout_height="wrap_content"
   		android:hint="Search Book, Title, Author"
   		android:layout_marginTop="50dip"
-  		android:layout_centerHorizontal="true"
+  		android:layout_marginLeft="5dip"
   		android:layout_below="@id/search_title">
   	
   	</EditText>
   	
-  	<Button
+  	<ImageButton
   		android:id="@+id/search_button"
   		android:layout_width="wrap_content"
   		android:layout_height="wrap_content"
   		android:text="Search"
-  		android:layout_below="@id/edit_buscar"
-  		android:layout_marginTop="10dip"
-  		android:layout_marginRight="35dip"
-  		android:layout_alignParentRight="true">
+		android:layout_marginTop="50dip"
+		android:layout_marginLeft="5dip"
+  		android:background="@drawable/search"
+  		android:layout_below="@id/search_title"
+  		android:layout_toRightOf="@id/edit_buscar"
+  		>
   	
-  	</Button>
+  	</ImageButton>
+  	
+  	<ImageButton
+  		android:id="@+id/fav_button"
+  		android:layout_width="wrap_content"
+  		android:layout_height="wrap_content"
+  		android:layout_below="@id/edit_buscar"
+  		android:background="@drawable/fav"
+  		android:layout_marginLeft="30dip"
+  		android:layout_marginTop="10dip">
+  	</ImageButton>
+  	
+  	<ImageButton
+  		android:id="@+id/lucky_button"
+  		android:layout_width="wrap_content"
+  		android:layout_height="wrap_content"
+  		android:layout_below="@id/edit_buscar"
+  		android:layout_toRightOf="@id/fav_button"
+  		android:background="@drawable/lucky"
+  		android:layout_marginLeft="10dip"
+  		android:layout_marginTop="10dip">
+  	</ImageButton>
+  	
+
   
 </RelativeLayout>

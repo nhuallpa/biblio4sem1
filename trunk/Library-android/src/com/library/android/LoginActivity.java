@@ -54,28 +54,7 @@ public class LoginActivity extends Activity {
 		
 	}
 	
-	 public boolean onCreateOptionsMenu(Menu menu) {
-	        MenuInflater inflater = getMenuInflater();
-	        
-	        inflater.inflate(R.menu.menu, menu);
-	        return true;
-	    }
-	    
-	    public boolean onOptionsItemSelected (MenuItem item){
-
-	        switch (item.getItemId()){
-
-	        case R.id.profile : {
-	        	Intent i = new Intent(LoginActivity.this, ProfileUserActivity.class);
-	        	startActivity(i);
-	        } break;
-	        
-	        case R.id.about: {} break;
-	        
-	        }
-	        
-	       return true;
-	    }
+	 
 	
 	private boolean isWrong(){
 		
