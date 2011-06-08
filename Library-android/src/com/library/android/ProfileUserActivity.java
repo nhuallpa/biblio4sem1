@@ -34,7 +34,7 @@ public class ProfileUserActivity extends Activity {
 		super.onCreate(b);
 		setContentView(R.layout.profile);
 		
-		initLocation();
+		
 		
 		tv_latitude = (TextView) findViewById(R.id.text_latitud);
 		tv_longitude = (TextView) findViewById(R.id.text_longitud);
@@ -49,10 +49,12 @@ public class ProfileUserActivity extends Activity {
 				String lat = String.valueOf(latitude);
 				String lon = String.valueOf(longitude);
 //				Uri name = Uri.parse("geo:lat,lon?q=name");
-				String name = "name";
+				String name = "now!";
+				initLocation();
+				setValues();
 				Intent intent = new Intent(android.content.Intent.ACTION_VIEW, 
-//						Uri.parse("geo:" + lat + "," + lon + "?q=name"));
-						Uri.parse("geo:0,0?q=" + lat + "," + lon + " (" + name + ")"));
+						Uri.parse("geo:" + lat + "," + lon + "?q=" + name));
+//						Uri.parse("geo:0,0?q=" + lat + "," + lon + " (" + name + ")"));
 						startActivity(intent);
 
 			}
