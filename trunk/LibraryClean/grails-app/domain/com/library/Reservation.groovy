@@ -12,6 +12,10 @@ class Reservation {
     static constraints = {
 		book(unique: true)
 		state(size: 3..15)
+		user(unique:true)
+		reservationDate(nullable:true)
+		library(unique:true)
+		
     }
 	
 	static belongsTo = [User]

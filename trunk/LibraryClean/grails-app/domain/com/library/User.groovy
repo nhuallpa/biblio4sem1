@@ -7,9 +7,11 @@ class User {
 	String homepage
 	String email
 	String phone
-	List<Integer> score
-	List<Reservation> reservations
-	List<Comment> comments
+	List<Integer> score = new ArrayList<Integer>()
+	List<Reservation> reservations = new ArrayList<Reservation>()
+	List<Comment> comments = new ArrayList<Comment>()
+	List<Integer> pepe
+	
 	
 	Location location
 
@@ -57,9 +59,9 @@ class User {
     }
 	
 	void comment(User sourceUser, String aString, Integer score){
-		Comment aComment = new Comment(this, aString, sourceUser)
-		comments.add aComment
-		this.score.add score
+		Comment aComment = new Comment(user:this, description:aString, sourceUser:sourceUser, score: score)
+		this.comments?.add(aComment)
+		this.score?.add score
 	}
 	
 	void addUserComment(User aUser, String aString, Integer score ){
@@ -82,7 +84,7 @@ class User {
 		aBook.cancelReservation()
 		
 		for ( o in reservations){
-			if ( o.getBook() == aBook )
+			if ( o?.getBook() == aBook )
 				reservations.remove o	
 		}
 	}
@@ -93,7 +95,7 @@ class User {
 		
 	}
 	
-	Float getScore(){
+	Float lookScore(){
 		Integer i = score?.sum()	
 		Integer d = score?.size()
         if (score?.size() != null)

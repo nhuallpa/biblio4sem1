@@ -2,19 +2,22 @@ package com.library
 
 class Comment {
 	
-	static belongsTo = Book
-	
 	String description
 	Date date
 	User user
-	float score
+	User sourceUser
+	Integer score
 		
 
 	static constraints = {
 		description (blank : false)
 		date(nullable:true)
 		score(nullable:true)
-		
+		sourceUser(nullable:true)
+		user(nullable:true)
 	}
+	
+	static belongsTo = [User]
+
 
 }
