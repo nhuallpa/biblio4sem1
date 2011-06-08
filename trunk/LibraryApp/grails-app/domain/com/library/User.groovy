@@ -7,7 +7,7 @@ class User {
 	String homepage
 	String email
 	String phone
-	long   score
+	List<Integer> score
 	List<Reservation> reservations
 	List<Comment> comments
 	
@@ -47,30 +47,27 @@ class User {
 		reservations.remove aBook
 	}
 	
-	void addBookComment(Book aBook, String aString ){
-		aBook.comment(aString)
+	void addBookComment(Book aBook, String aString, Integer score ){
+		aBook.comment(this, aString, score)
 			
 	}
 	
-	void addLibraryComment(Library aLibrary, String aString ){
-		aLibrary.comment(aString)
+	void addLibraryComment(Library aLibrary, String aString, Integer score ){
+		aLibrary.comment(this, aString, score)
     }
 	
-	void comment(String aString){
-		Comment aComment = new Comment(this, aString)
+	void comment(User sourceUser, String aString, Integer score){
+		Comment aComment = new Comment(this, aString, sourceUser)
 		comments.add aComment
+		this.score.add score
 	}
 	
-	void addUserComment(User aUser, String aString ){
-		aUser.comment(aString)		
+	void addUserComment(User aUser, String aString, Integer score ){
+		aUser.comment(this, aString, score)		
     }
 	
 	List<Book> lookSimilars(Book aBook){
 		return aBook.similarsToMe()
-	}
-	
-	long getScore(){
-		return this.score
 	}
 	
 	void categorizeBook(Book aBook, String tag){
@@ -96,8 +93,15 @@ class User {
 		
 	}
 	
+	Float getScore(){
+		Integer i = score?.sum()	
+		Integer d = score?.size()
+        if (score?.size() != null)
+			return i.div(d)
+	}
+	
 	void returnBook(aBook){
-		
+		aBook.returnMe()
 		
 	}
 	
