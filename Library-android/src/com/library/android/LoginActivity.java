@@ -1,8 +1,12 @@
 package com.library.android;
 
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
@@ -49,6 +53,29 @@ public class LoginActivity extends Activity {
 		});
 		
 	}
+	
+	 public boolean onCreateOptionsMenu(Menu menu) {
+	        MenuInflater inflater = getMenuInflater();
+	        
+	        inflater.inflate(R.menu.menu, menu);
+	        return true;
+	    }
+	    
+	    public boolean onOptionsItemSelected (MenuItem item){
+
+	        switch (item.getItemId()){
+
+	        case R.id.profile : {
+	        	Intent i = new Intent(LoginActivity.this, ProfileUserActivity.class);
+	        	startActivity(i);
+	        } break;
+	        
+	        case R.id.about: {} break;
+	        
+	        }
+	        
+	       return true;
+	    }
 	
 	private boolean isWrong(){
 		

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent">
+  
+  	<TextView
+  		android:id="@+id/title_profile"
+  		android:layout_width="wrap_content"
+  		android:layout_height="wrap_content"
+  		android:text="Profile"
+  		android:layout_centerHorizontal="true"
+  		android:layout_marginTop="10dip">
+  	</TextView>
+  	
+  	<TextView
+  		android:id="@+id/title_latitud"
+  		android:layout_width="wrap_content"
+  		android:layout_height="wrap_content"
+  		android:layout_below="@id/title_profile"
+  		android:layout_marginTop="10dip"
+  		android:layout_marginLeft="5dip"
+  		android:text="Latitud: ">
+  	</TextView>
+  	
+  	<TextView
+  		android:id="@+id/text_latitud"
+  		android:layout_width="wrap_content"
+  		android:layout_height="wrap_content"
+  		android:layout_below="@id/title_profile"
+  		android:layout_marginTop="10dip"
+  		android:layout_toRightOf="@id/title_latitud"
+  		android:text="LATITUD">
+  	</TextView>
+  	
+   	<TextView
+  		android:id="@+id/title_longitud"
+  		android:layout_width="wrap_content"
+  		android:layout_height="wrap_content"
+  		android:layout_below="@id/title_latitud"
+  		android:layout_marginTop="10dip"
+  		android:layout_marginLeft="5dip"
+  		android:text="Longitud: ">
+  	</TextView>
+  	
+  	<TextView
+  		android:id="@+id/text_longitud"
+  		android:layout_width="wrap_content"
+  		android:layout_height="wrap_content"
+  		android:layout_below="@id/text_latitud"
+  		android:layout_marginTop="10dip"
+  		android:layout_toRightOf="@id/title_longitud"
+  		android:text="LONGITUD">
+  	</TextView>
+  	
+  	<Button
+  		android:id="@+id/show_map_button"
+  		android:layout_width="wrap_content"
+  		android:layout_height="wrap_content"
+  		android:layout_marginTop="10dip"
+  		android:layout_below="@id/title_longitud"
+  		android:text="Show map">
+  	</Button>
+  	
+
+
+
+
+  	
+  	
+</RelativeLayout>
