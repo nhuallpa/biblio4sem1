@@ -1,11 +1,13 @@
 package com.libraryweb.model;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
 import com.google.appengine.api.datastore.Key;
 
+@PersistenceCapable
 public class User {
 	
 public static final String NAME = "User";
@@ -14,11 +16,13 @@ public static final String NAME = "User";
     @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
     private Key key;
 
+    
     @Persistent
     private String mail_login;
     
     @Persistent
     private String pass_login;
+    
     
     public User() {	
     }
