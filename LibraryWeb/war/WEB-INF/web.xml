@@ -12,6 +12,46 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<servlet-name>LibraryWeb</servlet-name>
 		<url-pattern>/libraryweb</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>Login</servlet-name>
+		<servlet-class>com.libraryweb.LoginServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Login</servlet-name>
+		<url-pattern>/login</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>Search</servlet-name>
+		<servlet-class>com.libraryweb.SearchServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Search</servlet-name>
+		<url-pattern>/search</url-pattern>
+	</servlet-mapping>	
+	
+	<servlet>
+		<servlet-name>UploadBook</servlet-name>
+		<servlet-class>com.libraryweb.UploadBookServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UploadBook</servlet-name>
+		<url-pattern>/upload</url-pattern>
+	</servlet-mapping>
+	
+	
+			<!-- Only allow admins (and the task queue itself) to run tasks. -->
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>tasks</web-resource-name>
+			<url-pattern>/tasks/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>admin</role-name>
+		</auth-constraint>
+	</security-constraint>
+	
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
