@@ -11,6 +11,8 @@ public class User {
 	private List<Comment> listOfComments;
 	private List<Reservation> listOfReservations;
 	
+	public User(){}
+	
 	public User(String name, Location address, String email){
 		this.name = name;
 		this.address = address;

@@ -14,17 +14,23 @@ import org.json.JSONObject;
 
 import com.library.android.domain.Book;
 import com.library.android.repository.LibraryRepository;
+import com.library.android.services.ConfigWS;
 import com.library.android.services.LibraryService;
 
 public class BookServicesImpl implements LibraryService {
 	
 	LibraryRepository repo;
 	
-	public static BookServicesImpl instance;
+	private static String url;
 	
-	private BookServicesImpl(){}
+	private static BookServicesImpl instance;
 	
-	public BookServicesImpl getInstance(){
+	private BookServicesImpl(){
+		ConfigWS config = ConfigWS.getInstance();
+		url = ConfigWS.WS_SEARCH + "mail=" + config.getUser();
+	}
+	
+	public static BookServicesImpl getInstance(){
 		if(instance == null){
 			instance = new BookServicesImpl();
 		}
@@ -33,8 +39,9 @@ public class BookServicesImpl implements LibraryService {
 	
 	//tendria que devolver una lista de libros
 	public static Book findBook(String text){
-				
-		String url = "http://biblioteca-web.appspot.com/search?mail=lalosoft@gmail.com&bookId=1234";
+		
+		String urlFinal = url + "&bookId=" + text;
+//		String url = "http://biblioteca-web.appspot.com/search?mail=lalosoft@gmail.com&bookId=1234";
 //		String request = null;
 		String request = null;
 		
@@ -42,7 +49,7 @@ public class BookServicesImpl implements LibraryService {
 		JSONObject bookJs = null;
 		Book book = new Book();
 		try {
-			URL u = new URL(url);
+			URL u = new URL(urlFinal);
 			HttpURLConnection con = (HttpURLConnection) u.openConnection ();
 			con.setDoInput(true);
 			con.setRequestMethod("GET");
