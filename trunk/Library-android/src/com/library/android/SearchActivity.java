@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.library.android.domain.Book;
+import com.library.android.services.ConfigWS;
 import com.library.android.services.impl.BookServicesImpl;
 
 public class SearchActivity extends Activity {
@@ -21,11 +22,17 @@ public class SearchActivity extends Activity {
 	private ImageButton searchButton;
 	private ImageButton topTenButton;
 	private ImageButton luckyButton;
+	private BookServicesImpl bookServices;
 
 	public void onCreate(Bundle b){
 		super.onCreate(b);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.search_book);
+		
+		ConfigWS c = ConfigWS.getInstance();
+		c.setUser("lalosoft@gmail.com"); //BORRAR
+		
+		bookServices = BookServicesImpl.getInstance();
 		
 		editText = (EditText)findViewById(R.id.edit_buscar);
 		searchButton = (ImageButton) findViewById(R.id.search_button);

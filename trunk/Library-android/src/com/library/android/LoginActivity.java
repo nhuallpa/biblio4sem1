@@ -1,6 +1,8 @@
 package com.library.android;
 
 
+import com.library.android.services.impl.UserServicesImpl;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -40,13 +42,25 @@ public class LoginActivity extends Activity {
 				if(isWrong()){
 					Toast.makeText(LoginActivity.this, "Invalid input...", Toast.LENGTH_SHORT);
 				} else {
-					String name = nameText.getText().toString();
+					String mail = nameText.getText().toString();
 					String pass = passText.getText().toString();
 					Toast.makeText(LoginActivity.this, "Correct Input!", Toast.LENGTH_SHORT);
-					Intent i = new Intent(LoginActivity.this, MainActivity.class);
-					i.putExtra(NAME_DATA, name);
-					i.putExtra(PASS_DATA, pass);
-					startActivity(i);
+					
+					
+					if(UserServicesImpl.login(mail, pass)){
+						Intent i = new Intent(LoginActivity.this, MainActivity.class);
+						i.putExtra(NAME_DATA, mail);
+						i.putExtra(PASS_DATA, pass);
+						startActivity(i);
+					} else {
+						
+						Toast.makeText(LoginActivity.this, "Invalid logged!!!", Toast.LENGTH_SHORT);
+						
+					}
+					
+				
+					
+					
 				}
 				
 			}
