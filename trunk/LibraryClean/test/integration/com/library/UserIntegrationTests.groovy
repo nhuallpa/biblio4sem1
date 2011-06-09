@@ -20,7 +20,7 @@ class UserIntegrationTests extends GroovyTestCase {
 		userTwo.addUserComment(user, "Buen usuario", 2)
 		
 		aLibrary = new Library(libraryId: "BA_Ateneo", name: "El Ateneo")
-		aBook = new Book(title:"C",ISBN:"1",state:"Reserved",library:aLibrary)
+		
 		
     }
 
@@ -38,10 +38,16 @@ class UserIntegrationTests extends GroovyTestCase {
 		assertEquals 1,userFound.comments?.size()
     }
 	
-	void testAUserCommentsAnother() {
+	void testUserMakeReservation() {
 		assertTrue user.validate()
-		user.makeReservation aBook
-		assertEquals 1,user.reservations?.size()
+		aBook = new Book(title:"C",ISBN:"1",state:"Reserved",library:aLibrary)
+		user.makeReservation(aBook)
+		user.save()
+		
+		println user.errors
+		assertNotNull user.save()
+		User userFound = User.get(user.id)
+		assertEquals 1,userFound.reservations?.size()
 	}
 	
 	
