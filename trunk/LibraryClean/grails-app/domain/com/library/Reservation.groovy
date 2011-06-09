@@ -6,7 +6,8 @@ class Reservation {
 	User user
 	Date reservationDate
 	String state
-	Library library
+	//Library library
+	static belongTo = [library : Library]
 	
 
     static constraints = {
@@ -14,7 +15,7 @@ class Reservation {
 		state(size: 3..60)
 		user(unique:true)
 		reservationDate(nullable:true)
-		library(unique:true, nullable:true)
+		// library(unique:true, nullable:true)
 		
     }
 	
@@ -24,7 +25,7 @@ class Reservation {
 		this.setBook(aBook)
 		this.user = aUser
 		this.state = "Reserved - Waiting"
-		this.library = aBook?.library
+		// this.library = aBook?.library
 	}
 	
 	Boolean isReserved(String comment, String User) {

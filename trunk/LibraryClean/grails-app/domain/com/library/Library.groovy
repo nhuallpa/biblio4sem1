@@ -11,6 +11,8 @@ class Library {
 	
 	Location location
 
+	static hasMany = [reservations : Reservation, books : Book]
+
     static constraints = {
 		libraryId(size: 3..20, unique: true)
 		name(size: 3..60)
@@ -19,13 +21,15 @@ class Library {
 		email(email: true, nullable: true)
 		phone(nullable: true)
 		location(nullable: true)
+		reservations(nullable:true)
+		books(nullable:true)
     }
 	
 	static mapping = {
 		location lazy: false
 	}
 	
-	void toComment(String comment, String User) {
+	void comment(String comment, String User) {
 		
 	}
 	

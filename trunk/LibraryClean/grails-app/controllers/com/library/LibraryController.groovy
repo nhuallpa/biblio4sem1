@@ -7,4 +7,8 @@ class LibraryController {
     def index = { 
 		redirect(action: 'create')
 	}
+	
+	def view = {
+		[libraryList : Library.list()]
+	}
 }
