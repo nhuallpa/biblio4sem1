@@ -45,9 +45,9 @@ public class LoginServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		
+		User user = null;
 		if(mail != null && pass != null){			
-			User user = UserDAO.getUserInfo(datos);
+			user = UserDAO.getUserInfo(datos);
 			
 			if(user == null){				
 				user = new User();
@@ -63,19 +63,20 @@ public class LoginServlet extends HttpServlet {
 				} finally {
 					pm.close();
 				}
-				
-				resp.getWriter().println("User: " + user.getMailLogin());
-				log.log(Level.SEVERE, "User: " + user.getMailLogin());
-				
-				resp.getWriter().println("UserKey: " + user.getKey());
-				log.log(Level.SEVERE, "UserKey: " + user.getKey());
+						
+//				resp.getWriter().println("UserKey: " + user.getKey());
+//				log.log(Level.SEVERE, "UserKey: " + user.getKey());
 				
 				
-			}
+			} 
 			
-			
-			
+			resp.getWriter().println("UserKey: " + user.getKey());
+			log.log(Level.SEVERE, "UserKey: " + user.getKey());
 		}
+		
+	
+		
+		
 	}
 
 }
