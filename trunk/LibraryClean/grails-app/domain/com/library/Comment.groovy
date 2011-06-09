@@ -13,6 +13,7 @@ class Comment {
 		description (blank : false)
 		date(nullable:true)
 		score(nullable:true)
+//		user(blank : false)
 		sourceUser(nullable:true)
 		thingCommented(nullable:true)
 	}
