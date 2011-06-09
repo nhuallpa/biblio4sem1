@@ -1,0 +1,47 @@
+body {
+	margin: 0px;
+}
+
+
+#header {
+	font-size: 9; 
+	background-color: #7295DB;
+	font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+}
+
+#sidebar {
+	background-color:white;
+	float:right;
+	font-size: 9; 
+	font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+	width: 20%
+}
+#content {
+	float:left;
+	width: 70%;
+}
+
+#footer {
+	clear: both;	
+	background-color: #7295DB;
+	height: 80px;
+	font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+	
+}
+.center {
+	margin-left:auto;
+	margin-right:auto;
+	width:70%;
+}
+
+.search {
+	border-color: #CECECC;
+	border-style: solid;
+	border-spacing: 0px;
+	font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+}
+
+.form {
+	
+}
+	
