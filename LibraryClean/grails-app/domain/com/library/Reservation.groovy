@@ -14,7 +14,7 @@ class Reservation {
 		state(size: 3..60)
 		user(unique:true)
 		reservationDate(nullable:true)
-		library(unique:true)
+		library(unique:true, nullable:true)
 		
     }
 	
