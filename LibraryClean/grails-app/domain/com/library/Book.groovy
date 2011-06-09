@@ -2,12 +2,14 @@ package com.library
 
 class Book {
 	
+	static hasMany = [comment : Comment]
+	
 //	long bookId //que lo tenga la BD nada mas
 	String title
 	String subject
 	long ISBN
 	String state
-	List<Comment> listOfComments
+	//List<Comment> listOfComments
 	List<String> tags
 	Library library
 
@@ -15,7 +17,7 @@ class Book {
 		//bookId(blank : false, unique: true)
 		ISBN(blank : false)
 		tags(nullable: true)
-		listOfComments(nullable:true)
+//		listOfComments(nullable:true)
 		subject(nullable:true)
 	}
 	
@@ -30,6 +32,6 @@ class Book {
 		
 	}
 		
-	static hasMany = [comment : Comment]
+	
 
 }
