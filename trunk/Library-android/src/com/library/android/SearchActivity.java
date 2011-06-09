@@ -12,6 +12,9 @@ import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import com.library.android.domain.Book;
+import com.library.android.services.impl.BookServicesImpl;
+
 public class SearchActivity extends Activity {
 	
 	private EditText editText;
@@ -33,7 +36,8 @@ public class SearchActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
+
+				
 				
 			}
 		});
@@ -54,9 +58,17 @@ public class SearchActivity extends Activity {
 			public void onClick(View v) {
 				String text = editText.getText().toString();
 				if(isValid(text)){
+					//tendriamos que pasarle el intent con todos los datos de los libros
 					
-					//ALGO
+					//conexion
+					//en principio, funciona si que se le pase nada
+					//tendria que devolver una lista de libros
+					Book book = BookServicesImpl.findBook(editText.getText().toString());//pero tendria que ser asi
 					
+					Intent i = new Intent(SearchActivity.this, ResultSearchActivity.class);
+					i.putExtra("bookId", book.getBookId());
+					i.putExtra("title", book.getTitle());
+					startActivity(i);
 				}
 				
 			}

@@ -13,6 +13,10 @@ public class Book {
 	private List<String> tags;
 	private Library library;
 	
+	public Book(){
+		
+	}
+	
 	public Book(Long ISBN, Library lib){
 		this.ISBN = ISBN;
 		this.library = lib;
