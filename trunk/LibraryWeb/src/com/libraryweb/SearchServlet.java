@@ -1,6 +1,7 @@
 package com.libraryweb;
 
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -8,6 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.omg.CORBA.portable.ApplicationException;
+
+import com.google.appengine.repackaged.org.json.JSONArray;
+import com.google.appengine.repackaged.org.json.JSONException;
+import com.google.appengine.repackaged.org.json.JSONObject;
 import com.libraryweb.model.Book;
 import com.libraryweb.model.BookDAO;
 import com.libraryweb.model.Config;
@@ -43,18 +49,41 @@ public class SearchServlet extends HttpServlet {
 				
 				try {
 					
+					
+					JSONObject userJson = new JSONObject();
+					userJson.put(Config.MAIL_PARAM, user.getMailLogin());
+				//	userJson.put(Config.PASS_PARAM, user.getPassLogin());
+					userJson.put("key", user.getKey());
+					
+					JSONObject bookJson = new JSONObject();
+					bookJson.put(Config.BOOK_ID_PARAM, book.getBookId());
+					bookJson.put(Config.BOOK_TITLE_PARAM, book.getTitle());
+					
+					JSONArray array = new JSONArray();
+					array.put(userJson);
+					array.put(bookJson);
+					
+					resp.setContentType("text/x-json;charset=UTF-8");           
+			        resp.setHeader("Cache-Control", "no-cache");
+			        try {
+			             resp.getWriter().write(array.toString());
+			        } catch (IOException e) {
+			            
+			        }                               
+					
+					
 					//hay que seguir implementando...
-					resp.getWriter().println("Book Title: " + book.getTitle());
-					log.log(Level.SEVERE, "Book Title: " + book.getTitle());
+//					resp.getWriter().println("Book Title: " + book.getTitle());
+//					log.log(Level.SEVERE, "Book Title: " + book.getTitle());
+//					
+//					resp.getWriter().println("BookId: " + book.getBookId());
+//					log.log(Level.SEVERE, "BookId: " + book.getBookId());
+//					
+//					resp.getWriter().println("Key user: " + user.getKey());
+//					log.log(Level.SEVERE, "Key user: " + user.getKey());
 					
-					resp.getWriter().println("BookId: " + book.getBookId());
-					log.log(Level.SEVERE, "BookId: " + book.getBookId());
 					
-					resp.getWriter().println("Key user: " + user.getKey());
-					log.log(Level.SEVERE, "Key user: " + user.getKey());
-					
-					
-				} catch (IOException e) {
+				}  catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
