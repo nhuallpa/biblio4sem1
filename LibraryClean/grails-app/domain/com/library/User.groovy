@@ -1,6 +1,6 @@
 package com.library
 
-import com.library.exceptions.BookAlreadyReservedException;
+import com.library.exceptions.*
 
 class User {
 
@@ -46,6 +46,8 @@ class User {
 	
 	/* Alguien tiene que crearlo en la library */
 	void returnBook (Book aBook){
+		
+		if (!this.reservations?.contains(aBook)) throw new ReservationDoesNotExistException()
 		aBook.returnMe()
 		
 		this.reservations?.remove aBook
@@ -55,10 +57,11 @@ class User {
 		aBook.comment(this, aString, score)
 			
 	}
-	
-	void addLibraryComment(Library aLibrary, String aString, Integer score ){
-		aLibrary.comment(this, aString, score)
-    }
+
+//  Leaved for further updates, first the basics.	
+//	void addLibraryComment(Library aLibrary, String aString, Integer score ){
+//		aLibrary.comment(this, aString, score)
+//   }
 	
 	void comment(User sourceUser, String aString, Integer score){
 		Comment aComment = new Comment(thingCommented:this, description:aString, sourceUser:sourceUser, score: score)
@@ -67,6 +70,7 @@ class User {
 	}
 	
 	void addUserComment(User aUser, String aString, Integer score ){
+		if ( this.equals(aUser)) throw new UserCannotCommentItselfException()
 		aUser.comment(this, aString, score)		
     }
 	
