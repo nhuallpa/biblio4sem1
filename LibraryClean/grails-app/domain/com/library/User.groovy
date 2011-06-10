@@ -1,5 +1,7 @@
 package com.library
 
+import com.library.exceptions.BookAlreadyReservedException;
+
 class User {
 
 	String name
@@ -36,6 +38,7 @@ class User {
 	
 	void makeReservation(Book aBook) {
 		
+		if (aBook.isReserved()) throw new BookAlreadyReservedException()
 		Reservation aReservation = new Reservation(aBook,this)
 		this.addReservation(aReservation,aBook)
 		
