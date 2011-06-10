@@ -32,6 +32,26 @@ class Book {
 		
 	}
 	
+	void comment(User srcUser, String aString, Integer score){
+		
+	}
+	
+	void returnMe(){
+		
+	}
+	
+	void cancelReservation(){
+		
+	}
+	
+	void categorizeMe(){
+		
+	}
+	
+	void retireMe(){
+		
+	}
+	
 	Boolean isReserved(){
 		return state.contains("Reserved")
 	}
