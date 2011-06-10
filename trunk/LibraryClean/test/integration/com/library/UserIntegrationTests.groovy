@@ -40,7 +40,9 @@ class UserIntegrationTests extends GroovyTestCase {
 	
 	void testUserMakeReservation() {
 		assertTrue user.validate()
+		
 		aBook = new Book(title:"C",ISBN:"1",state:"Available",library:aLibrary)
+		assertNotNull aBook.save()
 		user.makeReservation(aBook)
 		assertNotNull user.save()
 		User userFound = User.get(user.id)
