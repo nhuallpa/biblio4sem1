@@ -22,6 +22,11 @@ class Reservation {
     }
 	
 	static belongsTo = [User]
+	Reservation(){
+		book = new Book()
+		user = new User()
+		
+	}
 	
 	Reservation(Book aBook, User aUser){
 		this.setBook(aBook)

@@ -21,6 +21,7 @@ class Book {
 		tags(nullable: true)
 //		listOfComments(nullable:true)
 		subject(nullable:true)
+		library(nullable: true)
 	}
 
 	static mapping = {

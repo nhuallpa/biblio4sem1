@@ -4,8 +4,6 @@ import com.library.exceptions.*
 
 class User {
 	
-	static searchable = true
-
 	String name
 	byte[] photo
 	String homepage
