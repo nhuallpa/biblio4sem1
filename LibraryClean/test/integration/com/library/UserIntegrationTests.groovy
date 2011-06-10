@@ -2,8 +2,7 @@ package com.library
 
 import java.util.Date;
 
-import com.library.exceptions.BookAlreadyReservedException;
-
+import com.library.exceptions.*
 import grails.test.*
 
 class UserIntegrationTests extends GroovyTestCase {
@@ -61,6 +60,19 @@ class UserIntegrationTests extends GroovyTestCase {
 		}
 	}
 	
+	void testUserTryToCommentItself(){
+		assertTrue user.validate()
+		shouldFail(UserCannotCommentItselfException){
+			user.addUserComment user, "Soy el mejor", 10
+		}
+	}
 	
+	void testUserTryToReturnBookNotReservedByHim(){
+		assertTrue user.validate()
+		aBook = new Book(title:"C",ISBN:"1",state:"Reserved - XXXX",library:aLibrary)
+		shouldFail(ReservationDoesNotExistException){
+			user.returnBook(aBook)
+		}
+	}
 	
 }
