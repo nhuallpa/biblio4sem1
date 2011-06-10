@@ -20,10 +20,7 @@ class UserIntegrationTests extends GroovyTestCase {
 		user = new User(name: "Ariel", location: location)
 		userTwo = new User(name: "Nestor", location: location)
 		userTwo.addUserComment(user, "Buen usuario", 2)
-		
 		aLibrary = new Library(libraryId: "BA_Ateneo", name: "El Ateneo")
-		
-		
     }
 
     protected void tearDown() {
@@ -75,4 +72,23 @@ class UserIntegrationTests extends GroovyTestCase {
 		}
 	}
 	
+	void testUserRegisterMoreThanOneBook(){
+		assertTrue user.validate()
+		aBook = new Book(title:"C",ISBN:"1",state:"Available",library:aLibrary)
+		def aBookTwo = new Book(title:"M",ISBN:"2",state:"Available",library:aLibrary)
+		user.makeReservation(aBook)
+		user.makeReservation(aBookTwo)
+		assertEquals 2,user.getReservations().size()
+	}
+	
+	void testUserCancelAReservation(){
+		assertTrue user.validate()
+		aBook = new Book(title:"C",ISBN:"1",state:"Available",library:aLibrary)
+		def aBookTwo = new Book(title:"M",ISBN:"2",state:"Available",library:aLibrary)
+		user.makeReservation(aBook)
+		user.makeReservation(aBookTwo)
+		user.cancelReservation(aBook)
+		assertEquals 1,user.getReservations().size()
+	}
+
 }
