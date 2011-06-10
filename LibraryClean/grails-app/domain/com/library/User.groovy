@@ -19,7 +19,7 @@ class User {
 		name(size: 3..60, nullable:true)
 		photo(nullable: true)
 		homepage(url: true, nullable: true)
-		email(email: true, nullable: true, unique: true)
+		email(email: true, nullable: true)
 		phone(nullable: true)
 		location(nullable: true)
 		reservations(nullable: true)

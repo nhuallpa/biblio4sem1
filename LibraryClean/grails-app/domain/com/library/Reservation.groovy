@@ -9,19 +9,16 @@ class Reservation {
 	Date reservationDate
 	String state
 	//Library library
-	static belongTo = [library : Library]
-	
-
     static constraints = {
-		book(unique: true,nullable:true)
+		book(unique: true)
 		state(size: 3..60)
-		user(unique:true)
+		user(nullable: true)
 		reservationDate(nullable:true)
-		// library(unique:true, nullable:true)
+		//library(nullable:true)
 		
     }
 	
-	static belongsTo = [User]
+	static belongsTo = [User, Library]
 	Reservation(){
 		book = new Book()
 		user = new User()
