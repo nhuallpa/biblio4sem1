@@ -1,6 +1,9 @@
 package com.library
 
 import java.util.Date;
+
+import com.library.exceptions.BookAlreadyReservedException;
+
 import grails.test.*
 
 class UserIntegrationTests extends GroovyTestCase {
