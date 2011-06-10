@@ -2,6 +2,8 @@ package com.library
 
 class Book {
 	
+	static searchable = true
+	
 	static hasMany = [comment : Comment]
 	
 //	long bookId //que lo tenga la BD nada mas
