@@ -36,19 +36,28 @@ class UserIntegrationTests extends GroovyTestCase {
 		assertEquals "Ariel", userFound.getName()
 		assertEquals "countryTest", userFound.getLocation().getCountry()
 		assertEquals 1,userFound.comments?.size()
+		assertEquals "Buen usuario",userFound.comments?.get(0).description
     }
 	
 	void testUserMakeReservation() {
 		assertTrue user.validate()
-		aBook = new Book(title:"C",ISBN:"1",state:"Reserved",library:aLibrary)
+		aBook = new Book(title:"C",ISBN:"1",state:"Available",library:aLibrary)
 		user.makeReservation(aBook)
-		user.save()
-		
-		println user.errors
 		assertNotNull user.save()
 		User userFound = User.get(user.id)
 		assertEquals 1,userFound.reservations?.size()
+		assertEquals "Reserved - Waiting",userFound.reservations?.get(0).state
 	}
+	
+	
+	void testUserTryToReservateAnAlreadyReservedBook(){
+		assertTrue user.validate()
+		aBook = new Book(title:"C",ISBN:"1",state:"Reserved - XXXX",library:aLibrary)
+		shouldFail(BookAlreadyReservedException){
+			user.makeReservation(aBook)
+		}
+	}
+	
 	
 	
 }
