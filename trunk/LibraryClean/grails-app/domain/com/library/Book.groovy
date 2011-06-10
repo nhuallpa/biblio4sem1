@@ -20,7 +20,7 @@ class Book {
 //		listOfComments(nullable:true)
 		subject(nullable:true)
 	}
-	
+
 	static mapping = {
 		library lazy: false
 	}
@@ -30,6 +30,10 @@ class Book {
 	}
 	void reserveMe(){
 		
+	}
+	
+	Boolean isReserved(){
+		return state.contains("Reserved")
 	}
 		
 	
