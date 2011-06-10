@@ -2,6 +2,8 @@ package com.library
 
 class Reservation {
 	
+	static searchable = true
+	
 	Book book
 	User user
 	Date reservationDate

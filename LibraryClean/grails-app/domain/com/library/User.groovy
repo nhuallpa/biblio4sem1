@@ -3,6 +3,8 @@ package com.library
 import com.library.exceptions.*
 
 class User {
+	
+	static searchable = true
 
 	String name
 	byte[] photo
@@ -12,7 +14,6 @@ class User {
 	List<Integer> score = new ArrayList<Integer>()
 	List<Reservation> reservations = new ArrayList<Reservation>()
 	List<Comment> comments = new ArrayList<Comment>()
-	
 	
 	Location location
 
