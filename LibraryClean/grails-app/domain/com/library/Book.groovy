@@ -6,6 +6,7 @@ class Book {
 	
 	static hasMany = [comment : Comment]
 	
+	
 //	long bookId //que lo tenga la BD nada mas
 	String title
 	String subject
