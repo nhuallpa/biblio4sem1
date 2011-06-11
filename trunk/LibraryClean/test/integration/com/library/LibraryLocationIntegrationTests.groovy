@@ -1,6 +1,5 @@
 package com.library
 
-import org.hibernate.validator.AssertTrue;
 
 import grails.test.*
 
