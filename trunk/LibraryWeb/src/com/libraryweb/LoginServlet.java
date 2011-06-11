@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import sun.net.www.http.HttpClient;
+
 import com.google.appengine.repackaged.org.json.JSONException;
 import com.google.appengine.repackaged.org.json.JSONObject;
 import com.libraryweb.model.Config;
@@ -63,15 +65,33 @@ public class LoginServlet extends HttpServlet {
 				} finally {
 					pm.close();
 				}
-						
-//				resp.getWriter().println("UserKey: " + user.getKey());
-//				log.log(Level.SEVERE, "UserKey: " + user.getKey());
+				
+				String token = pass.trim();
+				
+				JSONObject key = new JSONObject();
+				try {
+					key.put("token", token);
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				resp.setContentType("text/x-json;charset=UTF-8");         
+				resp.setContentLength(key.length());
+		        resp.setHeader("Cache-Control", "no-cache");
+		        
+		        try {
+		             resp.getWriter().write(key.toString());
+		        } catch (IOException e) {
+		            
+		        }              
+
 				
 				
 			} 
 			
-			resp.getWriter().println("UserKey: " + user.getKey());
-			log.log(Level.SEVERE, "UserKey: " + user.getKey());
+//			resp.getWriter().println("UserKey: " + user.getKey());
+//			log.log(Level.SEVERE, "UserKey: " + user.getKey());
 		}
 		
 	
