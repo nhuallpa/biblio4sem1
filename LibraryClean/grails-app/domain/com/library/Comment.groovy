@@ -3,22 +3,26 @@ package com.library
 class Comment {
 	
 	String description
-	Date date
+//	Date date
 	def thingCommented
-	User sourceUser
+//	User sourceUser
 	Integer score
 		
 
 	static constraints = {
 		description (blank : false)
-		date(nullable:true)
+//		date(nullable:true)
 		score(nullable:true)
 //		user(blank : false)
-		sourceUser(nullable:true)
+//		sourceUser(nullable:true)
 		thingCommented(nullable:true)
 	}
 	
-	static belongsTo = [User, Book]
+	static belongsTo = [user : User]
+	
+	void addUser(User srcUser){
+		user = srcUser
+	}
 
 
 }
