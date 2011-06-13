@@ -6,36 +6,50 @@
 		<g:layoutHead />
 	</head>
 	<body>
-		<div id="header">
-			<h1>Books 4 You</h1>
+		<div class="header">
+			<div class="container">
+				<h1>Library</h1>
+			</div>
 		</div>
 		<div id="content">
-			<g:layoutBody />
-		</div>
-		<div id="sidebar">
-			<g:if test="${session.user}">
-				<div>
-				nhuallpa <br/>
-				points: 3 Stars <br/>
-				singout
+			<div class="container">
+				<div class="col-s-content">
+					<g:layoutBody />
 				</div>
-				<ul id="list_oper">
-					<li>My reservation</li>
-					<li>My Comments</li>
-				</ul>
-			</g:if>
-			<g:else>
-				<g:form >
-					user: <br/>
-					<g:textField name="userId"></g:textField> <br/>
-					password: <br/>
-					<g:passwordField name="password"></g:passwordField><br/>
-					<g:submitButton name="login" controller="" action=""></g:submitButton>
-				</g:form>
-			</g:else>
-		</div>	
-		<div id="footer">
-			<p>Following</p>
+				<div class="large-sidebar">
+					<div class="inner-boundary last-item">
+						<div class="inner-border author-item">
+							<g:if test="${session.user}">
+								<div>
+								<span class="text-form">${session.user.name}</span> <br/>
+								<span class="text-form">points: 3 Stars</span> <br/>
+								<span class="text-form"><g:link controller="user" action="logout">logout</g:link></span><br/>
+								 <br/>	
+								</div>
+								<ul id="list_oper">
+									<li class="text-form">My reservation</li>
+									<li class="text-form">My Comments</li>
+									<li class="text-form">Recommendation for me</li>
+								</ul>
+							</g:if>
+							<g:else>
+								<g:form controller="user" action="login">
+									<span class="text-form">user:</span><br/>
+									<g:textField name="userId"></g:textField> <br/>
+									<span class="text-form">password:</span><br/>
+									<g:passwordField name="password"></g:passwordField><br/>
+									<span class="button"><g:submitButton name="login" ></g:submitButton></span>
+								</g:form>
+							</g:else>
+						</div>
+					</div>
+				</div>	
+			</div>
+		</div>
+		<div class="footer">
+			<div class="container">
+				<p>Following</p>
+			</div>
 		</div>	
 	</body>
 </html>

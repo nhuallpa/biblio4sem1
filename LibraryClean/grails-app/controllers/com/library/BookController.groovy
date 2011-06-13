@@ -7,8 +7,13 @@ class BookController {
     def index = { 
 		redirect(action: 'create')
 	}
-	
 	def view = {
-		[BookList : Book.list()]
+		[bookList : Book.list()]
+	}
+	def searchBookHome = {
+	}
+	def searchBookByTitle = {
+		def books = Book.list()
+		redirect(controller:'book', action:'searchBookHome', bookList:books)
 	}
 }
