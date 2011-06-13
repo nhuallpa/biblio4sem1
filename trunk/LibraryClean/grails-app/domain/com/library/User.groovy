@@ -5,6 +5,7 @@ import com.library.exceptions.*
 class User {
 	
 	String name
+	String password
 	byte[] photo
 	String homepage
 	String email
@@ -17,6 +18,7 @@ class User {
 
     static constraints = {
 		name(size: 3..60, nullable:true)
+		password(size: 3..15, nullable:true)
 		photo(nullable: true)
 		homepage(url: true, nullable: true)
 		email(email: true, nullable: true)

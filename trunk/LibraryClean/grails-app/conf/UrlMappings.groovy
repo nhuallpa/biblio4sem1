@@ -6,12 +6,12 @@ class UrlMappings {
 				// apply constraints here
 			}
 		}
-		"/home" {
-			controller = "home"
-			action	   = "index"
-		}
 
-		"/"(view:"/index")
+		"/admin"(view:"/index")
+		"/" {
+			controller = "book"
+			action	   = "searchBookHome"
+		}
 		"500"(view:'/error')
 		
 	}
