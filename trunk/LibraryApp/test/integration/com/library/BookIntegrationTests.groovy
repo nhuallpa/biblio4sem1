@@ -35,18 +35,18 @@ class BookIntegrationTests extends GroovyTestCase {
 		
     }
 	
-	void testAddCommentToBook(){
-//		Comment comment = new Comment(description : 'Buen libro')
-		
-		Location locationUser = new Location (country: "countryTest", street: "streetTest")
-		User user = new User(name : 'Gonzalo', location : locationUser)
-		assertNotNull user.save()
-		book.addComment user, commentDesc, 15
-		assertNotNull book.save()
-		
-		Book foundBook = Book.get(book.id) 
-		assertEquals 1,foundBook.comments?.size()
-//		assertEquals 'Gonzalo', foundBook.getComments().get(0)
-		
-	}
+//	void testAddCommentToBook(){
+////		Comment comment = new Comment(description : 'Buen libro')
+//		
+//		Location locationUser = new Location (country: "countryTest", street: "streetTest")
+//		User user = new User(name : 'Gonzalo', location : locationUser)
+//		assertNotNull user.save()
+//		book.addComment user, commentDesc, 15
+//		assertNotNull book.save()
+//		
+//		Book foundBook = Book.get(book.id) 
+//		assertEquals 1,foundBook.comments?.size()
+////		assertEquals 'Gonzalo', foundBook.getComments().get(0)
+//		
+//	}
 }
