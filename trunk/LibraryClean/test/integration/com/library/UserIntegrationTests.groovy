@@ -16,6 +16,7 @@ class UserIntegrationTests extends GroovyTestCase {
 	
     protected void setUp() {
         super.setUp()
+		
 		location = new Location(country: "countryTest", street: "streetTest")
 		user = new User(name: "Ariel", location: location)
 		userTwo = new User(name: "Nestor", location: location)

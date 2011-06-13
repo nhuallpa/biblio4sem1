@@ -29,6 +29,7 @@ class BookIntegrationTests extends GroovyTestCase {
 		assertNotNull book.save()
 		assertNotNull book.id
 		
+		
 		def foundBook = Book.get(book.id)
 		assertEquals myTitle,foundBook.getTitle()
 		

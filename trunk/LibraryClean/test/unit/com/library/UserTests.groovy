@@ -12,4 +12,8 @@ class UserTests extends GrailsUnitTestCase {
         super.tearDown()
     }
 	
+	void testSomething() {
+	
+	}
+	
 }
