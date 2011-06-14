@@ -13,7 +13,7 @@
       <div class="list">
         <g:each in="${searchResults}" status="i" var="book">
 
-        <div class="entry">
+        <div class="book">
           <h2>
             <g:link action="show"
                     id="${book.id}">${book.title}</g:link>
