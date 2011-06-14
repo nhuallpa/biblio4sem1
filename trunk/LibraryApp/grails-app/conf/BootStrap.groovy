@@ -16,15 +16,20 @@ class BootStrap {
 		1.upto(50) { i ->
 		   def aBook = bookNames[ random.nextInt(9)]
 		   def aName = lastNames[ random.nextInt(9)] + i
-		   //Library aLibrary = libraries[ random.nextInt(3)]
+		   // def aLibrary = libraries[ random.nextInt(3)]
 		   def isbn = random.nextInt(456789)
 		   def pass = random.nextInt(888999)
 		   
-		   def TheBook = new Book( ISBN: isbn, title: aBook, library: a, state: "Available")
-		   TheBook.save()
-		   def TheUser = new User(name: aName, password: pass).save()
+		   def theBook = new Book( ISBN: isbn, title: aBook, library: a, state: "Available").save()
+		   def theUser   
+		   if (i == 1) {
+			   theUser = new User(name: 'admin', password: 'admin').save()
+		   } else{
+			   theUser = new User(name: aName, password: pass).save()
+		   }
 		   
-		   TheUser.makeReservation(TheBook)
+		   
+		   theUser.makeReservation(theBook)
 		   
 		   
 		}

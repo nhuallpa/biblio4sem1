@@ -1,6 +1,4 @@
-body {
-	margin: 0px;
-}
+body,h1,h2,h3,h4,h5,h6,p,ul,ol{margin:0;padding:0;}
 
 .header {
     background-color: #232323;
@@ -133,6 +131,8 @@ div.large-sidebar div.inner-boundary div.author-item {
 	font:11px verdana,arial,helvetica,sans-serif;
 }
 
+
+
 .text-title {
 	font:24px verdana,arial,helvetica,sans-serif;
 }
@@ -147,4 +147,18 @@ div.large-sidebar div.inner-boundary div.author-item {
 .button {
 	font: 11px verdana,arial,helvetica,sans-serif;
 }
+/*** SideBar ***/
+
+
+ul,ol{
+	list-style: none outside none;
+	list-style-position: outside;
+	margin-bottom: 0;
+    margin-left: 0;
+    margin-top: 0;
+}
+
+a{text-decoration:none;color:#0D355E; font: 11px verdana,arial,helvetica,sans-serif;}
+
+.menu-vert li{background: transparent url('../images/home/li.png') no-repeat;position:relative;margin: 7px 0 0 10px;padding: 0 0 15px 20px;border-bottom:1px dotted #0D355E;width:235px;}
 

@@ -94,7 +94,7 @@ class UserIntegrationTests extends GroovyTestCase {
 		assertEquals 1,user.getReservations().size()
 	}
 	
-	void testUserCommentABook(){
+	void testUserCommentABook() {
 		assertTrue user.validate()
 		assertNotNull user.save()
 	
@@ -111,6 +111,7 @@ class UserIntegrationTests extends GroovyTestCase {
 		
 		Book bookFoundAgain = Book.get(bookFound.id)
 		assertEquals "Pesimo Libro", bookFoundAgain.getComments().get(0).description
+		assertEquals "Ariel", bookFoundAgain.comments.get(0).sourceUser.name
 	}
 
 }
