@@ -36,4 +36,9 @@ class Library {
 	Boolean isNearOf(Location location, Integer maxDistanceKm) {
 		return false;
 	}
+	
+	String toString(){
+		return this.name
+	}
+	
 }
