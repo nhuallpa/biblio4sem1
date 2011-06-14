@@ -8,3 +8,6 @@ http://mockito.org/
 SVN and Grails
 http://nooku.assembla.com/wiki/show/iw2010_yab/grails_vs_subversion
 http://www.adictosaltrabajo.com/tutoriales/tutoriales.php?pagina=svnXP
+
+Localitation
+http://www.danilat.com/weblog/2011/04/05/primera-version-de-grails-localizable-plugin/
