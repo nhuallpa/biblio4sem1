@@ -96,11 +96,21 @@ class UserIntegrationTests extends GroovyTestCase {
 	
 	void testUserCommentABook(){
 		assertTrue user.validate()
+		assertNotNull user.save()
+	
 		aBook = new Book(title:"C",ISBN:"1",state:"Available",library:aLibrary)
-		user.addBookComment aBook, "Pesimo Libro", 1
+		
+		assertTrue aBook.validate()
 		assertNotNull aBook.save()
-		Book bookFounded = Book.get(aBook.id)
-		assertEquals "Pesimo Libro",bookFounded.getComments().get(0).description
+		
+		User userFound = User.get(user.id)
+		Book bookFound = Book.get(aBook.id)
+		
+		userFound.addBookComment bookFound, "Pesimo Libro", 1
+		assertNotNull aBook.save()
+		
+		Book bookFoundAgain = Book.get(bookFound.id)
+		assertEquals "Pesimo Libro", bookFoundAgain.getComments().get(0).description
 	}
 
 }
