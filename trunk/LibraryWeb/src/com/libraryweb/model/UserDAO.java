@@ -27,6 +27,7 @@ public class UserDAO {
 		try {
 			q.addFilter(Config.MAIL_PARAM, Query.FilterOperator.EQUAL, data.get(Config.MAIL_PARAM));
 			q.addFilter(Config.PASS_PARAM, Query.FilterOperator.EQUAL, data.get(Config.PASS_PARAM));
+			q.addFilter(Config.TOKEN, Query.FilterOperator.EQUAL, data.get(Config.TOKEN));
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -42,6 +43,7 @@ public class UserDAO {
 			userInfo.setKey(result.getKey());
 			userInfo.setMailLogin((String)result.getProperty(Config.MAIL_PARAM));
 			userInfo.setPassLogin((String)result.getProperty(Config.PASS_PARAM));
+			userInfo.setToken((String)result.getProperty(Config.TOKEN));
 			break;
 		}
 		

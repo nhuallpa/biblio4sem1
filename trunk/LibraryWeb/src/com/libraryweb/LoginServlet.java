@@ -1,16 +1,17 @@
 package com.libraryweb;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.Enumeration;
-import java.util.logging.Level;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.logging.Logger;
 
 import javax.jdo.PersistenceManager;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import sun.net.www.http.HttpClient;
 
 import com.google.appengine.repackaged.org.json.JSONException;
 import com.google.appengine.repackaged.org.json.JSONObject;
@@ -50,13 +51,13 @@ public class LoginServlet extends HttpServlet {
 		User user = null;
 		if(mail != null && pass != null){			
 			user = UserDAO.getUserInfo(datos);
-			
+			String token = config.md5(pass);//obtengo el token
 			if(user == null){				
 				user = new User();
 				
 				user.setMailLogin(mail);
 				user.setPassLogin(pass);
-				
+				user.setToken(token);
 				
 				PersistenceManager pm = PMF.get().getPersistenceManager();
 
@@ -66,22 +67,22 @@ public class LoginServlet extends HttpServlet {
 					pm.close();
 				}
 				
-				String token = pass.trim();
+//				String token = pass.trim();
 				
-				JSONObject key = new JSONObject();
+				JSONObject jsonToken = new JSONObject();
 				try {
-					key.put("token", token);
+					jsonToken.put("token", token);
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
-				resp.setContentType("text/x-json;charset=UTF-8");         
-				resp.setContentLength(key.length());
+			 
+				resp.setContentType("text/x-json");         
+				resp.setContentLength(jsonToken.length());
 		        resp.setHeader("Cache-Control", "no-cache");
 		        
 		        try {
-		             resp.getWriter().write(key.toString());
+		             resp.getWriter().write(jsonToken.toString());
 		        } catch (IOException e) {
 		            
 		        }              

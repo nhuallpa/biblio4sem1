@@ -16,6 +16,8 @@ import com.google.appengine.repackaged.org.json.JSONObject;
 
 public class BookDAO {
 	private static final Logger log = Logger.getLogger("BookDAO");
+	
+	
 	public static Book getBookInfo(JSONObject data){
 		String bookId = null;
 		String title = null;

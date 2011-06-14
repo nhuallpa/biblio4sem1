@@ -1,5 +1,8 @@
 package com.libraryweb.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
@@ -25,17 +28,22 @@ public class Book {
 	@Persistent
 	private String state;
 	
-//	@Persistent
-//	private List<Comment> listOfComments;
+	@Persistent
+	private List<String> listOfComments;
 	
-	public Book(){}
+	public Book(){
+		listOfComments = new ArrayList<String>();
+	}
 	
 	public Book(String title, long bookId){
+		
 		this.title = title;
 		this.bookId = bookId;
 	}
 
-
+	public List<String> getComments(){
+		return listOfComments;
+	}
 
 	public Key getKey() {
 		return key;
