@@ -1,0 +1,22 @@
+
+Pre-requisitos:
+- El proyecto debe estar creado con grails 1.3.7
+- Debe estar instalado el app-engine 0.8.10 y el gorm-jpa 0.7.1
+
+Procedimiento:
+- Ejecutar los siguientes comandos grails:
+
+grails set-version XXX //numero de version es XXX actualmente la 1 esta deployada
+grails app-engine package
+
+Luego de esto se habra generado en nuestro proyecto la carpeta /target/war/
+
+$APPENGINE_HOME/bin/appcfg.sh update ./target/war -- En linux
+$APPENGINE_HOME%/bin/appcfg.cmd update ./target/war -- En windows
+
+Eso nos generara los indices y solo queda subir el .war que genero grails en /target/
+
+grails app-engine deploy
+
+pedira user y password, si lo hacen via STS cuando pide el usuario primero dar "enter" y
+luego escribir el mail.
