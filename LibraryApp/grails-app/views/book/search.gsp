@@ -16,7 +16,7 @@
         <div class="book">
           <h2>
             <g:link action="show"
-                    id="${book.id}">${book.title}</g:link>
+                    id="${book.id}">${book.title}</g:link><p>ISBN: ${book.ISBN}, Library: ${book.library?.name}</p>
           </h2>
           <p>${book.subject}</p>
         </div>
