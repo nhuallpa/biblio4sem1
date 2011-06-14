@@ -5,7 +5,7 @@ class Book {
 	static searchable = true
 	
 	static hasMany = [tags : String, comments : Comment]
-	
+
 	
 //	long bookId //que lo tenga la BD nada mas
 	String title
@@ -26,9 +26,10 @@ class Book {
 		library(nullable: true)
 		state(nullable: true)
 		score(nullable: true)
-		
 	}
 
+	static belongsTo = [library : Library]
+	
 	static mapping = {
 		library lazy: false
 	}
