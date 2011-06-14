@@ -16,11 +16,11 @@ class UserController {
 		} else {
 			session.user = null
 		}
-		redirect(controller:'home', action:'index')
+		redirect(uri:'/')
 	}
 	
 	def logout = {
 		session.user = null
-		redirect(controller:'home', action:'index')
+		redirect(uri:'/')
 	}
 }
