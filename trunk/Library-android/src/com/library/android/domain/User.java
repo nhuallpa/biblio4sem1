@@ -10,7 +10,7 @@ public class User {
 	private String email;
 	private List<Comment> listOfComments;
 	private List<Reservation> listOfReservations;
-	
+		
 	public User(){}
 	
 	public User(String name, Location address, String email){

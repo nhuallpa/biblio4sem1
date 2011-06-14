@@ -41,8 +41,6 @@ public class BookServicesImpl implements LibraryService {
 	public static Book findBook(String text){
 		
 		String urlFinal = url + "&bookId=" + text;
-//		String url = "http://biblioteca-web.appspot.com/search?mail=lalosoft@gmail.com&bookId=1234";
-//		String request = null;
 		String request = null;
 		
 		JSONArray array = null;
@@ -76,11 +74,7 @@ public class BookServicesImpl implements LibraryService {
 				con.disconnect();
 			}
 			//array = new JSONArray(request);
-			
-	
-			
-			
-			
+					
 			
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
@@ -92,13 +86,7 @@ public class BookServicesImpl implements LibraryService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
-		
-		
-		
-		
-		
+				
 		return book;
 	}
 	

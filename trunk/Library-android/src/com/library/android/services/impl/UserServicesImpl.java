@@ -1,10 +1,16 @@
 package com.library.android.services.impl;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.net.MalformedURLException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLConnection;
 import java.net.URLEncoder;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import com.library.android.repository.LibraryRepository;
 import com.library.android.services.ConfigWS;
@@ -14,47 +20,48 @@ public class UserServicesImpl implements LibraryService {
 	
 	LibraryRepository repo;
 	
-	public static boolean login(String mail, String pass){
+	public static String login(String mail, String pass) throws IOException{
 		 
 		String url = ConfigWS.WS_LOGIN + "mail_login=" + mail + "&pass_login=" + pass;
-		int request = 0;
-		boolean auth = false;
-		try {
-			//URL u = new URL(url);
-			URLConnection connection = new URL(url).openConnection();
-			
-			// Http Method becomes POST
-			connection.setDoOutput(true);
+		String token = null;
+		HttpURLConnection conn = null;
+				
+		URL u = new URL(url);
+		   conn = (HttpURLConnection) u.openConnection();
 
-			// Encode according to application/x-www-form-urlencoded specification
-			String content = "UserKey: " + URLEncoder.encode("key");
-//			    "id=" + URLEncoder.encode ("username") +
-//			    "&num=" + URLEncoder.encode ("password") +
-//			    "&remember=" + URLEncoder.encode ("on") +
-//			    "&output=" + URLEncoder.encode ("xml");
-			connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded"); 
+		   conn.setDoOutput(true);
 
-			// Try this should be the length of you content.
-			// it is not neccessary equal to 48. 
-			// content.getBytes().length is not neccessarily equal to content.length() if the String contains non ASCII characters.
-			connection.setRequestProperty("Content-Length", String.valueOf(content.getBytes().length)); 
+		   String data = URLEncoder.encode("key1", "UTF-8") + "=" + URLEncoder.encode("value1", "UTF-8");
+		   
+           conn.setDoOutput(true);
+           OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
+           wr.write(data);
+           wr.flush();
 
-			/**
-			 * FALLA!!
-			 */
-			connection.connect();
-			
-			auth = true;
-			
-		} catch (MalformedURLException e) {
-			auth = false;
-			e.printStackTrace();
-		} catch (IOException e) {
-			auth = false;
-			e.printStackTrace();
-		} 
-		
-		
-		return auth;
+           
+           // Get the response
+           BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream(),"UTF-8"));
+           String line = null;
+           String response = "";
+           while ((line = rd.readLine()) != null) {
+              response += line;
+           }
+
+           wr.close();
+           rd.close();
+           
+           if(response != null){
+        	 //make JSONObject
+               try {
+				JSONObject json = new JSONObject(response);
+				token = json.getString("token");
+			} catch (JSONException e) {
+				
+				e.printStackTrace();
+			}
+           }
+         
+           return token;
 	}
 }
+

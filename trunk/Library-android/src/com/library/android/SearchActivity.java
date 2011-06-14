@@ -30,7 +30,7 @@ public class SearchActivity extends Activity {
 		setContentView(R.layout.search_book);
 		
 		ConfigWS c = ConfigWS.getInstance();
-		c.setUser("lalosoft@gmail.com"); //BORRAR
+//		c.setUser("lalosoft@gmail.com");
 		
 		bookServices = BookServicesImpl.getInstance();
 		
