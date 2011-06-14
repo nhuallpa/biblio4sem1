@@ -1,6 +1,9 @@
 package com.library.android;
 
 
+import java.io.IOException;
+
+import com.library.android.services.ConfigWS;
 import com.library.android.services.impl.UserServicesImpl;
 
 import android.app.Activity;
@@ -24,11 +27,13 @@ public class LoginActivity extends Activity {
 	private EditText nameText;
 	private EditText passText;
 	private Button loginButton;
+	private ConfigWS config;
 	
 	public void onCreate(Bundle b){
 		super.onCreate(b);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.login);
+		config = ConfigWS.getInstance();
 		
 		nameText = (EditText) findViewById(R.id.name_login);
 		passText = (EditText) findViewById(R.id.pass_login);
@@ -44,18 +49,22 @@ public class LoginActivity extends Activity {
 				} else {
 					String mail = nameText.getText().toString();
 					String pass = passText.getText().toString();
-					Toast.makeText(LoginActivity.this, "Correct Input!", Toast.LENGTH_SHORT);
-					
-					
-					if(UserServicesImpl.login(mail, pass)){
-						Intent i = new Intent(LoginActivity.this, MainActivity.class);
-						i.putExtra(NAME_DATA, mail);
-						i.putExtra(PASS_DATA, pass);
-						startActivity(i);
-					} else {
-						
-						Toast.makeText(LoginActivity.this, "Invalid logged!!!", Toast.LENGTH_SHORT);
-						
+										
+					try {
+							String token = UserServicesImpl.login(mail, pass);
+							if(token != null){
+								config.setUser(mail);
+								config.setToken(token);
+								Intent i = new Intent(LoginActivity.this, SearchActivity.class);
+								i.putExtra(NAME_DATA, mail);
+								startActivity(i);
+							} else {
+								Toast.makeText(LoginActivity.this, "Error login", Toast.LENGTH_SHORT);
+							}
+							
+						} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
 					
 				
@@ -72,7 +81,7 @@ public class LoginActivity extends Activity {
 	
 	private boolean isWrong(){
 		
-		//valida con el webservice
+		
 		String name = this.nameText.getText().toString();
 		String pass = this.passText.getText().toString();
 		
