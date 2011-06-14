@@ -55,10 +55,10 @@ class User {
 	}
 	
 	void addBookComment(Book aBook, String aString, Integer score ){
-		// aBook.comment(this, aString, score)
-		def comment = new Comment(description:aString)
-		aBook.addToComments(comment) 
-		this.addToComments(comment)
+		aBook.comment(this, aString, score)
+		//def comment = new Comment(sourceUser: this, description:aString, score: score)
+		//aBook.comments.add(comment) 
+		//this.comments.add(comment)
 		
 	}
 

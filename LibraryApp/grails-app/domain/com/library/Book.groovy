@@ -14,6 +14,7 @@ class Book {
 	String state
 	List<Comment> comments = new ArrayList<Comment>()
 	List<String> tags = new ArrayList<String>()
+	List<Integer> score = new ArrayList<Integer>()
 	Library library
 
 	static constraints = {
@@ -24,6 +25,7 @@ class Book {
 		subject(nullable:true)
 		library(nullable: true)
 		state(nullable: true)
+		score(nullable: true)
 		
 	}
 
@@ -42,6 +44,12 @@ class Book {
 		def comment = new Comment(description : aString)
 		comment.addUser srcUser
 		comments.add comment
+	}
+	
+	void comment(User sourceUser, String aString, Integer score){
+		def aComment = new Comment(description: aString, sourceUser: sourceUser, score: score)
+		this.comments?.add(aComment)
+		this.score?.add(score)
 	}
 	
 	void returnMe(){

@@ -4,7 +4,6 @@ class Comment {
 	
 	String description
 	Date date
-	def thingCommented
 	User sourceUser
 	Integer score
 		
@@ -14,7 +13,6 @@ class Comment {
 		date(nullable:true)
 		score(nullable:true)
 		sourceUser(nullable:true)
-		thingCommented(nullable:true)
 	}
 	
 	static belongsTo = [sourceUser : User]
