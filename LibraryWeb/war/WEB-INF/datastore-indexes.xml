@@ -3,6 +3,7 @@
     <datastore-index kind="User" ancestor="false">
         <property name="mail_login" direction="asc" />
         <property name="pass_login" direction="asc"/>
+        <property name="token" direction="asc"/>
     </datastore-index>
     
     <datastore-index kind="Book" ancestor="false">

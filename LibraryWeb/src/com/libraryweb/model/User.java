@@ -16,6 +16,8 @@ public static final String NAME = "User";
     @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
     private Key key;
 
+	@Persistent
+	private String token;
     
     @Persistent
     private String mail_login;
@@ -31,7 +33,17 @@ public static final String NAME = "User";
     	this.mail_login = mail;
     	this.pass_login = pass;
     }
+    
+    
 
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
 
 	public User(String mail) {
 		this.mail_login = mail;
