@@ -39,6 +39,24 @@
 									<span class="text-form">password:</span><br/>
 									<g:passwordField name="password"></g:passwordField><br/>
 									<span class="button"><g:submitButton name="login" ></g:submitButton></span>
+									
+									<dl class="form-list">
+										<dt>Username</dt>
+										<dd>
+											<input id="username" class="input big" type="text" name="username">
+										</dd>
+										<dt>Password</dt>
+										<dd>
+											<input id="password" class="input big" type="password" value="" name="password">
+										</dd>
+									</dl>
+									<div class="sign-button">
+										<button class="link-button" type="submit">
+											<span class="sprite">
+												<em class="sprite">Sign In</em>
+											</span>
+										</button>
+									</div>
 								</g:form>
 							</g:else>
 						</div>
