@@ -193,3 +193,60 @@ div.shadowed {
 h3 {
     font-size: 24px;
 }
+
+/*						USER				**/
+dl.form-list {
+    font-size: 13px;
+    overflow: hidden;
+    padding: 0;
+}
+
+div.col-s-content form input, 
+div.col-s-content form select, 
+div.col-s-content form textarea, 
+div.col-content form input, 
+div.col-content form select, 
+div.col-content form textarea, 
+div#accordion form input, 
+div#accordion form select, 
+div#accordion form textarea, 
+.form-list input, 
+.form-list select, 
+.form-list textarea, 
+#fancybox-inner input, 
+#fancybox-inner select, 
+#fancybox-inner textarea {
+    background: url("../images/home/input_bg_slice.png") repeat-x scroll left top #FEFEFE;
+    border: 1px solid #9A9A9A;
+    color: #7C7C7C;
+    font-size: 12px;
+    margin: 5px 0;
+    padding: 8px 5px;
+    width: 145px;
+}
+
+div.col-s-content form input.big, div.col-s-content form select.big, div.col-s-content form textarea.big, div.col-content form input.big, div.col-content form select.big, div.col-content form textarea.big, div#accordion form input.big, div#accordion form select.big, div#accordion form textarea.big, .form-list input.big, .form-list select.big, .form-list textarea.big, #fancybox-inner input.big, #fancybox-inner select.big, #fancybox-inner textarea.big {
+    width: 210px;
+}
+
+button.link-button, button.upload-button {
+    background: none repeat scroll 0 0 transparent;
+    border: medium none;
+    cursor: pointer;
+    height: 50px;
+    line-height: 22px;
+    margin-left: 5px;
+    overflow: visible;
+    padding: 0;
+    text-align: center;
+    white-space: nowrap;
+    width: auto;
+}
+
+.sign-button {
+    float: left;
+    left: -10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    position: relative;
+}
