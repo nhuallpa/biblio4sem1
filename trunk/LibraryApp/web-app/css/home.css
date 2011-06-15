@@ -1,4 +1,5 @@
 body,h1,h2,h3,h4,h5,h6,p,ul,ol{margin:0;padding:0;}
+h1, h2, h3, h4, h5, h6 {font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;}
 
 .header {
     background-color: #232323;
@@ -162,3 +163,33 @@ a{text-decoration:none;color:#0D355E; font: 11px verdana,arial,helvetica,sans-se
 
 .menu-vert li{background: transparent url('../images/home/li.png') no-repeat;position:relative;margin: 7px 0 0 10px;padding: 0 0 15px 20px;border-bottom:1px dotted #0D355E;width:235px;}
 
+
+/*** List Item **/
+
+div.shadowed {
+    border: 1px solid #BBBBBB;
+}
+
+#items .item-list, #collections .item-list, #featured-item .item-list {
+    border: 1px solid #FFFFFF;
+}
+
+#items .item-list li, #collections .item-list li, #featured-item .item-list li {
+    background-color: #F4F4F4;
+    border-bottom: 1px solid #D5D5D5;
+    border-top: 1px solid #FFFFFF;
+    font-size: 11px;
+    list-style: none outside none;
+    padding: 20px;
+    position: relative;
+}
+
+#items .item-list li span.thumbnail, #collections .item-list li spa.thumbnail, #featured-item .item-list li span.thumbnail {
+    display: block;	
+    float: left;
+    margin-right: 20px;
+}
+
+h3 {
+    font-size: 24px;
+}
