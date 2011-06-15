@@ -28,7 +28,7 @@ class Book {
 		score(nullable: true)
 	}
 
-	static belongsTo = [library : Library]
+	static belongsTo = [Library]
 	
 	static mapping = {
 		library lazy: false
@@ -73,6 +73,4 @@ class Book {
 		return state.contains("Reserved")
 	}
 		
-	
-
 }

@@ -1,5 +1,7 @@
 package com.library
 
+import java.util.List;
+
 class Library {
 
 	String libraryId
@@ -8,7 +10,7 @@ class Library {
 	String homepage
 	String email
 	String phone
-	
+
 	Location location
 
 	static hasMany = [reservations : Reservation, books : Book]
