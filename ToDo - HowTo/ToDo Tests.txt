@@ -1,16 +1,19 @@
 Cosas que faltan en los tests
 ******************************
 
+Prioridades:
 1) Los comentarios deberian verificar el rango del puntanje
+2) La libreria debe chequear la fecha de las reservas y cancelarlas tras 24hs.
+3) Para el punto (2) la libreria precisa una lista de las reservas asi que al crear una deberan
+   agregarla a las reservas de la libreria
+4) NO HAY TEST DE INGRESAR LIBRO A LIBRERIA!
+5) NO HAY TEST DE QUE AL RESERVAR UN LIBRO LA RESERVA QUEDE EN LA LIBRERIA!
 
-2) Definir los estados de Libro, actualmente estan:
+
+Otros:
+1) Definir los estados de Libro, actualmente estan:
 - Reserved - Waiting
 - Reserved - Delivered
 - Available
 
-3) La libreria debe chequear la fecha de las reservas y cancelarlas tras 24hs.
-
-4) Para el punto (3) la libreria precisa una lista de las reservas asi que al crear una deberan
-agregarla a las reservas de la libreria
-
-5) Category....
+2) Category....
