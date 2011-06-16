@@ -10,19 +10,26 @@
     </g:if>
 
     <div class="body">
-      <div class="list">
-        <g:each in="${searchResults}" status="i" var="book">
-
-        <div class="book">
-          <h2>
-            <g:link action="show"
-                    id="${book.id}">${book.title}</g:link><p>ISBN: ${book.ISBN}, Library: ${book.library}</p>
-          </h2>
-          <p>${book.subject}</p>
-        </div>
-
-        </g:each>
-      </div>
+    	<div id="items" class="shadowed">
+			<div class="inner-boundary">
+				<g:each in="${searchResults}" status="i" var="book">
+					<ul class="item-list">
+						<li class="book">
+						  <span class="item-title"><g:link action="show" id="${book.id}">${book.title}</g:link></span>
+				          <h4>ISBN: ${book.ISBN}</h4>
+				          <span class="text">${book.state}</span>
+				          <div class="list-operator-item">
+				          		<span class="link-item"><g:link controller="reservation" action="toReserve" params="[bookId:book.id]">to Reserve</g:link></span>
+				          		|
+				          		<span class="link-item"><a href="#">Comments</a></span>
+				          		|
+				          		<span class="link-item"><a href="#">View</a></span>
+				          </div>
+				        </li>			
+					</ul>
+				</g:each>
+			</div>
+		</div>
     </div>
     <div class="paginateButtons">
       <g:paginate total="${resultCount}" params="${flash}"/>

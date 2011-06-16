@@ -1,18 +1,8 @@
-body,h1,h2,h3,h4,h5,h6,p,ul,ol{margin:0;padding:0;}
+body,h1,h2,h3,h4,h5,h6,p,ul,ol{
+	margin:0;padding:0;
+	font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+}
 h1, h2, h3, h4, h5, h6 {font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;}
-
-/* html, body, div, span, applet, object, iframe, 
-h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
-    border: 0 none;
-    font-family: inherit;
-    font-size: 100%;
-    font-style: inherit;
-    font-weight: inherit;
-    margin: 0;
-    outline: 0 none;
-    padding: 0;
-    vertical-align: baseline;
-} */
 
 .header {
     background-color: #232323;
@@ -22,9 +12,13 @@ h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite
     font-size: 18px;
     color: #8F887C;
 }
+.header h1 a {
+	font-size: 18px;
+    color: #8F887C;
+    font: 24px 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+}
 
 #sidebar {
-	
 	float:right;
 	font-size: 9; 
 	font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
@@ -60,13 +54,13 @@ h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite
 
 .col-s-content {
     float: left;
-    width: 616px;
+    width: 650px;
 }
 
 .large-sidebar {
     color: #353535;
     float: right;
-    width: 345px;
+    width: 315px;
 }
 
 
@@ -116,6 +110,9 @@ div.large-sidebar div.inner-boundary div.author-item {
     background: #b2d1ff;
 }
 
+.item-title {
+	
+}
 
 
 
@@ -156,6 +153,10 @@ div.large-sidebar div.inner-boundary div.author-item {
 
 .text-comment {
 	font: 11px verdana,arial,helvetica,sans-serif;
+}
+
+.list-operator-item {
+	float: right;
 }
 
 .button {
@@ -201,6 +202,12 @@ div.shadowed {
     display: block;	
     float: left;
     margin-right: 20px;
+}
+
+.item-title a{
+	font-size: 16px; 
+	font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+	
 }
 
 h3 {
@@ -262,7 +269,11 @@ div.col-s-content form input.big, div.col-s-content form select.big, div.col-s-c
     font-size: 12px;
     margin: 5px 0;
     padding: 8px 5px;
-    width: 145px;
-	height: 40px;
+    width: 120px;
+	height: 30px;
+}
+
+.link-item {
+	color: #AF712F;	
 }
 

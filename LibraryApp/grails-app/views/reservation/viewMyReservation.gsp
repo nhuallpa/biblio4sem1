@@ -11,10 +11,12 @@
 			<div class="inner-boundary">
 				<ul class="item-list">
 					<g:each var="reservation" in="${reservations}">
-					<li class="web-template">
-						<h3 class="long-title">${reservation.book.title}</h3>
-						<h2 ><strong>ISBN: </strong>${reservation.book.ISBN}</h2>
-					</li>
+						<li class="book">
+							  <span class="item-title"><g:link controller="book" action="show" id="${reservation.book.id}">${reservation.book.title}</g:link></span>
+					          <h4>ISBN: ${reservation.book.ISBN}</h4>
+					          <span class="text">${reservation.book.state}</span>
+					          <p>${book?.subject}</p>
+					    </li>
 					</g:each>	
 				</ul>
 			</div>
