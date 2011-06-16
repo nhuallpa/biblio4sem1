@@ -1,5 +1,7 @@
 package com.library
 
+import com.sun.jndi.toolkit.url.Uri;
+
 class ReservationController {
 
 	def scaffold = true
@@ -16,5 +18,18 @@ class ReservationController {
 			listOfMyReservations = user.reservations
 		}
 		[reservations : listOfMyReservations]
+	}
+	
+	def toReserve = {
+		User user = session.user
+		if (!user){
+			redirect(uri: '/')
+		}
+		Book aBook = Book.get(params.bookId)
+		if (!user.isAttached() && aBook) {
+			user.attach()
+			user.makeReservation(aBook)
+		}
+		redirect(action: 'viewMyReservation')
 	}
 }
