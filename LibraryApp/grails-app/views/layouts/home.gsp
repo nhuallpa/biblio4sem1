@@ -34,28 +34,18 @@
 							</g:if>
 							<g:else>
 								<g:form controller="user" action="login">
-									<span class="text-form">user:</span><br/>
-									<g:textField name="userId"></g:textField> <br/>
-									<span class="text-form">password:</span><br/>
-									<g:passwordField name="password"></g:passwordField><br/>
-									<span class="button"><g:submitButton name="login" ></g:submitButton></span>
-									
 									<dl class="form-list">
-										<dt>Username</dt>
+										<dt class="text-form">Username</dt>
 										<dd>
-											<input id="username" class="input big" type="text" name="username">
+											<span class="input big"><g:textField name="userId"></g:textField></span>
 										</dd>
-										<dt>Password</dt>
+										<dt class="text-form">Password</dt>
 										<dd>
-											<input id="password" class="input big" type="password" value="" name="password">
+											<span class="input big"><g:passwordField name="password"></g:passwordField></span>
 										</dd>
 									</dl>
-									<div class="sign-button">
-										<button class="link-button" type="submit">
-											<span class="sprite">
-												<em class="sprite">Sign In</em>
-											</span>
-										</button>
+									<div class="buttons">
+											<g:submitButton name="login" />
 									</div>
 								</g:form>
 							</g:else>
