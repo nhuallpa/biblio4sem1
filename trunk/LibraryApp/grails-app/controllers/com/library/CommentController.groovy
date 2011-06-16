@@ -18,7 +18,7 @@ class CommentController {
 		[comments : listOfMyComments]
 	}
 	
-	def toReserve = {
+	def toComment = {
 		User user = session.user
 		if (!user){
 			redirect(uri: '/')
