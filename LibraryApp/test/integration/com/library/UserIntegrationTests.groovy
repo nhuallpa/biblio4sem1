@@ -9,6 +9,7 @@ class UserIntegrationTests extends GroovyTestCase {
 	
 	User user
 	User userTwo
+	User userThree
 	Location location
 	Reservation reservation
 	Book aBook
@@ -20,7 +21,7 @@ class UserIntegrationTests extends GroovyTestCase {
 		location = new Location(country: "countryTest", street: "streetTest")
 		user = new User(name: "Ariel", location: location)
 		userTwo = new User(name: "Nestor", location: location)
-		userTwo.addUserComment(user, "Buen usuario", 2)
+		userTwo.addUserComment(user, "Buen usuario", 7)
 		aLibrary = new Library(libraryId: "BA_Ateneo", name: "El Ateneo")
     }
 
@@ -35,9 +36,22 @@ class UserIntegrationTests extends GroovyTestCase {
 		User userFound = User.get(user.id)
 		assertEquals "Ariel", userFound.getName()
 		assertEquals "countryTest", userFound.getLocation().getCountry()
-		assertEquals 1,userFound.comments?.size()
-		assertEquals "Buen usuario",userFound.comments?.get(0).description
+		assertEquals 1,userFound.commentsRcvd?.size()
+		assertEquals "Buen usuario",userFound.commentsRcvd?.get(0).description
+		assertEquals 7,userFound.commentsRcvd?.get(0).score
+		assertEquals 1,userTwo.commentsDone?.size()
+		assertEquals "Buen usuario",userTwo.commentsDone?.get(0).description
     }
+	
+	void testScoreOnUsers(){
+		assertTrue user.validate()
+		userThree = new User(name: "Gonzalo", location: location)
+		userThree.addUserComment(user, "Pesimo", 1)
+		assertNotNull user.save()
+		User userFound = User.get(user.id)
+		assertEquals 4.0,userFound.lookScore()
+		
+	}
 	
 	void testUserMakeReservation() {
 		assertTrue user.validate()
