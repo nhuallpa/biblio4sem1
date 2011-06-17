@@ -10,4 +10,11 @@ http://nooku.assembla.com/wiki/show/iw2010_yab/grails_vs_subversion
 http://www.adictosaltrabajo.com/tutoriales/tutoriales.php?pagina=svnXP
 
 Localitation
-http://www.danilat.com/weblog/2011/04/05/primera-version-de-grails-localizable-plugin/
+- http://www.danilat.com/weblog/2011/04/05/primera-version-de-grails-localizable-plugin/
+- http://www.componentix.com/blog/2
+
+Taggable Plugin
+- http://www.grails.org/plugin/taggable
+
+Vistas para tags
+- http://blog.armbruster-it.de/2011/04/a-perfect-team-grails-taggable-plugin-and-jquery-tagit/
