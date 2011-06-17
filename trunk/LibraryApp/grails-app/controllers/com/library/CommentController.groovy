@@ -23,13 +23,13 @@ class CommentController {
 		if (!user){
 			redirect(uri: '/')
 		}
-		Comment comment = Comment.get(params.description)
+		//Comment comment = Comment.get(params.description)
 		Book aBook = Book.get(params.bookId)
-		if (!user.isAttached() && comment) {
+		if (!user.isAttached()) {
 			user.attach()
-			user.addBookComment aBook, comment.getDescription(), comment.getScore()
+			//user.addBookComment aBook, comment.getDescription(), comment.getScore()
 		}
-		redirect(action: 'viewMyComments')
+		redirect(action: 'viewToComment')
 	}
 	
 	

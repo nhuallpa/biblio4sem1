@@ -12,7 +12,8 @@
 				<ul class="item-list">
 					<g:each var="comment" in="${comments}">
 						<li class="book">
-							  <span class="item-title"><g:link controller="book" action="show" id="${comment.id}">${comment.description}</g:link></span>
+							 <dl><g:link controller="book" action="show" id="${comment.id}">${comment.description}</g:link></dl>
+							  
 
 					    </li>
 					</g:each>	
