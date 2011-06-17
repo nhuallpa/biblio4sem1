@@ -142,5 +142,24 @@ class UserIntegrationTests extends GroovyTestCase {
 		assertEquals "Pesimo Libro", bookFoundAgain.getComments().get(0).description
 		assertEquals "Ariel", bookFoundAgain.comments.get(0).sourceUser.name
 	}
+	
+	void testUserCategorizeABook(){
+		
+		assertTrue user.validate()
+
+		assertNotNull aLibrary.save()
+		aBook = new Book(title:"C",ISBN:"1",state:States.AVAILABLE,library:aLibrary)
+		
+		assertTrue aBook.validate()
+
+		assertNotNull aBook.save()
+		user.categorizeBook(aBook, "terror")
+		user.categorizeBook(aBook, "comedia")
+		assertNotNull aBook.save()
+		Book bookFound = Book.get(aBook.id)
+		assert ['terror','comedia'] == bookFound.tags
+		
+	}
+	
 
 }
