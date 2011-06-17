@@ -42,7 +42,6 @@ class User {
 	static hasMany = [comments : Comment, reservations : Reservation]
 	
 	void makeReservation(Book aBook) {
-		
 		if (aBook.isReserved()) throw new BookAlreadyReservedException()
 		Reservation aReservation = new Reservation(aBook,this)
 		this.addReservation(aReservation,aBook)
@@ -52,11 +51,20 @@ class User {
 	/* Alguien tiene que crearlo en la library */
 	void returnBook (Book aBook){
 		
-		if (!this.reservations?.contains(aBook)) throw new ReservationDoesNotExistException()
+		def flag = 0
+		for ( o in this.reservations){
+			if ( o?.getBook() == aBook ){
+				this.reservations.remove o
+				flag = 1
+			}
+		}
+		if (flag == 0) throw new ReservationDoesNotExistException()
+
 		aBook.returnMe()
-		
-		this.reservations?.remove aBook
 	}
+		
+	
+	
 	
 	void addBookComment(Book aBook, String aString, Integer score ){
 		aBook.comment(this, aString, score)
@@ -96,18 +104,31 @@ class User {
 	}
 	
 	void cancelReservation(Book aBook){
-		aBook.cancelReservation()
 		
-		for ( o in reservations){
-			if ( o?.getBook() == aBook )
-				reservations.remove o	
+		def flag = 0
+		for ( o in this.reservations){
+			if ( o?.getBook() == aBook ){
+				this.reservations.remove o
+				flag = 1
+			}
 		}
+		if (flag == 0) throw new ReservationDoesNotExistException()
+		
+		aBook.cancelReservation()	
 	}
 	
-	void pullOutBook(aBook){
-		//Check if is reserved to this user
-		aBook.retireMe()
+	void pullOutBook(Book aBook){
 		
+		def flag = 0
+		for ( o in this.reservations){
+			if ( o?.getBook() == aBook ){
+				this.reservations.remove o
+				flag = 1
+			}
+		}
+		if (flag == 0) throw new ReservationDoesNotExistException()
+		
+		aBook.retireMe()
 	}
 	
 	Float lookScore(){
@@ -115,11 +136,6 @@ class User {
 		Integer d = score?.size()
         if (score?.size() != null)
 			return i.div(d)
-	}
-	
-	void returnBook(aBook){
-		aBook.returnMe()
-		
 	}
 	
 	void addReservation(Reservation aReservation, Book aBook){
