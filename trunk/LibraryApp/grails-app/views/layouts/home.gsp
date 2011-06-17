@@ -29,7 +29,8 @@
 								</div>
 								<ul class="menu-vert">
 									<li><g:link controller="reservation" action="viewMyReservation">My reservation</g:link></li>
-									<li><a href="#">My Comments</a></li>
+									<li><g:link controller="comment" action="viewMyComments">My Comments</g:link></li>
+<%--									<li><a href="#">My Comments</a></li>--%>
 									<li><a href="#">Recommendation for me</a></li>
 								</ul>
 							</g:if>
