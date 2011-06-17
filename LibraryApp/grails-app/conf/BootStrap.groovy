@@ -28,8 +28,8 @@ class BootStrap {
 			   theUser = new User(name: aName, password: pass).save()
 		   }
 		   
-		   theBook.addComment theUser, 'Pesimo libro', 15
-
+//		   theBook.addComment theUser, 'Pesimo libro', 15
+		   theUser.addBookComment theBook, 'Pesimo libro', 15
 		   theUser.makeReservation(theBook)
 		   
 		   
