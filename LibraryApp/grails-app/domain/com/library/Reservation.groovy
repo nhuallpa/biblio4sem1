@@ -28,18 +28,17 @@ class Reservation {
 	Reservation(Book aBook, User aUser){
 		this.setBook(aBook)
 		this.user = aUser
-		this.state = "Reserved - Waiting"
+		this.state = "Reserved"
+		aBook.reserveMe()
 		// this.library = aBook?.library
 	}
 	
-	Boolean isReserved(String comment, String User) {
-		if ( state == "Reserved - Waiting") return true
-		return false
+	Boolean isReserved() {
+		return state.contains("Reserved")
 	}
 	
-	Boolean isDelivereded(String comment, String User) {
-		if ( state == "Delivered") return true
-		return false
+	Boolean isDelivereded() {
+		return state.contains("Delivered")
     }
 	
 }

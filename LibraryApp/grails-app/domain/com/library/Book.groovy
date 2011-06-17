@@ -38,7 +38,7 @@ class Book {
 		
 	}
 	void reserveMe(){
-		
+		this.state = "Reserved"
 	}
 	
 	void addComment(User srcUser, String aString, Integer score){
@@ -54,11 +54,11 @@ class Book {
 	}
 	
 	void returnMe(){
-		
+		this.state = "Available"
 	}
 	
 	void cancelReservation(){
-		
+		this.state = "Available"
 	}
 	
 	void categorizeMe(){
@@ -66,7 +66,7 @@ class Book {
 	}
 	
 	void retireMe(){
-		
+		this.state = "Deivered"
 	}
 	
 	Boolean isReserved(){
