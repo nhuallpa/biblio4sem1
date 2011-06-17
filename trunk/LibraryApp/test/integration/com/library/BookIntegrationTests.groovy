@@ -15,7 +15,7 @@ class BookIntegrationTests extends GroovyTestCase {
         super.setUp()
 		myTitle = 'Thinking in Java'
 		myISBN = 12345
-		book = new Book(ISBN : myISBN, title : myTitle)
+		book = new Book(ISBN : myISBN, title : myTitle, state: States.AVAILABLE)
 		commentDesc = 'Buen libro'
     }
 

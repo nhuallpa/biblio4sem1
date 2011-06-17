@@ -56,26 +56,26 @@ class UserIntegrationTests extends GroovyTestCase {
 	void testUserMakeReservation() {
 		assertTrue user.validate()
 		
-		aBook = new Book(title:"C",ISBN:"1",state:"Available",library:aLibrary)
+		aBook = new Book(title:"C",ISBN:"1",state:States.AVAILABLE,library:aLibrary)
 		assertNotNull aBook.save()
 		user.makeReservation(aBook)
 		assertNotNull user.save()
 		User userFound = User.get(user.id)
 		assertEquals 1,userFound.reservations?.size()
-		assertEquals "Reserved",userFound.reservations?.get(0).book.state
+		assertEquals States.RESERVED,userFound.reservations?.get(0).book.state
 	}
 	
 	void testReturnABook(){
 		
 		assertTrue user.validate()
 		
-		aBook = new Book(title:"C",ISBN:"1",state:"Available",library:aLibrary)
-		def aBookTwo = new Book(title:"M",ISBN:"2",state:"Available",library:aLibrary)
+		aBook = new Book(title:"C",ISBN:"1",state:States.AVAILABLE,library:aLibrary)
+		def aBookTwo = new Book(title:"M",ISBN:"2",state:States.AVAILABLE,library:aLibrary)
 		user.makeReservation(aBook)
 		user.makeReservation(aBookTwo)
 		user.returnBook(aBook)
 		assertEquals 1,user.reservations?.size()
-		assertEquals "Available",aBook.getState()
+		assertEquals States.AVAILABLE,aBook.getState()
 		assertEquals "M",user.reservations?.get(0).book.title
 		
 	}
@@ -83,7 +83,7 @@ class UserIntegrationTests extends GroovyTestCase {
 	
 	void testUserTryToReservateAnAlreadyReservedBook(){
 		assertTrue user.validate()
-		aBook = new Book(title:"C",ISBN:"1",state:"Reserved",library:aLibrary)
+		aBook = new Book(title:"C",ISBN:"1",state:States.RESERVED,library:aLibrary)
 		shouldFail(BookAlreadyReservedException){
 			user.makeReservation(aBook)
 		}
@@ -98,7 +98,7 @@ class UserIntegrationTests extends GroovyTestCase {
 	
 	void testUserTryToReturnBookNotReservedByHim(){
 		assertTrue user.validate()
-		aBook = new Book(title:"C",ISBN:"1",state:"Reserved",library:aLibrary)
+		aBook = new Book(title:"C",ISBN:"1",state:States.RESERVED,library:aLibrary)
 		shouldFail(ReservationDoesNotExistException){
 			user.returnBook(aBook)
 		}
@@ -106,8 +106,8 @@ class UserIntegrationTests extends GroovyTestCase {
 	
 	void testUserRegisterMoreThanOneBook(){
 		assertTrue user.validate()
-		aBook = new Book(title:"C",ISBN:"1",state:"Available",library:aLibrary)
-		def aBookTwo = new Book(title:"M",ISBN:"2",state:"Available",library:aLibrary)
+		aBook = new Book(title:"C",ISBN:"1",state:States.AVAILABLE,library:aLibrary)
+		def aBookTwo = new Book(title:"M",ISBN:"2",state:States.AVAILABLE,library:aLibrary)
 		user.makeReservation(aBook)
 		user.makeReservation(aBookTwo)
 		assertEquals 2,user.getReservations().size()
@@ -115,8 +115,8 @@ class UserIntegrationTests extends GroovyTestCase {
 	
 	void testUserCancelAReservation(){
 		assertTrue user.validate()
-		aBook = new Book(title:"C",ISBN:"1",state:"Available",library:aLibrary)
-		def aBookTwo = new Book(title:"M",ISBN:"2",state:"Available",library:aLibrary)
+		aBook = new Book(title:"C",ISBN:"1",state:States.AVAILABLE,library:aLibrary)
+		def aBookTwo = new Book(title:"M",ISBN:"2",state:States.AVAILABLE,library:aLibrary)
 		user.makeReservation(aBook)
 		user.makeReservation(aBookTwo)
 		user.cancelReservation(aBook)
@@ -127,7 +127,7 @@ class UserIntegrationTests extends GroovyTestCase {
 		assertTrue user.validate()
 		assertNotNull user.save()
 	
-		aBook = new Book(title:"C",ISBN:"1",state:"Available",library:aLibrary)
+		aBook = new Book(title:"C",ISBN:"1",state:States.AVAILABLE,library:aLibrary)
 		
 		assertTrue aBook.validate()
 		assertNotNull aBook.save()
