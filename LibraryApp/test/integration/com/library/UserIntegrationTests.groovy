@@ -161,5 +161,36 @@ class UserIntegrationTests extends GroovyTestCase {
 		
 	}
 	
+	void testUserTryToFindSimilars(){
+		assertTrue user.validate()
+		assertNotNull aLibrary.save()
+		
+		Book a = new Book(title:"A",ISBN:"1",state:States.AVAILABLE,library:aLibrary)
+		Book b = new Book(title:"B",ISBN:"1",state:States.AVAILABLE,library:aLibrary)
+		Book c = new Book(title:"C",ISBN:"1",state:States.AVAILABLE,library:aLibrary)
+		Book d = new Book(title:"D",ISBN:"1",state:States.AVAILABLE,library:aLibrary)
+		
+		assertNotNull a.save()
+		assertNotNull b.save()
+		assertNotNull c.save()
+		assertNotNull d.save()
+		
+		user.categorizeBook(a, "terror")
+		user.categorizeBook(a, "comedia")
+		user.categorizeBook(b, "drama")
+		user.categorizeBook(b, "comedia")
+		user.categorizeBook(c, "thriller")
+		user.categorizeBook(c, "suspenso")
+		user.categorizeBook(d, "terror")
+		user.categorizeBook(d, "comedia")
+		
+		def books = new ArrayList<Book>()
+		
+		books = user.lookSimilars(a)
+		
+		assert books.contains(d)
+		
+	}
+	
 
 }
