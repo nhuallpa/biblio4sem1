@@ -62,13 +62,28 @@ class UserIntegrationTests extends GroovyTestCase {
 		assertNotNull user.save()
 		User userFound = User.get(user.id)
 		assertEquals 1,userFound.reservations?.size()
-		assertEquals "Reserved - Waiting",userFound.reservations?.get(0).state
+		assertEquals "Reserved",userFound.reservations?.get(0).book.state
+	}
+	
+	void testReturnABook(){
+		
+		assertTrue user.validate()
+		
+		aBook = new Book(title:"C",ISBN:"1",state:"Available",library:aLibrary)
+		def aBookTwo = new Book(title:"M",ISBN:"2",state:"Available",library:aLibrary)
+		user.makeReservation(aBook)
+		user.makeReservation(aBookTwo)
+		user.returnBook(aBook)
+		assertEquals 1,user.reservations?.size()
+		assertEquals "Available",aBook.getState()
+		assertEquals "M",user.reservations?.get(0).book.title
+		
 	}
 	
 	
 	void testUserTryToReservateAnAlreadyReservedBook(){
 		assertTrue user.validate()
-		aBook = new Book(title:"C",ISBN:"1",state:"Reserved - XXXX",library:aLibrary)
+		aBook = new Book(title:"C",ISBN:"1",state:"Reserved",library:aLibrary)
 		shouldFail(BookAlreadyReservedException){
 			user.makeReservation(aBook)
 		}
@@ -83,7 +98,7 @@ class UserIntegrationTests extends GroovyTestCase {
 	
 	void testUserTryToReturnBookNotReservedByHim(){
 		assertTrue user.validate()
-		aBook = new Book(title:"C",ISBN:"1",state:"Reserved - XXXX",library:aLibrary)
+		aBook = new Book(title:"C",ISBN:"1",state:"Reserved",library:aLibrary)
 		shouldFail(ReservationDoesNotExistException){
 			user.returnBook(aBook)
 		}
