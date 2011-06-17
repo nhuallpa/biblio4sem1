@@ -28,11 +28,13 @@ class BootStrap {
 			   theUser = new User(name: aName, password: pass).save()
 		   }
 		   
-		   
+		   theBook.addComment theUser, 'Pesimo libro', 15
+
 		   theUser.makeReservation(theBook)
 		   
 		   
 		}
+		
 		assert( Book.list().size() == 50 )
 		assert( User.list().size() == 50 )
 		
