@@ -91,7 +91,7 @@ class User {
 	}
 	
 	void categorizeBook(Book aBook, String tag){
-		aBook.categorizeMe()
+		aBook.categorizeMe(tag)
 	}
 	
 	List<Reservation> lookMyReservations(){
@@ -140,7 +140,9 @@ class User {
 	}
 	
 	List<Book> lookBooksOnCategory(String tag){
-		
+		def books = new ArrayList<Book>()
+		books = Book.findAllByTag(tag)
+		return books
 	}
 	
 	

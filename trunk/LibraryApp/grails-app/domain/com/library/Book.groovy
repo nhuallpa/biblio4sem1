@@ -5,20 +5,18 @@ import org.grails.taggable.*
 class Book implements Taggable{
 	
 	static searchable = true	
-	static hasMany = [tags : String, comments : Comment]
+	static hasMany = [comments : Comment]
 
 	String title
 	String subject
 	long ISBN
 	States state
 	List<Comment> comments = new ArrayList<Comment>()
-	List<String> tags = new ArrayList<String>()
 	List<Integer> score = new ArrayList<Integer>()
 	Library library
 
 	static constraints = {
 		ISBN(blank : false)
-		tags(nullable: true)
 		comments(nullable:true)
 		subject(nullable:true)
 		library(nullable: true)
@@ -33,6 +31,9 @@ class Book implements Taggable{
 	}
 	
 	List<Book> similarsToMe(){
+		def books = new ArrayList<Book>()
+		books = this.findAllTagsWithCriteria(this.tags)
+		return books
 		
 	}
 	void reserveMe(){
@@ -59,8 +60,8 @@ class Book implements Taggable{
 		this.state = States.AVAILABLE
 	}
 	
-	void categorizeMe(){
-		
+	void categorizeMe(String aCategory){
+		this.addTag(aCategory)
 	}
 	
 	void retireMe(){
