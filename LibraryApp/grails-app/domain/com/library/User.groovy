@@ -12,7 +12,8 @@ class User {
 	String phone
 	List<Integer> score = new ArrayList<Integer>()
 	List<Reservation> reservations = new ArrayList<Reservation>()
-	List<Comment> comments = new ArrayList<Comment>()
+	List<Comment> commentsRcvd = new ArrayList<Comment>()
+	List<Comment> commentsDone = new ArrayList<Comment>()
 	
 	Location location
 
@@ -25,14 +26,17 @@ class User {
 		phone(nullable: true)
 		location(nullable: true)
 		reservations(nullable: true)
-		comments(nullable: true)
+		commentsRcvd(nullable: true)
+		commentsDone(nullable: true)
 		score(nullable: true)
     }
 	
 	static mapping = {
 		location lazy: false
 		reservations lazy: false
-		comments lazy: false
+		commentsRcvd lazy: false
+		commentsDone lazy: false
+		score lazy: false
 	}
 	
 	static hasMany = [comments : Comment, reservations : Reservation]
@@ -56,9 +60,8 @@ class User {
 	
 	void addBookComment(Book aBook, String aString, Integer score ){
 		aBook.comment(this, aString, score)
-		//def comment = new Comment(sourceUser: this, description:aString, score: score)
-		//aBook.comments.add(comment) 
-		//this.comments.add(comment)
+		def comment = new Comment(sourceUser: this, description:aString, score: score)
+		this.commentsDone.add(comment)
 		
 	}
 
@@ -68,13 +71,15 @@ class User {
 //   }
 	
 	void comment(User sourceUser, String aString, Integer score){
-		Comment aComment = new Comment(thingCommented:this, description:aString, sourceUser:sourceUser, score: score)
-		this.comments?.add(aComment)
+		Comment aComment = new Comment(description:aString, sourceUser:sourceUser, score: score)
+		this.commentsRcvd?.add(aComment)
 		this.score?.add score
 	}
 	
 	void addUserComment(User aUser, String aString, Integer score ){
 		if ( this.equals(aUser)) throw new UserCannotCommentItselfException()
+		def comment = new Comment(sourceUser: this, description:aString, score: score)
+		this.commentsDone.add(comment)
 		aUser.comment(this, aString, score)		
     }
 	
