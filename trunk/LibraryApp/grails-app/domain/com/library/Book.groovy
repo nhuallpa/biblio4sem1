@@ -72,5 +72,13 @@ class Book {
 	Boolean isReserved(){
 		return state.contains("Reserved")
 	}
+	
+	Float lookScore(){
+		Integer i = score?.sum()
+		Integer d = score?.size()
+		if (score?.size() != null)
+			return i.div(d)
+	}
+	
 		
 }

@@ -15,7 +15,7 @@ class Comment {
 		sourceUser(nullable:true)
 	}
 	
-	static belongsTo = [sourceUser : User]
+	static belongsTo = [User]
 	
 	void addUser(User srcUser){
 		this.sourceUser = srcUser
