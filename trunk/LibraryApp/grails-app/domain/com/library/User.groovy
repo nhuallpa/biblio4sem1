@@ -73,11 +73,6 @@ class User {
 		
 	}
 
-//  Leaved for further updates, first the basics.	
-//	void addLibraryComment(Library aLibrary, String aString, Integer score ){
-//		aLibrary.comment(this, aString, score)
-//   }
-	
 	void comment(User sourceUser, String aString, Integer score){
 		Comment aComment = new Comment(description:aString, sourceUser:sourceUser, score: score)
 		this.commentsRcvd?.add(aComment)
@@ -147,6 +142,12 @@ class User {
 	List<Book> lookBooksOnCategory(String tag){
 		
 	}
+	
+	
+	//  Leaved for further updates, first the basics.
+	//	void addLibraryComment(Library aLibrary, String aString, Integer score ){
+	//		aLibrary.comment(this, aString, score)
+	//   }
 	
 	
 	

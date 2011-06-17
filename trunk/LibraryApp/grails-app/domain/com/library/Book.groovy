@@ -1,30 +1,28 @@
 package com.library
 
-class Book {
+import org.grails.taggable.*
+
+class Book implements Taggable{
 	
-	static searchable = true
-	
+	static searchable = true	
 	static hasMany = [tags : String, comments : Comment]
 
-	
-//	long bookId //que lo tenga la BD nada mas
 	String title
 	String subject
 	long ISBN
-	String state
+	States state
 	List<Comment> comments = new ArrayList<Comment>()
 	List<String> tags = new ArrayList<String>()
 	List<Integer> score = new ArrayList<Integer>()
 	Library library
 
 	static constraints = {
-		//bookId(blank : false, unique: true)
 		ISBN(blank : false)
 		tags(nullable: true)
 		comments(nullable:true)
 		subject(nullable:true)
 		library(nullable: true)
-		state(nullable: true)
+		state(inList:States.list())
 		score(nullable: true)
 	}
 
@@ -38,7 +36,7 @@ class Book {
 		
 	}
 	void reserveMe(){
-		this.state = "Reserved"
+		this.state = States.RESERVED
 	}
 	
 	void addComment(User srcUser, String aString, Integer score){
@@ -54,11 +52,11 @@ class Book {
 	}
 	
 	void returnMe(){
-		this.state = "Available"
+		this.state = States.AVAILABLE
 	}
 	
 	void cancelReservation(){
-		this.state = "Available"
+		this.state = States.AVAILABLE
 	}
 	
 	void categorizeMe(){
@@ -66,11 +64,11 @@ class Book {
 	}
 	
 	void retireMe(){
-		this.state = "Deivered"
+		this.state = States.DELIVERED
 	}
 	
 	Boolean isReserved(){
-		return state.contains("Reserved")
+		return (state == States.RESERVED)
 	}
 	
 	Float lookScore(){

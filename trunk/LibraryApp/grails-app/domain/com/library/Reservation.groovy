@@ -1,5 +1,6 @@
 package com.library
 
+
 class Reservation {
 	
 	static searchable = true
@@ -7,12 +8,10 @@ class Reservation {
 	Book book
 	User user
 	Date reservationDate
-	String state
+	States state
 	Library library
     static constraints = {
-		// book(unique: true)
-		state(size: 3..60)
-		// user(nullable: true)
+		state(inList:States.list())
 		reservationDate(nullable:true)
 		library(nullable:true)
 		
@@ -28,17 +27,17 @@ class Reservation {
 	Reservation(Book aBook, User aUser){
 		this.setBook(aBook)
 		this.user = aUser
-		this.state = "Reserved"
+		this.state = States.RESERVED
 		aBook.reserveMe()
 		// this.library = aBook?.library
 	}
 	
 	Boolean isReserved() {
-		return state.contains("Reserved")
+		return (state == States.RESERVED)
 	}
 	
 	Boolean isDelivereded() {
-		return state.contains("Delivered")
+		return ( state == States.DELIVERED)
     }
 	
 }
