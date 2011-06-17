@@ -31,8 +31,9 @@ class Book implements Taggable{
 	}
 	
 	List<Book> similarsToMe(){
-		def books = new ArrayList<Book>()
-		books = this.findAllTagsWithCriteria(this.tags)
+		println this.tags
+		println this.tags.get(0)
+		def books = Book.findAllByTag(this.tags.get(0))
 		return books
 		
 	}
