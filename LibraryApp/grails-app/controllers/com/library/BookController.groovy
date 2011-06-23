@@ -24,4 +24,25 @@ class BookController {
 		def books = Book.list()
 		redirect(controller:'book', action:'searchBookHome', bookList:books)
 	}
+	
+	def searchAJAX = {
+		def books = Book.findAllByNameIlike("%${params.query}%")
+	
+		//Create XML response
+		render(contentType: "text/xml") {
+		results() {
+			books.each { book ->
+			result(){
+				name(book.name)
+						//Optional id which will be available in onItemSelect
+						id(book.id)
+			}
+		}
+			}
+		}
+	}
+
+	
+	
+	
 }
