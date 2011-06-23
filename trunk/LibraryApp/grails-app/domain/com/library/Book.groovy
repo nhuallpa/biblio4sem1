@@ -7,7 +7,7 @@ class Book implements Taggable{
 	static searchable = true	
 	static hasMany = [comments : Comment]
 
-	String title
+	String name
 	String subject
 	long ISBN
 	States state
@@ -31,8 +31,6 @@ class Book implements Taggable{
 	}
 	
 	List<Book> similarsToMe(){
-		println this.tags
-		println this.tags.get(0)
 		def books = Book.findAllByTag(this.tags.get(0))
 		return books
 		
