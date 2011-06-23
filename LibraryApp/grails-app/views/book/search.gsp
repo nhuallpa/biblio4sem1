@@ -15,7 +15,7 @@
 				<g:each in="${searchResults}" status="i" var="book">
 					<ul class="item-list">
 						<li class="book">
-						  <span class="item-title"><g:link action="show" id="${book.id}">${book.title}</g:link></span>
+						  <span class="item-title"><g:link action="show" id="${book.id}">${book.name}</g:link></span>
 				          <h4>ISBN: ${book.ISBN}</h4>
 				          <span class="text">${book.state}</span>
 				          <div class="list-operator-item">

@@ -1,6 +1,7 @@
 <html>
 	<head>
 		<meta name="layout" content="home" />
+		<resource:autoComplete skin="default" />
 		<title>Search</title>
 	</head>
 	<body>
@@ -9,8 +10,8 @@
           		id="searchableForm"
           		name="searchableForm"
           		method="get">
-    				<g:textField name="q" value="${params.q}" />
-    				<input type="submit" value="Search" />
+    				<richui:autoComplete name="q" value="${params.q} action="${createLinkTo('dir': 'book/searchAJAX')}" />
+    				<input type="submit" value="Search" />	
   			</g:form>
 		</div>
 	</body>
