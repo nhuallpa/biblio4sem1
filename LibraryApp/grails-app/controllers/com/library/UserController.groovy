@@ -23,4 +23,14 @@ class UserController {
 		session.user = null
 		redirect(uri:'/')
 	}
+	
+	def rate = {
+
+		def rating = params.rating
+
+		User user = User.get(new Long(params.id))
+
+		render(template: "rate", model: [rating: average])
+	}
+	
 }
