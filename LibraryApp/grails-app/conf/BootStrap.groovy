@@ -20,8 +20,8 @@ class BootStrap {
 		   def isbn = random.nextInt(456789)
 		   def pass = random.nextInt(888999)
 		   
-		   def theBook = new Book( ISBN: isbn, title: aBook, library: a, state: States.AVAILABLE).save()
-		   new Book( ISBN: isbn, title: aBook, library: a, state: States.AVAILABLE).save()
+		   def theBook = new Book( ISBN: isbn, name: aBook, library: a, state: States.AVAILABLE).save()
+		   new Book( ISBN: isbn, name: aBook, library: a, state: States.AVAILABLE).save()
 		   def theUser   
 		   if (i == 1) {
 			   theUser = new User(name: 'admin', password: 'admin').save()
