@@ -12,8 +12,9 @@
 				<ul class="item-list">
 					<g:each var="comment" in="${comments}">
 						<li class="book">
-							 <dl><g:link controller="book" action="show" id="${comment.id}">${comment.description}</g:link></dl>
-							  
+							
+							 <g:link controller="book" action="show" id="${comment.id}">${comment.description}</g:link>
+							 <p>Score: ${comment.score}</p>
 
 					    </li>
 					</g:each>	

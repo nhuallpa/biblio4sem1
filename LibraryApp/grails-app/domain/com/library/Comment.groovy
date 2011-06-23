@@ -20,6 +20,8 @@ class Comment {
 	void addUser(User srcUser){
 		this.sourceUser = srcUser
 	}
+	
+	
 
 
 }
