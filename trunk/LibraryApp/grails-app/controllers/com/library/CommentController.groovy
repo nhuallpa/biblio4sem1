@@ -14,8 +14,13 @@ class CommentController {
 		if (!user.isAttached()) {
 			user.attach()
 			listOfMyComments = user.comments
+			
 		}
 		[comments : listOfMyComments]
+	}
+	
+	def view= {
+		
 	}
 	
 	def toComment = {
@@ -23,13 +28,30 @@ class CommentController {
 		if (!user){
 			redirect(uri: '/')
 		}
-		//Comment comment = Comment.get(params.description)
+		
 		Book aBook = Book.get(params.bookId)
 		if (!user.isAttached()) {
 			user.attach()
-			//user.addBookComment aBook, comment.getDescription(), comment.getScore()
+		
 		}
-		redirect(action: 'viewToComment')
+		[book : aBook]
+		
+	}
+	
+	def toCommentBook = {
+		User user = session.user
+		if (!user){
+			redirect(uri: '/')
+		}
+		def aComment = params.newComment
+		
+		Book aBook = Book.get(params.bookId)
+		if (!user.isAttached()) {
+			user.attach()
+			user.addBookComment aBook, aComment, 45
+		}
+		redirect(action: "viewMyComments");
+		
 	}
 	
 	

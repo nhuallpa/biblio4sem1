@@ -21,7 +21,7 @@
 				          <div class="list-operator-item">
 				          		<span class="link-item"><g:link controller="reservation" action="toReserve" params="[bookId:book.id]">to Reserve</g:link></span>
 				          		|
-				          		<span class="link-item"><g:link controller="comment" action="toComment" params="[bookId:book.id]">Comment</g:link></span>
+				          		<span class="link-item"><g:link controller="comment" action="toComment" params="[bookId:book.id]">to Comment</g:link></span>
 				          		|
 				          		<span class="link-item"><a href="#">View</a></span>
 				          </div>
