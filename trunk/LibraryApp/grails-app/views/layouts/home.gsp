@@ -3,6 +3,7 @@
 	<head>
 		<title><g:layoutTitle default="Home" /></title>
 		<link rel="stylesheet" href="${resource(dir:'css',file:'home.css')}" />
+		<resource:rating />
 		<g:layoutHead />
 	</head>
 	<body>
@@ -24,6 +25,7 @@
 								<div>
 								<span class="text-form">${session.user.name}</span> <br/>
 								<span class="text-form">points: 3 Stars</span> <br/>
+								<richui:rating dynamic="true" id="${session.user.id}" units="5" rating="${rating}" controller="user" action="rate" />
 								<span class="text-form"><g:link controller="user" action="logout">logout</g:link></span><br/>
 								 <br/>	
 								</div>
