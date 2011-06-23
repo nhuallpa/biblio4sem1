@@ -1,6 +1,6 @@
 package com.library.android.services;
 
-public interface LibraryService {
+public interface LibraryWebServices {
 	
 	
 

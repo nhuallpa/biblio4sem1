@@ -14,9 +14,9 @@ import org.json.JSONObject;
 
 import com.library.android.repository.LibraryRepository;
 import com.library.android.services.ConfigWS;
-import com.library.android.services.LibraryService;
+import com.library.android.services.LibraryWebServices;
 
-public class UserServicesImpl implements LibraryService {
+public class UserServicesImpl implements LibraryWebServices {
 	
 	LibraryRepository repo;
 	
