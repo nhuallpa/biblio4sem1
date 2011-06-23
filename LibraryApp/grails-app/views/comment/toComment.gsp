@@ -12,7 +12,7 @@
 		
 		<div id="items" class="shadowed">
 			<div class="inner-boundary">
-			<h4>${book?.title}</h4>
+			<h4>${book?.name}</h4>
 			<p>ISBN: ${book?.ISBN}</p>
 			<g:form controller="comment" action="toCommentBook" params="[bookId:book?.id]">
 					<dl class="form-list">

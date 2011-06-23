@@ -12,7 +12,7 @@
 				<ul class="item-list">
 					<g:each var="reservation" in="${reservations}">
 						<li class="book">
-							  <span class="item-title"><g:link controller="book" action="show" id="${reservation.book.id}">${reservation.book.title}</g:link></span>
+							  <span class="item-title"><g:link controller="book" action="show" id="${reservation.book.id}">${reservation.book.name}</g:link></span>
 					          <h4>ISBN: ${reservation.book.ISBN}</h4>
 					          <span class="text">${reservation.book.state}</span>
 					          <p>${book?.subject}</p>
