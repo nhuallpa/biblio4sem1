@@ -6,6 +6,7 @@ import java.util.List;
 public class Book {
 
 	private Long bookId;
+	private String author;
 	private String title;
 	private String subject;
 	private Long ISBN;
@@ -17,15 +18,16 @@ public class Book {
 		
 	}
 	
-	public Book(Long ISBN, Library lib){
+	public Book(Long ISBN, String title, Library lib){
 		this.ISBN = ISBN;
 		this.library = lib;
+		this.title = title;
 		this.listOfComments = new ArrayList<Comment>();
 		this.tags = new ArrayList<String>();
 	}
 	
-	public float getScore(){
-		float score = 0;
+	public Float getScore(){
+		Float score = new Float(0);
 		for(Comment aComment : listOfComments){
 			score = score + aComment.getScore();
 		}
@@ -43,6 +45,14 @@ public class Book {
 
 	public String getTitle() {
 		return title;
+	}
+	
+	public void setAuthor(String author){
+		this.author = author;
+	}
+	
+	public String getAuthor(){
+		return author;
 	}
 	
 	public void reserveMe(User user){

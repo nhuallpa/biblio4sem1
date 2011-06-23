@@ -1,5 +1,7 @@
 package com.library.android;
 
+import java.util.List;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -70,11 +72,11 @@ public class SearchActivity extends Activity {
 					//conexion
 					//en principio, funciona si que se le pase nada
 					//tendria que devolver una lista de libros
-					Book book = BookServicesImpl.findBook(editText.getText().toString());//pero tendria que ser asi
+//					List<Book> listOfbooks = BookServicesImpl.findBook(editText.getText().toString());//pero tendria que ser asi
 					
 					Intent i = new Intent(SearchActivity.this, ResultSearchActivity.class);
-					i.putExtra("bookId", book.getBookId());
-					i.putExtra("title", book.getTitle());
+					i.putExtra("inputText", editText.getText().toString());
+//					i.putExtra("title", book.getTitle());
 					startActivity(i);
 				}
 				

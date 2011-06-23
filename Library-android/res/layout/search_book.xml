@@ -48,7 +48,8 @@
   		android:layout_below="@id/edit_buscar"
   		android:background="@drawable/fav"
   		android:layout_marginLeft="30dip"
-  		android:layout_marginTop="10dip">
+  		android:layout_marginTop="10dip"
+  		android:visibility="invisible">
   	</ImageButton>
   	
   	<ImageButton
@@ -59,7 +60,8 @@
   		android:layout_toRightOf="@id/fav_button"
   		android:background="@drawable/lucky"
   		android:layout_marginLeft="10dip"
-  		android:layout_marginTop="10dip">
+  		android:layout_marginTop="10dip"
+  		android:visibility="invisible">
   	</ImageButton>
   	
 
