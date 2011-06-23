@@ -6,16 +6,16 @@ import grails.test.*
 
 class BookIntegrationTests extends GroovyTestCase {
 	
-	String myTitle
+	String myname
 	long myISBN
 	Book book
 	String commentDesc
 	
     protected void setUp() {
         super.setUp()
-		myTitle = 'Thinking in Java'
+		myname = 'Thinking in Java'
 		myISBN = 12345
-		book = new Book(ISBN : myISBN, title : myTitle, state: States.AVAILABLE)
+		book = new Book(ISBN : myISBN, name : myname, state: States.AVAILABLE)
 		commentDesc = 'Buen libro'
     }
 
@@ -31,7 +31,7 @@ class BookIntegrationTests extends GroovyTestCase {
 		
 		
 		def foundBook = Book.get(book.id)
-		assertEquals myTitle,foundBook.getTitle()
+		assertEquals myname,foundBook.getName()
 		
     }
 	

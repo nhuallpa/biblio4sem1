@@ -21,7 +21,7 @@ class LibraryBookTests extends GroovyTestCase {
     }
 
     void testAddReservation() {
-//		Book book = new Book( title:'Grails', subject:'dev', state:'A' )
+//		Book book = new Book( name:'Grails', subject:'dev', state:'A' )
 //		User user = new User( name:'nestor')
 //		Reservation reservation = new Reservation(book, user)
 //		library.addToReservations(reservation)
