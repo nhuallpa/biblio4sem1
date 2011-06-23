@@ -56,7 +56,7 @@ class UserIntegrationTests extends GroovyTestCase {
 	void testUserMakeReservation() {
 		assertTrue user.validate()
 		
-		aBook = new Book(title:"C",ISBN:"1",state:States.AVAILABLE,library:aLibrary)
+		aBook = new Book(name:"C",ISBN:"1",state:States.AVAILABLE,library:aLibrary)
 		assertNotNull aBook.save()
 		user.makeReservation(aBook)
 		assertNotNull user.save()
@@ -69,21 +69,21 @@ class UserIntegrationTests extends GroovyTestCase {
 		
 		assertTrue user.validate()
 		
-		aBook = new Book(title:"C",ISBN:"1",state:States.AVAILABLE,library:aLibrary)
-		def aBookTwo = new Book(title:"M",ISBN:"2",state:States.AVAILABLE,library:aLibrary)
+		aBook = new Book(name:"C",ISBN:"1",state:States.AVAILABLE,library:aLibrary)
+		def aBookTwo = new Book(name:"M",ISBN:"2",state:States.AVAILABLE,library:aLibrary)
 		user.makeReservation(aBook)
 		user.makeReservation(aBookTwo)
 		user.returnBook(aBook)
 		assertEquals 1,user.reservations?.size()
 		assertEquals States.AVAILABLE,aBook.getState()
-		assertEquals "M",user.reservations?.get(0).book.title
+		assertEquals "M",user.reservations?.get(0).book.name
 		
 	}
 	
 	
 	void testUserTryToReservateAnAlreadyReservedBook(){
 		assertTrue user.validate()
-		aBook = new Book(title:"C",ISBN:"1",state:States.RESERVED,library:aLibrary)
+		aBook = new Book(name:"C",ISBN:"1",state:States.RESERVED,library:aLibrary)
 		shouldFail(BookAlreadyReservedException){
 			user.makeReservation(aBook)
 		}
@@ -98,7 +98,7 @@ class UserIntegrationTests extends GroovyTestCase {
 	
 	void testUserTryToReturnBookNotReservedByHim(){
 		assertTrue user.validate()
-		aBook = new Book(title:"C",ISBN:"1",state:States.RESERVED,library:aLibrary)
+		aBook = new Book(name:"C",ISBN:"1",state:States.RESERVED,library:aLibrary)
 		shouldFail(ReservationDoesNotExistException){
 			user.returnBook(aBook)
 		}
@@ -106,8 +106,8 @@ class UserIntegrationTests extends GroovyTestCase {
 	
 	void testUserRegisterMoreThanOneBook(){
 		assertTrue user.validate()
-		aBook = new Book(title:"C",ISBN:"1",state:States.AVAILABLE,library:aLibrary)
-		def aBookTwo = new Book(title:"M",ISBN:"2",state:States.AVAILABLE,library:aLibrary)
+		aBook = new Book(name:"C",ISBN:"1",state:States.AVAILABLE,library:aLibrary)
+		def aBookTwo = new Book(name:"M",ISBN:"2",state:States.AVAILABLE,library:aLibrary)
 		user.makeReservation(aBook)
 		user.makeReservation(aBookTwo)
 		assertEquals 2,user.getReservations().size()
@@ -115,8 +115,8 @@ class UserIntegrationTests extends GroovyTestCase {
 	
 	void testUserCancelAReservation(){
 		assertTrue user.validate()
-		aBook = new Book(title:"C",ISBN:"1",state:States.AVAILABLE,library:aLibrary)
-		def aBookTwo = new Book(title:"M",ISBN:"2",state:States.AVAILABLE,library:aLibrary)
+		aBook = new Book(name:"C",ISBN:"1",state:States.AVAILABLE,library:aLibrary)
+		def aBookTwo = new Book(name:"M",ISBN:"2",state:States.AVAILABLE,library:aLibrary)
 		user.makeReservation(aBook)
 		user.makeReservation(aBookTwo)
 		user.cancelReservation(aBook)
@@ -127,7 +127,7 @@ class UserIntegrationTests extends GroovyTestCase {
 		assertTrue user.validate()
 		assertNotNull user.save()
 	
-		aBook = new Book(title:"C",ISBN:"1",state:States.AVAILABLE,library:aLibrary)
+		aBook = new Book(name:"C",ISBN:"1",state:States.AVAILABLE,library:aLibrary)
 		
 		assertTrue aBook.validate()
 		assertNotNull aBook.save()
@@ -148,7 +148,7 @@ class UserIntegrationTests extends GroovyTestCase {
 		assertTrue user.validate()
 
 		assertNotNull aLibrary.save()
-		aBook = new Book(title:"C",ISBN:"1",state:States.AVAILABLE,library:aLibrary)
+		aBook = new Book(name:"C",ISBN:"1",state:States.AVAILABLE,library:aLibrary)
 		
 		assertTrue aBook.validate()
 
@@ -165,10 +165,10 @@ class UserIntegrationTests extends GroovyTestCase {
 		assertTrue user.validate()
 		assertNotNull aLibrary.save()
 		
-		Book a = new Book(title:"A",ISBN:"1",state:States.AVAILABLE,library:aLibrary)
-		Book b = new Book(title:"B",ISBN:"1",state:States.AVAILABLE,library:aLibrary)
-		Book c = new Book(title:"C",ISBN:"1",state:States.AVAILABLE,library:aLibrary)
-		Book d = new Book(title:"D",ISBN:"1",state:States.AVAILABLE,library:aLibrary)
+		Book a = new Book(name:"A",ISBN:"1",state:States.AVAILABLE,library:aLibrary)
+		Book b = new Book(name:"B",ISBN:"1",state:States.AVAILABLE,library:aLibrary)
+		Book c = new Book(name:"C",ISBN:"1",state:States.AVAILABLE,library:aLibrary)
+		Book d = new Book(name:"D",ISBN:"1",state:States.AVAILABLE,library:aLibrary)
 		
 		assertNotNull a.save()
 		assertNotNull b.save()
