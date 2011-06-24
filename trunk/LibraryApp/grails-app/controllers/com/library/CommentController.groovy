@@ -14,8 +14,8 @@ class CommentController {
 		if (!user.isAttached()) {
 			user.attach()
 			listOfMyComments = user.comments
-			
 		}
+		
 		[comments : listOfMyComments]
 	}
 	
@@ -32,7 +32,6 @@ class CommentController {
 		Book aBook = Book.get(params.bookId)
 		if (!user.isAttached()) {
 			user.attach()
-		
 		}
 		[book : aBook]
 		
@@ -47,10 +46,9 @@ class CommentController {
 		
 		Book aBook = Book.get(params.bookId)
 		if (!user.isAttached()) {
-			user.attach()
-			user.addBookComment aBook, aComment, 45
-			
+			user.attach()			
 		}
+		user.addBookComment aBook, aComment, 10
 		redirect(action: "viewMyComments")
 		
 	}
