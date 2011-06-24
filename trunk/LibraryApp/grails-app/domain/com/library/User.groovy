@@ -10,6 +10,8 @@ class User {
 	String homepage
 	String email
 	String phone
+	long rating
+	long totalVotes
 	List<Integer> score = new ArrayList<Integer>()
 	List<Reservation> reservations = new ArrayList<Reservation>()
 	List<Comment> commentsRcvd = new ArrayList<Comment>()
@@ -44,8 +46,7 @@ class User {
 	void makeReservation(Book aBook) {
 		if (aBook.isReserved()) throw new BookAlreadyReservedException()
 		Reservation aReservation = new Reservation(aBook,this)
-		this.addReservation(aReservation,aBook)
-		
+		this.addReservation(aReservation,aBook)	
 	}
 	
 	/* Alguien tiene que crearlo en la library */
