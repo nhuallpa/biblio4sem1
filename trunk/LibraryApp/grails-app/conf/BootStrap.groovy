@@ -24,7 +24,7 @@ class BootStrap {
 		   new Book( ISBN: isbn, name: aBook, library: a, state: States.AVAILABLE).save()
 		   def theUser   
 		   if (i == 1) {
-			   theUser = new User(name: 'admin', password: 'admin').save()
+			   theUser = new User(name: 'admin', password: 'admin', score: [1]).save()
 		   } else{
 			   theUser = new User(name: aName, password: pass).save()
 		   }
