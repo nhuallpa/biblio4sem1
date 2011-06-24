@@ -11,4 +11,7 @@ class UserCannotCommentItselfException extends RuntimeException{
 
 }
 
+class CommentDoesNotExistException extends RuntimeException{
+
+}
 
