@@ -24,13 +24,23 @@ class UserController {
 		redirect(uri:'/')
 	}
 	
+
+	
 	def rate = {
 
+		User user = User.get(new Long(params.id))
 		def rating = params.rating
 
-		User user = User.get(new Long(params.id))
+		def average = (rating.toDouble() + user.lookScore())
+//		user.rating = average
+		user.totalVotes += 1
+		user.save()
+		session.voted[user.name] = true
+		render(template: "/plugin/rate",
+			model: [user: user, rating: average])
 
-		render(template: "rate", model: [rating: average])
+//		render(template: "rate", model: [rating: average])
+
 	}
 	
 }
