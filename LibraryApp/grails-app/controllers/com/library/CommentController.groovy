@@ -49,9 +49,26 @@ class CommentController {
 		if (!user.isAttached()) {
 			user.attach()
 			user.addBookComment aBook, aComment, 45
+			
 		}
-		redirect(action: "viewMyComments");
+		redirect(action: "viewMyComments")
 		
+	}
+	
+	def deleteComment = {
+		User user = session.user
+		if (!user){
+			redirect(uri: '/')
+		}
+		Comment aComment = Comment.get(params.commentId)
+		
+//		if (!user.isAttached()) {
+//			user.attach()
+			
+			user.deleteComment aComment
+			
+		
+		redirect(action: "viewMyComments")
 	}
 	
 	

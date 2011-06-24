@@ -116,7 +116,7 @@ class User {
 		
 		def flag = 0
 		for ( o in this.commentsRcvd){
-			if ( o == aComment ){
+			if ( o.equals(aComment) ){
 				this.commentsRcvd.remove o
 				flag = 1
 			}
@@ -164,9 +164,6 @@ class User {
 	//	void addLibraryComment(Library aLibrary, String aString, Integer score ){
 	//		aLibrary.comment(this, aString, score)
 	//   }
-	
-	
-	
 
 	
 }

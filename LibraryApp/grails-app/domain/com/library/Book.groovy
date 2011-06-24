@@ -56,7 +56,7 @@ class Book implements Taggable{
 		
 		def flag = 0
 		for ( o in this.comments){
-			if ( o == aComment ){
+			if ( o.equals(aComment) ){
 				this.comments.remove o
 				flag = 1
 			}
