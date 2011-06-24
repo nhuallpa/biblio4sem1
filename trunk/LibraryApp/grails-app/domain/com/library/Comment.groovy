@@ -20,6 +20,15 @@ class Comment {
 	void addUser(User srcUser){
 		this.sourceUser = srcUser
 	}
+
+	@Override
+	public boolean equals(Object obj){
+		Comment other = (Comment)obj
+		return other.getSourceUser() == sourceUser &&
+				other.getDate().equals(date) &&
+				other.getDescription().equals(description)
+				
+	}
 	
 	
 

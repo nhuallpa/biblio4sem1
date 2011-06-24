@@ -13,9 +13,16 @@
 					<g:each var="comment" in="${comments}">
 						<li class="book">
 							
-							 <g:link controller="book" action="show" id="${comment.id}">${comment.description}</g:link>
-							 <p>Score: ${comment.score}</p>
-
+						 <g:link controller="book" action="show" id="${comment.id}">${comment.description}</g:link>
+						 <p>Score: ${comment.score}</p>
+						<div class="list-operator-item">
+				          	<span class="link-item"><g:link controller="comment" action="deleteComment" params="[commentId:comment.id]">Delete</g:link></span>
+<%--				          		|--%>
+<%--				          		<span class="link-item"><g:link controller="comment" action="toComment" params="[bookId:book.id]">to Comment</g:link></span>--%>
+<%--				          		|--%>
+<%--				          		<span class="link-item"><a href="#">View</a></span>--%>
+				          </div>
+							
 					    </li>
 					</g:each>	
 				</ul>
