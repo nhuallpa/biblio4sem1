@@ -3,7 +3,7 @@ package com.library.android.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Book {
+public class Book implements Comparable<Book>{
 
 	private Long bookId;
 	private String author;
@@ -136,6 +136,25 @@ public class Book {
 		} else if (!bookId.equals(other.bookId))
 			return false;
 		return true;
+	}
+
+	@Override
+	public int compareTo(Book another) {
+	    final int BEFORE = -1;
+	    final int EQUAL = 0;
+	    final int AFTER = 1;
+	    int compare = 0;
+	    if(this.equals(another)){
+	    	compare = EQUAL;
+	    }
+		if(this.bookId < another.getBookId()){
+			compare = BEFORE;
+		}
+		if(this.bookId > another.getBookId()){
+			compare = AFTER;
+		}
+		return compare; 
+		
 	}
 	
 	
