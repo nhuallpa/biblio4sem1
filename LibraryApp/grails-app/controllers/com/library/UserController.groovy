@@ -31,16 +31,30 @@ class UserController {
 		User user = User.get(new Long(params.id))
 		def rating = params.rating
 
-		def average = (rating.toDouble() + user.lookScore())
-//		user.rating = average
+		def average = (rating.toDouble() + 
+            user.rating*user.totalVotes)/
+                (user.totalVotes + 1)
+		user.rating = average
 		user.totalVotes += 1
 		user.save()
 		session.voted[user.name] = true
-		render(template: "/plugin/rate",
+		render(template: "/user/rate",
 			model: [user: user, rating: average])
 
 //		render(template: "rate", model: [rating: average])
 
 	}
+	
+	def beforeInterceptor = {
+		if (!session || !session.voted) {
+			def voted = [:]
+			def names = User.list().collect { it.name }
+			names.each { name ->
+				voted[name] = false
+			}
+			session.voted = voted
+	   }
+	}
+	
 	
 }
