@@ -112,6 +112,20 @@ class User {
 		aBook.cancelReservation()	
 	}
 	
+	void deleteComment(Comment aComment){
+		
+		def flag = 0
+		for ( o in this.commentsRcvd){
+			if ( o == aComment ){
+				this.commentsRcvd.remove o
+				flag = 1
+			}
+		}
+		if (flag == 0) throw new CommentDoesNotExistException()
+		
+		aComment.sourceUser.deleteComment(aComment)
+	}
+	
 	void pullOutBook(Book aBook){
 		
 		def flag = 0
