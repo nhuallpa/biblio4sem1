@@ -1,5 +1,6 @@
 package com.library
 
+import com.library.exceptions.*
 import org.grails.taggable.*
 
 class Book implements Taggable{
@@ -49,6 +50,20 @@ class Book implements Taggable{
 		def aComment = new Comment(description: aString, sourceUser: sourceUser, score: score)
 		this.comments?.add(aComment)
 		this.score?.add(score)
+	}
+	
+	void deleteComment(Comment aComment){
+		
+		def flag = 0
+		for ( o in this.comments){
+			if ( o == aComment ){
+				this.comments.remove o
+				flag = 1
+			}
+		}
+		if (flag == 0) throw new CommentDoesNotExistException()
+		
+		aComment.sourceUser.deleteComment(aComment)
 	}
 	
 	void returnMe(){
