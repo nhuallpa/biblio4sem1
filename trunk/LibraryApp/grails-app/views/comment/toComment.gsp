@@ -2,6 +2,7 @@
 	<head>
 		<meta name="layout" content="home" />
 		<title>To Comment</title>
+					<resource:rating />
 	</head>
 	<body>
 		
@@ -14,18 +15,20 @@
 			<div class="inner-boundary">
 			<h4>${book?.name}</h4>
 			<p>ISBN: ${book?.ISBN}</p>
-			<g:form controller="comment" action="toCommentBook" params="[bookId:book?.id, rating:rating]">
-					<dl class="form-list">
-						<dt class="text-form">Your comment: </dt>
-							<dd>
-								<span class="input big"><g:textField name="newComment"></g:textField></span>
-							</dd>
-					</dl>
-					<div class="buttons">
-						<g:submitButton name="toComment" />
-					</div>
+
+			<g:form controller="comment" action="toCommentBook" params="[bookId:book?.id]">
+
+				<dl class="form-list">
+					<dt class="text-form">Your comment: </dt>
+					<dd>
+						<span class="input big"><g:textField name="newComment"></g:textField></span>
+					</dd>
+				</dl>
+				<richui:rating dynamic="true" units="5" rating="${rating}" noAjax="true" inputId=${params.rating} } />
+				<div class="buttons">
+					<g:submitButton name="toComment" />
+				</div>
 			</g:form>
-<%--			<richui:rating dynamic="true" id="${book?.id}" units="5" rating="${rating}" controller="comment" action="rate"/>--%>
 			</div>			
 		</div>
 	</body>
