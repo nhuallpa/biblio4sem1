@@ -28,9 +28,15 @@ class UserController {
 	
 	def rate = {
 
-		User user = User.get(new Long(params.id))
+		//User user = User.get(new Long(params.id))
+		
+		User user = session.user
 		def rating = params.rating
 
+		if (!user.isAttached()) {
+			user.attach()
+		}
+		
 		def average = (rating.toDouble() + 
             user.rating*user.totalVotes)/
                 (user.totalVotes + 1)
@@ -40,8 +46,6 @@ class UserController {
 		session.voted[user.name] = true
 		render(template: "/user/rate",
 			model: [user: user, rating: average])
-
-//		render(template: "rate", model: [rating: average])
 
 	}
 	
