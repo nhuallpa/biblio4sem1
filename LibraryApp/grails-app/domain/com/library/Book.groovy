@@ -15,6 +15,8 @@ class Book implements Taggable{
 	List<Comment> comments = new ArrayList<Comment>()
 	List<Integer> score = new ArrayList<Integer>()
 	Library library
+	long rating
+	long totalVotes
 
 	static constraints = {
 		ISBN(blank : false)
@@ -53,7 +55,6 @@ class Book implements Taggable{
 	}
 	
 	void deleteComment(Comment aComment){
-		
 		def flag = 0
 		for ( o in this.comments){
 			if ( o.equals(aComment) ){
