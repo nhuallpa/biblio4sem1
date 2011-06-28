@@ -4,6 +4,8 @@ class CommentController {
 	
 	def scaffold = true
 
+	def rateTemp = ""
+	
     def index = {
 		redirect(action: 'create')
 	}
@@ -44,12 +46,17 @@ class CommentController {
 		}
 		def aComment = params.newComment
 		
+		
 		Book aBook = Book.get(params.bookId)
-		if (!user.isAttached()) {
-			user.attach()			
+		if (!user.isAttached()){//  && rateTemp != "") {
+			user.attach()	
+			user.addBookComment aBook, aComment, rateTemp
+			redirect(action: "viewMyComments")
+		} else {
+			redirect(action: "toComment")
 		}
-		user.addBookComment aBook, aComment, 10
-		redirect(action: "viewMyComments")
+		
+		
 		
 	}
 	
@@ -69,5 +76,21 @@ class CommentController {
 		redirect(action: "viewMyComments")
 	}
 	
+	def rate = {
+		
+		//QUE ES LO QUE HACE ESTA PARTE????
+		rateTemp = params.rating
+		
+		Comment comment = params.comment
+		
+		render(template: "/comment/rate",
+			model: [comment: comment, score: rateTemp])
+//		render(template: "/comment/rating",
+//			model: [user: user, rating: average])
+		
+		
+	}
+	
+
 	
 }
