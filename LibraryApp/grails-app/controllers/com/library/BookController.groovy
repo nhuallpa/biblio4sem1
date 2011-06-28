@@ -41,6 +41,23 @@ class BookController {
 			}
 		}
 	}
+	
+	def rate = {
+		
+		Book aBook = Book.get(params.id)
+		def rating = params.rating
+		
+		def average = (rating.toDouble() +
+			aBook.rating*aBook.totalVotes)/
+			(aBook.totalVotes + 1)
+		aBook.rating = average
+		aBook.totalVotes += 1
+		aBook.save()
+				
+		render(template: "/book/rate",
+		model: [book: aBook, rating: average])
+		
+	}
 
 	
 	
