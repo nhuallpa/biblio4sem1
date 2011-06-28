@@ -14,7 +14,7 @@
 			<div class="inner-boundary">
 			<h4>${book?.name}</h4>
 			<p>ISBN: ${book?.ISBN}</p>
-			<g:form controller="comment" action="toCommentBook" params="[bookId:book?.id]">
+			<g:form controller="comment" action="toCommentBook" params="[bookId:book?.id, rating:rating]">
 					<dl class="form-list">
 						<dt class="text-form">Your comment: </dt>
 							<dd>
@@ -25,6 +25,7 @@
 						<g:submitButton name="toComment" />
 					</div>
 			</g:form>
+<%--			<richui:rating dynamic="true" id="${book?.id}" units="5" rating="${rating}" controller="comment" action="rate"/>--%>
 			</div>			
 		</div>
 	</body>
