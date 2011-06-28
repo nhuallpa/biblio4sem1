@@ -3,14 +3,13 @@
 	<head>
 		<title><g:layoutTitle default="Home" /></title>
 		<link rel="stylesheet" href="${resource(dir:'css',file:'home.css')}" />
-		<resource:rating />
 		<g:layoutHead />
 	</head>
 	<body>
 		<div class="header">
 			<div class="container">
 				
-				<h1><g:link url="/Library">Library</g:link></h1>
+				<h1><g:link url="/libraryapp">Library</g:link></h1>
 			</div>
 		</div>
 		<div id="content">
@@ -25,9 +24,20 @@
 								<div>
 								<span class="text-form">${session.user.name}</span> <br/>
 								<span class="text-form">points: 3 Stars</span> <br/>
-								<richui:rating dynamic="true" id="${session.user.id}" units="5" rating="${rating}" controller="user" action="rate" />
+								<resource:rating />
+								<div id="user${session.user.id}">
+    								<% def dynamic = (!session.voted[session.user.name])%>
+    								<richui:rating dynamic="${dynamic.toString()}" id="${session.user.id}" units="5"
+        								rating="${session.user.rating}" updateId="user${session.user.id}" controller="user" action="rate"  />
+    								<p class="static">"Rating ${java.text.NumberFormat.instance.format(session.user.rating)}
+        								based on ${session.user.totalVotes} vote<g:if test="${session.user.totalVotes != 1}">s</g:if>
+    								</p>
+    								<g:if test="${!dynamic}">
+        								<div style="color: green;" id="vote${session.user.id}">Thanks for voting!</div>
+    								</g:if>
+								</div>
 								<span class="text-form"><g:link controller="user" action="logout">logout</g:link></span><br/>
-								 <br/>	
+								<br/>	
 								</div>
 								<ul class="menu-vert">
 									<li><g:link controller="reservation" action="viewMyReservation">My reservation</g:link></li>
