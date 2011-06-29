@@ -70,9 +70,16 @@ class User {
 	void addBookComment(Book aBook, String aString, Integer score ){
 		aBook.comment(this, aString, score)
 		def comment = new Comment(sourceUser: this, description:aString, score: score)
+	//	comment.save()
 		this.commentsDone.add(comment)
 		
 	}
+	
+//	void addBookComment(Book aBook, Comment aComment){
+//		aBook.comment(this, aComment.getDescription(), score)
+//		this.commentsDone.add(aComment)
+//		
+//	}
 
 	void comment(User sourceUser, String aString, Integer score){
 		Comment aComment = new Comment(description:aString, sourceUser:sourceUser, score: score)
@@ -113,18 +120,35 @@ class User {
 		aBook.cancelReservation()	
 	}
 	
+	void deleteMyComment(Comment aComment){
+		def flag = 0
+		for ( o in this.commentsDone){
+			if ( o == aComment ){
+				this.commentsDone.remove o
+				flag = 1
+			}
+		}
+		if (flag == 0) throw new CommentDoesNotExistException()
+		else {
+			aComment.sourceUser.deleteComment(aComment)
+		}
+	}
+	
 	void deleteComment(Comment aComment){
 		
 		def flag = 0
 		for ( o in this.commentsRcvd){
-			if ( o.equals(aComment) ){
+			if ( o == aComment ){
 				this.commentsRcvd.remove o
 				flag = 1
 			}
 		}
 		if (flag == 0) throw new CommentDoesNotExistException()
+		else {
+				aComment.sourceUser.deleteComment(aComment)
+			}
 		
-		aComment.sourceUser.deleteComment(aComment)
+		
 	}
 	
 	void pullOutBook(Book aBook){
