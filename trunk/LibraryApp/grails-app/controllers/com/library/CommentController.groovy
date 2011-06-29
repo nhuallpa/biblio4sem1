@@ -45,14 +45,15 @@ class CommentController {
 		String aComment = params.newComment
 		Integer rating = params.rating
 		rating -= 48
-		
+//		Comment comment = new Comment(description:aComment, score:rating)
+//		comment.save()
 		Book aBook = Book.get(params.bookId)
 		if (!user.isAttached()){
 			user.attach()	
 			user.addBookComment aBook, aComment, rating
-			redirect(uri: '/')
+			redirect(action: 'viewMyComments')
 		} else {
-			redirect(action: "toComment")
+			redirect(action: 'toComment')
 		}
 				
 	}
@@ -67,10 +68,12 @@ class CommentController {
 		
 //		if (!user.isAttached()) {
 //			user.attach()
-			
-			user.deleteComment aComment
-			
-		
+			try{
+				user.deleteMyComment aComment
+			}catch (Exception e){
+				redirect(uri: '/')
+				}
+//		}
 		redirect(action: "viewMyComments")
 	}
 	
