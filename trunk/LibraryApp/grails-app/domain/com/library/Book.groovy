@@ -22,12 +22,11 @@ class Book implements Taggable{
 		ISBN(blank : false)
 		comments(nullable:true)
 		subject(nullable:true)
-		library(nullable: true)
 		state(inList:States.list())
 		score(nullable: true)
 	}
 
-	static belongsTo = [Library]
+	static belongsTo = [library:Library]
 	
 	static mapping = {
 		library lazy: false
