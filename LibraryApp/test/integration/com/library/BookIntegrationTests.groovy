@@ -11,12 +11,17 @@ class BookIntegrationTests extends GroovyTestCase {
 	Book book
 	String commentDesc
 	
+	Library libraryDefault;
+	
     protected void setUp() {
         super.setUp()
 		myname = 'Thinking in Java'
 		myISBN = 12345
 		book = new Book(ISBN : myISBN, name : myname, state: States.AVAILABLE)
 		commentDesc = 'Buen libro'
+		
+		libraryDefault = new Library(libraryId:'BS_ATENEO', name:'Ateneo')
+		libraryDefault.save()
     }
 
     protected void tearDown() {
@@ -24,7 +29,8 @@ class BookIntegrationTests extends GroovyTestCase {
     }
 
     void testNewBook() {
-	
+		
+		libraryDefault.addToBooks(book)
 		assertTrue book.validate()
 		assertNotNull book.save()
 		assertNotNull book.id

@@ -1,14 +1,20 @@
+import com.library.Library;
+
 import com.library.*
 
 class BootStrap {
 
     def init = { servletContext ->
 		
-		Library a = new Library( libraryId: 01, name: "El Ateneo").save();
-		Library b = new Library( libraryId: 02, name: "Cuspide").save();
-		Library c = new Library( libraryId: 03, name: "Piramide").save();
-		
-		def libraries = [a, b, c]
+		def a = new Library(libraryId:'BM_ATENEO', name:'Ateno')
+		if  (!a.save()){
+			a.errors.each { 
+				println it	
+			}
+			assert a
+		}
+				
+		def libraries = [a]
 		def bookNames = ["It","Thinking in Java","Learning C","Visual Basic for Dummies","Codigo da Vinci","Taken","Harry Potter","Bla","BlaBla"]
 		def lastNames = ["Smith","Flinstone","Abbot","Williams","Adams","Goober","Brady","Jones","Heffernen"]
 		
@@ -20,7 +26,8 @@ class BootStrap {
 		   def isbn = random.nextInt(456789)
 		   def pass = random.nextInt(888999)
 		   
-		   def theBook = new Book( ISBN: isbn, name: aBook, library: a, state: States.AVAILABLE).save()
+		   def theBook = new Book( ISBN: isbn, name: aBook, state: States.AVAILABLE)
+		   a.addToBooks(theBook)
 		   new Book( ISBN: isbn, name: aBook, library: a, state: States.AVAILABLE).save()
 		   def theUser   
 		   if (i == 1) {
@@ -34,10 +41,8 @@ class BootStrap {
 		   theUser.makeReservation(theBook)
 
 		}
-		
-		
-		
-		assert( Book.list().size() == 100 )
+
+		assert( Book.list().size() == 50 )
 		assert( User.list().size() == 50 )
 		
 		

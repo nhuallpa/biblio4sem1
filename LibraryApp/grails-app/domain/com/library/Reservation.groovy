@@ -21,7 +21,6 @@ class Reservation {
 	Reservation(){
 		book = new Book()
 		user = new User()
-		
 	}
 	
 	Reservation(Book aBook, User aUser){

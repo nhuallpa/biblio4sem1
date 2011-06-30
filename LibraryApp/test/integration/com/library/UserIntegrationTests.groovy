@@ -23,6 +23,7 @@ class UserIntegrationTests extends GroovyTestCase {
 		userTwo = new User(name: "Nestor", location: location)
 		userTwo.addUserComment(user, "Buen usuario", 7)
 		aLibrary = new Library(libraryId: "BA_Ateneo", name: "El Ateneo")
+		assertNotNull aLibrary.save()
     }
 
     protected void tearDown() {
@@ -147,7 +148,7 @@ class UserIntegrationTests extends GroovyTestCase {
 		
 		assertTrue user.validate()
 
-		assertNotNull aLibrary.save()
+		
 		aBook = new Book(name:"C",ISBN:"1",state:States.AVAILABLE,library:aLibrary)
 		
 		assertTrue aBook.validate()
@@ -163,7 +164,7 @@ class UserIntegrationTests extends GroovyTestCase {
 	
 	void testUserTryToFindSimilars(){
 		assertTrue user.validate()
-		assertNotNull aLibrary.save()
+		
 		
 		Book a = new Book(name:"A",ISBN:"1",state:States.AVAILABLE,library:aLibrary)
 		Book b = new Book(name:"B",ISBN:"1",state:States.AVAILABLE,library:aLibrary)
