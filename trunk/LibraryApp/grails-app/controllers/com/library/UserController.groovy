@@ -60,5 +60,10 @@ class UserController {
 	   }
 	}
 	
+	def viewProfile = {
+		User aUser = User.get(params.userId)
+		[user:aUser]
+	}
+	
 	
 }
