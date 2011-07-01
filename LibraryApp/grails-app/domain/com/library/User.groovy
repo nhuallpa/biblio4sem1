@@ -12,7 +12,6 @@ class User {
 	String phone
 	long rating
 	long totalVotes
-	List<Integer> score = new ArrayList<Integer>()
 	List<Reservation> reservations = new ArrayList<Reservation>()
 	List<Comment> commentsRcvd = new ArrayList<Comment>()
 	List<Comment> commentsDone = new ArrayList<Comment>()
@@ -30,7 +29,6 @@ class User {
 		reservations(nullable: true)
 		commentsRcvd(nullable: true)
 		commentsDone(nullable: true)
-		score(nullable: true)
     }
 	
 	static mapping = {
@@ -83,7 +81,9 @@ class User {
 	void comment(User sourceUser, String aString, Integer score){
 		Comment aComment = new Comment(description:aString, sourceUser:sourceUser, score: score)
 		this.commentsRcvd?.add(aComment)
-		this.score?.add score
+		this.totalVotes += 1
+		def average = (score + this.rating*this.totalVotes)/ (this.totalVotes + 1)
+		this.rating = average
 	}
 	
 	void addUserComment(User aUser, String aString, Integer score ){
@@ -162,13 +162,6 @@ class User {
 		if (flag == 0) throw new ReservationDoesNotExistException()
 		
 		aBook.retireMe()
-	}
-	
-	Float lookScore(){
-		Integer i = score?.sum()	
-		Integer d = score?.size()
-        if (score?.size() != null)
-			return i.div(d)
 	}
 	
 	void addReservation(Reservation aReservation, Book aBook){

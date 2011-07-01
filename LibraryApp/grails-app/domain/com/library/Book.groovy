@@ -13,7 +13,6 @@ class Book implements Taggable{
 	long ISBN
 	States state
 	List<Comment> comments = new ArrayList<Comment>()
-	List<Integer> score = new ArrayList<Integer>()
 	Library library
 	long rating
 	long totalVotes
@@ -23,7 +22,6 @@ class Book implements Taggable{
 		comments(nullable:true)
 		subject(nullable:true)
 		state(inList:States.list())
-		score(nullable: true)
 	}
 
 	static belongsTo = [library:Library]
@@ -50,7 +48,9 @@ class Book implements Taggable{
 	void comment(User sourceUser, String aString, Integer score){
 		def aComment = new Comment(description: aString, sourceUser: sourceUser, score: score)
 		this.comments?.add(aComment)
-		this.score?.add(score)
+		this.totalVotes += 1
+		def average = (score + this.rating*this.totalVotes)/ (this.totalVotes + 1)
+		this.rating = average
 	}
 	
 	void deleteComment(Comment aComment){
@@ -85,13 +85,5 @@ class Book implements Taggable{
 	Boolean isReserved(){
 		return (state == States.RESERVED)
 	}
-	
-	Float lookScore(){
-		Integer i = score?.sum()
-		Integer d = score?.size()
-		if (score?.size() != null)
-			return i.div(d)
-	}
-	
 		
 }
