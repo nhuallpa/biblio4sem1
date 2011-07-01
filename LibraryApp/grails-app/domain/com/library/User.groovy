@@ -81,9 +81,9 @@ class User {
 	void comment(User sourceUser, String aString, Integer score){
 		Comment aComment = new Comment(description:aString, sourceUser:sourceUser, score: score)
 		this.commentsRcvd?.add(aComment)
-		this.totalVotes += 1
 		def average = (score + this.rating*this.totalVotes)/ (this.totalVotes + 1)
 		this.rating = average
+		this.totalVotes += 1
 	}
 	
 	void addUserComment(User aUser, String aString, Integer score ){

@@ -48,9 +48,9 @@ class Book implements Taggable{
 	void comment(User sourceUser, String aString, Integer score){
 		def aComment = new Comment(description: aString, sourceUser: sourceUser, score: score)
 		this.comments?.add(aComment)
-		this.totalVotes += 1
 		def average = (score + this.rating*this.totalVotes)/ (this.totalVotes + 1)
 		this.rating = average
+		this.totalVotes += 1
 	}
 	
 	void deleteComment(Comment aComment){
