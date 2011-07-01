@@ -19,9 +19,6 @@ class CommentController {
 		[comments : listOfMyComments]
 	}
 	
-	def view= {
-		
-	}
 	
 	def toComment = {
 		User user = session.user
