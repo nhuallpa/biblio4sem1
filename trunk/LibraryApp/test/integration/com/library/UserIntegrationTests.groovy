@@ -21,7 +21,7 @@ class UserIntegrationTests extends GroovyTestCase {
 		location = new Location(country: "countryTest", street: "streetTest")
 		user = new User(name: "Ariel", location: location)
 		userTwo = new User(name: "Nestor", location: location)
-		userTwo.addUserComment(user, "Buen usuario", 7)
+		userTwo.addUserComment(user, "Buen usuario", 5)
 		aLibrary = new Library(libraryId: "BA_Ateneo", name: "El Ateneo")
 		assertNotNull aLibrary.save()
     }
@@ -39,7 +39,7 @@ class UserIntegrationTests extends GroovyTestCase {
 		assertEquals "countryTest", userFound.getLocation().getCountry()
 		assertEquals 1,userFound.commentsRcvd?.size()
 		assertEquals "Buen usuario",userFound.commentsRcvd?.get(0).description
-		assertEquals 7,userFound.commentsRcvd?.get(0).score
+		assertEquals 5,userFound.commentsRcvd?.get(0).score
 		assertEquals 1,userTwo.commentsDone?.size()
 		assertEquals "Buen usuario",userTwo.commentsDone?.get(0).description
     }
@@ -50,7 +50,7 @@ class UserIntegrationTests extends GroovyTestCase {
 		userThree.addUserComment(user, "Pesimo", 1)
 		assertNotNull user.save()
 		User userFound = User.get(user.id)
-		assertEquals 4.0,userFound.lookScore()
+		assertEquals 3,userFound.getRating()
 		
 	}
 	
