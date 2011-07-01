@@ -9,7 +9,7 @@
 		<div class="header">
 			<div class="container">
 				
-				<h1><g:link url="/libraryapp">Library</g:link></h1>
+				<h1><g:link url="/Library">Library</g:link></h1>
 			</div>
 		</div>
 		<div id="content">
