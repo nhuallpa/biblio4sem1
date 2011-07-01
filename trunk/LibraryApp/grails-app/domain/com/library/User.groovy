@@ -70,7 +70,6 @@ class User {
 	void addBookComment(Book aBook, String aString, Integer score ){
 		aBook.comment(this, aString, score)
 		def comment = new Comment(sourceUser: this, description:aString, score: score)
-	//	comment.save()
 		this.commentsDone.add(comment)
 		
 	}

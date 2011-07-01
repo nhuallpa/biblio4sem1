@@ -58,6 +58,13 @@ class BookController {
 		model: [book: aBook, rating: average])
 		
 	}
+	
+	def viewDetails = {
+		Book aBook = Book.get(params.bookId)
+		
+		[book : aBook]
+		
+	}
 
 	
 	

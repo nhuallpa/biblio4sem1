@@ -23,7 +23,7 @@
 				          		|
 				          		<span class="link-item"><g:link controller="comment" action="toComment" params="[bookId:book.id]">to Comment</g:link></span>
 				          		|
-				          		<span class="link-item"><a href="#">View</a></span>
+				          		<span class="link-item"><g:link controller="book" action="viewDetails" params="[bookId:book.id]">View Details</g:link></span>
 				          </div>
 				        </li>			
 					</ul>

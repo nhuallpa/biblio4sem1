@@ -12,9 +12,11 @@
 				<ul class="item-list">
 					<g:each var="comment" in="${comments}">
 						<li class="book">
-							
+						 						
 						 <g:link controller="book" action="show" id="${comment.id}">${comment.description}</g:link>
 						 <p>Score: ${comment.score}</p>
+						 <p>${session.user.name}</p>	
+						 
 						<div class="list-operator-item">
 				          	<span class="link-item"><g:link controller="comment" action="deleteComment" params="[commentId:comment.id]">Delete</g:link></span>
 <%--				          		|--%>
