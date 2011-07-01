@@ -22,7 +22,7 @@
 					<g:each var="comment" in="${book?.comments}">
 						<li class="book">
 							<h4>"${comment.description}"</h4>
-							<p>User: ${comment.sourceUser.name} [${comment.sourceUser.rating}]</p>
+							<span class="text"><g:link controller="user" action="viewProfile" params="[userId:comment.sourceUser.id]">User: ${comment.sourceUser.name} [${comment.sourceUser.rating}]</g:link></span>
 							<p>${comment.date}</p>
 							<p>Comment Score: ${comment.score}</p>
 					    </li>
