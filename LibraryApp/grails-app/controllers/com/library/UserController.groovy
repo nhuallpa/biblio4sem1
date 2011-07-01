@@ -31,22 +31,18 @@ class UserController {
 		//User user = User.get(new Long(params.id))
 		
 		User user = session.user
-		def rating = params.rating
+		Integer rating = params.rating
+		rating -= 48
 
 		if (!user.isAttached()) {
 			user.attach()
 		}
 		
-		def average = (rating.toDouble() + 
-            user.rating*user.totalVotes)/
-                (user.totalVotes + 1)
-		user.rating = average
-		user.totalVotes += 1
+		user.addUserComment user, "", rating
 		user.save()
 		session.voted[user.name] = true
 		render(template: "/user/rate",
-			model: [user: user, rating: average])
-
+			model: [user: user, rating: rating])
 	}
 	
 	def beforeInterceptor = {
@@ -63,6 +59,18 @@ class UserController {
 	def viewProfile = {
 		User aUser = User.get(params.userId)
 		[user:aUser]
+	}
+	
+	def viewImage = {
+		User user = session.user
+		
+		if (!user.isAttached()) {
+			user.attach()
+		}
+		
+		response.contentType = "image/jpeg"
+		response.contentLength = user?.photo.length
+		response.outputStream.write(user?.photo)
 	}
 	
 	
