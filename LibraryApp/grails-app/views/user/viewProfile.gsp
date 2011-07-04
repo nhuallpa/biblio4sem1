@@ -25,7 +25,7 @@
 						<li class="book">
 							<span class="text"><g:link controller="book" action="viewDetails" params="[bookId:reservation.book.id]">${reservation.book.name}</g:link></span>
 							|
-							<span class="text">${reservation.state}</span>
+							<span class="text">${reservation.reservationDate.toString()}</span>
 <%--							<p>${reservation.library.name}</p>  FALTA EL NOMBRE...--%>
 					    </li>
 					</g:each>
@@ -33,11 +33,11 @@
 			<div class="inner-boundary">
 				<h4>Comments Done</h4>
 				<ul class="item-list">
-					<g:each var="commentDn" in="${user?.commentsDone}">
+					<g:each var="commentDone" in="${user?.commentsDone}">
 						<li class="book">
-							<h4>"${commentDn.description}"</h4>
-							<p>${commentDn.date}</p>
-							<p>Comment Score: ${commentDn.score}</p>
+							<h4>"${commentDone.description}"</h4>
+							<p>${commentDone.date}</p>
+							<p>Comment Score: ${commentDone.score}</p>
 					    </li>
 					</g:each>
 				</ul>
