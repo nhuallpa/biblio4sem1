@@ -18,6 +18,14 @@
 				<span class="text">Total Votes: ${book?.totalVotes}</span>
 				|
 				<span class="text">State: ${book.state}</span>
+				
+				<div class="list-operator-item">
+					<span class="link-item"><g:link controller="reservation" action="toReserve" params="[bookId:book.id]">to Reserve</g:link></span>
+					|
+				  	<span class="link-item"><g:link controller="comment" action="toComment" params="[bookId:book.id]">to Comment</g:link></span>
+				</div>
+			</div>
+				<h5>Comments</h5>
 				<ul class="item-list">
 					<g:each var="comment" in="${book?.comments}">
 						<li class="book">
@@ -29,6 +37,5 @@
 					</g:each>
 				</ul>
 			</div>
-		</div>
 	</body>
 </html>
