@@ -16,6 +16,7 @@
 <%--						 <g:link controller="book" action="show" id="${comment.id}">${comment.description}</g:link>--%>
 						 <h4>${comment.description}</h4>
 						 <p>Score: ${comment.score}</p>
+<%--						 <p>${comment.date.toString()}</p>--%>
 						 
 						<div class="list-operator-item">
 				          	<span class="link-item"><g:link controller="comment" action="deleteComment" params="[commentId:comment.id]">Delete</g:link></span>

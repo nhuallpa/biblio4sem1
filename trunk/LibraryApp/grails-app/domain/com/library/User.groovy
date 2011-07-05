@@ -72,11 +72,12 @@ class User {
 		
 	}
 	
-//	void addBookComment(Book aBook, Comment aComment){
-//		aBook.comment(this, aComment.getDescription(), score)
-//		this.commentsDone.add(aComment)
-//		
-//	}
+	//agregado por Gonzalo.(para probar)
+	void addToBookComment(Book aBook, Comment aComment){
+		aBook.comment(this, aComment.getDescription(), aComment.getScore())
+		this.commentsDone.add(aComment)
+		
+	}
 
 	void comment(User sourceUser, String aString, Integer score){
 		Comment aComment = new Comment(description:aString, sourceUser:sourceUser, score: score)
@@ -122,7 +123,7 @@ class User {
 	void deleteMyComment(Comment aComment){
 		def flag = 0
 		for ( o in this.commentsDone){
-			if ( o == aComment ){
+			if ( o.equals (aComment) ){
 				this.commentsDone.remove o
 				flag = 1
 			}
