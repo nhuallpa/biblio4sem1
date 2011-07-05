@@ -9,14 +9,16 @@ class CommentController {
 	}
 	
 	def viewMyComments = {
-		User user = session.user
+		User aUser = session.user
 		def listOfMyComments = null
-		if (!user.isAttached()) {
-			user.attach()
-			listOfMyComments = user.comments
+		if (!aUser.isAttached()) {
+			aUser.attach()
+			listOfMyComments = aUser.comments
+			
 		}	
 		
 		[comments : listOfMyComments]
+	
 	}
 	
 	
@@ -42,12 +44,14 @@ class CommentController {
 		String aComment = params.newComment
 		Integer rating = params.rating
 		rating -= 48
-//		Comment comment = new Comment(description:aComment, score:rating)
-//		comment.save()
+		
+		Comment comment = new Comment(description: aComment, score: rating)
+		comment.save()
 		Book aBook = Book.get(params.bookId)
 		if (!user.isAttached()){
 			user.attach()	
-			user.addBookComment aBook, aComment, rating
+//			user.addBookComment aBook, comment.getDescription(), comment.getScore()
+			user.addToBookComment aBook, comment
 			redirect(action: 'viewMyComments')
 		} else {
 			redirect(action: 'toComment')
