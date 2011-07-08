@@ -72,11 +72,11 @@ class User {
 		
 	}
 	
-	//agregado por Gonzalo.(para probar)
+	//@gonzalo: lo agrege para probar
 	void addToBookComment(Book aBook, Comment aComment){
 		aBook.comment(this, aComment.getDescription(), aComment.getScore())
 		this.commentsDone.add(aComment)
-		
+		this.comments?.add aComment
 	}
 
 	void comment(User sourceUser, String aString, Integer score){
@@ -122,9 +122,12 @@ class User {
 	
 	void deleteMyComment(Comment aComment){
 		def flag = 0
-		for ( o in this.commentsDone){
-			if ( o.equals (aComment) ){
-				this.commentsDone.remove o
+//		for ( o in comments){
+		for(int i = 0; i < commentsDone.size; i++){
+			def obj = commentsDone.get(i)
+			if ( obj.equals(aComment) ){
+				comments?.remove obj
+				this.commentsDone.remove obj
 				flag = 1
 			}
 		}

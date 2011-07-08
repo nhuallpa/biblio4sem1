@@ -3,14 +3,15 @@ package com.library
 class CommentController {
 	
 	def scaffold = true
-
-    def index = {
+	
+	def index = {
 		redirect(action: 'create')
 	}
 	
 	def viewMyComments = {
 		User aUser = session.user
 		def listOfMyComments = null
+
 		if (!aUser.isAttached()) {
 			aUser.attach()
 			listOfMyComments = aUser.comments
@@ -44,8 +45,8 @@ class CommentController {
 		String aComment = params.newComment
 		Integer rating = params.rating
 		rating -= 48
-		
-		Comment comment = new Comment(description: aComment, score: rating)
+		Date d = new Date();
+		Comment comment = new Comment(description: aComment, score: rating, date: d)
 		comment.save()
 		Book aBook = Book.get(params.bookId)
 		if (!user.isAttached()){
