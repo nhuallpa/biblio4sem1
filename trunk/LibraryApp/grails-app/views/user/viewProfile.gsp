@@ -33,11 +33,13 @@
 			<div class="inner-boundary">
 				<h4>Comments Done</h4>
 				<ul class="item-list">
-					<g:each var="commentDone" in="${user?.commentsDone}">
+					<g:each var="commentDone" in="${user?.comments}">
 						<li class="book">
 							<h4>"${commentDone.description}"</h4>
-							<p>${commentDone.date}</p>
+<%--							<p>${commentDone.date.toString()}</p>--%>
 							<p>Comment Score: ${commentDone.score}</p>
+							<p>Book: ${commentDone.book.name}</p>
+							
 					    </li>
 					</g:each>
 				</ul>
