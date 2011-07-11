@@ -36,9 +36,8 @@
 					<g:each var="commentDone" in="${user?.comments}">
 						<li class="book">
 							<h4>"${commentDone.description}"</h4>
-<%--							<p>${commentDone.date.toString()}</p>--%>
 							<p>Comment Score: ${commentDone.score}</p>
-							<p>Book: ${commentDone.book.name}</p>
+							<g:link controller="book" action="viewDetails" params="[bookId:commentDone.book.id]">${commentDone.book.name}</g:link>
 							
 					    </li>
 					</g:each>
