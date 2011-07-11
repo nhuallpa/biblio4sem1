@@ -15,13 +15,17 @@ public class Book implements Comparable<Book>{
 	private Library library;
 	
 	public Book(){
-		
+		init();
 	}
 	
 	public Book(Long ISBN, String title, Library lib){
 		this.ISBN = ISBN;
 		this.library = lib;
 		this.title = title;
+		init();
+	}
+	
+	private void init(){
 		this.listOfComments = new ArrayList<Comment>();
 		this.tags = new ArrayList<String>();
 	}

@@ -3,16 +3,14 @@ package com.library.android.config;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.library.android.domain.User;
+
 public class ConfigurationManager {
-	
-	private static final String AUTHKEY = "AUTHKEY";
-	private static final String USERNAME = "USERNAME";
-	private static final String PASSWORD = "PASSWORD";
-	private static final String PREFS_NAME = "LIBRARYANDROID";
-	
+		
 	private String userName = "";
 	private String password = "";
 	private String authKey = "";
+	private User myUser;
 	
 	private Context context;
 	private SharedPreferences settings;
@@ -20,6 +18,7 @@ public class ConfigurationManager {
 	
 	private ConfigurationManager(Context context) {
 		this.context = context;
+		this.myUser = new User();
 		load();
 	}
 	
@@ -34,16 +33,27 @@ public class ConfigurationManager {
 		return (!userName.equals("") && !password.equals(""));
 	}
 	
+	public boolean isLogged(){
+		
+		return !myUser.getName().equals("");
+	}
+	
 	private void load() {
-		settings = context.getSharedPreferences(PREFS_NAME, 0);
-		this.userName = settings.getString(USERNAME, "");
-		this.password= settings.getString(PASSWORD, "");
+		settings = context.getSharedPreferences(Constants.PREFS_NAME, 0);
+		this.userName = settings.getString(Constants.USERNAME, "");
+		this.password= settings.getString(Constants.PASSWORD, "");
+		this.myUser.setName(userName);
 	}
 	
 	public void save(){
 		SharedPreferences.Editor editor = settings.edit();
-		editor.putString(USERNAME, this.userName);
-		editor.putString(PASSWORD, this.password);
+		editor.putString(Constants.USERNAME, this.userName);
+		editor.putString(Constants.PASSWORD, this.password);
+		myUser.setName(this.userName);
+	}
+	
+	public User getCurrentUser(){
+		return this.myUser;
 	}
 
 	public String getUserName() {

@@ -2,13 +2,10 @@ package com.library.android;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import org.json.JSONException;
-import org.json.JSONObject;
+import java.util.List;
 
 import android.app.ListActivity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -16,20 +13,23 @@ import android.view.Gravity;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
+import com.library.android.config.ConfigurationManager;
+import com.library.android.domain.Book;
 import com.library.android.domain.Comment;
-import com.library.android.mock.BooksMock;
-import com.library.android.mock.UserMock;
+import com.library.android.mock.Mocks;
 
 	public class MyCommentsActivity extends ListActivity {
 		
 		private SimpleAdapter simpleAdapter = null; 
 		private ArrayList<HashMap<String, String>> list;
 		private Handler mHandler = new Handler();
-		
+		private ConfigurationManager config;
 
 		public void OnCreate(Bundle b){
 			super.onCreate(b);
 			setContentView(R.layout.my_comments);
+			config = ConfigurationManager.getInstance(this);
+		
 		}
 		
 	
@@ -43,16 +43,19 @@ import com.library.android.mock.UserMock;
 		task.execute();
 	}
 	
-	private class LibraryAsyncTask extends AsyncTask<Void, Context, ArrayList<Comment>>{
+	private class LibraryAsyncTask extends AsyncTask<Void, Context, List<Comment>>{
 
 		@Override
-		protected ArrayList<Comment> doInBackground(Void... arg0) {
-			// TODO Auto-generated method stub
-			return null;
+		protected List<Comment> doInBackground(Void... arg0) {
+			
+//			List<Comment> comments = config.getCurrentUser().getListOfComments();
+			List<Comment> comments = Mocks.getUser().getListOfComments();
+						
+			return comments;
 		}
 		
 		@Override
-		protected void onPostExecute(ArrayList<Comment> results){
+		protected void onPostExecute(List<Comment> results){
 			
 			list = new ArrayList<HashMap<String,String>>();
 			
@@ -72,7 +75,7 @@ import com.library.android.mock.UserMock;
 //							temp.put("hora", parsearHora(dato.getString("created_time")));
 							temp.put("description", dato.getDescription());
 							temp.put("user", dato.getUser().getName());
-							
+							temp.put("book", dato.getBookSource().getTitle());
 //						} catch (JSONException e) {
 //						
 //							e.printStackTrace();
@@ -84,8 +87,8 @@ import com.library.android.mock.UserMock;
 
 
 
-				simpleAdapter = new SimpleAdapter(MyCommentsActivity.this, list, R.layout.my_comments_item, new String[] { "description", "user"},
-			        new int[] { R.id.item_comment_book_title, R.id.item_comment_user_name});
+				simpleAdapter = new SimpleAdapter(MyCommentsActivity.this, list, R.layout.my_comments_item, new String[] { "description", "user", "book"},
+			        new int[] { R.id.item_comment_description, R.id.item_comment_user_name, R.id.item_comment_book_name});
 			        setListAdapter(simpleAdapter);
 			        
 			}else {
@@ -110,6 +113,14 @@ import com.library.android.mock.UserMock;
 
 
 		}
+		
+//		private Book getBook(Comment aComment){
+//			
+//			//WS
+//			Book book = new Book();
+//			
+//			return book;
+//		}
 			
 		}
 		

@@ -3,7 +3,6 @@ package com.library.android.services.impl;
 import java.util.List;
 
 import com.library.android.domain.Book;
-import com.library.android.mock.BooksMock;
 import com.library.android.repository.LibraryRepository;
 import com.library.android.services.ConfigWS;
 import com.library.android.services.LibraryWebServices;
@@ -80,7 +79,7 @@ public class BookServicesImpl implements LibraryWebServices {
 //		}
 //					
 				
-		List<Book> booksFounded = LibraryServiceImpl.getInstance().booksFounded(BooksMock.getListBooks(), text);
+		List<Book> booksFounded = null;//LibraryServiceImpl.getInstance().booksFounded(BooksMock.getListBooks(), text);
 		
 //		return book;
 		return booksFounded;

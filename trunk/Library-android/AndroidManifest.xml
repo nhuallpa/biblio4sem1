@@ -39,6 +39,11 @@
         <activity android:name=".ProfileUserActivity"
                   android:label="@string/app_name">            
         </activity>
+        
+        <activity android:name=".MyCommentsActivity"
+                  android:label="@string/app_name">            
+        </activity>
+        
 
 		
 

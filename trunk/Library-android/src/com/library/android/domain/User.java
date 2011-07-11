@@ -5,21 +5,27 @@ import java.util.List;
 
 public class User {
 	
-	private String name;
+	private String name = "";
 	private Location address;
 	private String email;
 	private List<Comment> listOfComments;
 	private List<Reservation> listOfReservations;
 		
-	public User(){}
+	public User(){
+		init();
+	}
 	
 	public User(String name, Location address, String email){
 		this.name = name;
 		this.address = address;
 		this.email = email;
+		init();
+		
+	}
+	
+	private void init(){
 		this.listOfComments = new ArrayList<Comment>();
 		this.listOfReservations = new ArrayList<Reservation>();
-		
 	}
 	
 	public void makeReservation(Book aBook){
@@ -27,6 +33,9 @@ public class User {
 	}
 	
 	public void addComment(Book aBook, Comment aComment){
+//		aComment.setUser(this);
+		aComment.setSources(this,aBook);
+		aBook.addComment(aComment);
 		this.listOfComments.add(aComment);
 	}
 	
