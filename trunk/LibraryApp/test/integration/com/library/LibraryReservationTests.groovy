@@ -63,8 +63,10 @@ class LibraryReservationTests extends GroovyTestCase {
 		def bookReservationsFound = Library.get(library.id).reservations.collect {it.book}
 		
 		assertEquals 2, bookReservationsFound.size()
-		assertEquals book.ISBN, bookReservationsFound.get(0).ISBN
-		assertEquals bookTwo.ISBN, bookReservationsFound.get(1).ISBN
+		
+		def ISBN_list = [bookReservationsFound.get(0).ISBN, bookReservationsFound.get(1).ISBN]
+		assertTrue(ISBN_list.contains(book.ISBN))
+		assertTrue(ISBN_list.contains(bookTwo.ISBN))
 	}
 	
 	void testReservationsEmpty() {

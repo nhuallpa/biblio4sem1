@@ -1,5 +1,8 @@
 package com.library
 
+import org.codehaus.groovy.grails.web.servlet.GrailsApplicationAttributes;
+import org.springframework.context.ApplicationContext;
+
 class BookController {
 
 	def scaffold = true
@@ -66,7 +69,32 @@ class BookController {
 		
 	}
 
+	/**
+	 * Action that upload a image Cover and save in FileSystem
+	 * */
+	def upload = {
+		Book book = Book.get(params.id)
+		def cover = request.getFile("cover")
+		
+		if (book && !cover.isEmpty()) {
+			
+			ApplicationContext applicationContext = servletContext.getAttribute(GrailsApplicationAttributes.APPLICATION_CONTEXT)
+			String pathFile = applicationContext.getResource('images/Book/').getFile().toString() + File.separatorChar + book.name +  File.separatorChar
+			new File(pathFile).mkdirs()
+			
+			String contentType = cover.getContentType()
+			
+			cover.transferTo(
+				new File("${pathFile}/cover.jpg")
+			)
+		}
+		redirect(action:'loadImageCover')
+	}
 	
-	
-	
+	/**
+	 * This is for upload cover by form
+	 * */
+	def loadImageCover = {
+		[listOfBook: Book.list()]
+	}
 }
