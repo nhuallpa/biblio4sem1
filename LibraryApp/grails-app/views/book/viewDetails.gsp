@@ -9,33 +9,35 @@
 		
 		<div id="items" class="shadowed">
 			<div class="inner-boundary">
-				<span class="text">ISBN: ${book?.ISBN }</span>
-				|
-				<span class="text">Subject: ${book?.subject }</span>
-				|
-				<span class="text">Rating: ${book?.rating }</span>
-				|
-				<span class="text">Total Votes: ${book?.totalVotes}</span>
-				|
-				<span class="text">State: ${book.state}</span>
-				
-				<div class="list-operator-item">
-					<span class="link-item"><g:link controller="reservation" action="toReserve" params="[bookId:book.id]">to Reserve</g:link></span>
-					|
-				  	<span class="link-item"><g:link controller="comment" action="toComment" params="[bookId:book.id]">to Comment</g:link></span>
+				<div class="book-description">
+					<img  src="<g:createLinkTo dir="images/Book/${book.name}" file="cover.jpg" />"/>
+					<div class="details-more-info">
+					<span class="text">ISBN: ${book?.ISBN}</span><br/>
+					<span class="text">Subject: ${book?.subject }</span><br/>
+					<span class="text">Rating: ${book?.rating }</span><br/>
+					<span class="text">Total Votes: ${book?.totalVotes}</span><br/>
+					<span class="text">State: ${book.state}</span><br/>
+					</div>
+					<div class="list-operator-item">
+						<span class="link-item"><g:link controller="reservation" action="toReserve" params="[bookId:book.id]">to Reserve</g:link></span>
+						|
+					  	<span class="link-item"><g:link controller="comment" action="toComment" params="[bookId:book.id]">to Comment</g:link></span>
+					</div>
+				</div>
+				<div class="comment-list">
+					<h5>Comments</h5>
+					<ul class="item-list">
+						<g:each var="comment" in="${book?.comments}">
+							<li class="book">
+								<h4>"${comment.description}"</h4>
+								<span class="text"><g:link controller="user" action="viewProfile" params="[userId:comment.sourceUser.id]">User: ${comment.sourceUser.name} [${comment.sourceUser.rating}]</g:link></span>
+								<p>${comment.date}</p>
+								<p>Comment Score: ${comment.score}</p>
+						    </li>
+						</g:each>
+					</ul>
 				</div>
 			</div>
-				<h5>Comments</h5>
-				<ul class="item-list">
-					<g:each var="comment" in="${book?.comments}">
-						<li class="book">
-							<h4>"${comment.description}"</h4>
-							<span class="text"><g:link controller="user" action="viewProfile" params="[userId:comment.sourceUser.id]">User: ${comment.sourceUser.name} [${comment.sourceUser.rating}]</g:link></span>
-							<p>${comment.date}</p>
-							<p>Comment Score: ${comment.score}</p>
-					    </li>
-					</g:each>
-				</ul>
-			</div>
+		</div>
 	</body>
 </html>

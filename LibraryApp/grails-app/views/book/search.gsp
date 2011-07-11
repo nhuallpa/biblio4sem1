@@ -15,16 +15,16 @@
 				<g:each in="${searchResults}" status="i" var="book">
 					<ul class="item-list">
 						<li class="book">
-<%--						  <span class="item-title"><g:link action="show" id="${book.id}">${book.name}</g:link></span>--%>
+						  <img  src="<g:createLinkTo dir="images/Book/${book.name}" file="cover.jpg" />"/>
+						  <div class="book-resume-item">
 							  <span class="item-title"><g:link controller="book" action="viewDetails" params="[bookId:book.id]">${book.name}</g:link></span>
-				          <h4>ISBN: ${book.ISBN}</h4>
-				          <span class="text">${book.state}</span>
+					          <h4>ISBN: ${book.ISBN}</h4>
+					          <span class="text">${book.state}</span>
+						  </div>
 				          <div class="list-operator-item">
 				          		<span class="link-item"><g:link controller="reservation" action="toReserve" params="[bookId:book.id]">to Reserve</g:link></span>
 				          		|
 				          		<span class="link-item"><g:link controller="comment" action="toComment" params="[bookId:book.id]">to Comment</g:link></span>
-<%--				          		|--%>
-<%--				          		<span class="link-item"><g:link controller="book" action="viewDetails" params="[bookId:book.id]">View Details</g:link></span>--%>
 				          </div>
 				        </li>			
 					</ul>
