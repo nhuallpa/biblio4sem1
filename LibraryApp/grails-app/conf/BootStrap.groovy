@@ -1,3 +1,7 @@
+
+import org.codehaus.groovy.grails.web.servlet.GrailsApplicationAttributes;
+import org.springframework.context.ApplicationContext;
+
 import com.library.Library;
 
 import com.library.*
@@ -13,11 +17,11 @@ class BootStrap {
 			}
 			assert a
 		}
-				
-		def libraries = [a]
-		def bookNames = ["It","Thinking in Java","Learning C","Visual Basic for Dummies","Codigo da Vinci","Taken","Harry Potter","Bla","BlaBla"]
-		def lastNames = ["Smith","Flinstone","Abbot","Williams","Adams","Goober","Brady","Jones","Heffernen"]
 		
+		def libraries = [a]
+		def bookNames = ["It","Thinking in Java","Learning C","Asp.net for Dummies","Codigo da Vinci","Taken","Harry Potter","Flex","HTML 5"]
+		def lastNames = ["Smith","Flinstone","Abbot","Williams","Adams","Goober","Brady","Jones","Heffernen"]
+				
 		Random random = new Random()
 		1.upto(50) { i ->
 		   def aBook = bookNames[ random.nextInt(9)]
@@ -28,6 +32,7 @@ class BootStrap {
 		   
 		   def theBook = new Book( ISBN: isbn, name: aBook, state: States.AVAILABLE)
 		   a.addToBooks(theBook)
+		   
 		   new Book( ISBN: isbn, name: aBook, library: a, state: States.AVAILABLE).save()
 		   def theUser   
 		   if (i == 1) {

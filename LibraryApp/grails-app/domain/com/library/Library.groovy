@@ -2,11 +2,13 @@ package com.library
 
 import java.util.List;
 
+
+
 class Library {
 
 	String libraryId
 	String name
-	byte[] photo
+//	byte[] photo
 	String homepage
 	String email
 	String phone
@@ -18,7 +20,7 @@ class Library {
     static constraints = {
 		libraryId(size: 3..20, unique: true)
 		name(size: 3..60)
-		photo(nullable: true)
+//		photo(nullable: true)
 		homepage(url: true, nullable: true)
 		email(email: true, nullable: true)
 		phone(nullable: true)
