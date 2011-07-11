@@ -204,11 +204,50 @@ div.shadowed {
     margin-right: 20px;
 }
 
+
+
+/*------------------------------------------------	Begin	BOOK ITEM ------------------------------------------		*/
+
 .item-title a{
 	font-size: 16px; 
 	font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
-	
 }
+
+
+.item-list a:HOVER{
+	color: #FF5500;
+}
+
+.item-list .book {
+	height: 80px;	
+}
+
+.item-list .book img, .book-description img {
+	float: left;
+	height: 90px;
+	padding-right: 25px;
+}
+
+.item-list .book .book-resume-item, .book-description .details-more-info {
+	float: left;
+}
+
+.item-list .book list-operator-item {
+	float: right;
+}
+
+/*------------------------------------------------	end  	BOOK ITEM ------------------------------------------		*/
+/*------------------------------------------------	begin  	BOOK DETAILS ------------------------------------------		*/
+
+.comment-list{
+	clear: both;
+}
+
+/*------------------------------------------------	end  	BOOK DETAILS ------------------------------------------		*/
+
+
+
+
 
 h3 {
     font-size: 24px;
