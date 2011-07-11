@@ -10,11 +10,13 @@ public class Comment {
 	private User user;
 	private Date date;
 	private float score;
+	private Book bookSource;
 	
-	public Comment(String desc, User user){
+	public Comment(String desc, Book book){
+		this.bookSource = book;
 		this.description = desc;
 		this.date = new Date(DateFormat.YEAR, DateFormat.MONTH, DateFormat.DAY);
-		this.user = user;
+//		this.user = user;
 	}
 
 	public String getDescription() {
@@ -43,6 +45,16 @@ public class Comment {
 
 	public Date getDate() {
 		return date;
+	}
+	
+	public Book getBookSource(){
+		return bookSource;
+	}
+
+	public void setSources(User aUser, Book aBook) {
+		this.bookSource = aBook;
+		this.user = aUser;
+		
 	}
 
 	

@@ -15,6 +15,7 @@ import org.json.JSONObject;
 import com.library.android.repository.LibraryRepository;
 import com.library.android.services.ConfigWS;
 import com.library.android.services.LibraryWebServices;
+import com.library.android.utils.Utils;
 
 public class UserServicesImpl implements LibraryWebServices {
 	
@@ -62,6 +63,10 @@ public class UserServicesImpl implements LibraryWebServices {
            }
          
            return token;
+	}
+	
+	public static String loginFake(){
+		return Utils.md5("123456");
 	}
 }
 

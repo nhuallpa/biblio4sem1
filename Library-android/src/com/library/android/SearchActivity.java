@@ -1,8 +1,7 @@
 package com.library.android;
 
-import java.util.List;
-
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -13,8 +12,9 @@ import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
-import com.library.android.domain.Book;
+import com.library.android.config.ConfigurationManager;
 import com.library.android.services.ConfigWS;
 import com.library.android.services.impl.BookServicesImpl;
 
@@ -25,12 +25,16 @@ public class SearchActivity extends Activity {
 	private ImageButton topTenButton;
 	private ImageButton luckyButton;
 	private BookServicesImpl bookServices;
+	
+	private ConfigurationManager config;
 
+	private Context CTX = SearchActivity.this; 
+	
 	public void onCreate(Bundle b){
 		super.onCreate(b);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.search_book);
-		
+		config = ConfigurationManager.getInstance(this);
 		ConfigWS c = ConfigWS.getInstance();
 //		c.setUser("lalosoft@gmail.com");
 		
@@ -101,17 +105,30 @@ public class SearchActivity extends Activity {
 
         switch (item.getItemId()){
 
-        case R.id.profile : {
-        	Intent i = new Intent(SearchActivity.this, ProfileUserActivity.class);
-        	startActivity(i);
-        } break;
-        
-        case R.id.login: {
-        	Intent i = new Intent(SearchActivity.this, LoginActivity.class);
-        	startActivity(i);
-        } break;
-        
-        case R.id.about: {} break;
+	        case R.id.profile : {
+	        	Intent i = new Intent(SearchActivity.this, ProfileUserActivity.class);
+	        	startActivity(i);
+	        } break;
+	        
+	        case R.id.login: {
+	        	Intent i = new Intent(SearchActivity.this, LoginActivity.class);
+	        	startActivity(i);
+	        } break;
+	        
+	        case R.id.about: {} break;
+	               
+	        
+	        case R.id.my_comments: {
+	        	if(config.isLogged()){
+		        	Intent i = new Intent(SearchActivity.this, MyCommentsActivity.class);
+		        	startActivity(i);
+	        	} else {
+	        		Toast.makeText(CTX, "Not logged!!", Toast.LENGTH_SHORT).show();
+	        		Intent i = new Intent(SearchActivity.this, LoginActivity.class);
+	        		startActivity(i);
+	        	}
+
+	        }break;
         
         }
         
