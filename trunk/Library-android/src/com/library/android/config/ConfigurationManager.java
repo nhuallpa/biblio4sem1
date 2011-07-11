@@ -12,6 +12,7 @@ public class ConfigurationManager {
 	
 	private String userName = "";
 	private String password = "";
+	private String authKey = "";
 	
 	private Context context;
 	private SharedPreferences settings;
@@ -59,6 +60,14 @@ public class ConfigurationManager {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public void setAuthKey(String authKey){
+		this.authKey = authKey;
+	}
+	
+	public String getAuthKey(){
+		return authKey;
 	}
 	
 	
