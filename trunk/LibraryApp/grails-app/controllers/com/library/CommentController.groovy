@@ -13,7 +13,7 @@ class CommentController {
 		def listOfMyComments = null
 
 		if (!aUser.isAttached()) {
-			aUser.attach()
+			aUser = aUser.attach()
 			listOfMyComments = aUser.comments
 			
 		}	
@@ -50,7 +50,7 @@ class CommentController {
 		comment.save()
 		Book aBook = Book.get(params.bookId)
 		if (!user.isAttached()){
-			user.attach()	
+			user = user.attach()	
 //			user.addBookComment aBook, comment.getDescription(), comment.getScore()
 			user.addToBookComment aBook, comment
 			redirect(action: 'viewMyComments')
