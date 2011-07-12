@@ -7,7 +7,6 @@ class Location {
 	String country
 	String city
 	String street
-	Integer number
 	
 	String latitude
 	String longitude
@@ -16,8 +15,19 @@ class Location {
 		country(maxsize: 60,nullable:true)
 		city(maxsize: 60, nullable:true)
 		street(maxsize: 60, nullable:true)
-		number(maxsize: 20, nullable:true)
 		latitude(maxsize: 10, nullable:true)
 		longitude(maxsize: 10, nullable:true)
     }
+	
+	String address(){
+		def addr = []
+		String address
+		addr << this.street << this.city << this.country
+		//println("addressline=" + address.join(','))
+		address = addr.join(',')
+		return address
+	}
+	
+	
 }
+
