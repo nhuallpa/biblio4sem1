@@ -1,7 +1,8 @@
 package com.library
 
 class UserController {
-
+	
+	def geocoderService
 	def scaffold = true
 	
     def index = { 
@@ -28,8 +29,6 @@ class UserController {
 	
 	def rate = {
 
-		//User user = User.get(new Long(params.id))
-		
 		User user = session.user
 		Integer rating = params.rating
 		rating -= 48
@@ -73,5 +72,17 @@ class UserController {
 		response.outputStream.write(user?.photo)
 	}
 	
+	def geocode = {
+		
+		User user = session.user
+		def response = geocoderService.geocodeLocation(user)
+		
+		def lat = response.result.geometry.location.lat
+		def lng = response.'**'.find { it.name() =~ /lng/ }
+		
+		user.location.latitude = lat
+		user.location.longitude = lng
+		
+	  }
 	
 }
