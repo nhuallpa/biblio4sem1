@@ -35,10 +35,9 @@
 				<ul class="item-list">
 					<g:each var="commentDone" in="${user?.comments}">
 						<li class="book">
+							<g:link controller="book" action="viewDetails" params="[bookId:commentDone.book.id]">${commentDone.book.name}</g:link>
 							<h4>"${commentDone.description}"</h4>
 							<p>Comment Score: ${commentDone.score}</p>
-							<g:link controller="book" action="viewDetails" params="[bookId:commentDone.book.id]">${commentDone.book.name}</g:link>
-							
 					    </li>
 					</g:each>
 				</ul>
