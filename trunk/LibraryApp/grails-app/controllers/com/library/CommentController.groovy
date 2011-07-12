@@ -11,11 +11,9 @@ class CommentController {
 	def viewMyComments = {
 		User aUser = session.user
 		def listOfMyComments = null
-
 		if (!aUser.isAttached()) {
-			aUser = aUser.attach()
+			aUser.attach()
 			listOfMyComments = aUser.comments
-			
 		}	
 		
 		[comments : listOfMyComments]
@@ -30,9 +28,9 @@ class CommentController {
 		}
 		
 		Book aBook = Book.get(params.bookId)
-		if (!user.isAttached()) {
-			user.attach()
-		}
+//		if (!user.isAttached()) {
+//			user.attach()
+//		}
 		[book : aBook]
 	
 	}
@@ -55,9 +53,8 @@ class CommentController {
 			user.addToBookComment aBook, comment
 			redirect(action: 'viewMyComments')
 		} else {
-			redirect(action: 'toComment')
-		}
-				
+		redirect(action: 'toComment')
+		}				
 	}
 	
 	

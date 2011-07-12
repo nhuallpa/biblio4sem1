@@ -7,17 +7,17 @@
 	<body>
 		
 		<h3 class="long-title">To Comment</h3>
-		
-		
 			
-		
 		<div id="items" class="shadowed">
 			<div class="inner-boundary">
 			<h4>${book?.name}</h4>
+			
+			<img  src="<g:createLinkTo dir="images/Book/${book.name}" file="cover.jpg" />"/>
+<%--			<g:link controller="book" action="viewDetails" params="[bookId:book.id]">${book?.name}</g:link>--%>
 			<p>ISBN: ${book?.ISBN}</p>
 
 			<g:form controller="comment" action="toCommentBook" params="[bookId:book?.id]">
-
+			
 				<dl class="form-list">
 					<dt class="text-form">Your comment: </dt>
 					<dd>
