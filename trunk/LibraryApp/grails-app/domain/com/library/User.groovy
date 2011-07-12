@@ -36,7 +36,6 @@ class User {
 		reservations lazy: false
 		commentsRcvd lazy: false
 		commentsDone lazy: false
-		score lazy: false
 	}
 	
 	static hasMany = [comments : Comment, reservations : Reservation]
@@ -180,11 +179,20 @@ class User {
 		return books
 	}
 	
+	void addUserLocation(String country, String city, String address){
+		Location aLocation = new Location(country: country, city: city, street: address)
+		this.location = aLocation
+	}
 	
 	//  Leaved for further updates, first the basics.
 	//	void addLibraryComment(Library aLibrary, String aString, Integer score ){
 	//		aLibrary.comment(this, aString, score)
 	//   }
+	
+	String seeAddress(){
+		if (this.location == null) return "Buenos Aires, Paseo Colon 850"
+		return this.location.address()
+	}
 
 	
 }
