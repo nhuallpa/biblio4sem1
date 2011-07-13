@@ -51,6 +51,7 @@ class CommentController {
 			user = user.attach()	
 //			user.addBookComment aBook, comment.getDescription(), comment.getScore()
 			user.addToBookComment aBook, comment
+			flash.message = "You are commented!!"
 			redirect(action: 'viewMyComments')
 		} else {
 		redirect(action: 'toComment')

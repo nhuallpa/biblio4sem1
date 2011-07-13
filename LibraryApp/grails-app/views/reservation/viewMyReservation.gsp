@@ -7,6 +7,10 @@
 		
 		<h3 class="long-title">My reservation</h3>
 		
+		<g:if test="${flash.message}">
+      		<div class="message">${flash.message}</div>
+    	</g:if>
+		
 		<div id="items" class="shadowed">
 			<div class="inner-boundary">
 				<ul class="item-list">

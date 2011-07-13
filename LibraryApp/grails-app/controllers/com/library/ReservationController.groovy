@@ -25,11 +25,20 @@ class ReservationController {
 		if (!user){
 			redirect(uri: '/')
 		}
+		def aMessage = null
 		Book aBook = Book.get(params.bookId)
-		if (!user.isAttached() && aBook) {
-			user.attach()
-			user.makeReservation(aBook)
-		}
+		if(!bookAvailable(aBook)){
+			aMessage = "${aBook.name} is not available"
+		} else if (!user.isAttached() && aBook) {
+					user.attach()
+					user.makeReservation(aBook)
+					aMessage = "${aBook.name} reserved!"
+				} 
+		flash.message = aMessage
 		redirect(action: 'viewMyReservation')
+	}
+	
+	boolean bookAvailable(Book book){
+		return book.state.state == 'Available'
 	}
 }
