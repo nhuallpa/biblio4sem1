@@ -17,10 +17,17 @@ class BookController {
 	}
 	def search = {
 		//render Book.search(params.q, params)
-		def searchResults = Book.search(params.q, params)
-		flash.message = "${searchResults.total} results found for search: ${params.q}"
-		flash.q = params.q
-		return [searchResults:searchResults.results, resultCount:searchResults.total]
+		def param_q = params.q
+		
+		if(param_q != ""){
+			def searchResults = Book.search(param_q, params)
+			flash.message = "${searchResults.total} results found for search: ${param_q}"
+			flash.q = param_q
+			return [searchResults:searchResults.results, resultCount:searchResults.total]
+		} else {
+			redirect(uri:'/')
+		}
+		
 	}
 	
 	def searchBookByTitle = {
