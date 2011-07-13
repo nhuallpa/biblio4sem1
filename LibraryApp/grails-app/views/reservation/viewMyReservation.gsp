@@ -20,7 +20,13 @@
 					          <h4>ISBN: ${reservation.book.ISBN}</h4>
 					          <span class="text">${reservation.book.state}</span>
 					          <p>${book?.subject}</p>
+					    <div class="list-operator-item">
+				        	<span class="link-item"><g:link controller="reservation" action="cancelReserve" params="[bookId:reservation.book.id]">Cancel</g:link></span>
+<%--				        	|--%>
+<%--				        	<span class="link-item"><g:link controller="comment" action="toComment" params="[bookId:book.id]">to Comment</g:link></span>--%>
+				        </div>
 					    </li>
+
 					</g:each>	
 				</ul>
 			</div>

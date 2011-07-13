@@ -71,7 +71,9 @@ class BookController {
 	
 	def viewDetails = {
 		Book aBook = Book.get(params.bookId)
-		
+		if(aBook.comments.size() == 0){
+			flash.message = "${aBook.name} not have comments!"
+		}
 		[book : aBook]
 		
 	}
