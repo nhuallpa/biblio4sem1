@@ -26,6 +26,9 @@
 				</div>
 				<div class="comment-list">
 					<h5>Comments</h5>
+						<g:if test="${flash.message}">
+      						<div class="message">${flash.message}</div>
+    					</g:if>
 					<ul class="item-list">
 						<g:each var="comment" in="${book?.comments}">
 							<li class="book">

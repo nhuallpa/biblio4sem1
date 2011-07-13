@@ -32,9 +32,17 @@ class ReservationController {
 		} else if (!user.isAttached() && aBook) {
 					user.attach()
 					user.makeReservation(aBook)
-					aMessage = "${aBook.name} reserved!"
+					aMessage = "You are reserved ${aBook.name}!"
 				} 
 		flash.message = aMessage
+		redirect(action: 'viewMyReservation')
+	}
+	
+	def cancelReserve = {
+		User user = session.user
+		Book aBook = Book.get(params.bookId)
+//		user.cancelReservation aBook   --> @gonza: no cancela la reserva porque no la encuentra, pero esta creada...
+		flash.message = "You canceled the reservation ${aBook.name}"
 		redirect(action: 'viewMyReservation')
 	}
 	
