@@ -43,18 +43,16 @@ class CommentController {
 		String aComment = params.newComment
 		Integer rating = params.rating
 		rating -= 48
-		Date d = new Date();
-		Comment comment = new Comment(description: aComment, score: rating, date: d)
-		comment.save()
+		
 		Book aBook = Book.get(params.bookId)
-		if (!user.isAttached()){
+		if (!user.isAttached() && aBook){
 			user = user.attach()	
-//			user.addBookComment aBook, comment.getDescription(), comment.getScore()
-			user.addToBookComment aBook, comment
+			user.addBookComment aBook, aComment, rating
+			user.save()
 			flash.message = "You are commented!!"
 			redirect(action: 'viewMyComments')
 		} else {
-		redirect(action: 'toComment')
+			redirect(action: 'toComment')
 		}				
 	}
 	

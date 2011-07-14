@@ -65,18 +65,24 @@ class User {
 	
 	
 	void addBookComment(Book aBook, String aString, Integer score ){
-		aBook.comment(this, aString, score)
-		def comment = new Comment(sourceUser: this, description:aString, score: score)
-		this.commentsDone.add(comment)
+		
+		def aComment = new Comment(description: aString,
+									sourceUser: this,
+									score: score,
+									date:new Date())
+		
+		aBook.addComment(aComment)
+//		def comment = new Comment(sourceUser: this, description:aString, score: score)
+		this.commentsDone.add(aComment)
 		
 	}
 	
 	//@gonzalo: lo agrege para probar
-	void addToBookComment(Book aBook, Comment aComment){
-		aBook.comment(this, aComment.getDescription(), aComment.getScore())
-		this.commentsDone.add(aComment)
-		this.comments?.add aComment
-	}
+//	void addToBookComment(Book aBook, Comment aComment){
+//		aBook.comment(this, aComment.getDescription(), aComment.getScore())
+//		this.commentsDone.add(aComment)
+//		this.comments?.add aComment
+//	}
 
 	void comment(User sourceUser, String aString, Integer score){
 		Comment aComment = new Comment(description:aString, sourceUser:sourceUser, score: score)

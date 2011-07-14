@@ -54,11 +54,11 @@ class LibraryBookIntegrationTests extends GroovyTestCase {
 	
 	void testAddMultipleAccessingBooks() {
 		Library libraryFound = Library.get(library.id)
-		libraryFound.addToBooks book
-		libraryFound.addToBooks bookTwo
+		libraryFound.addToBooks(book)
+		libraryFound.addToBooks(bookTwo)
 		
 		def bookNames = Library.get(libraryFound.id).books.collect { it.name}
-		assertEquals nameBook, bookNames.get(0)
-		assertEquals nameBookTwo, bookNames.get(1)
+		assertTrue bookNames.contains(nameBook)
+		assertTrue bookNames.contains(nameBookTwo)
 	}
 }

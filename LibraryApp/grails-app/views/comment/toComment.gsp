@@ -7,7 +7,6 @@
 	<body>
 		
 		<h3 class="long-title">To Comment</h3>
-			
 		<div id="items" class="shadowed">
 			<div class="inner-boundary">
 			<h4>${book?.name}</h4>
