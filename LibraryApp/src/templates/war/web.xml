@@ -98,5 +98,11 @@
             <taglib-location>/WEB-INF/tld/grails.tld</taglib-location>
         </taglib>
     </jsp-config>
+    
+<!--     Timeout session (minutes) -->
+    <session-config>
+   		<session-timeout>1</session-timeout>
+	</session-config>
+    
 
 </web-app>

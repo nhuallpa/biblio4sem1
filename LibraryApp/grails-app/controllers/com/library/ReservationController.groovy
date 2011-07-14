@@ -13,6 +13,9 @@ class ReservationController {
 	def viewMyReservation = {
 		User user = session.user
 		def listOfMyReservations = null
+		if(!user){
+			goToHome()
+		}
 		if (!user.isAttached()) {
 			user.attach()
 			listOfMyReservations = user.reservations
@@ -41,12 +44,16 @@ class ReservationController {
 	def cancelReserve = {
 		User user = session.user
 		Book aBook = Book.get(params.bookId)
-//		user.cancelReservation aBook   --> @gonza: no cancela la reserva porque no la encuentra, pero esta creada...
+//		user.cancelReservation aBook   //--> @gonza: no cancela la reserva porque no la encuentra, pero esta creada...
 		flash.message = "You canceled the reservation ${aBook.name}"
 		redirect(action: 'viewMyReservation')
 	}
 	
 	boolean bookAvailable(Book book){
 		return book.state.state == 'Available'
+	}
+	
+	void goToHome(){
+		redirect(uri: '/')
 	}
 }

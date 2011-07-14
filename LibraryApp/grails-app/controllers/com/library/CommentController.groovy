@@ -11,10 +11,15 @@ class CommentController {
 	def viewMyComments = {
 		User aUser = session.user
 		def listOfMyComments = null
+		if(!aUser){
+			goToHome()
+		}
 		if (!aUser.isAttached()) {
 			aUser.attach()
 			listOfMyComments = aUser.comments
-		}	
+		}
+		
+
 		
 		[comments : listOfMyComments]
 	
@@ -24,7 +29,7 @@ class CommentController {
 	def toComment = {
 		User user = session.user
 		if (!user){
-			redirect(uri: '/')
+			goToHome()
 		}
 		
 		Book aBook = Book.get(params.bookId)
@@ -38,7 +43,7 @@ class CommentController {
 	def toCommentBook = {
 		User user = session.user
 		if (!user){
-			redirect(uri: '/')
+			goToHome()
 		}
 		String aComment = params.newComment
 		Integer rating = params.rating
@@ -49,18 +54,17 @@ class CommentController {
 			user = user.attach()	
 			user.addBookComment aBook, aComment, rating
 			user.save()
-			flash.message = "You are commented!!"
+			flash.message = "You are commented on ${aBook.name}!!"
 			redirect(action: 'viewMyComments')
 		} else {
 			redirect(action: 'toComment')
 		}				
 	}
 	
-	
 	def deleteComment = {
 		User user = session.user
 		if (!user){
-			redirect(uri: '/')
+			goToHome()
 		}
 		Comment aComment = Comment.get(params.commentId)
 		
@@ -69,12 +73,15 @@ class CommentController {
 			try{
 				user.deleteMyComment aComment
 			}catch (Exception e){
-				redirect(uri: '/')
+				goToHome()
 				}
 //		}
 		redirect(action: "viewMyComments")
 	}
 	
+	void goToHome(){
+		redirect(uri: '/')
+	}
 
 	
 }
