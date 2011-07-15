@@ -21,8 +21,9 @@ class UserController {
 	}
 	
 	def logout = {
-		session.user = null
-		redirect(uri:'/')
+		log.info "User agent: " + request.getHeader("User-Agent")
+		session.invalidate()
+		redirect(action:"login")
 	}
 	
 

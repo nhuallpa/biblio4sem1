@@ -16,13 +16,9 @@ class CommentController {
 		}
 		if (!aUser.isAttached()) {
 			aUser.attach()
-			listOfMyComments = aUser.comments
+			listOfMyComments = aUser.commentsDone
 		}
-		
-
-		
 		[comments : listOfMyComments]
-	
 	}
 	
 	
@@ -51,9 +47,11 @@ class CommentController {
 		
 		Book aBook = Book.get(params.bookId)
 		if (!user.isAttached() && aBook){
-			user = user.attach()	
-			user.addBookComment aBook, aComment, rating
-			user.save()
+			def userFound = User.get(user.id)
+			assert userFound
+			userFound.addBookComment aBook, aComment, rating
+			session.user = null
+			session.user = userFound
 			flash.message = "You are commented on ${aBook.name}!!"
 			redirect(action: 'viewMyComments')
 		} else {

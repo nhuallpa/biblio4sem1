@@ -38,7 +38,7 @@ class User {
 		commentsDone lazy: false
 	}
 	
-	static hasMany = [comments : Comment, reservations : Reservation]
+	static hasMany = [commentsDone : Comment, reservations : Reservation]
 	
 	void makeReservation(Book aBook) {
 		if (aBook.isReserved()) throw new BookAlreadyReservedException()
@@ -73,8 +73,7 @@ class User {
 		
 		aBook.addComment(aComment)
 //		def comment = new Comment(sourceUser: this, description:aString, score: score)
-		this.commentsDone.add(aComment)
-		
+		this.addToCommentsDone(aComment)
 	}
 	
 	//@gonzalo: lo agrege para probar
