@@ -6,7 +6,7 @@ import org.grails.taggable.*
 class Book implements Taggable{
 	
 	static searchable = true	
-	static hasMany = [comments : Comment]
+	
 
 	String name
 	String subject
@@ -24,6 +24,8 @@ class Book implements Taggable{
 		state(inList:States.list())
 	}
 
+	static hasMany = [comments : Comment]
+	
 	static belongsTo = [library:Library]
 	
 	static mapping = {
@@ -53,7 +55,8 @@ class Book implements Taggable{
 //								   sourceUser: sourceUser, 
 //								   score: score,
 //								   date:new Date())
-		this.comments?.add(aComment)
+		//this.comments?.add(aComment)
+		this.addToComments(aComment)
 		def average = (aComment.getScore() + this.rating*this.totalVotes)/ (this.totalVotes + 1)
 		this.rating = average
 		this.totalVotes += 1

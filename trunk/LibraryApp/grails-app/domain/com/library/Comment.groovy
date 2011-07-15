@@ -5,6 +5,7 @@ class Comment {
 	String description
 	Date date
 	User sourceUser
+	Book book
 	Integer score
 		
 
@@ -12,7 +13,6 @@ class Comment {
 		description (blank : false, nullable: true)
 		date(nullable:true)
 		score(nullable:true)
-		sourceUser(nullable:true)
 	}
 	
 	static belongsTo = [sourceUser:User,book:Book]
