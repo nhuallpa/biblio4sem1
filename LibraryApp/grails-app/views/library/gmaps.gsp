@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Welcome to GeoTwitter!</title>
+        <title>Librerias afiliadas</title>
         <g:javascript library="application" />
         <g:javascript library="jquery" />
         <meta name="layout" content="main" />
@@ -12,7 +12,7 @@
         var map;
         var geocoder = new google.maps.Geocoder();
 
-        geocoder.geocode( { address: "Buenos Aires, Sarandi 1082" }, function(results, status) {
+        geocoder.geocode( { address: "Buenos Aires, Paseo Colon 850" }, function(results, status) {
             if (status == google.maps.GeocoderStatus.OK && results.length) {
 
               if (status != google.maps.GeocoderStatus.ZERO_RESULTS) {
@@ -25,20 +25,31 @@
                 }
 
                 map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-                //map.set_center(results[0].geometry.location);
                 var marker = new google.maps.Marker({
                     position: latlng,
                     map: map
                 });
               }
+
+       			<g:each in="${libraryList}">
+            
+    				var latlng2 = new google.maps.LatLng(60, 105);								                
+    				new google.maps.Marker({
+    					position: latlng2,
+    					map: map
+    				});
+    			</g:each>
+              
             } else {
               alert("Geocode was unsuccessful due to: " + status);
             }
           });
+
+
  
       </script>
     </head>
 <body>
-  <div id="map_canvas" style="width:400px; height:200px"></div>
+  <div id="map_canvas" style="width:800px; height:480px"></div>
 </body>
 </html>
