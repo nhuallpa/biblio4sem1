@@ -11,4 +11,9 @@ class LibraryController {
 	def view = {
 		[libraryList : Library.list()]
 	}
+	
+	def gmaps = {
+		[libraryList : Library.list()]
+	}
+	
 }
