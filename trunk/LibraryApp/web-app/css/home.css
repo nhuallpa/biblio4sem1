@@ -11,11 +11,23 @@ h1, h2, h3, h4, h5, h6 {font-family: 'Lucida Sans Unicode', 'Lucida Grande', san
     font-family: tahoma,Geneva,sans-serif;
     font-size: 18px;
     color: #8F887C;
+    height: 33px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
-.header h1 a {
+
+.header #logo {
+	width: 200px;
+	float:left;
+	
+}
+
+.header #logo a {
 	font-size: 18px;
-    color: #8F887C;
+    color: #B4B4b4;
     font: 24px 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+    font-weight:bold;   
+    padding-left: 9px; 
 }
 
 #sidebar {
@@ -45,6 +57,7 @@ h1, h2, h3, h4, h5, h6 {font-family: 'Lucida Sans Unicode', 'Lucida Grande', san
     font-size: 12px;
     line-height: 22px;
     min-width: 984px;
+    clear: both;
 }
 
 .container {
@@ -122,14 +135,38 @@ div.large-sidebar div.inner-boundary div.author-item {
 
 
 
-
-.search {
-	border-color: #CECECC;
-	border-style: solid;
-	border-spacing: 0px;
-	font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+/*------------------------------------------------	BEGIN  	SEARCH ------------------------------------------		*/
+#searchForm{
+	padding: 10px 10px 10px 5px;
+	float: right;
+	width: 240px;
+	height: 24px;
 }
-
+#searchForm input{
+	border:1px solid #899caa;
+	border-radius:3px;
+	-moz-border-radius:3px;
+	color:#3a454d;
+    font-weight:bold;
+    padding:8px 8px;
+    box-shadow:inset 0px 1px 3px #bbb;
+    -webkit-box-shadow:inset 0px 1px 3px #bbb;
+    -moz-box-shadow:inset 0px 1px 3px #bbb;
+    font-size:12px;
+    float:left;
+}
+#searchForm #searchButton{
+	width:auto;
+	padding:7px 10px 8px 10px;
+	box-shadow:none;
+	-moz-box-shadow:none;
+    -webkit-box-shadow:none;
+    margin:0 12px 0 0;
+    cursor:pointer;
+    *padding:7px 2px 8px 2px; /* IE7 Fix */
+    float:left;
+}
+/*------------------------------------------------	END  	SEARCH ------------------------------------------		*/
 .message {
     background: #f3f8fc url(../images/skin/information.png) 8px 50% no-repeat;
     border: 1px solid #b2d1ff;
@@ -137,6 +174,8 @@ div.large-sidebar div.inner-boundary div.author-item {
     margin: 10px 0 5px 0;
     padding: 5px 5px 5px 30px
 }
+
+
 
 .text-form {
 	font:11px verdana,arial,helvetica,sans-serif;
@@ -245,9 +284,35 @@ div.shadowed {
 
 /*------------------------------------------------	end  	BOOK DETAILS ------------------------------------------		*/
 
+/*------------------------------------------------	begin  	MENU BAR ------------------------------------------		*/
+.menu-bar {
+	background-color: #4B4B4B;
+	height: 45px;
+	clear: both;
+}
 
+.menu-bar ul li {
+	float: left;
+	padding-bottom: 0px;
+	padding-top: 15px;
+}
 
+.menu-bar ul li a{
+	color: #B4B4B4;
+	font-size: 16px;
+	font-weight:bold;    
+	font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+	padding: 10px 10px 10px 10px;
+}
+.menu-bar ul li a:HOVER{
+	background-color:#B4B4B4;
+	color: #4B4B4B;
+	padding: 10px 10px 10px 10px;
+	font-weight:bold;
+	border-radius:6px 6px 0 0;   
+}
 
+/*------------------------------------------------	end  	MENU BAR ------------------------------------------		*/
 
 h3 {
     font-size: 24px;
@@ -273,7 +338,7 @@ dl.form-list dt {
     width: 90px;
 }
 
-div.col-s-content form input, 
+/* div.col-s-content form input, 
 div.col-s-content form select, 
 div.col-s-content form textarea, 
 div.col-content form input, 
@@ -292,7 +357,7 @@ div.col-content form textarea,
     margin: 5px 0;
     padding: 8px 5px;
     width: 145px;
-}
+} */
 
 div.col-s-content form input.big, div.col-s-content form select.big, div.col-s-content form textarea.big, div.col-content form input.big, div.col-content form select.big, div.col-content form textarea.big, div#accordion form input.big, div#accordion form select.big, div#accordion form textarea.big, .form-list input.big, .form-list select.big, .form-list textarea.big, #fancybox-inner input.big, #fancybox-inner select.big, #fancybox-inner textarea.big {
     width: 210px;
@@ -315,4 +380,178 @@ div.col-s-content form input.big, div.col-s-content form select.big, div.col-s-c
 .link-item {
 	color: #AF712F;	
 }
+
+/*------------------------------------------------	BEGIN  	LOGIN ------------------------------------------		*/
+
+
+/* Login Container (default to float:right) */
+#loginContainer {
+    position:relative;
+    float:right;
+    font-size:12px;
+}
+
+/* Login Button */
+#loginButton { 
+    display:inline-block;
+    float:right;
+/*     background:#d2e0ea url(../images/Login/buttonbg.png) repeat-x; 
+    border:1px solid #899caa; 
+    border-radius:3px; */
+    -moz-border-radius:3px;
+    background-color: #232323;
+    position:relative;
+    z-index:30;
+    cursor:pointer;
+}
+
+/* Login Button Text */
+#loginButton span, #logoutButton a {
+    color:#B4B4b4; 
+    font-size:14px; 
+    font-weight:bold; 
+    /* text-shadow:1px 1px #fff;  */
+    padding:7px 29px 9px 10px;
+    /* background:url(../images/Login/loginArrow.png) no-repeat 53px 7px; */
+    display:block
+}
+#loginButton span:HOVER, #logoutButton a:HOVER {
+	color:#4B4B4B; 
+    font-size:14px; 
+    font-weight:bold;
+}
+
+#loginButton:hover, #logoutButton a:HOVER  {
+    /* background:url(../images/Login/buttonbgHover.png) repeat-x; */
+    background-color: #B4B4B4;
+}
+
+/* Login Box */
+#loginBox {
+    position:absolute;
+    top:34px;
+    right:0;
+    display:none;
+    z-index:29;
+}
+
+/* If the Login Button has been clicked */    
+#loginButton.active {
+    border-radius:3px 3px 0 0;
+}
+
+#loginButton.active span {
+    background-position:53px -76px;
+}
+
+/* A Line added to overlap the border */
+#loginButton.active em {
+    position:absolute;
+    width:100%;
+    height:1px;
+    background:#d2e0ea;
+    bottom:-1px;
+}
+
+/* Login Form */
+.loginForm {
+    width:248px; 
+    border:1px solid #899caa;
+    border-radius:3px 0 3px 3px;
+    -moz-border-radius:3px 0 3px 3px;
+    margin-top:-1px;
+    background:#B4B4B4;
+    padding:6px;
+}
+
+.loginForm fieldset {
+    margin:0 0 12px 0;
+    display:block;
+    border:0;
+    padding:0;
+}
+
+fieldset#body {
+    background:#fff;
+    border-radius:3px;
+    -moz-border-radius:3px;
+    padding:10px 13px;
+    margin:0;
+}
+
+.loginForm #checkbox {
+    width:auto;
+    margin:1px 9px 0 0;
+    float:left;
+    padding:0;
+    border:0;
+    *margin:-3px 9px 0 0; /* IE7 Fix */
+}
+
+#body label {
+    color:#3a454d;
+    margin:9px 0 0 0;
+    display:block;
+    float:left;
+}
+
+.loginForm #body fieldset label {
+    display:block;
+    float:none;
+    margin:0 0 6px 0;
+}
+
+/* Default Input */
+.loginForm input {
+    width:92%;
+    border:1px solid #899caa;
+    border-radius:3px;
+    -moz-border-radius:3px;
+    color:#3a454d;
+    font-weight:bold;
+    padding:8px 8px;
+    box-shadow:inset 0px 1px 3px #bbb;
+    -webkit-box-shadow:inset 0px 1px 3px #bbb;
+    -moz-box-shadow:inset 0px 1px 3px #bbb;
+    font-size:12px;
+}
+
+/* Sign In Button */
+.loginForm #login {
+    width:auto;
+    float:left;
+    /* background:#339cdf url(../images/Login/loginbuttonbg.png) repeat-x; */
+    color:#3a454d;
+    padding:7px 10px 8px 10px;
+    /* text-shadow:0px -1px #278db8; */
+    /* border:1px solid #339cdf; */
+     box-shadow:none;
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
+    margin:0 12px 0 0;
+    cursor:pointer;
+    *padding:7px 2px 8px 2px; /* IE7 Fix */
+}
+
+/* Forgot your password */
+.loginForm span {
+    text-align:center;
+    display:block;
+    padding:7px 0 4px 0;
+}
+
+.loginForm span a {
+    color:#3a454d;
+/*     text-shadow:1px 1px #fff; */
+    font-size:12px;
+}
+
+input:focus {
+    outline:none;
+}
+
+
+/*------------------------------------------------	END  	LOGIN ------------------------------------------		*/
+
+
 

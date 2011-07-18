@@ -10,8 +10,8 @@ class UrlMappings {
 		"/admin"(view:"/index")
 		"/map"(view:"/gmaps")
 		"/" {
-			controller = "book"
-			action	   = "searchBookHome"
+			controller = "home"
+			action	   = "index"
 		}
 		"500"(view:'/error')
 		
