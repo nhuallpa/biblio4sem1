@@ -8,7 +8,10 @@ class UrlMappings {
 		}
 
 		"/admin"(view:"/index")
-		"/map"(view:"/gmaps")
+		"/map"{
+			controller = "library"
+			action = "gmaps"
+		}
 		"/" {
 			controller = "home"
 			action	   = "index"
