@@ -125,8 +125,7 @@
 <%--								                    map: map--%>
 <%--								                });--%>
 <%--								                </g:each>--%>
-
-								                
+							                
 								              }
 								            } else {
 								              alert("Geocode was unsuccessful due to: " + status);
