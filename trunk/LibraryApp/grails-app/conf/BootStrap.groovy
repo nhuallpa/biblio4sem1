@@ -35,7 +35,7 @@ class BootStrap {
 		   def theBook = new Book( ISBN: isbn, name: aBook, state: States.AVAILABLE)
 		   a.addToBooks(theBook)
 		   
-		   new Book( ISBN: isbn, name: aBook, library: a, state: States.AVAILABLE).save()
+		   //new Book( ISBN: isbn, name: aBook, library: a, state: States.AVAILABLE).save()
 		   def theUser   
 		   if (i == 1) {
 			   theUser = new User(name: 'admin', password: 'admin').save()
@@ -49,11 +49,46 @@ class BootStrap {
 
 		}
 
-		assert( Book.list().size() == 50 )
-		assert( User.list().size() == 50 )
+//		assert( Book.list().size() == 50 )
+//		assert( User.list().size() == 50 )
 		
+		initOtherLibrary()
 		
     }
+	
+	def initOtherLibrary(){
+		
+		def l = new Location(country:"Argentina", city:"Buenos Aires", street:"Av de Mayo 1400")
+		l.save()
+		def libraryCongreso = new Library(libraryId:'BM_Congreso', name:'Congreso', location: l)
+		if  (!libraryCongreso.save()){
+			libraryCongreso.errors.each {
+				println it
+			}
+			assert libraryCongreso
+		}
+		
+		def bookNames = ["Borges and His Fiction",
+						 "Building Java Programs",
+						 "Flex Solutions",
+						 "Hibernate in Action (In Action series)",
+						 "Intermediate Perl",
+						 "Introduction to Java Programming",
+						 "Java How to Program",
+						 "Perl Cookbook, Second Edition",
+						 "Practical Guide to Linux Commands, Editors, and Shell Programming, A (2nd Edition)",
+						 "Spring Batch in Action",
+						 "Spring Integration in Action",
+						 "The Library of Babel"]
+		Random random = new Random()
+		bookNames.each { 
+			def isbn = random.nextInt(456789)
+			def abook = new Book(ISBN: isbn, name: it, library: libraryCongreso, state: States.AVAILABLE);
+			libraryCongreso.addToBooks(abook) 	
+		}
+		
+	}
+	
     def destroy = {
     }
 }

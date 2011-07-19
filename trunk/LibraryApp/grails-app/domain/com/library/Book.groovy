@@ -41,21 +41,7 @@ class Book implements Taggable{
 		this.state = States.RESERVED
 	}
 
-	
-// @Nestor comment this because it is not using
-//	void addComment(User srcUser, String aString, Integer score){
-//		def comment = new Comment(description : aString)
-//		comment.addUser srcUser
-//		comments.add comment
-//	}
-	
 	void addComment(Comment aComment){
-		
-//		def aComment = new Comment(description: aString, 
-//								   sourceUser: sourceUser, 
-//								   score: score,
-//								   date:new Date())
-		//this.comments?.add(aComment)
 		this.addToComments(aComment)
 		def average = (aComment.getScore() + this.rating*this.totalVotes)/ (this.totalVotes + 1)
 		this.rating = average
