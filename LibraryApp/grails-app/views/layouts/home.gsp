@@ -32,8 +32,11 @@
 									</fieldset>
 									<g:submitButton id="login" name="Sing in" />
 									<label for="checkbox"><input type="checkbox" id="checkbox" />Remember me</label>
+									
 								</fieldset>
+								
 								<span><a href="#">Forgot your password?</a></span>
+								<g:link controller="user" action="register">Sign up now!</g:link>
 							</g:form>
 						</div>
 					</g:else>

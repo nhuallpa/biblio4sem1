@@ -127,18 +127,19 @@ class User {
 	void deleteMyComment(Comment aComment){
 		def flag = 0
 //		for ( o in comments){
-		for(int i = 0; i < commentsDone.size; i++){
-			def obj = commentsDone.get(i)
-			if ( obj.equals(aComment) ){
-				comments?.remove obj
+		for(int i = 0; i < commentsDone.size(); i++){
+			Comment obj = commentsDone.get(i)
+//			if ( obj.equals(aComment) ){
+			if(obj.id == aComment.id){
+//				comments?.remove obj
 				this.commentsDone.remove obj
 				flag = 1
 			}
 		}
 		if (flag == 0) throw new CommentDoesNotExistException()
-		else {
-			aComment.sourceUser.deleteComment(aComment)
-		}
+//		else {
+//			aComment.sourceUser.deleteComment(aComment)
+//		}
 	}
 	
 	void deleteComment(Comment aComment){
@@ -151,9 +152,9 @@ class User {
 			}
 		}
 		if (flag == 0) throw new CommentDoesNotExistException()
-		else {
-				aComment.sourceUser.deleteComment(aComment)
-			}
+//		else {
+//				aComment.sourceUser.deleteComment(aComment)
+//			}
 		
 		
 	}
