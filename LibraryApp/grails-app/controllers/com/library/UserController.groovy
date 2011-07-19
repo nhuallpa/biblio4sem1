@@ -26,7 +26,9 @@ class UserController {
 		redirect(action:"login")
 	}
 	
-
+	def registration = {
+		
+	}
 	
 	def rate = {
 
