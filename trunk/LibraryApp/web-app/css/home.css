@@ -389,20 +389,25 @@ div.col-s-content form input.big, div.col-s-content form select.big, div.col-s-c
     position:relative;
     float:right;
     font-size:12px;
+    width: 300px;
 }
 
 /* Login Button */
 #loginButton { 
     display:inline-block;
     float:right;
-/*     background:#d2e0ea url(../images/Login/buttonbg.png) repeat-x; 
-    border:1px solid #899caa; 
-    border-radius:3px; */
     -moz-border-radius:3px;
     background-color: #232323;
     position:relative;
     z-index:30;
     cursor:pointer;
+    width: 65px;
+}
+
+#logoutButton {
+	float:right;
+	-moz-border-radius:3px;
+	width: 75px;
 }
 
 /* Login Button Text */
@@ -410,19 +415,17 @@ div.col-s-content form input.big, div.col-s-content form select.big, div.col-s-c
     color:#B4B4b4; 
     font-size:14px; 
     font-weight:bold; 
-    /* text-shadow:1px 1px #fff;  */
     padding:7px 29px 9px 10px;
-    /* background:url(../images/Login/loginArrow.png) no-repeat 53px 7px; */
     display:block
 }
 #loginButton span:HOVER, #logoutButton a:HOVER {
 	color:#4B4B4B; 
     font-size:14px; 
     font-weight:bold;
+     -moz-border-radius:3px;
 }
 
 #loginButton:hover, #logoutButton a:HOVER  {
-    /* background:url(../images/Login/buttonbgHover.png) repeat-x; */
     background-color: #B4B4B4;
 }
 
@@ -520,11 +523,8 @@ fieldset#body {
 .loginForm #login {
     width:auto;
     float:left;
-    /* background:#339cdf url(../images/Login/loginbuttonbg.png) repeat-x; */
     color:#3a454d;
     padding:7px 10px 8px 10px;
-    /* text-shadow:0px -1px #278db8; */
-    /* border:1px solid #339cdf; */
      box-shadow:none;
     -moz-box-shadow:none;
     -webkit-box-shadow:none;
@@ -542,7 +542,6 @@ fieldset#body {
 
 .loginForm span a {
     color:#3a454d;
-/*     text-shadow:1px 1px #fff; */
     font-size:12px;
 }
 
@@ -550,6 +549,17 @@ input:focus {
     outline:none;
 }
 
+#userWelcome {
+	float: right;
+	height: 25px;
+	padding-top: 8px;
+	padding-right: 10px;
+}
+
+#userWelcome a{
+	color: #FF7F2A;
+	 font-weight:bold; 
+}
 
 /*------------------------------------------------	END  	LOGIN ------------------------------------------		*/
 
