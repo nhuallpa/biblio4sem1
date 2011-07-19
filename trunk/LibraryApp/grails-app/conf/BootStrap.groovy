@@ -10,7 +10,9 @@ class BootStrap {
 
     def init = { servletContext ->
 		
-		def a = new Library(libraryId:'BM_ATENEO', name:'Ateno')
+		def l = new Location(country:"Argentina", city:"Buenos Aires", street:"Florida 600")
+		l.save()
+		def a = new Library(libraryId:'BM_ATENEO', name:'Ateno', location: l)
 		if  (!a.save()){
 			a.errors.each { 
 				println it	
