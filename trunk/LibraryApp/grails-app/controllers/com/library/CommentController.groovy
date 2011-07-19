@@ -23,7 +23,7 @@ class CommentController {
 	
 	
 	def toComment = {
-		User user = session.user
+		def user = session.user
 		if (!user){
 			goToHome()
 		}
@@ -69,7 +69,10 @@ class CommentController {
 //		if (!user.isAttached()) {
 //			user.attach()
 			try{
+				aComment.delete()
 				user.deleteMyComment aComment
+				flash.message = "You deleted comment about ${aComment.book.name}"
+								
 			}catch (Exception e){
 				goToHome()
 				}
