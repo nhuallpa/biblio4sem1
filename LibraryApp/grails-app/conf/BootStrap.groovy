@@ -43,8 +43,12 @@ class BootStrap {
 			   theUser = new User(name: aName, password: pass).save()
 		   }
 
-		   theUser.addBookComment theBook, 'Pesimo libro', 15
-		   theUser.addBookComment theBook, 'Muy buen libro', 30
+		   theUser.addBookComment theBook, 'Pesimo libro', 1
+		   theUser.addBookComment theBook, 'Muy buen libro', 4
+		   theUser.addBookComment theBook, 'Creo que podria ser mejor', 2
+		   theUser.addBookComment theBook, 'Bueno', 3
+		   theUser.addBookComment theBook, 'Muy malo', 1
+		   theUser.addBookComment theBook, 'Desearia que tenga otra tapa', 2
 		   theUser.makeReservation(theBook)
 
 		}
