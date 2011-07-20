@@ -21,14 +21,14 @@ class Comment {
 		this.sourceUser = srcUser
 	}
 
-	@Override
-	public boolean equals(Object obj){
-		Comment other = (Comment)obj
-		return other.getSourceUser() == sourceUser &&
-				other.getDate().equals(date) &&
-				other.getDescription().equals(description)
-				
-	}
+//	@Override
+//	public boolean equals(Object obj){
+//		Comment other = (Comment)obj
+//		return other.getSourceUser() == sourceUser &&
+//				other.getDate().equals(date) &&
+//				other.getDescription().equals(description)
+//				
+//	}
 	
 	
 

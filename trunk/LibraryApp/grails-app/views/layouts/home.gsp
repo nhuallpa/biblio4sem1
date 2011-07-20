@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html>
 	<head>
+<%--		<g:javascript library="application" />--%>
+<%--		<modalbox:modalIncludes />--%>
 		<title><g:layoutTitle default="Home" /></title>
 		<link rel="stylesheet" href="${resource(dir:'css',file:'home.css')}" />
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js?ver=1.4.2"></script>
-		<g:javascript src="ClientCore.js" />
+		<g:javascript src="ClientCore.js"/>
+		
 		<g:layoutHead />
+		
+
 		</head>
 	<body>
 		<div class="header">
@@ -36,8 +41,11 @@
 								</fieldset>
 								
 								<span><a href="#">Forgot your password?</a></span>
-								<g:link controller="user" action="register">Sign up now!</g:link>
+								<g:link controller="user" action="registration">Sign up now!</g:link>
+<%--							<modalbox:createLink controller="user" action="registration" title="Show book!" width="500">Book Lorem ipsum</modalbox:createLink>--%>
+<%--							<modalbox:createLink url="user/registration.gsp" title="Sing up!" width="400" linkname="Sign up now!" />--%>
 							</g:form>
+							
 						</div>
 					</g:else>
 				</div>
