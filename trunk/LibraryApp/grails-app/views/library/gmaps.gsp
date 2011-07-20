@@ -1,9 +1,9 @@
 <html>
     <head>
+    	<meta name="layout" content="home" />
         <title>Librerias afiliadas</title>
         <g:javascript library="application" />
         <g:javascript library="jquery" />
-        <meta name="layout" content="main" />
 
         <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 
@@ -54,16 +54,9 @@
               }              
             } else { alert("Geocode was unsuccessful due to: " + status); }
           });
-
-
-
-
-
-
- 
       </script>
     </head>
 <body>
-  <div id="map_canvas" style="width:800px; height:480px"></div>
+  <div id="map_canvas" style="width:600px; height:400px"></div>
 </body>
 </html>
