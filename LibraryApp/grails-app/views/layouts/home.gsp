@@ -48,7 +48,7 @@
 				<ul>
 					<li><g:link controller="home"  action="index">Home</g:link></li>
 					<li><a href="#">Books</a></li>
-					<li><a href="/libraryapp/map">Librarys</a></li>
+					<li><g:link controller="library"  action="gmaps">Librarys</g:link></li>
 					<li><a href="#">Console</a></li>
 				</ul>
 				<div id="searchForm">
