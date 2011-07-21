@@ -82,14 +82,21 @@ class BookIntegrationTests extends GroovyTestCase {
 			createAlias "books", "b"
 			projections {
 				groupProperty("b.name")
-				max("b.totalVotes")
+				max("b.rating")
 			}
-			maxResults(5)
 		}
+		
+		def resultsBooks = Book.list();
 		
 		def resultMap = results.inject([:]) { map, book ->
 			map[book[0]] = book[1]; map
 		} 
-	
+		//assertEquals 5,  resultMap.size()
+		assertTrue resultMap.containsValue(5)
+		assertTrue resultMap.containsValue(6)
+		assertTrue resultMap.containsValue(7)
+		assertTrue resultMap.containsValue(8)
+		assertTrue resultMap.containsValue(9)
+		
 	}
 }

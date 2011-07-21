@@ -1,4 +1,6 @@
 
+import grails.util.Environment;
+
 import org.codehaus.groovy.grails.web.servlet.GrailsApplicationAttributes;
 import org.springframework.context.ApplicationContext;
 
@@ -9,13 +11,19 @@ import com.library.*
 class BootStrap {
 
     def init = { servletContext ->
-		
+		if (Environment.current == Environment.DEVELOPMENT){
+			initOneLibray()
+			initOtherLibrary()
+		}
+    }
+	
+	private def initOneLibray(){
 		def l = new Location(country:"Argentina", city:"Buenos Aires", street:"Florida 600")
 		l.save()
 		def a = new Library(libraryId:'BM_ATENEO', name:'Ateno', location: l)
 		if  (!a.save()){
-			a.errors.each { 
-				println it	
+			a.errors.each {
+				println it
 			}
 			assert a
 		}
@@ -36,7 +44,7 @@ class BootStrap {
 		   a.addToBooks(theBook)
 		   
 		   //new Book( ISBN: isbn, name: aBook, library: a, state: States.AVAILABLE).save()
-		   def theUser   
+		   def theUser
 		   if (i == 1) {
 			   theUser = new User(name: 'admin', password: 'admin').save()
 		   } else{
@@ -52,15 +60,9 @@ class BootStrap {
 		   theUser.makeReservation(theBook)
 
 		}
-
-//		assert( Book.list().size() == 50 )
-//		assert( User.list().size() == 50 )
-		
-		initOtherLibrary()
-		
-    }
+	} 
 	
-	def initOtherLibrary(){
+	private def initOtherLibrary(){
 		
 		def l = new Location(country:"Argentina", city:"Buenos Aires", street:"Av de Mayo 1400")
 		l.save()
