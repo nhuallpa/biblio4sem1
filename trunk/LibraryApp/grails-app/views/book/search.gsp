@@ -19,7 +19,9 @@
 						  <div class="book-resume-item">
 							  <span class="item-title"><g:link controller="book" action="viewDetails" params="[bookId:book.id]">${book.name}</g:link></span>
 					          <h4>ISBN: ${book.ISBN}</h4>
-					          <span class="text">${book.state}</span>
+					          <span class="text">${book.state}</span><br/>
+					          <span class="text">Raiting: ${book.rating}</span><br/>
+					          <span class="text">Total Votes: ${book.totalVotes}</span>
 						  </div>
 				          <div class="list-operator-item">
 				          		<span class="link-item"><g:link controller="reservation" action="toReserve" params="[bookId:book.id]">to Reserve</g:link></span>
