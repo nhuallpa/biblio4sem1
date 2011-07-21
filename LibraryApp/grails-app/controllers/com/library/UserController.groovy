@@ -30,6 +30,18 @@ class UserController {
 		
 	}
 	
+	def toRegister = {
+		String pass1 = params.password1
+		String pass2 = params.password2
+		if(!pass1.equals(pass2)){
+			goToHome()
+		} else {
+			User user = new User(name : params.user_name, password : params.password1).save()
+			redirect(action: "login",userId:user.getName(), password:user.getPassword())
+		}
+		
+	}
+	
 	def rate = {
 
 		User user = session.user
@@ -88,4 +100,7 @@ class UserController {
 		
 	  }
 	
+	void goToHome(){
+		redirect(uri: '/')
+	}
 }
