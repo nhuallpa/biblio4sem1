@@ -41,6 +41,9 @@ class BookIntegrationTests extends GroovyTestCase {
     }
 	
 	void testTopFive() {
+		
+		def five = 5;
+		
 		Book book1 = new Book(ISBN : 12341, name : 'book1', state: States.AVAILABLE)
 		Book book2 = new Book(ISBN : 12342, name : 'book2', state: States.AVAILABLE)
 		Book book3 = new Book(ISBN : 12343, name : 'book3', state: States.AVAILABLE)
@@ -73,8 +76,7 @@ class BookIntegrationTests extends GroovyTestCase {
 		user.addBookComment book7, "Genial7", 7
 		user.addBookComment book8, "Genial8", 8
 		user.addBookComment book9, "Genial9", 9
-		
-		
+
 		user.save()
 		
 		def criteria = Library.createCriteria()
@@ -82,21 +84,21 @@ class BookIntegrationTests extends GroovyTestCase {
 			createAlias "books", "b"
 			projections {
 				groupProperty("b.name")
-				max("b.rating")
+				max("b.rating", "max")
 			}
+			order("max", "desc")
+			maxResults(five)
+			
 		}
-		
-		def resultsBooks = Book.list();
-		
+				
 		def resultMap = results.inject([:]) { map, book ->
 			map[book[0]] = book[1]; map
 		} 
-		//assertEquals 5,  resultMap.size()
-		assertTrue resultMap.containsValue(5)
-		assertTrue resultMap.containsValue(6)
-		assertTrue resultMap.containsValue(7)
-		assertTrue resultMap.containsValue(8)
-		assertTrue resultMap.containsValue(9)
-		
+		assertEquals five,  resultMap.size()
+		assertTrue resultMap.any{entry->entry.value==5}
+		assertTrue resultMap.any{entry->entry.value==6}
+		assertTrue resultMap.any{entry->entry.value==7}
+		assertTrue resultMap.any{entry->entry.value==8}
+		assertTrue resultMap.any{entry->entry.value==9}		
 	}
 }
