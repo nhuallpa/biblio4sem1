@@ -32,6 +32,10 @@ class Book implements Taggable{
 		library lazy: false
 	}
 	
+	public String toString() {
+		return name
+	}
+	
 	List<Book> similarsToMe(){
 		def books = Book.findAllByTag(this.tags.get(0))
 		return books

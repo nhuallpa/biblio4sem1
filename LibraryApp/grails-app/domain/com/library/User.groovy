@@ -40,6 +40,10 @@ class User {
 	
 	static hasMany = [commentsDone : Comment, reservations : Reservation]
 	
+	public String toString(){
+		return name
+	}
+	
 	void makeReservation(Book aBook) {
 		if (aBook.isReserved()) throw new BookAlreadyReservedException()
 		Reservation aReservation = new Reservation(aBook,this)

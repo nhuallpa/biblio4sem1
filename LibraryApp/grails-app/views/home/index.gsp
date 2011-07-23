@@ -6,7 +6,7 @@
 
 	</head>
 	<body>
-		<h3>Wellcome to Library</h3>
+		<h3>Welcome to Library</h3>
 		<p>
 		Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
 		Nulla nec turpis non nisl sodales ultricies. 
