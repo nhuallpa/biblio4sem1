@@ -8,7 +8,6 @@ class BookController {
 	def scaffold = true
 	
     def index = { 
-		redirect(action: 'create')
 	}
 	def view = {
 		[bookList : Book.list()]

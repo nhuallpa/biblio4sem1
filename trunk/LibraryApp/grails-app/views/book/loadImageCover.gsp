@@ -1,5 +1,6 @@
 <html>
 	<head>
+		<meta name="layout" content="home" />
 		<title>Upload Cover for books</title>
 	</head>
 	<body>

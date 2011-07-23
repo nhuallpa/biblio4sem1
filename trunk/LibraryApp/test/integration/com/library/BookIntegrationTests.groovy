@@ -79,26 +79,37 @@ class BookIntegrationTests extends GroovyTestCase {
 
 		user.save()
 		
-		def criteria = Library.createCriteria()
-		def results = criteria {		
-			createAlias "books", "b"
+		
+		def criteria = Book.createCriteria()
+		def results = criteria.list {
 			projections {
-				groupProperty("b.name")
-				max("b.rating", "max")
+				groupProperty("b.name")	
 			}
-			order("max", "desc")
-			maxResults(five)
-			
 		}
+		println results
+		
+//		def criteria = Library.createCriteria()
+//		def results = criteria {		
+//			createAlias "books", "b"
+//			projections {
+//				groupProperty("b.name")
+//				max("b.rating", "max")
+//			}
+//			order("max", "desc")
+//			maxResults(five)
+//			
+//		}
 				
-		def resultMap = results.inject([:]) { map, book ->
-			map[book[0]] = book[1]; map
-		} 
-		assertEquals five,  resultMap.size()
-		assertTrue resultMap.any{entry->entry.value==5}
-		assertTrue resultMap.any{entry->entry.value==6}
-		assertTrue resultMap.any{entry->entry.value==7}
-		assertTrue resultMap.any{entry->entry.value==8}
-		assertTrue resultMap.any{entry->entry.value==9}		
+//		def resultMap = results.inject([:]) { map, book ->
+//			map[book[0]] = book[1]; map
+//		} 
+//		
+//		
+//		assertEquals five,  resultMap.size()
+//		assertTrue resultMap.any{entry->entry.value==5}
+//		assertTrue resultMap.any{entry->entry.value==6}
+//		assertTrue resultMap.any{entry->entry.value==7}
+//		assertTrue resultMap.any{entry->entry.value==8}
+//		assertTrue resultMap.any{entry->entry.value==9}		
 	}
 }

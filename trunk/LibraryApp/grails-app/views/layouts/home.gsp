@@ -55,9 +55,9 @@
 			<div class="container">
 				<ul>
 					<li><g:link controller="home"  action="index">Home</g:link></li>
-					<li><a href="#">Books</a></li>
+					<li><g:link controller="book"  action="index">Books store</g:link></li>
 					<li><g:link controller="library"  action="gmaps">Librarys</g:link></li>
-					<li><a href="#">Console</a></li>
+					<li><g:link controller="home"  action="administration">Administration</g:link></li>
 				</ul>
 				<div id="searchForm">
 		  			<g:form url='[controller: "book", action: "search"]'
@@ -79,24 +79,25 @@
 					<g:if test="${session.user}">
 							<div class="inner-boundary last-item">
 								<div class="inner-border author-item">
-									
+										<%--
 										<div>
 										<span class="text-form">${session.user.name}</span> <br/>
 										<span class="text-form">points: 3 Stars</span> <br/>
 										<resource:rating />
-										<div id="user${session.user.id}">
-		    								<% def dynamic = (!session.voted[session.user.name])%>
-		    								<richui:rating dynamic="${dynamic.toString()}" id="${session.user.id}" units="5"
-		        								rating="${session.user.rating}" updateId="user${session.user.id}" controller="user" action="rate"  />
-		    								<p class="static">"Rating ${java.text.NumberFormat.instance.format(session.user.rating)}
-		        								based on ${session.user.totalVotes} vote<g:if test="${session.user.totalVotes != 1}">s</g:if>
-		    								</p>
-		    								<g:if test="${!dynamic}">
-		        								<div style="color: green;" id="vote${session.user.id}">Thanks for voting!</div>
-		    								</g:if>
-										</div>
+											<div id="user${session.user.id}">
+			    								<% def dynamic = (!session.voted[session.user.name])%>
+			    								<richui:rating dynamic="${dynamic.toString()}" id="${session.user.id}" units="5"
+			        								rating="${session.user.rating}" updateId="user${session.user.id}" controller="user" action="rate"  />
+			    								<p class="static">"Rating ${java.text.NumberFormat.instance.format(session.user.rating)}
+			        								based on ${session.user.totalVotes} vote<g:if test="${session.user.totalVotes != 1}">s</g:if>
+			    								</p>
+			    								<g:if test="${!dynamic}">
+			        								<div style="color: green;" id="vote${session.user.id}">Thanks for voting!</div>
+			    								</g:if>
+											</div>
 										<br/>	
 										</div>
+										--%>
 										<ul class="menu-vert">
 											<li><g:link controller="reservation" action="viewMyReservation">My reservation</g:link></li>
 											<li><g:link controller="comment" action="viewMyComments">My Comments</g:link></li>
@@ -113,6 +114,5 @@
 				<p>Following</p>
 			</div>
 		</div>
-		
 	</body>
 </html>

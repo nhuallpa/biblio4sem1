@@ -41,8 +41,9 @@ class CommentController {
 		if (!user){
 			goToHome()
 		}
-		String aComment = params.newComment
-		Integer rating = params.rating
+		String aComment = (params.newComment)?params.newComment:"Without comment"
+		Integer rating = (params.rating)?params.rating:0;
+		
 		rating -= 48
 		
 		Book aBook = Book.get(params.bookId)
