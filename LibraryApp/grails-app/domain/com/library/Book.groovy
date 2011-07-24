@@ -5,22 +5,25 @@ import org.grails.taggable.*
 
 class Book implements Taggable{
 	
-	static searchable = true	
-	
-
-	String name
-	String subject
+	static searchable = true
 	long ISBN
 	States state
-	List<Comment> comments = new ArrayList<Comment>()
-	Library library
+	String name
+	String subject
+	String description
+	String author
 	long rating
 	long totalVotes
+
+	List<Comment> comments = new ArrayList<Comment>()
+	Library library
 
 	static constraints = {
 		ISBN(blank : false)
 		comments(nullable:true)
 		subject(nullable:true)
+		author(nullable:true)
+		description(nullable:true)
 		state(inList:States.list())
 	}
 
