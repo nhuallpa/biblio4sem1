@@ -41,8 +41,8 @@
 								</fieldset>
 								
 								<span><a href="#">Forgot your password?</a></span>
-								<g:link controller="user" action="registration">Sign up now!</g:link>
-<%--							<modalbox:createLink controller="user" action="registration" title="Show book!" width="500">Book Lorem ipsum</modalbox:createLink>--%>
+<%--								<g:link controller="user" action="registration">Sign up now!</g:link>--%>
+							<modalbox:createLink controller="user" action="registration" id="10" title="Show book!" width="300">Sign me up!</modalbox:createLink>
 <%--							<modalbox:createLink url="user/registration.gsp" title="Sing up!" width="400" linkname="Sign up now!" />--%>
 							</g:form>
 							
@@ -57,7 +57,9 @@
 					<li><g:link controller="home"  action="index">Home</g:link></li>
 					<li><g:link controller="book"  action="index">Books store</g:link></li>
 					<li><g:link controller="library"  action="gmaps">Librarys</g:link></li>
-					<li><g:link controller="home"  action="administration">Administration</g:link></li>
+					<g:if test="${session.user}">
+						<li><g:link controller="home"  action="administration">Administration</g:link></li>
+					</g:if>
 				</ul>
 				<div id="searchForm">
 		  			<g:form url='[controller: "book", action: "search"]'
