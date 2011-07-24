@@ -5,9 +5,13 @@ import org.springframework.context.ApplicationContext;
 
 class BookController {
 
+	def bookService
 	def scaffold = true
 	
+	
     def index = { 
+		def results = bookService.getTopFive()
+		[booksInTopFive:results]
 	}
 	def view = {
 		[bookList : Book.list()]
@@ -104,5 +108,13 @@ class BookController {
 	 * */
 	def loadImageCover = {
 		[listOfBook: Book.list()]
+	}
+	
+	/**
+	 * return five books with maximun rating
+	 * */
+	def getTopFive = {
+		def results = bookService.getTopFive()
+		[booksInTopFive:results]
 	}
 }

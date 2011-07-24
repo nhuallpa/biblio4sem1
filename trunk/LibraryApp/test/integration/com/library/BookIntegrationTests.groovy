@@ -8,10 +8,11 @@ import grails.test.*
 
 class BookIntegrationTests extends GroovyTestCase {
 	
+	def bookServives
+	
 	String myname
 	long myISBN
 	Book book
-	
 	Library libraryDefault;
 	
     protected void setUp() {
@@ -79,37 +80,18 @@ class BookIntegrationTests extends GroovyTestCase {
 
 		user.save()
 		
-		
 		def criteria = Book.createCriteria()
 		def results = criteria.list {
-			projections {
-				groupProperty("b.name")	
-			}
+			order("rating", "desc")
+			maxResults(five)
 		}
-		println results
 		
-//		def criteria = Library.createCriteria()
-//		def results = criteria {		
-//			createAlias "books", "b"
-//			projections {
-//				groupProperty("b.name")
-//				max("b.rating", "max")
-//			}
-//			order("max", "desc")
-//			maxResults(five)
-//			
-//		}
-				
-//		def resultMap = results.inject([:]) { map, book ->
-//			map[book[0]] = book[1]; map
-//		} 
-//		
-//		
-//		assertEquals five,  resultMap.size()
-//		assertTrue resultMap.any{entry->entry.value==5}
-//		assertTrue resultMap.any{entry->entry.value==6}
-//		assertTrue resultMap.any{entry->entry.value==7}
-//		assertTrue resultMap.any{entry->entry.value==8}
-//		assertTrue resultMap.any{entry->entry.value==9}		
+		
+		assertEquals five,  results.size()
+		assertEquals 9, results[0].rating
+		assertEquals 8, results[1].rating
+		assertEquals 7, results[2].rating
+		assertEquals 6, results[3].rating
+		assertEquals 5, results[4].rating
 	}
 }

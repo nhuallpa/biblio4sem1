@@ -28,6 +28,9 @@ class BootStrap {
 			assert a
 		}
 		
+		
+		def description = "	Sed eros ligula, fermentum et tincidunt vitae, dictum in felis."
+		def author = "Nulla vehicula"
 		def libraries = [a]
 		def bookNames = ["It","Thinking in Java","Learning C","Asp.net for Dummies","Codigo da Vinci","Taken","Harry Potter","Flex","HTML 5"]
 		def lastNames = ["Smith","Flinstone","Abbot","Williams","Adams","Goober","Brady","Jones","Heffernen"]
@@ -41,6 +44,11 @@ class BootStrap {
 		   def pass = random.nextInt(888999)
 		   
 		   def theBook = new Book( ISBN: isbn, name: aBook, state: States.AVAILABLE)
+		   
+
+		   theBook.setDescription(description);
+		   theBook.setAuthor(author);
+		   
 		   a.addToBooks(theBook)
 		   
 		   //new Book( ISBN: isbn, name: aBook, library: a, state: States.AVAILABLE).save()
@@ -63,6 +71,9 @@ class BootStrap {
 	} 
 	
 	private def initOtherLibrary(){
+
+		def description = "Donec vitae augue ut quam tempor molestie a sed nulla. Donec feugiat ligula vitae tortor adipiscing dignissim."
+		def author = "Maecenas at felis"
 		
 		def l = new Location(country:"Argentina", city:"Buenos Aires", street:"Av de Mayo 1400")
 		l.save()
@@ -90,6 +101,8 @@ class BootStrap {
 		bookNames.each { 
 			def isbn = random.nextInt(456789)
 			def abook = new Book(ISBN: isbn, name: it, library: libraryCongreso, state: States.AVAILABLE);
+			abook.setDescription(description)
+			abook.setAuthor(author)
 			libraryCongreso.addToBooks(abook) 	
 		}
 		

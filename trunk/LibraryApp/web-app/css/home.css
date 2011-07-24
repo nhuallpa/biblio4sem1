@@ -67,13 +67,13 @@ h1, h2, h3, h4, h5, h6 {font-family: 'Lucida Sans Unicode', 'Lucida Grande', san
 
 .col-s-content {
     float: left;
-    width: 650px;
+    width: 750px;
 }
 
 .large-sidebar {
     color: #353535;
     float: right;
-    width: 315px;
+    width: 215px;
 }
 
 
@@ -214,7 +214,7 @@ ul,ol{
 
 a{text-decoration:none;color:#0D355E; font: 11px verdana,arial,helvetica,sans-serif;}
 
-.menu-vert li{background: transparent url('../images/home/li.png') no-repeat;position:relative;margin: 7px 0 0 10px;padding: 0 0 15px 20px;border-bottom:1px dotted #0D355E;width:235px;}
+.menu-vert li{background: transparent url('../images/home/li.png') no-repeat;position:relative;margin: 7px 0 0 10px;padding: 0 0 15px 20px;border-bottom:1px dotted #0D355E;width:135px;}
 
 
 /*** List Item **/
@@ -558,10 +558,46 @@ input:focus {
 
 #userWelcome a{
 	color: #FF7F2A;
-	 font-weight:bold; 
+	font-weight:bold; 
 }
 
 /*------------------------------------------------	END  	LOGIN ------------------------------------------		*/
+/*------------------------------------------------	BEGIN  	TOP OF BOOK-------------------------------------		*/
+
+
+#book-in-top-container {
+	padding-top: 20px;
+	padding-bottom: 30px;
+	height: 500px;
+}
+
+.book-in-top-item {
+	float:left;
+	padding-top: 10px;
+	width: 150px;
+	height: 250px;
+	
+}
+.book-in-top-item p {
+	font-size: 10px;
+}
+
+
+.book-in-top-item #title a{
+	font-weight: bold;
+	color:#000000;
+}
+.book-in-top-item #title a:hover{
+	color:#FF7F2A;
+}
+
+.book-in-top-item img {
+	width: 50px;
+	height: 75px;
+}
+
+/*------------------------------------------------	END  	TOP OF BOOK-------------------------------------		*/
+
 
 
 
