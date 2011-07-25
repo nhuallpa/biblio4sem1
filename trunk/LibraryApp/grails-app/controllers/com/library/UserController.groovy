@@ -36,8 +36,15 @@ class UserController {
 		if(!pass1.equals(pass2)){
 			goToHome()
 		} else {
-			User user = new User(name : params.user_name, password : params.password1).save()
-			redirect(action: "login",userId:user.getName(), password:user.getPassword())
+			User user = new User(name : params.user_name, password : params.password1)
+			if(newUser(user)){
+				user.save()
+				redirect(action: "login",userId:user.getName(), password:user.getPassword())
+			} else {
+				flash.message = "${user.name} is existing!! Try again..."
+				redirect(action: "registration")
+			}
+			
 		}
 		
 	}
@@ -102,5 +109,9 @@ class UserController {
 	
 	void goToHome(){
 		redirect(uri: '/')
+	}
+	
+	boolean newUser(User user){
+		return User.list().contains(user)
 	}
 }

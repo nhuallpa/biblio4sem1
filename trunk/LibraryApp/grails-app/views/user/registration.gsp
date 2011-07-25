@@ -1,12 +1,13 @@
 <html>
 	<head>
-		<modalbox:modalIncludes />
 		<meta name="layout" content="home" />
 		<title>Registration</title>
 	</head>
 	<body>
-
-			<g:form class="registerForm" controller="user" action="toRegister">
+		<g:if test="${flash.message}">
+      		<div class="message">${flash.message}</div>
+    	</g:if>
+			<g:form class="loginForm" controller="user" action="toRegister">
 				<fieldset id="body">
 					<fieldset>
 						<label for="email">Username</label>

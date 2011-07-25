@@ -41,11 +41,39 @@
 								</fieldset>
 								
 								<span><a href="#">Forgot your password?</a></span>
-<%--								<g:link controller="user" action="registration">Sign up now!</g:link>--%>
-							<modalbox:createLink controller="user" action="registration" id="10" title="Show book!" width="300">Sign me up!</modalbox:createLink>
-<%--							<modalbox:createLink url="user/registration.gsp" title="Sing up!" width="400" linkname="Sign up now!" />--%>
+								<g:link controller="user" action="registration">Sign up now!</g:link>
+<%--								<a href="#" id="registerButton"><span>Sign up now!</span><em></em></a>				--%>
+<%--								<div style="clear:both"></div>--%>
+<%--									<g:form class="loginForm" controller="user" action="resgister">--%>
+<%--									<fieldset id="body">--%>
+<%--										<fieldset>--%>
+<%--											<label for="email">Username</label>--%>
+<%--											<g:textField name="user_name"></g:textField>--%>
+<%--										</fieldset>--%>
+<%--										<fieldset>--%>
+<%--											<label for="password">Password</label>--%>
+<%--											<g:passwordField name="password1"></g:passwordField>--%>
+<%--										</fieldset>--%>
+<%--										<fieldset>--%>
+<%--											<label for="password">Repeat Password</label>--%>
+<%--											<g:passwordField name="password2"></g:passwordField>--%>
+<%--										</fieldset>	--%>
+<%--										<fieldset>--%>
+<%--											<label for="email">Homepage</label>--%>
+<%--											<g:textField name="homepage"></g:textField>--%>
+<%--										</fieldset>--%>
+<%--										<fieldset>--%>
+<%--											<label for="email">Photo</label>--%>
+<%--											<g:textField name="photo"></g:textField>--%>
+<%--										</fieldset>			--%>
+<%--										<fieldset>--%>
+<%--											<label for="email">Phone</label>--%>
+<%--											<g:textField name="phone"></g:textField>--%>
+<%--										</fieldset>			--%>
+<%--										<g:submitButton id="resgister" name="Register" />	--%>
+<%--									</fieldset>							--%>
+<%--									</g:form>--%>
 							</g:form>
-							
 						</div>
 					</g:else>
 				</div>
@@ -58,7 +86,9 @@
 					<li><g:link controller="book"  action="index">Books store</g:link></li>
 					<li><g:link controller="library"  action="gmaps">Librarys</g:link></li>
 					<g:if test="${session.user}">
-						<li><g:link controller="home"  action="administration">Administration</g:link></li>
+						<g:if test="${session.user.name.equals('admin') }">
+							<li><g:link controller="home"  action="administration">Administration</g:link></li>
+						</g:if>
 					</g:if>
 				</ul>
 				<div id="searchForm">
