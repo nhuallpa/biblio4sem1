@@ -1,3 +1,4 @@
+import java.awt.RadialGradientPaint;
 
 import grails.util.Environment;
 
@@ -29,45 +30,62 @@ class BootStrap {
 		}
 		
 		
+		def listOfBooks = []
+		def listOfUsers = []
+		
 		def description = "	Sed eros ligula, fermentum et tincidunt vitae, dictum in felis."
 		def author = "Nulla vehicula"
-		def libraries = [a]
 		def bookNames = ["It","Thinking in Java","Learning C","Asp.net for Dummies","Codigo da Vinci","Taken","Harry Potter","Flex","HTML 5"]
-		def lastNames = ["Smith","Flinstone","Abbot","Williams","Adams","Goober","Brady","Jones","Heffernen"]
-				
+		def userNames = ["gonza", "nestor", "ariel", "user", "admin"]
+
 		Random random = new Random()
-		1.upto(50) { i ->
-		   def aBook = bookNames[ random.nextInt(9)]
-		   def aName = lastNames[ random.nextInt(9)] + i
-		   // def aLibrary = libraries[ random.nextInt(3)]
-		   def isbn = random.nextInt(456789)
-		   def pass = random.nextInt(888999)
-		   
-		   def theBook = new Book( ISBN: isbn, name: aBook, state: States.AVAILABLE)
-		   
-
-		   theBook.setDescription(description);
-		   theBook.setAuthor(author);
-		   
-		   a.addToBooks(theBook)
-		   
-		   //new Book( ISBN: isbn, name: aBook, library: a, state: States.AVAILABLE).save()
-		   def theUser
-		   if (i == 1) {
-			   theUser = new User(name: 'admin', password: 'admin').save()
-		   } else{
-			   theUser = new User(name: aName, password: pass).save()
-		   }
-
-		   theUser.addBookComment theBook, 'Pesimo libro', 1
-		   theUser.addBookComment theBook, 'Muy buen libro', 4
-		   theUser.addBookComment theBook, 'Creo que podria ser mejor', 2
-		   theUser.addBookComment theBook, 'Bueno', 3
-		   theUser.addBookComment theBook, 'Muy malo', 1
-		   theUser.addBookComment theBook, 'Desearia que tenga otra tapa', 2
-		   theUser.makeReservation(theBook)
-
+		bookNames.each { 
+			def isbn = random.nextInt(456789)
+			def theBook = new Book( ISBN: isbn, name: it, state: States.AVAILABLE)
+			theBook.setDescription(description);
+			theBook.setAuthor(author);
+			a.addToBooks(theBook)
+			listOfBooks << theBook
 		}
+		
+		userNames.each {
+			def aUser = new User(name: it, password: it).save()
+			assert aUser
+			listOfUsers << aUser 
+		}
+		
+		assert listOfUsers.size() == 5
+		
+		/**** COMMENTS ****/
+		listOfBooks.each { theBook ->
+			listOfUsers[0].addBookComment theBook, randomComments(), randomScore()
+		}
+		listOfBooks.each { theBook ->
+			listOfUsers[1].addBookComment theBook, randomComments(), randomScore()
+		}
+		listOfBooks.each { theBook ->
+			listOfUsers[2].addBookComment theBook, randomComments(), randomScore()
+		}
+		listOfBooks.each { theBook ->
+			listOfUsers[3].addBookComment theBook, randomComments(), randomScore()
+		}
+		listOfBooks.each { theBook ->
+			listOfUsers[4].addBookComment theBook, randomComments(), randomScore()
+		}
+		
+		assert listOfBooks.size() == 9
+		
+		/*** RESERVATION ****/
+		(listOfUsers[0] as User).makeReservation(listOfBooks[0])
+		(listOfUsers[0] as User).makeReservation(listOfBooks[1])
+		(listOfUsers[1] as User).makeReservation(listOfBooks[2])
+		(listOfUsers[1] as User).makeReservation(listOfBooks[3])
+		(listOfUsers[2] as User).makeReservation(listOfBooks[4])
+		(listOfUsers[2] as User).makeReservation(listOfBooks[5])
+		(listOfUsers[3] as User).makeReservation(listOfBooks[6])
+		(listOfUsers[4] as User).makeReservation(listOfBooks[7])
+		(listOfUsers[4] as User).makeReservation(listOfBooks[8])
+					
 	} 
 	
 	private def initOtherLibrary(){
@@ -93,7 +111,7 @@ class BootStrap {
 						 "Introduction to Java Programming",
 						 "Java How to Program",
 						 "Perl Cookbook, Second Edition",
-						 "Practical Guide to Linux Commands, Editors, and Shell Programming, A (2nd Edition)",
+						 "Practical Guide to Linux",
 						 "Spring Batch in Action",
 						 "Spring Integration in Action",
 						 "The Library of Babel"]
@@ -106,6 +124,17 @@ class BootStrap {
 			libraryCongreso.addToBooks(abook) 	
 		}
 		
+	}
+	
+	private String randomComments() {
+		def comments = ['Pesimo libro', 'Muy buen libro', 'Bueno', 'Muy malo', 'Desearia que tenga otra tapa']
+		Random random = new Random()
+		return comments[random.nextInt(comments.size())]
+	}
+	
+	private Integer randomScore() {
+		Random random = new Random()
+		return random.nextInt(5)
 	}
 	
     def destroy = {
