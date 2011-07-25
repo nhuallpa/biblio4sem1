@@ -245,6 +245,7 @@ div.shadowed {
 
 
 
+
 /*------------------------------------------------	Begin	BOOK ITEM ------------------------------------------		*/
 
 .item-title a{
@@ -264,6 +265,7 @@ div.shadowed {
 .item-list .book img, .book-description img {
 	float: left;
 	height: 90px;
+	width: 70px;
 	padding-right: 25px;
 }
 
