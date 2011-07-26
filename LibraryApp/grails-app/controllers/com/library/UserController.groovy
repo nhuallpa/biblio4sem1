@@ -1,5 +1,8 @@
 package com.library
 
+import org.grails.taggable.Tag
+
+
 class UserController {
 	
 	def geocoderService
@@ -38,6 +41,12 @@ class UserController {
 		} else {
 			User user = new User(name : params.user_name, password : params.password1)
 			if(newUser(user)){
+				if(params.type_accion){
+					user.typesFav.add new Tag(name: 'type_accion')
+				}
+				if(params.type_drama){
+					user.typesFav.add new Tag(name: 'type_drama')
+				}
 				user.save()
 				redirect(action: "login",userId:user.getName(), password:user.getPassword())
 			} else {
@@ -48,6 +57,7 @@ class UserController {
 		}
 		
 	}
+
 	
 	def rate = {
 
@@ -112,6 +122,7 @@ class UserController {
 	}
 	
 	boolean newUser(User user){
-		return User.list().contains(user)
+//		return User.list().contains(user)
+		return true
 	}
 }

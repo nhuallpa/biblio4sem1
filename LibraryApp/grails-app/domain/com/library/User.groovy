@@ -1,5 +1,7 @@
 package com.library
 
+import org.grails.taggable.Tag
+
 import com.library.exceptions.*
 
 class User {
@@ -15,6 +17,7 @@ class User {
 	List<Reservation> reservations = new ArrayList<Reservation>()
 	List<Comment> commentsRcvd = new ArrayList<Comment>()
 	List<Comment> commentsDone = new ArrayList<Comment>()
+	List<Tag> typesFav = new ArrayList<Tag>();
 	
 	Location location
 
@@ -29,6 +32,7 @@ class User {
 		reservations(nullable: true)
 		commentsRcvd(nullable: true)
 		commentsDone(nullable: true)
+		typesFav(nullable: true)
     }
 	
 	static mapping = {
@@ -36,9 +40,10 @@ class User {
 		reservations lazy: false
 		commentsRcvd lazy: false
 		commentsDone lazy: false
+		typesFav lazy : false
 	}
 	
-	static hasMany = [commentsDone : Comment, reservations : Reservation]
+	static hasMany = [typesFav : Tag, commentsDone : Comment, reservations : Reservation]
 	
 	public String toString(){
 		return name
