@@ -7,7 +7,29 @@
 		<g:if test="${flash.message}">
       		<div class="message">${flash.message}</div>
     	</g:if>
-			<g:form class="loginForm" controller="user" action="toRegister">
+			<g:form class="registerForm" controller="user" action="toRegister">
+			<div class="checksForm">
+				<fieldset>
+					<g:checkBox name="type_accion" value="${false}" />
+					<label for="checkbox">Accion</label>
+				</fieldset>	
+				<fieldset>
+					<g:checkBox name="type_drama" value="${false}" />
+					<label for="checkbox">Drama</label>					
+				</fieldset>	
+				<fieldset>
+					<g:checkBox name="type_ficcion" value="${false}" />
+					<label for="checkbox">Ficcion</label>					
+				</fieldset>	
+				<fieldset>
+					<g:checkBox name="type_novela" value="${false}" />
+					<label for="checkbox">Novela</label>					
+				</fieldset>
+				<fieldset>
+					<g:checkBox name="type_literatura" value="${false}" />
+					<label for="checkbox">Literatura</label>					
+				</fieldset>													
+			</div>
 				<fieldset id="body">
 					<fieldset>
 						<label for="email">Username</label>
@@ -32,11 +54,12 @@
 					<fieldset>
 						<label for="email">Phone</label>
 						<g:textField name="phone"></g:textField>
-					</fieldset>																						
-					<g:submitButton id="login" name="Register" />
-<%--					<label for="checkbox"><input type="checkbox" id="checkbox" />Remember me</label>--%>
+					</fieldset>		
+					<fieldset>
+						<g:submitButton id="login" name="Register" />
+					</fieldset>																				
 				</fieldset>
 			</g:form>
-
+			
 	</body>
 </html>
