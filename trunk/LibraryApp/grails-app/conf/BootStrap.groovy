@@ -15,6 +15,8 @@ class BootStrap {
 		if (Environment.current == Environment.DEVELOPMENT){
 			initOneLibray()
 			initOtherLibrary()
+			initThirdLibrary()
+			initFourthLibrary()
 		}
     }
 	
@@ -122,6 +124,70 @@ class BootStrap {
 			abook.setDescription(description)
 			abook.setAuthor(author)
 			libraryCongreso.addToBooks(abook) 	
+		}
+		
+	}
+	
+	private void initThirdLibrary(){
+		def description = "Donec vitae augue ut quam tempor molestie a sed nulla. Donec feugiat ligula vitae tortor adipiscing dignissim."
+		def author = "Maecenas at felis"
+		
+		def l = new Location(country:"Argentina", city:"Buenos Aires", street:"Av Rivadavia 6800")
+		l.save()
+		def libraryFlores = new Library(libraryId:'BM_Flores', name:'Flores', location: l)
+		if  (!libraryFlores.save()){
+			libraryFlores.errors.each {
+				println it
+			}
+			assert libraryFlores
+		}
+		
+		def bookNames = ["iPad 2",
+						 "My iPad",
+						 "iPad For Seniors For Dummies",
+						 "Hello Android",
+						 "Beginning Android",
+						 "Learn Java for Android Development",
+						 "Pro Android",
+						 "IPhone The Missing Manual",
+						 "IPhone For Dummies",
+						 "Beginning Blackberry Development",
+						 "Advanced Blackberry Development",
+						 "Blackberry Storm2",
+						 "Professional Blackberry",
+						 "The Ruby Programming Language"]
+		Random random = new Random()
+		bookNames.each {
+			def isbn = random.nextInt(456789)
+			def abook = new Book(ISBN: isbn, name: it, library: libraryFlores, state: States.AVAILABLE);
+			abook.setDescription(description)
+			abook.setAuthor(author)
+			libraryFlores.addToBooks(abook)
+		}
+	}
+	
+	private void initFourthLibrary(){
+		def description = "Donec vitae augue ut quam tempor molestie a sed nulla. Donec feugiat ligula vitae tortor adipiscing dignissim."
+		def author = "Maecenas at felis"
+		
+		def l = new Location(country:"Argentina", city:"Buenos Aires", street:"Av Rivadavia 11684")
+		l.save()
+		def libraryLiniers = new Library(libraryId:'BM_Liniers', name:'Liniers', location: l)
+		if  (!libraryLiniers.save()){
+			libraryLiniers.errors.each {
+				println it
+			}
+			assert libraryLiniers
+		}
+		
+		def bookNames = ["Beginning Ruby"]
+		Random random = new Random()
+		bookNames.each {
+			def isbn = random.nextInt(456789)
+			def abook = new Book(ISBN: isbn, name: it, library: libraryLiniers, state: States.AVAILABLE);
+			abook.setDescription(description)
+			abook.setAuthor(author)
+			libraryLiniers.addToBooks(abook)
 		}
 		
 	}
