@@ -41,7 +41,7 @@
 								</fieldset>
 								
 								<span><a href="#">Forgot your password?</a></span>
-								<g:link controller="user" action="registration">Sign up now!</g:link>
+								<span><g:link controller="user" action="registration">Sign up now!</g:link></span>
 <%--								<a href="#" id="registerButton"><span>Sign up now!</span><em></em></a>				--%>
 <%--								<div style="clear:both"></div>--%>
 <%--									<g:form class="loginForm" controller="user" action="resgister">--%>

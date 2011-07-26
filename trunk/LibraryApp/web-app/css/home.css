@@ -600,6 +600,49 @@ input:focus {
 
 /*------------------------------------------------	END  	TOP OF BOOK-------------------------------------		*/
 
+/*------------------------------------------------	BEGIN  	REGISTRATION-------------------------------------		*/
 
+.registerForm {
+	float:left;	
+	 width:600px; 
+    border:1px solid #899caa;
+    border-radius:3px 0 3px 3px;
+    -moz-border-radius:3px 0 3px 3px;
+    margin-top:-1px;
+    background:#B4B4B4;
+    padding:6px;
+}
+
+.registerForm fieldset {
+    margin:0 0 12px 0;
+    display:block;
+    border:0;
+    padding:0;
+}
+
+#body label {
+    color:#3a454d;
+    margin:9px 0 0 0;
+    display:block;
+    float:left;
+}
+
+.registerForm #body fieldset label {
+    display:block;
+    float:none;
+    margin:0 0 6px 0;
+}
+.checksForm {
+	 width:248px; 
+    border:1px solid #899caa;
+    border-radius:3px 0 3px 3px;
+    -moz-border-radius:3px 0 3px 3px;
+    margin-top:-1px;
+    background:#B4B4B4;
+    padding:6px;
+	float:right;
+}
+
+/*------------------------------------------------	END  	REGISTRATION-------------------------------------		*/
 
 
