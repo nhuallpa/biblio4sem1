@@ -180,7 +180,13 @@ class BootStrap {
 			assert libraryLiniers
 		}
 		
-		def bookNames = ["Beginning Ruby"]
+		def bookNames = ["Beginning Ruby",
+						 "Ruby on Rails 3",
+						 "Grails in Action",
+						 "Grails Persistence with GORM and GSQL",
+						 "Groovy in Action",
+						 "Cobol for Dummies",
+						 "Cobol Unleashed"]
 		Random random = new Random()
 		bookNames.each {
 			def isbn = random.nextInt(456789)
