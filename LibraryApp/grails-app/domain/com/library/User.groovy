@@ -209,5 +209,24 @@ class User {
 		return this.location.address()
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		User user = (User)obj;
+		if(user.getName().equals(this.name) && user.getPassword().equals(this.password)){
+			return true;
+		} 
+		return false;
+	}
+
+	
 	
 }

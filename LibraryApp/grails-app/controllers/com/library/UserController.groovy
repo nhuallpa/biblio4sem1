@@ -44,7 +44,7 @@ class UserController {
 			goToHome()
 		} else {
 			User user = new User(name : params.user_name, password : pass1)
-			if(newUser(user)){
+			if(!isUser(user)){
 				if(params.type_accion){
 					user.typesFav.add new Tag(name: 'type_accion')
 				}
@@ -52,7 +52,7 @@ class UserController {
 					user.typesFav.add new Tag(name: 'type_drama')
 				}
 				user.save()
-				redirect(action: "login",userId:user.getName(), password:user.getPassword())
+				redirect(action: "login",userId:user.name, password:user.password)
 			} else {
 				flash.message = "${user.name} is existing!! Try again..."
 				redirect(action: "registration")
@@ -124,8 +124,7 @@ class UserController {
 		redirect(uri: '/')
 	}
 	
-	boolean newUser(User user){
-		def userFounded = User.get(user.id)
-		return userFounded == null
+	boolean isUser(User user){
+		User.list().contains(user) 
 	}
 }
