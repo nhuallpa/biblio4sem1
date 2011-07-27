@@ -9,8 +9,6 @@
 		
 		<div id="items" class="shadowed">
 			<div class="inner-boundary">
-<%--				<span class="text">${user.photo}</span>--%>
-<%--				|--%>
 				<span class="text">email: ${user?.email }</span>
 				|
 				<span class="text">Phone: ${user?.phone }</span>
@@ -19,10 +17,18 @@
 				|
 				<span class="text">Total Votes: ${user?.totalVotes}</span>
 		</div>				
+				<ul class="item-list">
+					<g:each var="tag_fav" in="${user?.typesFav}">
+						<li>
+							<span class="text">${tag_fav.name}</span>
+					    </li>
+					</g:each>
+				</ul>
+				
 				<h4>Reservations</h4>
 				<ul class="item-list">
 					<g:each var="reservation" in="${user?.reservations}">
-						<li class="book">
+						<li>
 							<span class="text"><g:link controller="book" action="viewDetails" params="[bookId:reservation.book.id]">${reservation.book.name}</g:link></span>
 							|
 							<span class="text">${reservation.reservationDate.toString()}</span>
@@ -34,7 +40,7 @@
 				<h4>Comments Done</h4>
 				<ul class="item-list">
 					<g:each var="commentDone" in="${user?.commentsDone}">
-						<li class="book">
+						<li>
 							<g:link controller="book" action="viewDetails" params="[bookId:commentDone.book.id]">${commentDone.book.name}</g:link>
 							<h4>"${commentDone.description}"</h4>
 							<p>Comment Score: ${commentDone.score}</p>

@@ -21,7 +21,7 @@ class User {
 	
 	Location location
 
-    static constraints = {
+	static constraints = {
 		name(size: 3..60, nullable:true)
 		password(size: 3..15, nullable:true)
 		photo(nullable: true)

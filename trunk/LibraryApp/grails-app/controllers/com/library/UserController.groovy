@@ -46,11 +46,13 @@ class UserController {
 			User user = new User(name : params.user_name, password : pass1)
 			if(!isUser(user)){
 				if(params.type_accion){
-					user.typesFav.add new Tag(name: 'type_accion')
+					user.typesFav.add new Tag(name: Constants.TYPE_ACTION)
 				}
 				if(params.type_drama){
-					user.typesFav.add new Tag(name: 'type_drama')
+					user.typesFav.add new Tag(name: Constants.TYPE_DRAMA)
 				}
+				user.setEmail params.email
+				//setear los demas valores...
 				user.save()
 				redirect(action: "login",userId:user.name, password:user.password)
 			} else {

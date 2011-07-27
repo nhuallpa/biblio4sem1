@@ -7,6 +7,7 @@
 		<g:if test="${flash.message}">
       		<div class="message">${flash.message}</div>
     	</g:if>
+    		<h3>Registration</h3>
 			<g:form class="registerForm" controller="user" action="toRegister">
 			<div class="checksForm">
 				<fieldset>
@@ -44,8 +45,8 @@
 						<g:passwordField name="password2"></g:passwordField>
 					</fieldset>	
 					<fieldset>
-						<label for="email">Homepage</label>
-						<g:textField name="homepage"></g:textField>
+						<label for="email">Email</label>
+						<g:textField name="email"></g:textField>
 					</fieldset>
 					<fieldset>
 						<label for="email">Photo</label>
