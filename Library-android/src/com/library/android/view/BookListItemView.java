@@ -1,6 +1,7 @@
 package com.library.android.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.view.View;
 import android.widget.Button;
@@ -10,6 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.library.android.BookDetailActivity;
 import com.library.android.R;
 
 public class BookListItemView extends RelativeLayout {
@@ -42,7 +44,9 @@ public class BookListItemView extends RelativeLayout {
 			
 			@Override
 			public void onClick(View v) {
-				Toast.makeText(context, "Show Detail", Toast.LENGTH_SHORT).show();
+				Intent i = new Intent(context, BookDetailActivity.class);
+				i.putExtra("titleBook", bookTitleTv.getText().toString());
+				context.startActivity(i);
 				
 			}
 		});
