@@ -4,7 +4,7 @@ import com.library.android.domain.Book;
 import com.library.android.domain.Comment;
 import com.library.android.domain.User;
 
-public class Mocks {
+public class LibraryMocks {
 	
 	private static Comment comment1 = new Comment("Feo libroo", null);
 	private static Comment comment2 = new Comment("Bastante bueno", null);
@@ -23,6 +23,7 @@ public class Mocks {
 		
 	}
 	
+ 
 
 
 }
