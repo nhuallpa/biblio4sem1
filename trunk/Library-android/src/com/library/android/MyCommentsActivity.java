@@ -16,7 +16,7 @@ import android.widget.Toast;
 import com.library.android.config.ConfigurationManager;
 import com.library.android.domain.Book;
 import com.library.android.domain.Comment;
-import com.library.android.mock.Mocks;
+import com.library.android.mock.LibraryMocks;
 
 	public class MyCommentsActivity extends ListActivity {
 		
@@ -49,7 +49,7 @@ import com.library.android.mock.Mocks;
 		protected List<Comment> doInBackground(Void... arg0) {
 			
 //			List<Comment> comments = config.getCurrentUser().getListOfComments();
-			List<Comment> comments = Mocks.getUser().getListOfComments();
+			List<Comment> comments = LibraryMocks.getUser().getListOfComments();
 						
 			return comments;
 		}
