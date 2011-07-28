@@ -3,14 +3,12 @@ package com.library.android.services.impl;
 import java.util.List;
 
 import com.library.android.domain.Book;
+import com.library.android.mock.LibraryMocks;
 import com.library.android.repository.LibraryRepository;
 import com.library.android.services.ConfigWS;
-import com.library.android.services.LibraryWebServices;
-import com.library.services.LibraryServiceImpl;
+import com.library.android.services.BookService;
 
-public class BookServicesImpl implements LibraryWebServices {
-	
-	LibraryRepository repo;
+public class BookServicesImpl implements BookService {
 	
 	private static String url;
 	
@@ -28,8 +26,8 @@ public class BookServicesImpl implements LibraryWebServices {
 		return instance;
 	}
 	
-	
-	public static List<Book> findBook(String text){
+	@Override
+	public List<Book> findBook(String text){
 		
 //		String urlFinal = url + "&bookId=" + text;
 //		String request = null;
@@ -96,6 +94,12 @@ public class BookServicesImpl implements LibraryWebServices {
 	
 	public void toComment(String request){
 		
+	}
+
+	@Override
+	public List<Book> findAllBooks() {
+		List<Book> list = LibraryMocks.getAllBooks();
+		return list;
 	}
 
 

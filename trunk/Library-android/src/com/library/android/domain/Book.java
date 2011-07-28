@@ -13,6 +13,7 @@ public class Book implements Comparable<Book>{
 	private List<Comment> listOfComments;
 	private List<String> tags;
 	private Library library;
+	private String picture;
 	
 	public Book(){
 		init();
@@ -22,6 +23,14 @@ public class Book implements Comparable<Book>{
 		this.ISBN = ISBN;
 		this.library = lib;
 		this.title = title;
+		init();
+	}
+	
+	public Book(Long ISBN, String title, Library lib, String picture){
+		this.ISBN = ISBN;
+		this.library = lib;
+		this.title = title;
+		this.picture = picture;
 		init();
 	}
 	
