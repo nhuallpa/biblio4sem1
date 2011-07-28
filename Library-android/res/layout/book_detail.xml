@@ -50,6 +50,13 @@
   			android:text="Book Description">
 	 	</TextView>	 	
 	 	
+	 	<com.library.android.view.CommentBookListView
+	  		android:id="@+id/book_detail_content_comment"
+	  		android:layout_below="@id/book_detail_descr_book"
+	  		android:layout_width="fill_parent"
+	  		android:layout_marginTop="5dip"
+	  		android:layout_height="wrap_content"/>
+	 	
   	</RelativeLayout>
   
   	

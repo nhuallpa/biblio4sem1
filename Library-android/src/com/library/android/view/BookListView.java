@@ -94,33 +94,7 @@ public class BookListView extends ListView {
 				}
 
 			}
-			
-				
 			return v;
 		}
 	}
-//	
-//	/**
-//	 * Set if the category is visible
-//	 * on the list. This is for the top
-//	 * stories list.
-//	 * @param visible
-//	 */
-//	public void setCategoryVisible(boolean visible){
-//		NewsAdapter adapter = (NewsAdapter)getAdapter();
-//		adapter.setCategoryVisible(visible);
-//	}
-//
-//
-//	@Override
-//	public void imageDownloaded(String url, Bitmap img) {
-//		post(new Runnable() {
-//			@Override
-//			public void run() {
-//				((BaseAdapter)getAdapter()).notifyDataSetChanged();
-//			}
-//		});
-//		
-//	}
-
 }
