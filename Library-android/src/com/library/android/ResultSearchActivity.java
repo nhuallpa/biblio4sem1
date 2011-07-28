@@ -47,7 +47,8 @@ public class ResultSearchActivity extends Activity {
 
 			String inputText = (String)extras.get("inputText");
 			
-			return BookServicesImpl.findBook(inputText);
+//			return BookServicesImpl.findBook(inputText);
+			return null;
 		}
 		
 		@Override
