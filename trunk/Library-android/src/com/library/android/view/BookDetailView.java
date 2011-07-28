@@ -14,6 +14,8 @@ public class BookDetailView extends RelativeLayout {
 	private ImageView bookPicture;
 	private TextView bookAuthor;
 	private TextView bookDesc;
+	
+	private CommentBookListView listView;
 
 	public BookDetailView(Context context) {
 		super(context);
@@ -47,11 +49,13 @@ public class BookDetailView extends RelativeLayout {
 		bookTitle = (TextView) findViewById(R.id.book_detail_title_book);
 		bookPicture = (ImageView) findViewById(R.id.book_detail_picture);
 		bookAuthor = (TextView) findViewById(R.id.book_detail_author_book);
+		listView = (CommentBookListView)findViewById(R.id.book_detail_content_comment);
 		bookDesc = (TextView) findViewById(R.id.book_detail_descr_book);
-//		inflate(context, R.layout.body_news, this);
-//		image = (ImageView) findViewById(R.id.image_new);
-//		title = (TextView) findViewById(R.id.title_new);
-//		body = (TextView)findViewById (R.id.body_new);
+
+	}
+	
+	public CommentBookListView getCommentList(){
+		return this.listView;
 	}
 	
 	public void setBookTitle(String text){

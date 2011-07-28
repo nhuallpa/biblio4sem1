@@ -3,6 +3,7 @@ package com.library.android;
 import android.app.Activity;
 import android.os.Bundle;
 
+import com.library.android.mock.LibraryMocks;
 import com.library.android.view.BookDetailView;
 
 public class BookDetailActivity extends Activity {
@@ -17,6 +18,9 @@ public class BookDetailActivity extends Activity {
 		Bundle extras = getIntent().getExtras();
 		String title = extras.getString("titleBook");
 		bookDetailView.setBookTitle(title);
+		
+		//mock
+		bookDetailView.getCommentList().setCommentList(LibraryMocks.getAllBooks().get(0).getListOfComments());
 		
 	}
 
