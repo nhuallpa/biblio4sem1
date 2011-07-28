@@ -11,8 +11,7 @@ import com.library.android.services.BookService;
 import com.library.android.view.BookListView;
 
 public class BookListActivity extends Activity {
-	
-	private BookService service;
+
 	private BookListView bookListView;
     
     @Override
@@ -21,7 +20,6 @@ public class BookListActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.book_list_view);
         bookListView = (BookListView)findViewById(R.id.book_list);
-//        bookListView.setOnItemClickListener(this);
         init();
     }
     
@@ -29,17 +27,9 @@ public class BookListActivity extends Activity {
     	bookListView.setBookList(LibraryMocks.getAllBooks());
     }
     
-//    public void onStart(){
-//		super.onStart();
-//
-//		BookListAsyncTask asyncTask = new BookListAsyncTask();
-//		service = BookServicesImpl.getInstance();
-//		asyncTask.execute();
-//
-//	}
-
-    
     public void onListItemClick(ListView parent, final View view, int position, long id){   
+    	
+    	
   
 //    	
 //    	view.setBackgroundResource(R.color.con_focus);

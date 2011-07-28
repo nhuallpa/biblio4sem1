@@ -40,7 +40,6 @@ public class BookListView extends ListView {
 	
 	private class NewsAdapter extends BaseAdapter{
 		private List<Book> bookList;
-//		private boolean categoryVisible;
 
 		@Override
 		public int getCount() {
@@ -49,10 +48,6 @@ public class BookListView extends ListView {
 			}
 			return 0;
 		}
-		
-//		public void setCategoryVisible(boolean visible){
-//			this.categoryVisible = visible;
-//		}
 		
 		public void setBooks(List<Book> bookList){
 			this.bookList = bookList;
@@ -85,7 +80,6 @@ public class BookListView extends ListView {
 					v = (BookListItemView)convertView;
 				}else{
 					v =  new BookListItemView(getContext());
-//					v.setCategoryVisible(categoryVisible);
 				}
 				v.setBookTitle(aBook.getTitle());
 				v.setBookISBN(String.valueOf(aBook.getISBN()));

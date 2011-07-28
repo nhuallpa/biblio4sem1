@@ -2,11 +2,13 @@ package com.library.android.view;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.library.android.R;
 
@@ -22,7 +24,7 @@ public class BookListItemView extends RelativeLayout {
 	private TextView bookScoreCount;
 	private TextView bookCommentsCount;
 	
-	public BookListItemView(Context context) {
+	public BookListItemView(final Context context) {
 		super(context);
 		inflate(context, R.layout.item_book_list, this);
 		
@@ -35,6 +37,33 @@ public class BookListItemView extends RelativeLayout {
 		bookISBNTv = (TextView) findViewById(R.id.item_isbn_book);
 		bookScoreCount =(TextView) findViewById(R.id.item_score_book);
 		bookCommentsCount = (TextView) findViewById(R.id.item_comments_book);
+		
+		moreDetailButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Toast.makeText(context, "Show Detail", Toast.LENGTH_SHORT).show();
+				
+			}
+		});
+		
+		scoreButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Toast.makeText(context, "Show Score", Toast.LENGTH_SHORT).show();
+				
+			}
+		});
+		
+		commentsButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Toast.makeText(context, "Comments..", Toast.LENGTH_SHORT).show();
+				
+			}
+		});
 	}
 
 	public ImageView getBookPicture() {
