@@ -35,7 +35,7 @@ public class SearchActivity extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.search_book);
 		config = ConfigurationManager.getInstance(this);
-		ConfigWS c = ConfigWS.getInstance();
+		
 //		c.setUser("lalosoft@gmail.com");
 		
 		bookServices = BookServicesImpl.getInstance();

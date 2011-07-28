@@ -1,6 +1,8 @@
 package com.library.android;
 
 
+import java.io.IOException;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,9 +12,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.library.android.config.ConfigurationManager;
-import com.library.android.config.Constants;
 import com.library.android.services.ConfigWS;
 import com.library.android.services.impl.UserServicesImpl;
 
@@ -46,23 +46,22 @@ public class LoginActivity extends Activity {
 					Toast.makeText(LoginActivity.this, "Invalid input...", Toast.LENGTH_SHORT).show();
 				} else {
 										
-//					try {
-//							String token = UserServicesImpl.login(mail, pass);
-							String token = UserServicesImpl.loginFake();
+					try {
+							String token = UserServicesImpl.login(mail, pass);
 							if(token != null){
 								config.setToken(token);
 								saveConfig();
 								Intent i = new Intent(LoginActivity.this, SearchActivity.class);
-								i.putExtra(Constants.NAME_DATA, mail);
+								
 								startActivity(i);
 							} else {
 								Toast.makeText(LoginActivity.this, "Error login", Toast.LENGTH_SHORT).show();
 							}
 							
-//						} catch (IOException e) {
-//
-//						e.printStackTrace();
-//					}
+						} catch (IOException e) {
+
+						e.printStackTrace();
+					}
 
 				}
 				
