@@ -14,7 +14,16 @@ public class Book implements Comparable<Book>{
 	private List<String> tags;
 	private Library library;
 	private String picture;
+	private String description;
 	
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	public Book(){
 		init();
 	}

@@ -7,7 +7,6 @@ import android.view.Window;
 import android.widget.ListView;
 
 import com.library.android.mock.LibraryMocks;
-import com.library.android.services.BookService;
 import com.library.android.view.BookListView;
 
 public class BookListActivity extends Activity {
@@ -21,6 +20,7 @@ public class BookListActivity extends Activity {
         setContentView(R.layout.book_list_view);
         bookListView = (BookListView)findViewById(R.id.book_list);
         init();
+        
     }
     
     private void init(){
@@ -63,7 +63,9 @@ public class BookListActivity extends Activity {
 //			}
 //		});
     	
-    }  
+    }
+
+
 
 	
 //	private class BookListAsyncTask extends AsyncTask<Void, Context, List<Book>> {
