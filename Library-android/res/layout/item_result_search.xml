@@ -2,7 +2,8 @@
 <RelativeLayout
   xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="fill_parent"
-  android:layout_height="fill_parent">
+  android:layout_height="fill_parent"
+  android:background="#FFFFFF">
   
   	<RelativeLayout
   		android:id="@+id/relative_search_item"
@@ -11,15 +12,80 @@
    		android:layout_alignParentTop="true"
 		android:layout_marginTop="10dip"
 		android:layout_marginLeft="5dip"
-		android:layout_marginBottom="10dip">
+		android:layout_marginBottom="10dip"
+		>
 		
 			<TextView
 				android:id="@+id/item_title_book"
+				android:layout_width="fill_parent"
+   				android:layout_height="wrap_content"
+   				android:text="Book Title"
+   				android:textColor="#000000">
+				
+			</TextView>
+			
+			<TextView
+				android:id="@+id/item_author_book"
+				android:layout_width="fill_parent"
+   				android:layout_height="wrap_content"
+   				android:layout_marginTop="5dip"
+   				android:layout_below="@id/item_title_book"
+   				android:text="Book Author"
+   				android:textColor="#000000">
+			</TextView>
+			<ImageView
+				android:id="@+id/item_icon_score"
 				android:layout_width="wrap_content"
    				android:layout_height="wrap_content"
-   				android:text="Book Title">
+   				android:src="@drawable/score"
+   				android:layout_marginTop="5dip"
+   				android:layout_below="@id/item_author_book">
+			</ImageView>
+			<TextView
+				android:id="@+id/item_score_book"
+				android:layout_width="wrap_content"
+   				android:layout_height="wrap_content"
+   				android:layout_below="@id/item_author_book"
+   				android:layout_toRightOf="@id/item_icon_score"
+   				android:layout_marginTop="10dip"
+   				android:layout_marginLeft="5dip"
+   				android:text="5"
+   				android:textColor="#000000">
+			</TextView>			
 			
+			
+			<ImageView
+				android:id="@+id/item_icon_comment"
+				android:layout_width="wrap_content"
+   				android:layout_height="wrap_content"
+   				android:src="@drawable/comment"
+   				android:layout_marginTop="5dip"
+   				android:layout_marginLeft="15dip"
+   				android:layout_toRightOf="@id/item_score_book"
+   				android:layout_below="@id/item_author_book">
+			</ImageView>
+			<TextView
+				android:id="@+id/item_comments_book"
+				android:layout_width="wrap_content"
+   				android:layout_height="wrap_content"
+   				android:layout_below="@id/item_author_book"
+   				android:layout_toRightOf="@id/item_icon_comment"
+   				android:layout_marginTop="10dip"
+   				android:layout_marginLeft="5dip"
+   				android:text="25"
+   				android:textColor="#000000">
 			</TextView>
+			
+			<Button
+				android:id="@+id/item_button_details"
+				android:layout_width="wrap_content"
+   				android:layout_height="wrap_content"
+   				android:text="More Details"
+   				android:layout_below="@id/item_author_book"
+   				android:layout_marginTop="10dip"
+   				android:layout_toRightOf="@id/item_comments_book"
+   				android:layout_marginLeft="15dip">
+			</Button>						
   	
   	</RelativeLayout>
   	
