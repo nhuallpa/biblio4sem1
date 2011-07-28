@@ -1,20 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >
-<TextView  
-	android:id="@+id/text_bookId"
-    android:layout_width="fill_parent" 
-    android:layout_height="wrap_content" 
-    android:text="bookId"
-    />
-    
-    <TextView  
-	android:id="@+id/text_title"
-    android:layout_width="fill_parent" 
-    android:layout_height="wrap_content" 
-    android:text="title"
-    />
-</LinearLayout>
+		
+		<com.library.android.view.LibraryHeaderView
+			android:id="@+id/header_library_app" android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:layout_centerHorizontal="true"/>
+			
+		
+	
+</RelativeLayout>
