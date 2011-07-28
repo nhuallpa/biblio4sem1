@@ -6,11 +6,11 @@
   android:background="#FFFFFF">
 
   
-  	<ListView
-  		android:id="@android:id/list"
+  	<com.library.android.view.BookListView
+  		android:id="@+id/book_list"
   		android:layout_width="fill_parent"
-  		android:layout_height="fill_parent">
-  	</ListView>
+  		android:layout_height="fill_parent"/>
+  	
   
   
 </LinearLayout>
