@@ -10,15 +10,22 @@
    		android:layout_width="wrap_content"
    		android:layout_height="wrap_content"
    		android:layout_alignParentTop="true"
-		android:layout_marginTop="10dip"
+		android:layout_marginTop="5dip"
 		android:layout_marginLeft="5dip"
-		android:layout_marginBottom="10dip"
+		android:layout_marginBottom="5dip"
 		>
-		
+			<ImageView
+				android:id="@+id/item_book_picture"
+				android:layout_width="wrap_content"
+   				android:layout_height="wrap_content"
+   				android:src="@drawable/icon">
+				
+			</ImageView>
 			<TextView
 				android:id="@+id/item_title_book"
 				android:layout_width="fill_parent"
    				android:layout_height="wrap_content"
+   				android:layout_toRightOf="@id/item_book_picture"
    				android:text="Book Title"
    				android:textColor="#000000">
 				
@@ -30,6 +37,7 @@
    				android:layout_height="wrap_content"
    				android:layout_marginTop="5dip"
    				android:layout_below="@id/item_title_book"
+   				android:layout_toRightOf="@id/item_book_picture"
    				android:text="Book Author"
    				android:textColor="#000000">
 			</TextView>
@@ -39,6 +47,7 @@
    				android:layout_height="wrap_content"
    				android:background="@drawable/score"
    				android:layout_marginTop="5dip"
+   				android:layout_toRightOf="@id/item_book_picture"
    				android:layout_below="@id/item_author_book">
 			</ImageButton>
 			<TextView
@@ -80,9 +89,12 @@
 				android:id="@+id/item_button_details"
 				android:layout_width="wrap_content"
    				android:layout_height="wrap_content"
-   				android:text="More Details"
+   				android:text="Show Details"
    				android:layout_below="@id/item_author_book"
    				android:layout_marginTop="10dip"
+   				android:textColor="#FFFFFF"
+   				android:background="#000000"
+   				android:padding="3dip"
    				android:layout_toRightOf="@id/item_comments_book"
    				android:layout_marginLeft="15dip">
 			</Button>						
