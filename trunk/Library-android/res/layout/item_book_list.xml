@@ -18,25 +18,39 @@
 				android:id="@+id/item_book_picture"
 				android:layout_width="wrap_content"
    				android:layout_height="wrap_content"
-   				android:src="@drawable/icon">
+   				android:layout_marginRight="5dip"
+   				android:src="@drawable/not_picture_book">
 				
 			</ImageView>
+		
 			<TextView
 				android:id="@+id/item_title_book"
 				android:layout_width="fill_parent"
    				android:layout_height="wrap_content"
    				android:layout_toRightOf="@id/item_book_picture"
+   				android:layout_marginTop="5dip"
    				android:text="Book Title"
    				android:textColor="#000000">
 				
 			</TextView>
-			
+			<TextView
+				android:id="@+id/item_isbn_book"
+				android:layout_width="fill_parent"
+   				android:layout_height="wrap_content"
+   				android:layout_toRightOf="@id/item_book_picture"
+   				android:text="Book ISBN"
+   				android:layout_marginTop="5dip"
+   				android:textStyle="bold"
+   				android:layout_below="@id/item_title_book"
+   				android:textColor="#000000">
+				
+			</TextView>				
 			<TextView
 				android:id="@+id/item_author_book"
 				android:layout_width="fill_parent"
    				android:layout_height="wrap_content"
    				android:layout_marginTop="5dip"
-   				android:layout_below="@id/item_title_book"
+   				android:layout_below="@id/item_isbn_book"
    				android:layout_toRightOf="@id/item_book_picture"
    				android:text="Book Author"
    				android:textColor="#000000">

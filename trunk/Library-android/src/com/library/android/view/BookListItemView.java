@@ -2,6 +2,7 @@ package com.library.android.view;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -14,22 +15,46 @@ public class BookListItemView extends RelativeLayout {
 	private ImageView bookPicture;
 	private ImageButton scoreButton;
 	private ImageButton commentsButton;
-	private ImageButton moreDetailButton;
+	private Button moreDetailButton;
 	private TextView bookTitleTv;
 	private TextView bookAuthorTv;
+	private TextView bookISBNTv;
+	private TextView bookScoreCount;
+	private TextView bookCommentsCount;
 	
 	public BookListItemView(Context context) {
 		super(context);
 		inflate(context, R.layout.item_book_list, this);
 		
-		bookPicture = (ImageButton) findViewById(R.id.item_book_picture);
+		bookPicture = (ImageView) findViewById(R.id.item_book_picture);
 		scoreButton = (ImageButton) findViewById(R.id.item_icon_score);
 		commentsButton = (ImageButton) findViewById(R.id.item_icon_comment);
-		moreDetailButton = (ImageButton) findViewById(R.id.item_button_details);
+		moreDetailButton = (Button) findViewById(R.id.item_button_details);
+		bookTitleTv = (TextView) findViewById(R.id.item_title_book);
+		bookAuthorTv = (TextView) findViewById(R.id.item_author_book);
+		bookISBNTv = (TextView) findViewById(R.id.item_isbn_book);
+		bookScoreCount =(TextView) findViewById(R.id.item_score_book);
+		bookCommentsCount = (TextView) findViewById(R.id.item_comments_book);
 	}
 
 	public ImageView getBookPicture() {
 		return bookPicture;
+	}
+	
+	public void setBookScoreCount(String text){
+		this.bookScoreCount.setText(text);
+	}
+	
+	public void setBookCommentsCount(String text){
+		this.bookCommentsCount.setText(text);
+	}
+	
+	public String getBookCommentsCount(){
+		return this.bookCommentsCount.toString();
+	}
+	
+	public String getBookScoreCount(){
+		return this.bookScoreCount.toString();
 	}
 
 	public void setBookPicture(Bitmap image) {
@@ -38,6 +63,30 @@ public class BookListItemView extends RelativeLayout {
 		}else{
 			bookPicture.setImageResource(R.drawable.not_picture_book);
 		}
+	}
+	
+	public void setBookISBN(String text){
+		this.bookISBNTv.setText(text);
+	}
+	
+	public String getBookISBN(){
+		return this.bookISBNTv.getText().toString();
+	}
+
+	public String getBookTitle() {
+		return bookTitleTv.toString();
+	}
+
+	public void setBookTitle(String text) {
+		this.bookTitleTv.setText(text);
+	}
+
+	public String getBookAuthor() {
+		return bookAuthorTv.getText().toString();
+	}
+
+	public void setBookAuthor(String text) {
+		this.bookAuthorTv.setText(text);
 	}
 
 	public ImageButton getScoreButton() {
@@ -56,11 +105,11 @@ public class BookListItemView extends RelativeLayout {
 		this.commentsButton = commentsButton;
 	}
 
-	public ImageButton getMoreDetailButton() {
+	public Button getMoreDetailButton() {
 		return moreDetailButton;
 	}
 
-	public void setMoreDetailButton(ImageButton moreDetailButton) {
+	public void setMoreDetailButton(Button moreDetailButton) {
 		this.moreDetailButton = moreDetailButton;
 	}
 
