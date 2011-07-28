@@ -22,7 +22,7 @@ public class LibraryMocks {
 	private static Comment comment3 = new Comment("Zafa", 2);
 	private static Comment comment4 = new Comment("Esta bueno", 3);
 	
-//	public static Book[] bookList = {book1, book2, book3};
+	public static Book[] bookList = {book1, book2, book3};
 	
 	public static User getUser(){
 		User user = new User();

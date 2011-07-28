@@ -19,9 +19,15 @@ public class BookDetailActivity extends Activity {
 		String title = extras.getString("titleBook");
 		bookDetailView.setBookTitle(title);
 		
+//		//mock
+//		bookDetailView.getCommentList().setCommentList(LibraryMocks.getAllBooks().get(0).getListOfComments());
+		
+	}
+	
+	public void onStart(){
+		super.onStart();
 		//mock
 		bookDetailView.getCommentList().setCommentList(LibraryMocks.getAllBooks().get(0).getListOfComments());
-		
 	}
 
 }
