@@ -16,7 +16,19 @@ public class Comment {
 		this.bookSource = book;
 		this.description = desc;
 		this.date = new Date(DateFormat.YEAR, DateFormat.MONTH, DateFormat.DAY);
-//		this.user = user;
+	}
+	
+	public Comment(String desc, Book book, float score){
+		this.bookSource = book;
+		this.description = desc;
+		this.date = new Date(DateFormat.YEAR, DateFormat.MONTH, DateFormat.DAY);
+		this.score = score;
+	}
+	
+	public Comment(String desc, float score){
+		this.score = score;
+		this.description = desc;
+		this.date = new Date(DateFormat.YEAR, DateFormat.MONTH, DateFormat.DAY);
 	}
 
 	public String getDescription() {

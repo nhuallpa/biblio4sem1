@@ -4,9 +4,8 @@ import java.util.List;
 
 import com.library.android.domain.Book;
 import com.library.android.mock.LibraryMocks;
-import com.library.android.repository.LibraryRepository;
-import com.library.android.services.ConfigWS;
 import com.library.android.services.BookService;
+import com.library.android.services.ConfigWS;
 
 public class BookServicesImpl implements BookService {
 	
@@ -98,8 +97,8 @@ public class BookServicesImpl implements BookService {
 
 	@Override
 	public List<Book> findAllBooks() {
-		List<Book> list = LibraryMocks.getAllBooks();
-		return list;
+		
+		return LibraryMocks.getAllBooks();
 	}
 
 

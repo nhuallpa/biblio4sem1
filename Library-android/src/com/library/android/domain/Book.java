@@ -26,6 +26,14 @@ public class Book implements Comparable<Book>{
 		init();
 	}
 	
+	public Book(Long ISBN, String title, String author, String picture){
+		this.ISBN = ISBN;
+		this.picture = picture;
+		this.title = title;
+		this.author = author;
+		init();
+	}
+	
 	public Book(Long ISBN, String title, Library lib, String picture){
 		this.ISBN = ISBN;
 		this.library = lib;
@@ -45,6 +53,14 @@ public class Book implements Comparable<Book>{
 			score = score + aComment.getScore();
 		}
 		return score;
+	}
+	
+	public void setPicture(String source){
+		this.picture = source;
+	}
+	
+	public String getPicture(){
+		return this.picture;
 	}
 	
 	public void addComment(Comment aComment){
