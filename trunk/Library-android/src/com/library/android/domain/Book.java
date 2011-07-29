@@ -56,8 +56,8 @@ public class Book implements Comparable<Book>{
 		this.tags = new ArrayList<String>();
 	}
 	
-	public Float getScore(){
-		Float score = new Float(0);
+	public double getScore(){
+		double score = new Float(0);
 		for(Comment aComment : listOfComments){
 			score = score + aComment.getScore();
 		}

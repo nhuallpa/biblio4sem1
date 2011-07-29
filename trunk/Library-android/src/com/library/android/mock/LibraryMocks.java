@@ -68,6 +68,13 @@ public class LibraryMocks {
 		user.addComment(book5, comment4);
 		user.addComment(book5, comment2);
 		user.addComment(book5, comment3);
+		user.addComment(book5, comment1);
+		user.addComment(book5, comment3);
+		user.addComment(book5, comment2);
+		user.addComment(book5, comment3);
+		user.addComment(book5, comment4);
+		user.addComment(book5, comment2);
+		
 	}
 	
 	public List<Book> getAllBooks(){

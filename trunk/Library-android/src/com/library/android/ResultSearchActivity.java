@@ -61,7 +61,7 @@ public class ResultSearchActivity extends Activity {
 						HashMap<String,String> temp = new HashMap<String,String>();
 						temp.put("title", aBook.getTitle());
 						temp.put("author", aBook.getAuthor());
-						temp.put("score", aBook.getScore().toString());
+//						temp.put("score", aBook.getScore().toString());
 						list.add(temp);
 					}
 				
