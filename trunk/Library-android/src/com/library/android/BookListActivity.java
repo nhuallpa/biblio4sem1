@@ -1,7 +1,11 @@
 package com.library.android;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.ListView;
@@ -26,6 +30,36 @@ public class BookListActivity extends Activity {
     private void init(){
     	bookListView.setBookList(LibraryMocks.getAllBooks());
     }
+    
+	 public boolean onCreateOptionsMenu(Menu menu) {
+	        MenuInflater inflater = getMenuInflater();
+	        
+	        inflater.inflate(R.menu.menu_book_list, menu);
+	        return true;
+	    }
+	    
+	    public boolean onOptionsItemSelected (MenuItem item){
+
+	        switch (item.getItemId()){
+
+	        	case R.id.menu_search: {
+	        		Intent i = new Intent(BookListActivity.this, SearchActivity.class);
+	        		startActivity(i);
+	        	}break;
+	        
+	            case R.id.menu_location: {
+	            	
+	            }break;
+
+	            case R.id.menu_login:{
+	            	Intent i = new Intent(BookListActivity.this, LoginActivity.class);
+	            	startActivity(i);
+	            	
+	            }break;
+	        }
+	        
+	        return true;
+	        }
     
     public void onListItemClick(ListView parent, final View view, int position, long id){   
     	
@@ -66,47 +100,4 @@ public class BookListActivity extends Activity {
     }
 
 
-
-	
-//	private class BookListAsyncTask extends AsyncTask<Void, Context, List<Book>> {
-//
-//		private BookListItemView itemBook;
-//		
-//		@Override
-//		protected List<Book> doInBackground(Void... params) {
-//			
-//			return service.findAllBooks();
-//		}
-//		
-//		@Override
-//		protected void onPostExecute(List<Book> results){
-//				itemBook = (BookListItemView) findViewById(R.layout.book_list_view);
-//				ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String,String>>();
-//							
-//				if(results.size() > 0){
-//					for(Book aBook : results){
-//						HashMap<String,String> temp = new HashMap<String,String>();
-//						temp.put("picture", aBook.getPicture());
-//						temp.put("title", aBook.getTitle());
-//						temp.put("author", aBook.getAuthor());
-//						temp.put("score", aBook.getScore().toString());
-//						temp.put("comments", String.valueOf(aBook.getListOfComments().size()));
-//						list.add(temp);
-//					}
-//				
-//
-//				SimpleAdapter simpleAdapter = new SimpleAdapter(BookListActivity.this, list, R.layout.item_book_list, new String[] {"title", "author", "score", "comments"},
-//				        new int[] { R.id.item_title_book, R.id.item_author_book, R.id.item_score_book, R.id.item_comments_book});
-//		        		setListAdapter(simpleAdapter);
-//				}
-//
-////				ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(ListaAmigosActivity.this,
-////				        R.layout.amigos, R.id.text_item, myStrings);
-////
-////				setListAdapter(arrayAdapter);
-//
-//		
-//		}
-//
-//    }
 }

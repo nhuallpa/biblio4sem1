@@ -35,7 +35,7 @@
                   android:label="@string/app_name">            
         </activity>
         
-        <activity android:name=".ProfileUserActivity"
+        <activity android:name=".UserProfileActivity"
                   android:label="@string/app_name">            
         </activity>
         
@@ -43,13 +43,25 @@
                   android:label="@string/app_name">            
         </activity>
 
-        <activity android:name=".BookCommentListActivity"
+        <activity android:name=".ToCommentBookActivity"
                   android:label="@string/app_name">            
         </activity>        
         
         <activity android:name=".BookDetailActivity"
                   android:label="@string/app_name">            
         </activity>
+        
+        <activity android:name=".LibraryListActivity"
+                  android:label="@string/app_name">            
+        </activity>       
+
+        <activity android:name=".LibraryMapActivity"
+                  android:label="@string/app_name">            
+        </activity>      
+
+        <activity android:name=".RegisterActivity"
+                  android:label="@string/app_name">            
+        </activity>             
 		
 
     </application>

@@ -94,45 +94,45 @@ public class SearchActivity extends Activity {
 		return true;
 	}
 	
-	public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        
-        inflater.inflate(R.menu.menu, menu);
-        return true;
-    }
-    
-    public boolean onOptionsItemSelected (MenuItem item){
-
-        switch (item.getItemId()){
-
-	        case R.id.profile : {
-	        	Intent i = new Intent(SearchActivity.this, ProfileUserActivity.class);
-	        	startActivity(i);
-	        } break;
-	        
-	        case R.id.login: {
-	        	Intent i = new Intent(SearchActivity.this, LoginActivity.class);
-	        	startActivity(i);
-	        } break;
-	        
-	        case R.id.about: {} break;
-	               
-	        
-	        case R.id.my_comments: {
-	        	if(config.isLogged()){
-		        	Intent i = new Intent(SearchActivity.this, MyCommentsActivity.class);
-		        	startActivity(i);
-	        	} else {
-	        		Toast.makeText(CTX, "Not logged!!", Toast.LENGTH_SHORT).show();
-	        		Intent i = new Intent(SearchActivity.this, LoginActivity.class);
-	        		startActivity(i);
-	        	}
-
-	        }break;
-        
-        }
-        
-       return true;
+//	public boolean onCreateOptionsMenu(Menu menu) {
+//        MenuInflater inflater = getMenuInflater();
+//        
+//        inflater.inflate(R.menu.menu, menu);
+//        return true;
+//    }
+//    
+//    public boolean onOptionsItemSelected (MenuItem item){
+//
+//        switch (item.getItemId()){
+//
+//	        case R.id.profile : {
+//	        	Intent i = new Intent(SearchActivity.this, UserProfileActivity.class);
+//	        	startActivity(i);
+//	        } break;
+//	        
+//	        case R.id.login: {
+//	        	Intent i = new Intent(SearchActivity.this, LoginActivity.class);
+//	        	startActivity(i);
+//	        } break;
+//	        
+//	        case R.id.about: {} break;
+//	               
+//	        
+//	        case R.id.my_comments: {
+//	        	if(config.isLogged()){
+//		        	Intent i = new Intent(SearchActivity.this, MyCommentsActivity.class);
+//		        	startActivity(i);
+//	        	} else {
+//	        		Toast.makeText(CTX, "Not logged!!", Toast.LENGTH_SHORT).show();
+//	        		Intent i = new Intent(SearchActivity.this, LoginActivity.class);
+//	        		startActivity(i);
+//	        	}
+//
+//	        }break;
+//        
+//        }
+//        
+//       return true;
     }
 	
-}
+
