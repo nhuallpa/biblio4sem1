@@ -16,6 +16,7 @@ public class LibraryHeaderView extends RelativeLayout {
 	
 	private TextView headerTitle;
 	private Button librarysButton;
+	private Button bookStoreButton;
 	
 	public LibraryHeaderView(Context context) {
 		super(context);
@@ -54,12 +55,22 @@ public class LibraryHeaderView extends RelativeLayout {
 		this.addView(inflated);
 		headerTitle = (TextView) findViewById(R.id.header_title);
 		librarysButton = (Button) findViewById(R.id.header_librarys_button);
+		bookStoreButton = (Button) findViewById(R.id.header_book_store_button);
 		
 		librarysButton.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				Toast.makeText(context, "Show Library Map", Toast.LENGTH_SHORT).show();
+				
+			}
+		});
+		
+		bookStoreButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Toast.makeText(context, "Show Book Store", Toast.LENGTH_SHORT).show();
 				
 			}
 		});

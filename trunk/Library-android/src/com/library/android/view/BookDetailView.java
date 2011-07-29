@@ -1,6 +1,7 @@
 package com.library.android.view;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -13,7 +14,7 @@ public class BookDetailView extends RelativeLayout {
 	private TextView bookTitle;
 	private ImageView bookPicture;
 	private TextView bookAuthor;
-	private TextView bookDesc;
+	private TextView bookState;
 	
 	private CommentBookListView listView;
 
@@ -50,8 +51,7 @@ public class BookDetailView extends RelativeLayout {
 		bookPicture = (ImageView) findViewById(R.id.book_detail_picture);
 		bookAuthor = (TextView) findViewById(R.id.book_detail_author_book);
 		listView = (CommentBookListView)findViewById(R.id.book_detail_content_comment);
-		bookDesc = (TextView) findViewById(R.id.book_detail_descr_book);
-
+		bookState = (TextView) findViewById(R.id.book_detail_state_book);
 	}
 	
 	public CommentBookListView getCommentList(){
@@ -59,11 +59,31 @@ public class BookDetailView extends RelativeLayout {
 	}
 	
 	public void setBookTitle(String text){
-		this.bookTitle.setText(text);
+		if(text != null){
+			this.bookTitle.setText(text);
+		}
+
 	}
 	
 	public String getBookTitle(){
 		return this.bookTitle.toString();
 	}
 	
+	public void setBookState(String text){
+		this.bookState.setText(text);
+	}
+	
+	public void setBookPicture(Bitmap image) {
+		if(image != null){			
+			bookPicture.setImageBitmap(image);
+		}else{
+			bookPicture.setImageResource(R.drawable.not_picture_book);
+		}
+	}
+	
+	public void setBookAuthor(String text){
+		if(text != null){
+			this.bookAuthor.setText(text);
+		}
+	}
 }

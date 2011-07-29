@@ -10,7 +10,6 @@
    		android:layout_width="wrap_content"
    		android:layout_height="wrap_content"
    		android:layout_alignParentTop="true"
-		android:layout_marginTop="5dip"
 		android:layout_marginLeft="5dip"
 		android:layout_marginBottom="5dip"
 		>
@@ -19,6 +18,7 @@
 				android:layout_width="wrap_content"
    				android:layout_height="wrap_content"
    				android:layout_marginRight="5dip"
+   				android:layout_marginTop="3dip"
    				android:src="@drawable/not_picture_book">
 				
 			</ImageView>
@@ -28,7 +28,7 @@
 				android:layout_width="wrap_content"
    				android:layout_height="wrap_content"
    				android:layout_toRightOf="@id/item_book_picture"
-   				android:layout_marginTop="5dip"
+   				android:layout_marginTop="3dip"
    				android:text="@string/book_list_title_book"
    				android:textColor="#000000">
 				
@@ -39,7 +39,7 @@
 				android:layout_width="fill_parent"
    				android:layout_height="wrap_content"
    				android:layout_toRightOf="@id/item_title_book_tv"
-   				android:layout_marginTop="5dip"
+   				android:layout_marginTop="3dip"
    				android:text="Book Title"
    				android:textStyle="bold"
    				android:textColor="#000000">
@@ -47,23 +47,23 @@
 			</TextView>
 			
 			<TextView
-				android:id="@+id/item_isbn_book_tv"
+				android:id="@+id/item_state_book_tv"
 				android:layout_width="wrap_content"
    				android:layout_height="wrap_content"
    				android:layout_toRightOf="@id/item_book_picture"
-   				android:layout_marginTop="5dip"
+   				android:layout_marginTop="3dip"
    				android:layout_below="@id/item_title_book_tv"
-   				android:text="@string/book_list_isbn_book"
+   				android:text="@string/book_list_state_book"
    				android:textColor="#000000">
 				
 			</TextView>			
 			<TextView
-				android:id="@+id/item_isbn_book"
+				android:id="@+id/item_state_book"
 				android:layout_width="fill_parent"
    				android:layout_height="wrap_content"
-   				android:layout_toRightOf="@id/item_isbn_book_tv"
-   				android:text="Book ISBN"
-   				android:layout_marginTop="5dip"
+   				android:layout_toRightOf="@id/item_state_book_tv"
+   				android:text="Book State"
+   				android:layout_marginTop="3dip"
    				android:layout_below="@id/item_title_book"
    				android:textColor="#000000">
 				
@@ -74,8 +74,8 @@
 				android:layout_width="wrap_content"
    				android:layout_height="wrap_content"
    				android:layout_toRightOf="@id/item_book_picture"
-   				android:layout_marginTop="5dip"
-   				android:layout_below="@id/item_isbn_book_tv"
+   				android:layout_marginTop="3dip"
+   				android:layout_below="@id/item_state_book_tv"
    				android:text="@string/book_list_author_book"
    				android:textColor="#000000">
 				
@@ -84,8 +84,8 @@
 				android:id="@+id/item_author_book"
 				android:layout_width="fill_parent"
    				android:layout_height="wrap_content"
-   				android:layout_marginTop="5dip"
-   				android:layout_below="@id/item_isbn_book"
+   				android:layout_marginTop="3dip"
+   				android:layout_below="@id/item_state_book"
    				android:layout_toRightOf="@id/item_author_book_tv"
    				android:text="Book Author"
    				android:textColor="#000000">
@@ -95,7 +95,7 @@
 				android:layout_width="wrap_content"
    				android:layout_height="wrap_content"
    				android:background="@drawable/score"
-   				android:layout_marginTop="5dip"
+   				android:layout_marginTop="3dip"
    				android:layout_toRightOf="@id/item_book_picture"
    				android:layout_below="@id/item_author_book">
 			</ImageButton>
@@ -107,7 +107,7 @@
    				android:layout_toRightOf="@id/item_icon_score"
    				android:layout_marginTop="10dip"
    				android:layout_marginLeft="5dip"
-   				android:text="5"
+   				android:text="-"
    				android:textColor="#000000">
 			</TextView>			
 			
@@ -130,7 +130,7 @@
    				android:layout_toRightOf="@id/item_icon_comment"
    				android:layout_marginTop="10dip"
    				android:layout_marginLeft="5dip"
-   				android:text="25"
+   				android:text="-"
    				android:textColor="#000000">
 			</TextView>
 			

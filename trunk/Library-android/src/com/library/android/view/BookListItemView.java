@@ -1,10 +1,12 @@
 package com.library.android.view;
 
+import java.io.IOException;
 import java.text.DecimalFormat;
 
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -15,6 +17,7 @@ import android.widget.Toast;
 
 import com.library.android.BookDetailActivity;
 import com.library.android.R;
+import com.library.android.domain.Book;
 
 public class BookListItemView extends RelativeLayout {
 	
@@ -24,9 +27,11 @@ public class BookListItemView extends RelativeLayout {
 	private Button moreDetailButton;
 	private TextView bookTitleTv;
 	private TextView bookAuthorTv;
-	private TextView bookISBNTv;
+	private TextView bookStateTv;
 	private TextView bookScoreCount;
 	private TextView bookCommentsCount;
+	
+	private Book book;
 	
 	public BookListItemView(final Context context) {
 		super(context);
@@ -38,7 +43,7 @@ public class BookListItemView extends RelativeLayout {
 		moreDetailButton = (Button) findViewById(R.id.item_button_details);
 		bookTitleTv = (TextView) findViewById(R.id.item_title_book);
 		bookAuthorTv = (TextView) findViewById(R.id.item_author_book);
-		bookISBNTv = (TextView) findViewById(R.id.item_isbn_book);
+		bookStateTv = (TextView) findViewById(R.id.item_state_book);
 		bookScoreCount =(TextView) findViewById(R.id.item_score_book);
 		bookCommentsCount = (TextView) findViewById(R.id.item_comments_book);
 		
@@ -47,7 +52,10 @@ public class BookListItemView extends RelativeLayout {
 			@Override
 			public void onClick(View v) {
 				Intent i = new Intent(context, BookDetailActivity.class);
-				i.putExtra("titleBook", bookTitleTv.getText().toString());
+				i.putExtra("titleBook", book.getTitle());
+				i.putExtra("authorBook", book.getAuthor());
+				i.putExtra("stateBook", book.getState().toString());
+				i.putExtra("picture", book.getPicture());
 				context.startActivity(i);
 				
 			}
@@ -101,12 +109,12 @@ public class BookListItemView extends RelativeLayout {
 		}
 	}
 	
-	public void setBookISBN(String text){
-		this.bookISBNTv.setText(text);
+	public void setBookState(String text){
+		this.bookStateTv.setText(text);
 	}
 	
-	public String getBookISBN(){
-		return this.bookISBNTv.getText().toString();
+	public String getBookState(){
+		return this.bookStateTv.getText().toString();
 	}
 
 	public String getBookTitle() {
@@ -147,6 +155,25 @@ public class BookListItemView extends RelativeLayout {
 
 	public void setMoreDetailButton(Button moreDetailButton) {
 		this.moreDetailButton = moreDetailButton;
+	}
+	
+
+	public void setItemBook(Book aBook) {
+		DecimalFormat decimalFormat = new DecimalFormat("#.#");
+		book = aBook;
+		setBookTitle(aBook.getTitle());
+		setBookState(String.valueOf(aBook.getState()));
+		setBookAuthor(aBook.getAuthor());
+		setBookScoreCount(decimalFormat.format(aBook.getScore()));
+		setBookCommentsCount(String.valueOf(aBook.getListOfComments().size()));
+		try {
+			setBookPicture(BitmapFactory.decodeStream(getContext().getAssets().open(aBook.getPicture())));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
+		
 	}
 
 	

@@ -16,6 +16,11 @@ public class Reservation {
 		this.library = library;
 	}
 	
+	public Reservation(User user, Book book){
+		this.user = user;
+		this.book = book;
+	}
+	
 	public boolean isReserved(long reservaId){
 		boolean encontrado = false;
 		
