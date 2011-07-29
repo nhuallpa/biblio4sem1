@@ -98,7 +98,7 @@ public class BookServicesImpl implements BookService {
 	@Override
 	public List<Book> findAllBooks() {
 		
-		return LibraryMocks.getAllBooks();
+		return LibraryMocks.getInstance().getAllBooks();
 	}
 
 

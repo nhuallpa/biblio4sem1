@@ -6,6 +6,7 @@ import android.view.Window;
 
 import com.library.android.mock.LibraryMocks;
 import com.library.android.view.BookDetailView;
+import com.library.android.view.CommentBookListView;
 
 public class BookDetailActivity extends Activity {
 	
@@ -22,8 +23,12 @@ public class BookDetailActivity extends Activity {
 		bookDetailView.setBookTitle(title);
 		
 		//mock
-		bookDetailView.getCommentList().setCommentList(LibraryMocks.getAllBooks().get(0).getListOfComments());
-		
+		fill();
+	}
+	
+	private void fill(){
+		CommentBookListView bookList = bookDetailView.getCommentList();
+		bookList.setCommentList(LibraryMocks.getInstance().getAllBooks().get(4).getListOfComments());
 	}
 
 

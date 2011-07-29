@@ -1,5 +1,7 @@
 package com.library.android;
 
-public class LibraryListActivity {
+import android.app.Activity;
+
+public class LibraryListActivity extends Activity{
 
 }

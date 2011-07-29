@@ -28,7 +28,7 @@ public class BookListActivity extends Activity {
     }
     
     private void init(){
-    	bookListView.setBookList(LibraryMocks.getAllBooks());
+    	bookListView.setBookList(LibraryMocks.getInstance().getAllBooks());
     }
     
 	 public boolean onCreateOptionsMenu(Menu menu) {

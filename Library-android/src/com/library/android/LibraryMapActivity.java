@@ -1,5 +1,7 @@
 package com.library.android;
 
-public class LibraryMapActivity {
+import android.app.Activity;
+
+public class LibraryMapActivity extends Activity{
 
 }
