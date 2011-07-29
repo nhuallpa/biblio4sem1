@@ -1,6 +1,7 @@
 package com.library.android.view;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.List;
 
 import android.content.Context;
@@ -75,7 +76,7 @@ public class BookListView extends ListView {
 			BookListItemView v = null;
 			if(obj != null && obj instanceof Book){
 				Book aBook = (Book)obj;
-				
+				DecimalFormat decimalFormat = new DecimalFormat("#.#");
 				if(convertView instanceof BookListItemView){
 					v = (BookListItemView)convertView;
 				}else{
@@ -84,7 +85,7 @@ public class BookListView extends ListView {
 				v.setBookTitle(aBook.getTitle());
 				v.setBookISBN(String.valueOf(aBook.getISBN()));
 				v.setBookAuthor(aBook.getAuthor());
-				v.setBookScoreCount(String.valueOf(aBook.getScore()));
+				v.setBookScoreCount(decimalFormat.format(aBook.getScore()));
 				v.setBookCommentsCount(String.valueOf(aBook.getListOfComments().size()));
 				try {
 					v.setBookPicture(BitmapFactory.decodeStream(getContext().getAssets().open(aBook.getPicture())));

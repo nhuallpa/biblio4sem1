@@ -1,5 +1,7 @@
 package com.library.android.view;
 
+import java.text.DecimalFormat;
+
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -75,6 +77,7 @@ public class BookListItemView extends RelativeLayout {
 	}
 	
 	public void setBookScoreCount(String text){
+		
 		this.bookScoreCount.setText(text);
 	}
 	
