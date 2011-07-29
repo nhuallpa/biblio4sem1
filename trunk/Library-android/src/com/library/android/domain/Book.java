@@ -61,6 +61,7 @@ public class Book implements Comparable<Book>{
 		for(Comment aComment : listOfComments){
 			score = score + aComment.getScore();
 		}
+		score = score / listOfComments.size();
 		return score;
 	}
 	

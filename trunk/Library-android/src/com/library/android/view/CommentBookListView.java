@@ -26,7 +26,7 @@ public class CommentBookListView extends ListView {
 	}
 	
 	/**
-	 * Set the list of news
+	 * Set the list of comments
 	 * @param commentList
 	 */
 	public void setCommentList(List<Comment> commentList){
@@ -81,17 +81,6 @@ public class CommentBookListView extends ListView {
 				}
 				v.setUserName(aComment.getUser().getName());
 				v.setDescription(aComment.getDescription());
-//				v.setBookTitle(aComment.getTitle());
-//				v.setBookISBN(String.valueOf(aComment.getISBN()));
-//				v.setBookAuthor(aComment.getAuthor());
-//				v.setBookScoreCount(String.valueOf(aComment.getScore()));
-//				v.setBookCommentsCount(String.valueOf(aComment.getListOfComments().size()));
-//				try {
-//					v.setBookPicture(BitmapFactory.decodeStream(getContext().getAssets().open(aComment.getPicture())));
-//				} catch (IOException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
 
 			}
 			return v;

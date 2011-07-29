@@ -49,7 +49,7 @@ import com.library.android.mock.LibraryMocks;
 		protected List<Comment> doInBackground(Void... arg0) {
 			
 //			List<Comment> comments = config.getCurrentUser().getListOfComments();
-			List<Comment> comments = LibraryMocks.getUser().getListOfComments();
+			List<Comment> comments = LibraryMocks.getInstance().getUser().getListOfComments();
 						
 			return comments;
 		}

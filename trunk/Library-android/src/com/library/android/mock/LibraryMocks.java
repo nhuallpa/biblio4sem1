@@ -11,46 +11,76 @@ public class LibraryMocks {
 	
 
 	
-	private static Book book1 = new Book(new Long(12345), "Thinking in Java", "Autor 1", ConstantsMock.book1_picture);
-	private static Book book2 = new Book(new Long(6789),"Objective-C", "Autor 2",  ConstantsMock.book2_picture);
-	private static Book book3 = new Book(new Long(7894), "It","Autor 3", ConstantsMock.book3_picture);
-	private static Book book4 = new Book(new Long(4656), "Grails in Action","Dierk Koenig", ConstantsMock.book4_picture);
-	private static Book book5 = new Book(new Long(6547), "Groovy in Action", "Andrew Glover", ConstantsMock.book5_picture);
+	private Book book1;
+	private Book book2;
+	private Book book3;
+	private Book book4;
+	private Book book5;
 	
-	private static Comment comment1 = new Comment("Feo libroo", 2);
-	private static Comment comment2 = new Comment("Bastante bueno",4);
-	private static Comment comment3 = new Comment("Zafa", 2);
-	private static Comment comment4 = new Comment("Esta bueno", 3);
+	private Comment comment1;
+	private Comment comment2;
+	private Comment comment3;
+	private Comment comment4;
 	
-	public static Book[] bookList = {book1, book2, book3};
+	private User user;
 	
-	public static User getUser(){
-		User user = new User();
-		user.setName("Pepe");
+	private List<Book> bookList = new ArrayList<Book>();
+	
+//	public static Book[] bookList = {book1, book2, book3};
+	
+	private static LibraryMocks instance;
+	public static LibraryMocks getInstance(){
+		if(instance == null){
+			instance = new LibraryMocks();
+		}
+		return instance;
+	}
+	
+	
+	private LibraryMocks(){
+		book1 = new Book(new Long(12345), "Thinking in Java", "Autor 1", ConstantsMock.book1_picture);
+		book2 = new Book(new Long(6789),"Objective-C", "Autor 2",  ConstantsMock.book2_picture);
+		book3 = new Book(new Long(7894), "It","Autor 3", ConstantsMock.book3_picture);
+		book4 = new Book(new Long(4656), "Grails in Action","Dierk Koenig", ConstantsMock.book4_picture);
+		book5 = new Book(new Long(6547), "Groovy in Action", "Andrew Glover", ConstantsMock.book5_picture);
 		
-//		Book book1 = new Book(new Long(12345), "Thinking in Java", null);
+		comment1 = new Comment("Feo libroo", 2);
+		comment2 = new Comment("Bastante bueno",4);
+		comment3 = new Comment("Zafa", 2);
+		comment4 = new Comment("Esta bueno", 3);
+		
+		init();
+	}
+	
+	public User getUser(){
+		return user;	
+	}
+	
+	private void init(){
+		user = new User();
+		user.setName("Pepe");
+
 		user.addComment(book1, comment1);
-//		Book book2 = new Book(new Long(6789), "Learning C", null);
 		user.addComment(book2, comment2);
 		user.addComment(book2, comment3);
 		user.addComment(book3, comment1);
 		user.addComment(book4, comment4);
 		user.addComment(book5, comment4);
-				
-		return user;
-		
+		user.addComment(book5, comment2);
+		user.addComment(book5, comment3);
 	}
 	
-	public static List<Book> getAllBooks(){
-		List<Book> list = new ArrayList<Book>();
-		User user = getUser();
-		list.add(book1);
-		list.add(book2);
-		list.add(book3);
-		list.add(book4);
-		list.add(book5);
+	public List<Book> getAllBooks(){
 		
-		return list;
+		if(bookList.size() == 0){
+			bookList.add(book1);
+			bookList.add(book2);
+			bookList.add(book3);
+			bookList.add(book4);
+			bookList.add(book5);
+		}
+		
+		return bookList;
 	}
 	
  
