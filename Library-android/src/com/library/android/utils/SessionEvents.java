@@ -1,4 +1,4 @@
-package com.library.android;
+package com.library.android.utils;
 
 import java.util.LinkedList;
 

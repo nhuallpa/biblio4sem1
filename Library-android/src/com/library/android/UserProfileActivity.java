@@ -22,7 +22,7 @@ import android.widget.Toast;
  */
 
 
-public class ProfileUserActivity extends Activity {
+public class UserProfileActivity extends Activity {
 	
 	private double longitude;
 	private double latitude;
