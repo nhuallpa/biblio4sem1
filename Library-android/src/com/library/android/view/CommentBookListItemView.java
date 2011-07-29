@@ -7,13 +7,15 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.library.android.R;
+import com.library.android.domain.Comment;
+import com.library.android.domain.User;
 
 public class CommentBookListItemView extends RelativeLayout {
 	
 	private TextView user;
 	private TextView descr;
 	
-	Paint paint = new Paint();
+	private Comment comment;
 
 
 	public CommentBookListItemView(Context context) {
@@ -23,8 +25,8 @@ public class CommentBookListItemView extends RelativeLayout {
 		descr = (TextView) findViewById(R.id.item_comment_descr);
 	}
 	
-	public void setUserName(String text){
-		this.user.setText(text);
+	public void setUser(User user){
+		this.user.setText(user.getName());
 	}
 	
 	public String getUserName(){
@@ -39,13 +41,12 @@ public class CommentBookListItemView extends RelativeLayout {
 		return this.descr.getText().toString();
 	}
 	
-    @Override
-    public void onDraw(Canvas canvas) {
-         super.onDraw(canvas);
-            canvas.drawLine(10, 20, 30, 40, paint);
-            canvas.drawLine(20, 10, 50, 20, paint);
-
-    }
+	public void setCommentItem(Comment aComment) {
+		comment = aComment;
+		setDescription(aComment.getDescription());
+		setUser(aComment.getUser());
+		
+	}
 
 
 }

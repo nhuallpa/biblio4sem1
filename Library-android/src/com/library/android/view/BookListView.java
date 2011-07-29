@@ -76,24 +76,12 @@ public class BookListView extends ListView {
 			BookListItemView v = null;
 			if(obj != null && obj instanceof Book){
 				Book aBook = (Book)obj;
-				DecimalFormat decimalFormat = new DecimalFormat("#.#");
 				if(convertView instanceof BookListItemView){
 					v = (BookListItemView)convertView;
 				}else{
 					v =  new BookListItemView(getContext());
 				}
-				v.setBookTitle(aBook.getTitle());
-				v.setBookISBN(String.valueOf(aBook.getISBN()));
-				v.setBookAuthor(aBook.getAuthor());
-				v.setBookScoreCount(decimalFormat.format(aBook.getScore()));
-				v.setBookCommentsCount(String.valueOf(aBook.getListOfComments().size()));
-				try {
-					v.setBookPicture(BitmapFactory.decodeStream(getContext().getAssets().open(aBook.getPicture())));
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
+				v.setItemBook(aBook);
 			}
 			return v;
 		}

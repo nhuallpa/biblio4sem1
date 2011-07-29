@@ -1,7 +1,7 @@
 package com.library.android;
 
-import android.app.ListActivity;
+import android.app.Activity;
 
-public class ToCommentBookActivity extends ListActivity {
+public class ToCommentBookActivity extends Activity {
 
 }

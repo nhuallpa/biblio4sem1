@@ -79,9 +79,7 @@ public class CommentBookListView extends ListView {
 				}else{
 					v =  new CommentBookListItemView(getContext());
 				}
-				v.setUserName(aComment.getUser().getName());
-				v.setDescription(aComment.getDescription());
-
+				v.setCommentItem(aComment);
 			}
 			return v;
 		}

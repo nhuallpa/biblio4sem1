@@ -15,18 +15,7 @@ public class Book implements Comparable<Book>{
 	private Library library;
 	private String picture;
 	private String description;
-	
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public Book(){
-		init();
-	}
+	private States state;
 	
 	public Book(Long ISBN, String title, Library lib){
 		this.ISBN = ISBN;
@@ -51,9 +40,38 @@ public class Book implements Comparable<Book>{
 		init();
 	}
 	
+	public States getState(){
+		return this.state;
+	}
+	
+	public void reserveMe(){
+		this.state = States.RESERVED;
+	}
+	
+	public void cancelReservation(){
+		this.state = States.AVAILABLE;
+	}
+	
+	public boolean isReserved(){
+		return (this.state == States.RESERVED);
+	}
+		
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Book(){
+		init();
+	}
+		
 	private void init(){
 		this.listOfComments = new ArrayList<Comment>();
 		this.tags = new ArrayList<String>();
+		this.state = States.AVAILABLE;
 	}
 	
 	public double getScore(){
@@ -97,7 +115,10 @@ public class Book implements Comparable<Book>{
 	public void reserveMe(User user){
 		
 		Reservation reserved = new Reservation(user, this, library);
-		library.addReservation(reserved);
+		if(library != null){
+			library.addReservation(reserved);
+		}
+		reserveMe();
 	}
 	
 	public void categorizeMe(String tag){

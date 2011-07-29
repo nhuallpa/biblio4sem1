@@ -9,8 +9,6 @@ import com.library.android.domain.User;
 
 public class LibraryMocks {
 	
-
-	
 	private Book book1;
 	private Book book2;
 	private Book book3;
@@ -74,6 +72,9 @@ public class LibraryMocks {
 		user.addComment(book5, comment3);
 		user.addComment(book5, comment4);
 		user.addComment(book5, comment2);
+		
+		user.makeReservation(book2);
+		user.makeReservation(book5);
 		
 	}
 	
