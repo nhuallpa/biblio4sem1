@@ -3,15 +3,19 @@ package com.library.android.view;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.library.android.R;
 
 public class LibraryHeaderView extends RelativeLayout {
 	
 	private TextView headerTitle;
+	private Button librarysButton;
 	
 	public LibraryHeaderView(Context context) {
 		super(context);
@@ -44,13 +48,22 @@ public class LibraryHeaderView extends RelativeLayout {
 	 * This method initialize and inflate the resource xml that defines this widget.
 	 * @param context
 	 */
-	private void init(Context context) {
+	private void init(final Context context) {
 		LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		ViewGroup inflated = (ViewGroup) inflater.inflate(R.layout.library_header, null);
 		this.addView(inflated);
 		headerTitle = (TextView) findViewById(R.id.header_title);
-//		leftButton = (ImageButton) findViewById(R.id.left_button);
-//		rightButton = (ImageButton) findViewById(R.id.right_button);
+		librarysButton = (Button) findViewById(R.id.header_librarys_button);
+		
+		librarysButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Toast.makeText(context, "Show Library Map", Toast.LENGTH_SHORT).show();
+				
+			}
+		});
+
 	}
 	
 	public void setHeaderTitle(String text){

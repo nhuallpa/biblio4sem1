@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="hello">Hello World, MainActivity!</string>
-    <string name="app_name">LibraryAndroid</string>
+    <string name="app_name">Library</string>
+    
+<!--  BookList  -->
+    <string name="book_list_title_book">Title: </string> 
+    <string name="book_list_author_book">Author: </string>
+    <string name="book_list_isbn_book">ISBN: </string>
+    <string name="book_list_detail_button">Show Details</string>
+    
+<!--  Book Comment Item  -->
+	<string name="book_comment_item_user_name">User: </string>
+	<string name="book_comment_item_description">Comment: </string>
 </resources>
