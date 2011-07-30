@@ -8,6 +8,6 @@ public interface BookService {
 	
 	public List<Book> findBook(String text);
 	
-	public List<Book> findAllBooks();
+	public List<Book> getTopBooks();
 
 }

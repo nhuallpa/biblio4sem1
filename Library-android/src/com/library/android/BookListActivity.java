@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.Window;
 
 import com.library.android.mock.LibraryMocks;
+import com.library.android.services.impl.BookServicesImpl;
 import com.library.android.view.BookListView;
 
 public class BookListActivity extends Activity {
@@ -25,7 +26,7 @@ public class BookListActivity extends Activity {
     }
     
     private void init(){
-    	bookListView.setBookList(LibraryMocks.getInstance().getAllBooks());
+    	bookListView.setBookList(BookServicesImpl.getInstance().getTopBooks());
     }
     
 	 public boolean onCreateOptionsMenu(Menu menu) {

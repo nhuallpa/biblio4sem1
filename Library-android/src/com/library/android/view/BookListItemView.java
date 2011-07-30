@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 import com.library.android.BookDetailActivity;
 import com.library.android.R;
 import com.library.android.domain.Book;
+import com.library.android.domain.States;
 
 public class BookListItemView extends RelativeLayout {
 	
@@ -55,6 +57,7 @@ public class BookListItemView extends RelativeLayout {
 				i.putExtra("titleBook", book.getTitle());
 				i.putExtra("authorBook", book.getAuthor());
 				i.putExtra("stateBook", book.getState().toString());
+				i.putExtra("isbnBook", String.valueOf(book.getISBN()));
 				i.putExtra("picture", book.getPicture());
 				context.startActivity(i);
 				
@@ -111,6 +114,14 @@ public class BookListItemView extends RelativeLayout {
 	
 	public void setBookState(String text){
 		this.bookStateTv.setText(text);
+		this.bookStateTv.setTextColor(Color.BLUE);
+		if(text.equals(States.RESERVED.toString())){
+			this.bookStateTv.setTextColor(Color.GRAY);
+		} else if(text.equals(States.DELIVERED)){
+			this.bookStateTv.setTextColor(Color.GREEN);
+		}
+		
+		
 	}
 	
 	public String getBookState(){
