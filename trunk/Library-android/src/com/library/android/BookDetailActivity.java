@@ -11,6 +11,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.Window;
 
+import com.library.android.config.ConfigurationManager;
 import com.library.android.domain.States;
 import com.library.android.mock.LibraryMocks;
 import com.library.android.view.BookDetailView;
@@ -53,14 +54,20 @@ public class BookDetailActivity extends Activity {
 	}
 	
 	public boolean onCreateOptionsMenu(Menu menu) {
+		ConfigurationManager config = ConfigurationManager.getInstance(this);
         MenuInflater inflater = getMenuInflater();
         int menuId = 0;
-        if(this.bookState.equals(States.AVAILABLE.toString())){
-        	menuId = R.menu.menu_book_detail;
-        } else if (this.bookState.equals(States.RESERVED.toString()) || 
-        			this.bookState.equals(States.DELIVERED.toString())) {
-        	menuId = R.menu.menu_book_detail_not_available;
+        if(config.isLogged()){
+        	if(this.bookState.equals(States.AVAILABLE.toString())){
+            	menuId = R.menu.menu_book_detail;
+            } else if (this.bookState.equals(States.RESERVED.toString()) || 
+            			this.bookState.equals(States.DELIVERED.toString())) {
+            	menuId = R.menu.menu_book_detail_not_available;
+            }
+        } else {
+        	menuId = R.menu.menu_not_logged;
         }
+        
 
         inflater.inflate(menuId, menu);
         return true;
