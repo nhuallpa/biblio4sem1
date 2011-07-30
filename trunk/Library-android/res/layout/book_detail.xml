@@ -8,8 +8,9 @@
   	<RelativeLayout
   		android:id="@+id/book_detail_relative1"
 	 	android:layout_width="fill_parent"
-	 	android:layout_margin="5dip"
+	 	
 	 	android:paddingBottom="5dip"
+	 	android:background="#D8D8D8"
 	 	android:layout_height="wrap_content">
 	 	
 	 	<ImageView
@@ -21,11 +22,33 @@
 	 	</ImageView>
 	 	
 	 	<TextView
+	 		android:id="@+id/book_detail_ISBN_book"
+	 		android:layout_width="wrap_content"
+  			android:layout_height="wrap_content"
+  			android:layout_marginLeft="5dip"
+  			android:textColor="#000000"
+  			android:layout_toRightOf="@id/book_detail_picture"
+  			android:text="@string/book_detail_isbn_title">
+	 	</TextView>
+	 	
+	 	<TextView
+	 		android:id="@+id/book_detail_ISBN_book_tv"
+	 		android:layout_width="wrap_content"
+  			android:layout_height="wrap_content"
+  			android:layout_marginLeft="5dip"
+  			android:textColor="#000000"
+  			android:layout_toRightOf="@id/book_detail_ISBN_book"
+  			android:text="Book ISBN">
+	 	</TextView>	 	
+	 	
+	 	<TextView
 	 		android:id="@+id/book_detail_title_book"
 	 		android:layout_width="wrap_content"
   			android:layout_height="wrap_content"
   			android:layout_marginLeft="5dip"
   			android:textColor="#000000"
+  			android:layout_marginTop="5dip"
+  			android:layout_below="@id/book_detail_ISBN_book_tv"
   			android:layout_toRightOf="@id/book_detail_picture"
   			android:text="@string/book_detail_default_title">
 	 	</TextView>

@@ -2,12 +2,14 @@ package com.library.android.view;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.library.android.R;
+import com.library.android.domain.States;
 
 public class BookDetailView extends RelativeLayout {
 	
@@ -15,6 +17,7 @@ public class BookDetailView extends RelativeLayout {
 	private ImageView bookPicture;
 	private TextView bookAuthor;
 	private TextView bookState;
+	private TextView bookISBN;
 	
 	private CommentBookListView listView;
 
@@ -52,10 +55,15 @@ public class BookDetailView extends RelativeLayout {
 		bookAuthor = (TextView) findViewById(R.id.book_detail_author_book);
 		listView = (CommentBookListView)findViewById(R.id.book_detail_content_comment);
 		bookState = (TextView) findViewById(R.id.book_detail_state_book);
+		bookISBN = (TextView) findViewById(R.id.book_detail_ISBN_book_tv);
 	}
 	
 	public CommentBookListView getCommentList(){
 		return this.listView;
+	}
+	
+	public void setBookISBN(String text){
+		this.bookISBN.setText(text);
 	}
 	
 	public void setBookTitle(String text){
@@ -71,6 +79,12 @@ public class BookDetailView extends RelativeLayout {
 	
 	public void setBookState(String text){
 		this.bookState.setText(text);
+		this.bookState.setTextColor(Color.BLUE);
+		if(text.equals(States.RESERVED.toString())){
+			this.bookState.setTextColor(Color.GRAY);
+		} else if(text.equals(States.DELIVERED)){
+			this.bookState.setTextColor(Color.GREEN);
+		}
 	}
 	
 	public void setBookPicture(Bitmap image) {

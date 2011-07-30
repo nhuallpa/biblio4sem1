@@ -3,6 +3,8 @@ package com.library.android.services.impl;
 import java.util.List;
 
 import com.library.android.domain.Book;
+import com.library.android.domain.Comment;
+import com.library.android.domain.Reservation;
 import com.library.android.mock.LibraryMocks;
 import com.library.android.services.BookService;
 import com.library.android.services.ConfigWS;
@@ -91,12 +93,16 @@ public class BookServicesImpl implements BookService {
 		return false;
 	}
 	
-	public void toComment(String request){
+	public void toComment(Long bookId, Comment aComment){
+		
+	}
+	
+	public void toReserveBook(Long bookId, Reservation aReservation){
 		
 	}
 
 	@Override
-	public List<Book> findAllBooks() {
+	public List<Book> getTopBooks() {
 		
 		return LibraryMocks.getInstance().getAllBooks();
 	}

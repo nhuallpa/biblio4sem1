@@ -17,4 +17,5 @@
 	<string name="book_detail_default_title">no title</string>
 	<string name="book_detail_default_author">no author</string>
 	<string name="book_detail_default_desc">no description</string>
+	<string name="book_detail_isbn_title">ISBN: </string>
 </resources>
