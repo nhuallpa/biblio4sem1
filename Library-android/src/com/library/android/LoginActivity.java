@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import com.library.android.config.ConfigurationManager;
+import com.library.android.config.Constants;
 import com.library.android.services.ConfigWS;
 import com.library.android.services.impl.UserServicesImpl;
 
@@ -35,6 +36,8 @@ public class LoginActivity extends Activity {
 		loginButton = (Button) findViewById(R.id.login_button);
 		appConfig = ConfigurationManager.getInstance(this);
 		
+		final String goToActivity = getIntent().getExtras().getString(Constants.GO_TO_ACTIVITY);
+		
 		loginButton.setOnClickListener(new OnClickListener() {
 			
 			String mail = nameText.getText().toString();
@@ -51,9 +54,16 @@ public class LoginActivity extends Activity {
 							if(token != null){
 								config.setToken(token);
 								saveConfig();
-								Intent i = new Intent(LoginActivity.this, SearchActivity.class);
 								
-								startActivity(i);
+								if(goToActivity != null){
+//									goToActivity -->
+								} else {
+									Intent i = new Intent(LoginActivity.this, BookListActivity.class);
+									startActivity(i);
+								}
+								
+								
+								
 							} else {
 								Toast.makeText(LoginActivity.this, "Error login", Toast.LENGTH_SHORT).show();
 							}

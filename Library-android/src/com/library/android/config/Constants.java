@@ -12,5 +12,7 @@ public class Constants {
 	public static String NAME_DATA = "name";
 	public static String PASS_DATA = "pass";
 	
+	public static String GO_TO_ACTIVITY = "goToActivity";
+	
 
 }
