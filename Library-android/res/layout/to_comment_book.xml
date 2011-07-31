@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  android:background="#848484">
+  	
+  	<TextView
+  		android:id="@+id/to_comment_book_title_book"
+  		android:layout_width="wrap_content"
+  		android:layout_height="wrap_content"
+  		android:text="book title"
+  		android:layout_marginTop="5dip"
+  		android:layout_marginLeft="5dip"
+  		android:textColor="#FFFFFF">
+  	</TextView>
+
+  
+  	<TextView
+  		android:id="@+id/to_comment_book_title"
+  		android:layout_width="wrap_content"
+  		android:layout_height="wrap_content"
+  		android:layout_marginTop="5dip"
+  		android:layout_marginLeft="5dip"
+  		android:layout_below="@id/to_comment_book_title_book"
+  		android:text="@string/to_comment_book_title"
+  		android:textColor="#FFFFFF">
+  	</TextView>
+  	
+  	<EditText
+  		android:id="@+id/to_comment_book_edit_text"
+  		android:layout_width="fill_parent"
+  		android:layout_height="100dip"
+  		android:layout_marginTop="5dip"
+  		android:layout_marginLeft="5dip"
+  		android:layout_marginRight="5dip"
+  		android:layout_below="@id/to_comment_book_title"
+  		android:hint="@string/to_comment_book_edit_txt_hint">
+  	</EditText>
+  	
+  	<Button
+  		android:id="@+id/to_comment_book_submmit_button"
+  		android:layout_width="wrap_content"
+  		android:layout_height="wrap_content"
+  		android:layout_below="@id/to_comment_book_edit_text"
+  		android:layout_marginTop="15dip"
+  		android:layout_marginLeft="5dip"
+  		android:text="@string/to_comment_book_submmit_button">
+  	</Button>
+  	
+    
+</RelativeLayout>

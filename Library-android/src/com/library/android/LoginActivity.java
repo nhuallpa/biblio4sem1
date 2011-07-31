@@ -57,6 +57,8 @@ public class LoginActivity extends Activity {
 								
 								if(goToActivity != null){
 //									goToActivity -->
+									Intent i = new Intent(LoginActivity.this, BookListActivity.class);
+									startActivity(i);
 								} else {
 									Intent i = new Intent(LoginActivity.this, BookListActivity.class);
 									startActivity(i);

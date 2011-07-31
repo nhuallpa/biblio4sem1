@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.Window;
+import android.widget.Toast;
 
 import com.library.android.config.ConfigurationManager;
 import com.library.android.domain.States;
@@ -80,14 +81,15 @@ public class BookDetailActivity extends Activity {
         	case R.id.menu_book_detail_comment: {
 //        		Intent i = new Intent(BookDetailActivity.this, ToCommentBookActivity.class);
 //        		startActivity(i);
+        		Toast.makeText(this, "Comment", Toast.LENGTH_SHORT).show();
         	}break;
         
             case R.id.menu_location: {
-            	
+            	Toast.makeText(this, "Location", Toast.LENGTH_SHORT).show();
             }break;
             
             case R.id.menu_book_detail_reserve: {
-            	
+            	Toast.makeText(this, "Reserve", Toast.LENGTH_SHORT).show();
             }break;
             
             case R.id.menu_book_detail_login: {

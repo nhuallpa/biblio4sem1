@@ -18,4 +18,9 @@
 	<string name="book_detail_default_author">no author</string>
 	<string name="book_detail_default_desc">no description</string>
 	<string name="book_detail_isbn_title">ISBN: </string>
+	
+<!--  To Comment Book	-->
+	<string name="to_comment_book_title">Comment: </string>
+	<string name="to_comment_book_edit_txt_hint">Input Text </string>
+	<string name="to_comment_book_submmit_button">To Comment </string>
 </resources>

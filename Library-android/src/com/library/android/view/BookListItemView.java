@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.library.android.BookDetailActivity;
 import com.library.android.LoginActivity;
 import com.library.android.R;
+import com.library.android.ToCommentBookActivity;
 import com.library.android.config.ConfigurationManager;
 import com.library.android.config.Constants;
 import com.library.android.domain.Book;
@@ -73,7 +74,7 @@ public class BookListItemView extends RelativeLayout {
 			
 			@Override
 			public void onClick(View v) {
-				Toast.makeText(context, "Score: " + book.getScore(), Toast.LENGTH_SHORT).show();
+				Toast.makeText(context,book.getTitle() + "Score: " + book.getScore(), Toast.LENGTH_LONG).show();
 				
 			}
 		});
@@ -84,10 +85,15 @@ public class BookListItemView extends RelativeLayout {
 			public void onClick(View v) {
 				if(config.isLogged()){
 					Toast.makeText(context, "To Comment..", Toast.LENGTH_SHORT).show();
+					Intent i = new Intent(context, ToCommentBookActivity.class);
+					i.putExtra("bookId", book.getBookId());
+					i.putExtra("bookTitle", book.getTitle());
+					context.startActivity(i);
 				} else {
 					Toast.makeText(context, "Comment: to Login", Toast.LENGTH_SHORT).show();
 					Intent i = new Intent(context, LoginActivity.class);
 					i.putExtra(Constants.GO_TO_ACTIVITY, "ToCommentBook");
+					context.startActivity(i);
 				}
 			}
 		});
