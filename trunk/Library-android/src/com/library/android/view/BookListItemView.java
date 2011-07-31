@@ -74,7 +74,7 @@ public class BookListItemView extends RelativeLayout {
 			
 			@Override
 			public void onClick(View v) {
-				Toast.makeText(context,book.getTitle() + "Score: " + book.getScore(), Toast.LENGTH_LONG).show();
+				Toast.makeText(context,book.getTitle() + " - Score: " + book.getScore(), Toast.LENGTH_LONG).show();
 				
 			}
 		});

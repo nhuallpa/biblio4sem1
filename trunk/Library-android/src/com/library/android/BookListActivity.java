@@ -8,6 +8,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.Window;
 
+import com.library.android.config.ConfigurationManager;
 import com.library.android.mock.LibraryMocks;
 import com.library.android.services.impl.BookServicesImpl;
 import com.library.android.view.BookListView;
@@ -15,6 +16,7 @@ import com.library.android.view.BookListView;
 public class BookListActivity extends Activity {
 
 	private BookListView bookListView;
+	private ConfigurationManager config;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -23,6 +25,8 @@ public class BookListActivity extends Activity {
         setContentView(R.layout.book_list_view);
         bookListView = (BookListView)findViewById(R.id.book_list);
         init();
+        
+        config = ConfigurationManager.getInstance(this);
     }
     
     private void init(){
@@ -31,8 +35,13 @@ public class BookListActivity extends Activity {
     
 	 public boolean onCreateOptionsMenu(Menu menu) {
 	        MenuInflater inflater = getMenuInflater();
-	        
-	        inflater.inflate(R.menu.menu_book_list, menu);
+	        int menuId = 0;
+	        if(config.isLogged()){
+	        	menuId = R.menu.menu_book_list;
+	        } else {
+	        	menuId = R.menu.menu_not_logged;
+	        }
+	        inflater.inflate(menuId, menu);
 	        return true;
 	    }
 	    
@@ -49,11 +58,11 @@ public class BookListActivity extends Activity {
 	            	
 	            }break;
 
-	            case R.id.menu_login:{
-	            	Intent i = new Intent(BookListActivity.this, LoginActivity.class);
-	            	startActivity(i);
-	            	
-	            }break;
+//	            case R.id.menu:{
+//	            	Intent i = new Intent(BookListActivity.this, LoginActivity.class);
+//	            	startActivity(i);
+//	            	
+//	            }break;
 	        }
 	        
 	        return true;
