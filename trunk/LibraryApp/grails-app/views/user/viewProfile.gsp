@@ -1,24 +1,24 @@
 <html>
 	<head>
 		<meta name="layout" content="home" />
-		<title>Profile: ${user?.name}</title>
+		<title>Profile: ${userProfile?.name}</title>
 	</head>
 	<body>
 		
-		<h3 class="long-title">${user?.name}</h3>
+		<h3 class="long-title">${userProfile?.name}</h3>
 		
 		<div id="items" class="shadowed">
 			<div class="inner-boundary">
-				<span class="text">email: ${user?.email }</span>
+				<span class="text">email: ${userProfile?.email }</span>
 				|
-				<span class="text">Phone: ${user?.phone }</span>
+				<span class="text">Phone: ${userProfile?.phone }</span>
 				|
-				<span class="text">Rating: ${user?.rating}</span>
+				<span class="text">Rating: ${userProfile?.rating}</span>
 				|
-				<span class="text">Total Votes: ${user?.totalVotes}</span>
+				<span class="text">Total Votes: ${userProfile?.totalVotes}</span>
 		</div>				
 				<ul class="item-list">
-					<g:each var="tag_fav" in="${user?.typesFav}">
+					<g:each var="tag_fav" in="${userProfile?.typesFav}">
 						<li>
 							<span class="text">${tag_fav.name}</span>
 					    </li>
@@ -27,7 +27,7 @@
 				
 				<h4>Reservations</h4>
 				<ul class="item-list">
-					<g:each var="reservation" in="${user?.reservations}">
+					<g:each var="reservation" in="${userProfile?.reservations}">
 						<li>
 							<span class="text"><g:link controller="book" action="viewDetails" params="[bookId:reservation.book.id]">${reservation.book.name}</g:link></span>
 							|
@@ -39,7 +39,7 @@
 			<div class="inner-boundary">
 				<h4>Comments Done</h4>
 				<ul class="item-list">
-					<g:each var="commentDone" in="${user?.commentsDone}">
+					<g:each var="commentDone" in="${userProfile?.commentsDone}">
 						<li>
 							<g:link controller="book" action="viewDetails" params="[bookId:commentDone.book.id]">${commentDone.book.name}</g:link>
 							<h4>"${commentDone.description}"</h4>

@@ -87,5 +87,9 @@ class Book implements Taggable{
 	Boolean isReserved(){
 		return (state == States.RESERVED)
 	}
+	
+	boolean equals(Object aBook) {
+		return (this.id == aBook.id)
+	}
 		
 }

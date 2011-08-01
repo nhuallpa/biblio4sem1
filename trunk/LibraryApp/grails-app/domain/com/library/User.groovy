@@ -121,16 +121,20 @@ class User {
 	
 	void cancelReservation(Book aBook){
 		
-		def flag = 0
-		for ( o in this.reservations){
-			if ( o?.getBook() == aBook ){
-				this.reservations.remove o
-				flag = 1
+		def reservationFound = null;
+		for (reservation in this.reservations) {
+			if (reservation.getBook().equals(aBook)) {
+				reservationFound = reservation
+				break
 			}
 		}
-		if (flag == 0) throw new ReservationDoesNotExistException()
 		
-		aBook.cancelReservation()	
+		if (reservationFound) {
+			this.reservations.remove reservationFound
+			aBook.cancelReservation()
+		} else {
+			throw new ReservationDoesNotExistException()
+		}
 	}
 	
 	void deleteMyComment(Comment aComment){
