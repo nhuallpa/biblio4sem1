@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.Window;
 
 import com.library.android.config.ConfigurationManager;
+import com.library.android.config.Constants;
 import com.library.android.mock.LibraryMocks;
 import com.library.android.services.impl.BookServicesImpl;
 import com.library.android.view.BookListView;
@@ -58,11 +59,12 @@ public class BookListActivity extends Activity {
 	            	
 	            }break;
 
-//	            case R.id.menu:{
-//	            	Intent i = new Intent(BookListActivity.this, LoginActivity.class);
-//	            	startActivity(i);
-//	            	
-//	            }break;
+	            case R.id.menu_login:{
+	            	Intent i = new Intent(BookListActivity.this, LoginActivity.class);
+	            	i.putExtra(Constants.GO_TO_ACTIVITY, Constants.BOOK_LIST);
+	            	startActivity(i);
+	            	
+	            }break;
 	        }
 	        
 	        return true;

@@ -13,6 +13,7 @@ import android.view.Window;
 import android.widget.Toast;
 
 import com.library.android.config.ConfigurationManager;
+import com.library.android.config.Constants;
 import com.library.android.domain.States;
 import com.library.android.mock.LibraryMocks;
 import com.library.android.view.BookDetailView;
@@ -79,9 +80,8 @@ public class BookDetailActivity extends Activity {
         switch (item.getItemId()){
 
         	case R.id.menu_book_detail_comment: {
-//        		Intent i = new Intent(BookDetailActivity.this, ToCommentBookActivity.class);
-//        		startActivity(i);
-        		Toast.makeText(this, "Comment", Toast.LENGTH_SHORT).show();
+        		Intent i = new Intent(BookDetailActivity.this, ToCommentBookActivity.class);
+        		startActivity(i);
         	}break;
         
             case R.id.menu_location: {
@@ -92,8 +92,9 @@ public class BookDetailActivity extends Activity {
             	Toast.makeText(this, "Reserve", Toast.LENGTH_SHORT).show();
             }break;
             
-            case R.id.menu_book_detail_login: {
+            case R.id.menu_login: {
             	Intent i = new Intent(BookDetailActivity.this, LoginActivity.class);
+            	i.putExtra(Constants.GO_TO_ACTIVITY, Constants.BOOK_DETAIL);
             	startActivity(i);
             }break;
 
