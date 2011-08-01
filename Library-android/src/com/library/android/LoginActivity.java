@@ -4,6 +4,7 @@ package com.library.android;
 import java.io.IOException;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import com.library.android.config.ConfigurationManager;
 import com.library.android.config.Constants;
 import com.library.android.services.ConfigWS;
@@ -25,6 +27,8 @@ public class LoginActivity extends Activity {
 	private ConfigWS config;
 	private ConfigurationManager appConfig;
 	
+	private final static int BOOK = 1;
+	
 	public void onCreate(Bundle b){
 		super.onCreate(b);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -36,7 +40,7 @@ public class LoginActivity extends Activity {
 		loginButton = (Button) findViewById(R.id.login_button);
 		appConfig = ConfigurationManager.getInstance(this);
 		
-		final String goToActivity = getIntent().getExtras().getString(Constants.GO_TO_ACTIVITY);
+		final Integer goToActivity = getIntent().getExtras().getInt(Constants.GO_TO_ACTIVITY);
 		
 		loginButton.setOnClickListener(new OnClickListener() {
 			
@@ -56,8 +60,8 @@ public class LoginActivity extends Activity {
 								saveConfig();
 								
 								if(goToActivity != null){
-//									goToActivity -->
-									Intent i = new Intent(LoginActivity.this, BookListActivity.class);
+									Class<?> classToGo = resolveClass(goToActivity);
+									Intent i = new Intent(LoginActivity.this, classToGo);
 									startActivity(i);
 								} else {
 									Intent i = new Intent(LoginActivity.this, BookListActivity.class);
@@ -79,6 +83,22 @@ public class LoginActivity extends Activity {
 				
 			}
 			
+			
+			private Class<?> resolveClass(Integer cod){
+				Class<?> classToGo = null;
+				switch (cod) {
+					case Constants.BOOK_DETAIL:{
+						classToGo = BookDetailActivity.class;
+					}break;
+	
+					case Constants.BOOK_LIST: {
+						classToGo = BookListActivity.class;
+					}break;
+				
+				}
+				
+				return classToGo;
+			}
 			
 			private void saveConfig(){
 				fillData();
