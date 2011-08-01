@@ -4,7 +4,6 @@ package com.library.android;
 import java.io.IOException;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -26,9 +25,7 @@ public class LoginActivity extends Activity {
 	private Button loginButton;
 	private ConfigWS config;
 	private ConfigurationManager appConfig;
-	
-	private final static int BOOK = 1;
-	
+		
 	public void onCreate(Bundle b){
 		super.onCreate(b);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -62,13 +59,13 @@ public class LoginActivity extends Activity {
 								if(goToActivity != null){
 									Class<?> classToGo = resolveClass(goToActivity);
 									Intent i = new Intent(LoginActivity.this, classToGo);
-									startActivity(i);
+//									startActivity(i);
+									
+									startActivityIfNeeded(i, RESULT_OK);
 								} else {
 									Intent i = new Intent(LoginActivity.this, BookListActivity.class);
 									startActivity(i);
 								}
-								
-								
 								
 							} else {
 								Toast.makeText(LoginActivity.this, "Error login", Toast.LENGTH_SHORT).show();
@@ -94,7 +91,10 @@ public class LoginActivity extends Activity {
 					case Constants.BOOK_LIST: {
 						classToGo = BookListActivity.class;
 					}break;
-				
+					
+					case Constants.TO_COMMENT:{
+						classToGo = ToCommentBookActivity.class;
+					}
 				}
 				
 				return classToGo;

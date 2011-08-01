@@ -17,9 +17,11 @@ import com.library.android.services.ConfigWS;
 import com.library.android.services.BookService;
 import com.library.android.utils.Utils;
 
-public class UserServicesImpl {//implements LibraryWebServices {
+public class UserServicesImpl{
 	
 	LibraryRepository repo;
+	
+	
 	
 	public static String login(String mail, String pass) throws IOException{
 		 

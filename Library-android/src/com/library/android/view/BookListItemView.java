@@ -92,7 +92,7 @@ public class BookListItemView extends RelativeLayout {
 				} else {
 					Toast.makeText(context, "Comment: to Login", Toast.LENGTH_SHORT).show();
 					Intent i = new Intent(context, LoginActivity.class);
-					i.putExtra(Constants.GO_TO_ACTIVITY, "ToCommentBook");
+					i.putExtra(Constants.GO_TO_ACTIVITY, Constants.TO_COMMENT);
 					context.startActivity(i);
 				}
 			}

@@ -23,32 +23,41 @@ public class BookDetailActivity extends Activity {
 	
 	private BookDetailView bookDetailView;
 	private String bookState;
+	private Bundle extras;
+	
 	
 	public void onCreate(Bundle b){
 		super.onCreate(b);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.book_content_detail);
 		bookDetailView =(BookDetailView) findViewById(R.id.book_detail_content);
-		
-		setExtras(getIntent().getExtras());
+		extras = getIntent().getExtras();
+		setExtras();
 		
 		//mock
 		fill();
 	}
 	
-	private void setExtras(Bundle extras){
-		bookDetailView.setBookTitle(extras.getString("titleBook"));
-		bookDetailView.setBookAuthor(extras.getString("authorBook"));
-		bookDetailView.setBookState(extras.getString("stateBook"));
-		bookState = extras.getString("stateBook");
-		bookDetailView.setBookISBN(extras.getString("isbnBook"));
-		
-		try {
-			bookDetailView.setBookPicture(BitmapFactory.decodeStream(getAssets().open(extras.getString("picture"))));
-		} catch (IOException e) {
-			e.printStackTrace();
+	private void setExtras(){
+		if(extras != null){
+			bookDetailView.setBookTitle(extras.getString("titleBook"));
+			bookDetailView.setBookAuthor(extras.getString("authorBook"));
+			bookDetailView.setBookState(extras.getString("stateBook"));
+			bookState = extras.getString("stateBook");
+			bookDetailView.setBookISBN(extras.getString("isbnBook"));
+			try {
+				bookDetailView.setBookPicture(BitmapFactory.decodeStream(getAssets().open(extras.getString("picture"))));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
+	
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data){
+		super.onActivityResult(requestCode, resultCode, data);
+	}
+	
 	
 	private void fill(){
 		CommentBookListView bookList = bookDetailView.getCommentList();
@@ -74,6 +83,11 @@ public class BookDetailActivity extends Activity {
         inflater.inflate(menuId, menu);
         return true;
     }
+	
+//	@Override
+//	public void onResume(){
+//		setExtras();
+//	}
     
     public boolean onOptionsItemSelected (MenuItem item){
 
@@ -95,6 +109,16 @@ public class BookDetailActivity extends Activity {
             case R.id.menu_login: {
             	Intent i = new Intent(BookDetailActivity.this, LoginActivity.class);
             	i.putExtra(Constants.GO_TO_ACTIVITY, Constants.BOOK_DETAIL);
+//				i.putExtra("titleBook", extras.getString("titleBook"));
+//				i.putExtra("authorBook",extras.getString("authorBook"));
+//				i.putExtra("stateBook", extras.getString("stateBook"));
+//				i.putExtra("isbnBook", extras.getString("isbnBook"));
+//				i.putExtra("picture", extras.getString("picture"));
+            	startActivity(i);
+            }break;
+            
+            case R.id.menu_profile: {
+            	Intent i = new Intent(BookDetailActivity.this, MyCommentsActivity.class);
             	startActivity(i);
             }break;
 
