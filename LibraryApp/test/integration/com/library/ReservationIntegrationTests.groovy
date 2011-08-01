@@ -14,8 +14,9 @@ class ReservationIntegrationTests extends GroovyTestCase {
 	
     protected void setUp() {
         super.setUp()
-		
 		user = new User(name: "Ariel", location: location)
+		assertTrue user.validate()
+		user.save()
 		location = new Location(country: "countryTest", street: "streetTest")
 		aLibrary = new Library(libraryId: "BA_Ateneo", name: "El Ateneo")
 		assertNotNull aLibrary.save()
@@ -27,8 +28,6 @@ class ReservationIntegrationTests extends GroovyTestCase {
 
 	
 	void testUserMakeReservation() {
-		assertTrue user.validate()
-		
 		aBook = new Book(name:"C",ISBN:"1",state:States.AVAILABLE,library:aLibrary)
 		assertNotNull aBook.save()
 		user.makeReservation(aBook)
@@ -39,9 +38,6 @@ class ReservationIntegrationTests extends GroovyTestCase {
 	}
 	
 	void testReturnABook(){
-		
-		assertTrue user.validate()
-		
 		aBook = new Book(name:"C",ISBN:"1",state:States.AVAILABLE,library:aLibrary)
 		def aBookTwo = new Book(name:"M",ISBN:"2",state:States.AVAILABLE,library:aLibrary)
 		user.makeReservation(aBook)
@@ -53,7 +49,6 @@ class ReservationIntegrationTests extends GroovyTestCase {
 		
 	}
     void testUserTryToReturnBookNotReservedByHim(){
-		assertTrue user.validate()
 		aBook = new Book(name:"C",ISBN:"1",state:States.RESERVED,library:aLibrary)
 		shouldFail(ReservationDoesNotExistException){
 			user.returnBook(aBook)
@@ -61,7 +56,6 @@ class ReservationIntegrationTests extends GroovyTestCase {
 	}
 	
 	void testUserRegisterMoreThanOneBook(){
-		assertTrue user.validate()
 		aBook = new Book(name:"C",ISBN:"1",state:States.AVAILABLE,library:aLibrary)
 		def aBookTwo = new Book(name:"M",ISBN:"2",state:States.AVAILABLE,library:aLibrary)
 		user.makeReservation(aBook)
@@ -70,17 +64,28 @@ class ReservationIntegrationTests extends GroovyTestCase {
 	}
 	
 	void testUserCancelAReservation(){
-		assertTrue user.validate()
 		aBook = new Book(name:"C",ISBN:"1",state:States.AVAILABLE,library:aLibrary)
 		def aBookTwo = new Book(name:"M",ISBN:"2",state:States.AVAILABLE,library:aLibrary)
+		assertNotNull aBookTwo.save()
+		assertNotNull aBook.save()
 		user.makeReservation(aBook)
 		user.makeReservation(aBookTwo)
-		user.cancelReservation(aBook)
-		assertEquals 1,user.getReservations().size()
+		assertEquals 2, user.getReservations().size()
+		
+		User userFound = User.get(user.id)
+		userFound.cancelReservation(aBook)
+		assertEquals 1,userFound.getReservations().size()
+		
+
+		User userFoundAgain = User.get(user.id)
+		userFoundAgain.cancelReservation(aBookTwo)
+		assertEquals 0,userFoundAgain.getReservations().size()
+		
+		User userFoundReservationCero = User.get(user.id)
+		assertEquals 0,userFoundReservationCero.getReservations().size()
 	}
 	
 	void testUserTryToReservateAnAlreadyReservedBook(){
-		assertTrue user.validate()
 		aBook = new Book(name:"C",ISBN:"1",state:States.RESERVED,library:aLibrary)
 		shouldFail(BookAlreadyReservedException){
 			user.makeReservation(aBook)

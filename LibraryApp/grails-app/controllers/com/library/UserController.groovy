@@ -93,8 +93,14 @@ class UserController {
 	}
 	
 	def viewProfile = {
-		User aUser = User.get(params.userId)
-		[user:aUser]
+//		User aUser = User.get(params.userId)
+		User aUser = session.user
+		if (!aUser.isAttached()) {
+			aUser.attach()
+		} else {
+			goToHome()
+		}
+		[userProfile:aUser]
 	}
 	
 	def viewImage = {
