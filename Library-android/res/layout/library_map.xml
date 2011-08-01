@@ -7,12 +7,12 @@
   android:layout_height="fill_parent">
   
       <com.google.android.maps.MapView 
-        android:id="@+id/mapView"
+        android:id="@+id/map_view"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:enabled="true"
         android:clickable="true"
-        android:apiKey="ABQIAAAAciM87ZDsHBpWSo69gghBUhTBaO2NnPIX2ODBAYKWUTh_GfwcSRRzx5s0cMioil3poeutRThJRI35IQ"
+        android:apiKey="06VodRsRvFxte97Zhz01LJle3sFuSYTO0MQqymQ"
         />
   
 </RelativeLayout>
