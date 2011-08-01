@@ -1,6 +1,7 @@
 package com.library.android.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.library.android.BookListActivity;
+import com.library.android.ShowMapActivity;
 import com.library.android.R;
 
 public class LibraryHeaderView extends RelativeLayout {
@@ -57,12 +60,14 @@ public class LibraryHeaderView extends RelativeLayout {
 		librarysButton = (Button) findViewById(R.id.header_librarys_button);
 		bookStoreButton = (Button) findViewById(R.id.header_book_store_button);
 		
+		
 		librarysButton.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				Toast.makeText(context, "Show Library Map", Toast.LENGTH_SHORT).show();
-				
+//				Intent i = new Intent(context, ShowMapActivity.class);
+//				context.startActivity(i);
 			}
 		});
 		
@@ -71,10 +76,16 @@ public class LibraryHeaderView extends RelativeLayout {
 			@Override
 			public void onClick(View v) {
 				Toast.makeText(context, "Show Book Store", Toast.LENGTH_SHORT).show();
-				
+
 			}
 		});
 
+	}
+	
+
+	
+	public Button getLibraryButton(){
+		return this.librarysButton;
 	}
 	
 	public void setHeaderTitle(String text){

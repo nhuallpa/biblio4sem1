@@ -36,6 +36,8 @@ public class BookDetailActivity extends Activity {
 		
 		//mock
 		fill();
+		
+		
 	}
 	
 	private void setExtras(){
