@@ -102,6 +102,8 @@ public class BookDetailActivity extends Activity {
         
             case R.id.menu_location: {
             	Toast.makeText(this, "Location", Toast.LENGTH_SHORT).show();
+            	Intent i = new Intent(BookDetailActivity.this, ShowMapActivity.class);
+        		startActivity(i);
             }break;
             
             case R.id.menu_book_detail_reserve: {
