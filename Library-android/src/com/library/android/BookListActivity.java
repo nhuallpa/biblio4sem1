@@ -10,7 +10,6 @@ import android.view.Window;
 
 import com.library.android.config.ConfigurationManager;
 import com.library.android.config.Constants;
-import com.library.android.mock.LibraryMocks;
 import com.library.android.services.impl.BookServicesImpl;
 import com.library.android.view.BookListView;
 
@@ -28,6 +27,8 @@ public class BookListActivity extends Activity {
         init();
         
         config = ConfigurationManager.getInstance(this);
+        
+        
     }
     
     private void init(){
@@ -56,7 +57,7 @@ public class BookListActivity extends Activity {
 	        	}break;
 	        
 	            case R.id.menu_location: {
-	            	
+
 	            }break;
 
 	            case R.id.menu_login:{

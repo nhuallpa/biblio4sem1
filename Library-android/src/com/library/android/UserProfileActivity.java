@@ -1,15 +1,7 @@
 package com.library.android;
 
-import com.library.android.config.ConfigurationManager;
-import com.library.android.config.Constants;
-import com.library.android.domain.States;
-
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
@@ -20,7 +12,6 @@ import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 /**
@@ -58,7 +49,7 @@ public class UserProfileActivity extends Activity {
 				String lon = String.valueOf(longitude);
 //				Uri name = Uri.parse("geo:lat,lon?q=name");
 				String name = "now!";
-				initLocation();
+//				initLocation();
 				setValues();
 				Intent intent = new Intent(android.content.Intent.ACTION_VIEW, 
 						Uri.parse("geo:" + lat + "," + lon + "?q=" + name));
@@ -77,17 +68,17 @@ public class UserProfileActivity extends Activity {
 		tv_longitude.setText(String.valueOf(latitude));
 	}
 
-	private void initLocation() {
-
-		LocationManager mlocManager =
-
-			(LocationManager)getSystemService(Context.LOCATION_SERVICE);
-
-			LocationListener mlocListener = new MyLocationListener();
-
-			mlocManager.requestLocationUpdates( LocationManager.GPS_PROVIDER, 0, 0, mlocListener);
-
-	}
+//	private void initLocation() {
+//
+//		LocationManager mlocManager =
+//
+//			(LocationManager)getSystemService(Context.LOCATION_SERVICE);
+//
+//			LocationListener mlocListener = new MyLocationListener(this);
+//
+//			mlocManager.requestLocationUpdates( LocationManager.GPS_PROVIDER, 0, 0, mlocListener);
+//
+//	}
 	
 	public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -113,37 +104,7 @@ public class UserProfileActivity extends Activity {
         
         return true;
         }
-	
-	/* Class My Location Listener */
 
-	public class MyLocationListener implements LocationListener	{
-
-		@Override
-		public void onLocationChanged(Location loc){
-	
-			longitude = loc.getLongitude();
-			latitude = loc.getLatitude();
-			setValues();
-		}
-	
-		@Override
-		public void onProviderDisabled(String provider)	{
-	
-			Toast.makeText( getApplicationContext(),"Gps Disabled",	Toast.LENGTH_SHORT ).show();
-	
-		}
-	
-		@Override
-		public void onProviderEnabled(String provider){
-	
-			Toast.makeText( getApplicationContext(),"Gps Enabled",Toast.LENGTH_SHORT).show();
-	
-		}
-	
-		@Override
-		public void onStatusChanged(String provider, int status, Bundle extras)	{}
-
-	}/* End of Class MyLocationListener */
 
 	
 
