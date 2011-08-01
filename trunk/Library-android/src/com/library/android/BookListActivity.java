@@ -65,6 +65,11 @@ public class BookListActivity extends Activity {
 	            	startActivity(i);
 	            	
 	            }break;
+	            
+	            case R.id.menu_profile: {
+	            	Intent i = new Intent(BookListActivity.this, UserProfileActivity.class);
+	            	startActivity(i);
+	            }break;
 	        }
 	        
 	        return true;

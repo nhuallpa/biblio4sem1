@@ -4,4 +4,5 @@
     <item android:id="@+id/menu_book_detail_comment" android:title="Comment Book" android:icon="@drawable/comment"></item>
     <item android:id="@+id/menu_location" android:title="Location"></item>
     <item android:id="@+id/menu_book_detail_reserve" android:title="Reserve Book" android:icon="@drawable/reserve_book"></item>
+    <item android:id="@+id/menu_profile" android:title="Profile"></item>
 </menu>

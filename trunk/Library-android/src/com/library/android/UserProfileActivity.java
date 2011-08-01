@@ -1,5 +1,9 @@
 package com.library.android;
 
+import com.library.android.config.ConfigurationManager;
+import com.library.android.config.Constants;
+import com.library.android.domain.States;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -8,7 +12,11 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
@@ -32,8 +40,8 @@ public class UserProfileActivity extends Activity {
 	
 	public void onCreate(Bundle b){
 		super.onCreate(b);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.profile);
-		
 		
 		
 		tv_latitude = (TextView) findViewById(R.id.text_latitud);
@@ -80,6 +88,31 @@ public class UserProfileActivity extends Activity {
 			mlocManager.requestLocationUpdates( LocationManager.GPS_PROVIDER, 0, 0, mlocListener);
 
 	}
+	
+	public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+
+        inflater.inflate(R.menu.menu_user_profile, menu);
+        return true;
+    }
+	
+	public boolean onOptionsItemSelected (MenuItem item){
+
+        switch (item.getItemId()){
+
+        	case R.id.menu_my_comments: {
+        		Intent i = new Intent(UserProfileActivity.this, MyCommentsActivity.class);
+        		startActivity(i);
+        	}break;
+        	
+        	case R.id.menu_my_reservations: {
+
+        	}break;
+
+        }
+        
+        return true;
+        }
 	
 	/* Class My Location Listener */
 

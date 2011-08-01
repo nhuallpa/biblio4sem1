@@ -94,7 +94,7 @@ public class BookServicesImpl implements BookService {
 	}
 	
 	public void toComment(Long bookId, Comment aComment){
-		
+		//TODO: implements comunication with WS
 	}
 	
 	public void toReserveBook(Long bookId, Reservation aReservation){

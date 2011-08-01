@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+  xmlns:android="http://schemas.android.com/apk/res/android">
+  
+    <item android:id="@+id/menu_my_comments" android:title="My Comments"></item>
+  <item android:id="@+id/menu_my_reservations" android:title="My Reservations"></item>
+</menu>
