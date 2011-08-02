@@ -138,8 +138,8 @@
 				android:id="@+id/relative_detail_button"
 		   		android:layout_width="wrap_content"
    				android:layout_height="wrap_content"
-   				android:layout_marginTop="10dip"
-   				android:layout_below="@id/item_author_book"
+   				android:layout_marginTop="25dip"
+   				
    				android:layout_marginRight="15dip"
    				android:layout_alignParentRight="true">
    				
@@ -147,11 +147,11 @@
 						android:id="@+id/item_button_details"
 						android:layout_width="wrap_content"
 		   				android:layout_height="wrap_content"
-		   				android:text="@string/book_list_detail_button"
+		   				
 		   				android:textColor="#FFFFFF"
-		   				android:padding="4dip"
-		   				android:background="#000000">
-					</Button>	
+		   				android:padding="3dip"
+		   				android:background="@drawable/detail1">
+		   			</Button>	
    				
 			</RelativeLayout>
 			

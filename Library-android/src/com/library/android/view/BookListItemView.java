@@ -188,7 +188,7 @@ public class BookListItemView extends RelativeLayout {
 	
 
 	public void setItemBook(Book aBook) {
-		DecimalFormat decimalFormat = new DecimalFormat("#.#");
+		DecimalFormat decimalFormat = new DecimalFormat("#");
 		book = aBook;
 		setBookTitle(aBook.getTitle());
 		setBookState(String.valueOf(aBook.getState()));

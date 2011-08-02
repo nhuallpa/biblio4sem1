@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,6 +17,7 @@ public class ToCommentBookView extends RelativeLayout {
 	private TextView bookTitle;
 	private EditText editText;
 	private Button toCommentButton;
+	private Spinner spinner;
 	
 	public ToCommentBookView(Context context) {
 		super(context);
@@ -49,7 +51,11 @@ public class ToCommentBookView extends RelativeLayout {
 		this.bookTitle = (TextView) findViewById(R.id.to_comment_book_title_book);
 		this.editText = (EditText) findViewById(R.id.to_comment_book_edit_text);
 		this.toCommentButton = (Button) findViewById(R.id.to_comment_book_submmit_button);
-
+		this.spinner = (Spinner) findViewById(R.id.myspinner);
+	}
+	
+	public Spinner getSpinner(){
+		return this.spinner;
 	}
 	
 	public void setBookTitle(String text){

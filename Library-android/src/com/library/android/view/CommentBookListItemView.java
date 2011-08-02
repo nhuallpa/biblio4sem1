@@ -1,9 +1,11 @@
 package com.library.android.view;
 
+import java.text.DecimalFormat;
+
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
+import android.widget.ArrayAdapter;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.library.android.R;
@@ -25,7 +27,11 @@ public class CommentBookListItemView extends RelativeLayout {
 		user = (TextView) findViewById(R.id.item_comment_user);
 		descr = (TextView) findViewById(R.id.item_comment_descr);
 		score = (TextView) findViewById(R.id.item_comment_score_data);
+		 
+		
 	}
+	
+	
 	
 	public void setUser(User user){
 		this.user.setText(user.getName());
@@ -44,10 +50,12 @@ public class CommentBookListItemView extends RelativeLayout {
 	}
 	
 	public void setCommentItem(Comment aComment) {
+		DecimalFormat decimalFormat = new DecimalFormat("#");
 		comment = aComment;
 		setDescription(aComment.getDescription());
 		setUser(aComment.getUser());
-		this.score.setText(String.valueOf(aComment.getScore()));
+		
+		this.score.setText(String.valueOf(decimalFormat.format(aComment.getScore())));
 	}
 
 

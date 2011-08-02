@@ -29,6 +29,17 @@
   		android:textColor="#FFFFFF">
   	</TextView>
   	
+  	<Spinner
+		android:id="@+id/myspinner"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:drawSelectorOnTop="true"
+		android:layout_alignParentRight="true"
+		android:prompt="@string/planet_prompt"/>
+	
+
+  	
+  	
   	<EditText
   		android:id="@+id/to_comment_book_edit_text"
   		android:layout_width="fill_parent"

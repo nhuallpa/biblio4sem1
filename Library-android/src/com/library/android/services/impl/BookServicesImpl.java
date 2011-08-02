@@ -107,8 +107,12 @@ public class BookServicesImpl implements BookService {
 		
 	}
 	
-	public void toReserveBook(Long bookId, Reservation aReservation){
-		
+//	public void toReserveBook(Long bookId, Reservation aReservation){
+//		
+//	}
+	
+	public void toReserveBook(Book book){
+		book.reserveMe();
 	}
 
 	@Override

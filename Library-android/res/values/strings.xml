@@ -17,6 +17,7 @@
 <!--  Book Comment Item  -->
 	<string name="book_comment_item_user_name">User: </string>
 	<string name="book_comment_item_description">Comment: </string>
+	<string name="planet_prompt">Score</string>
 	
 <!--  Book Detail	-->
 	<string name="book_detail_default_title">no title</string>
@@ -32,4 +33,6 @@
 <!--  Registration	-->
 	<string name="register_title">Registration</string>
 	<string name="register_username">User Name: </string>
+	
+	
 </resources>
