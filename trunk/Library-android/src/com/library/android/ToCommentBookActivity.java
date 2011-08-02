@@ -8,6 +8,8 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.library.android.config.Constants;
@@ -21,12 +23,18 @@ public class ToCommentBookActivity extends Activity {
 	private ToCommentBookView toCommentBookView;
 	private Book book;
 	private Context ctx = ToCommentBookActivity.this;
+	private Spinner mySpinner;
 	
 	public void onCreate(Bundle b){
 		super.onCreate(b);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.to_comment_book_content);
 		toCommentBookView = (ToCommentBookView) findViewById(R.id.to_comment_book_content_relative);
+		
+		mySpinner = toCommentBookView.getSpinner();
+		ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.scores_arrays, android.R.layout.simple_spinner_item); 
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		mySpinner.setAdapter(adapter); 
 		
 		if(getIntent().getExtras() != null){
 			Long isbn = getIntent().getExtras().getLong(Constants.ISBN_BOOK);
@@ -43,7 +51,8 @@ public class ToCommentBookActivity extends Activity {
 			public void onClick(View arg0) {
 				String text = toCommentBookView.getTextFromInput();
 				if(!text.equals("")){
-					Comment aComment = new Comment(text, book);
+					String scoreSelected = (String)mySpinner.getSelectedItem();
+					Comment aComment = new Comment(text, book, Float.valueOf(scoreSelected));
 					BookServicesImpl.getInstance(ctx).toComment(book, aComment);
 					Toast.makeText(ToCommentBookActivity.this, "Send Comment..", Toast.LENGTH_SHORT).show();
 					Intent i = new Intent(ToCommentBookActivity.this, BookListActivity.class);

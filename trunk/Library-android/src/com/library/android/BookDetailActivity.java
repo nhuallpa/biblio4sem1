@@ -4,12 +4,10 @@ import java.io.IOException;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -32,6 +30,8 @@ public class BookDetailActivity extends Activity {
 	private String bookState;
 //	private Bundle extras;
 	private Long bookIsbn;
+	
+	private Context ctx = BookDetailActivity.this;
 	
 	
 	public void onCreate(Bundle b){
@@ -124,13 +124,14 @@ public class BookDetailActivity extends Activity {
             }break;
             
             case R.id.menu_book_detail_reserve: {
-            	Book book = BookServicesImpl.getInstance(this).getBookByISBN(bookIsbn);
+            	final Book book = BookServicesImpl.getInstance(this).getBookByISBN(bookIsbn);
             	
             	final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
             	alertDialog.setTitle(getString(R.string.reserve_title) + " " +book.getTitle());
             	alertDialog.setMessage(getString(R.string.are_you_sure));
             	alertDialog.setButton(getString(R.string.reserve_button), new DialogInterface.OnClickListener() {
             	   public void onClick(DialogInterface dialog, int which) {
+            		  BookServicesImpl.getInstance(ctx).toReserveBook(book); 
             		  Intent i = new Intent(BookDetailActivity.this, BookListActivity.class);
               		  startActivity(i);
             	   }
