@@ -3,9 +3,15 @@ package com.library.android;
 import java.io.IOException;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -16,7 +22,6 @@ import com.library.android.config.ConfigurationManager;
 import com.library.android.config.Constants;
 import com.library.android.domain.Book;
 import com.library.android.domain.States;
-import com.library.android.mock.LibraryMocks;
 import com.library.android.services.impl.BookServicesImpl;
 import com.library.android.view.BookDetailView;
 import com.library.android.view.CommentBookListView;
@@ -26,6 +31,7 @@ public class BookDetailActivity extends Activity {
 	private BookDetailView bookDetailView;
 	private String bookState;
 //	private Bundle extras;
+	private Long bookIsbn;
 	
 	
 	public void onCreate(Bundle b){
@@ -33,20 +39,20 @@ public class BookDetailActivity extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.book_content_detail);
 		bookDetailView =(BookDetailView) findViewById(R.id.book_detail_content);
-
-		fillData(getIntent().getExtras().getLong(Constants.ISBN_BOOK));
+		bookIsbn = getIntent().getExtras().getLong(Constants.ISBN_BOOK);
+		fillData();
 		
 	}
 	
-	private void fillData(Long isbn){
-		Book book = BookServicesImpl.getInstance(this).getBookByISBN(isbn);
+	private void fillData(){
+		Book book = BookServicesImpl.getInstance(this).getBookByISBN(bookIsbn);
 		CommentBookListView comments = bookDetailView.getCommentList();
 		comments.setCommentList(book.getListOfComments());
 		bookDetailView.setBookTitle(book.getTitle());
 		bookDetailView.setBookAuthor(book.getAuthor());
 		bookDetailView.setBookState(book.getState().toString());
 		bookState = book.getState().toString();
-		bookDetailView.setBookISBN(String.valueOf(isbn));
+		bookDetailView.setBookISBN(String.valueOf(bookIsbn));
 		try {
 			bookDetailView.setBookPicture(BitmapFactory.decodeStream(getAssets().open(book.getPicture())));
 		} catch (IOException e) {
@@ -101,17 +107,13 @@ public class BookDetailActivity extends Activity {
         return true;
     }
 	
-//	@Override
-//	public void onResume(){
-//		setExtras();
-//	}
-    
     public boolean onOptionsItemSelected (MenuItem item){
 
         switch (item.getItemId()){
 
         	case R.id.menu_book_detail_comment: {
         		Intent i = new Intent(BookDetailActivity.this, ToCommentBookActivity.class);
+        		i.putExtra(Constants.ISBN_BOOK, bookIsbn);
         		startActivity(i);
         	}break;
         
@@ -122,22 +124,40 @@ public class BookDetailActivity extends Activity {
             }break;
             
             case R.id.menu_book_detail_reserve: {
-            	Toast.makeText(this, "Reserve", Toast.LENGTH_SHORT).show();
+            	Book book = BookServicesImpl.getInstance(this).getBookByISBN(bookIsbn);
+            	
+            	final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+            	alertDialog.setTitle(getString(R.string.reserve_title) + " " +book.getTitle());
+            	alertDialog.setMessage(getString(R.string.are_you_sure));
+            	alertDialog.setButton(getString(R.string.reserve_button), new DialogInterface.OnClickListener() {
+            	   public void onClick(DialogInterface dialog, int which) {
+            		  Intent i = new Intent(BookDetailActivity.this, BookListActivity.class);
+              		  startActivity(i);
+            	   }
+            	});
+            	alertDialog.setButton2("No", new DialogInterface.OnClickListener() {
+             	   public void onClick(DialogInterface dialog, int which) {
+
+             		   alertDialog.closeOptionsMenu();
+             		  
+             	   }
+             	});
+            	
+            	alertDialog.setIcon(R.drawable.logo_library);
+            	alertDialog.show();
+            	
+            	
             }break;
             
             case R.id.menu_login: {
             	Intent i = new Intent(BookDetailActivity.this, LoginActivity.class);
             	i.putExtra(Constants.GO_TO_ACTIVITY, Constants.BOOK_DETAIL);
-//				i.putExtra("titleBook", extras.getString("titleBook"));
-//				i.putExtra("authorBook",extras.getString("authorBook"));
-//				i.putExtra("stateBook", extras.getString("stateBook"));
-//				i.putExtra("isbnBook", extras.getString("isbnBook"));
-//				i.putExtra("picture", extras.getString("picture"));
+				i.putExtra(Constants.ISBN_BOOK, bookIsbn);
             	startActivity(i);
             }break;
             
             case R.id.menu_profile: {
-            	Intent i = new Intent(BookDetailActivity.this, MyCommentsActivity.class);
+            	Intent i = new Intent(BookDetailActivity.this, UserProfileActivity.class);
             	startActivity(i);
             }break;
 
@@ -146,6 +166,15 @@ public class BookDetailActivity extends Activity {
         return true;
         }
 
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event)  {
+	    if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+		        Intent i = new Intent(BookDetailActivity.this, BookListActivity.class);
+		        startActivity(i);
+	        return true;
+	    }
 
+	    return super.onKeyDown(keyCode, event);
+	}
 
 }

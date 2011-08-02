@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+<!-- App -->
     <string name="hello">Hello World, MainActivity!</string>
     <string name="app_name">Library</string>
+    <string name="are_you_sure">Are you sure?</string>
+    <string name="reserve_title">Reserve: </string>
+    <string name="reserve_button">Reserve</string>
     
 <!--  BookList  -->
     <string name="book_list_title_book">Title: </string> 
