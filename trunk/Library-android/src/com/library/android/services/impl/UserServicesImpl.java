@@ -1,20 +1,13 @@
 package com.library.android.services.impl;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import android.content.Context;
 
+import com.library.android.config.ConfigurationManager;
+import com.library.android.domain.User;
+import com.library.android.mock.LibraryMocks;
 import com.library.android.repository.LibraryRepository;
-import com.library.android.services.ConfigWS;
-import com.library.android.services.BookService;
 import com.library.android.utils.Utils;
 
 public class UserServicesImpl{
@@ -23,7 +16,7 @@ public class UserServicesImpl{
 	
 	
 	
-	public static String login(String mail, String pass) throws IOException{
+	public static String login(String mail, String pass, Context ctx) throws IOException{
 		 
 //		String url = ConfigWS.WS_LOGIN + "mail_login=" + mail + "&pass_login=" + pass;
 //		String token = null;
@@ -63,6 +56,9 @@ public class UserServicesImpl{
 //				e.printStackTrace();
 //			}
 //           }
+			ConfigurationManager config = ConfigurationManager.getInstance(ctx);
+			config.setUser(LibraryMocks.getInstance().getUser());
+			
          	String token = Utils.md5("123456");
            return token;
 	}

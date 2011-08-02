@@ -36,7 +36,7 @@ import com.library.android.mock.LibraryMocks;
 
 	public void onStart(){
 		super.onStart();
-
+		config = ConfigurationManager.getInstance(this);
 		LibraryAsyncTask task = new LibraryAsyncTask();
 		
 		task.execute();
@@ -47,8 +47,8 @@ import com.library.android.mock.LibraryMocks;
 		@Override
 		protected List<Comment> doInBackground(Void... arg0) {
 			
-//			List<Comment> comments = config.getCurrentUser().getListOfComments();
-			List<Comment> comments = LibraryMocks.getInstance().getUser().getListOfComments();
+			List<Comment> comments = config.getCurrentUser().getListOfComments();
+//			List<Comment> comments = LibraryMocks.getInstance().getUser().getListOfComments();
 						
 			return comments;
 		}

@@ -2,6 +2,7 @@ package com.library.android.mock;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import com.library.android.domain.Book;
 import com.library.android.domain.Comment;
@@ -36,7 +37,8 @@ public class LibraryMocks {
 	private User nestor;
 	private User ariel;
 	
-	private List<Book> bookList = new ArrayList<Book>();
+	private List<Book> topBooks = new ArrayList<Book>();
+	private List<Book> allBooks = new ArrayList<Book>();
 		
 	private static LibraryMocks instance;
 	
@@ -49,17 +51,17 @@ public class LibraryMocks {
 	
 	
 	private LibraryMocks(){
-		book1 = new Book(new Long(12345), "Thinking in Java", "Autor 1", ConstantsMock.book1_picture);
+		book1 = new Book(new Long(1234), "Thinking in Java", "Autor 1", ConstantsMock.book1_picture);
 		book2 = new Book(new Long(6789),"Objective-C", "Autor 2",  ConstantsMock.book2_picture);
 		book3 = new Book(new Long(7894), "It","Autor 3", ConstantsMock.book3_picture);
 		book4 = new Book(new Long(4656), "Grails in Action","Dierk Koenig", ConstantsMock.book4_picture);
 		book5 = new Book(new Long(6547), "Groovy in Action", "Andrew Glover", ConstantsMock.book5_picture);
 		book6 = new Book(new Long(7461), "The Ruby Programming", "David Flanagan", ConstantsMock.book6_picture);
 		book7 = new Book(new Long(8714), "Hello, Android", "Ed Burnette", ConstantsMock.book7_picture);
-		book8 = new Book(new Long(2345), "BlackBerry for Dummies", "Robert Kao", ConstantsMock.book8_picture);
+		book8 = new Book(new Long(1092), "BlackBerry for Dummies", "Robert Kao", ConstantsMock.book8_picture);
 		book9 = new Book(new Long(7671), "iPad 2", "J D Biersdorfer", ConstantsMock.book9_picture);
 		book10 = new Book(new Long(2345), "iPhone 4", "David Mark", ConstantsMock.book10_picture);
-		book11 = new Book(new Long(2345), "Pro C# and .NET", "Andrew W. Troelsen", ConstantsMock.book11_picture);
+		book11 = new Book(new Long(5786), "Pro C# and .NET", "Andrew W. Troelsen", ConstantsMock.book11_picture);
 		
 		
 		comment1 = new Comment("Feo libroo", 2);
@@ -74,6 +76,8 @@ public class LibraryMocks {
 		
 		init();
 	}
+	
+
 	
 	public User getUser(){
 		return gonza;	
@@ -144,14 +148,29 @@ public class LibraryMocks {
 		ariel.makeReservation(book7);
 		ariel.makeReservation(book9);
 		
-		bookList.add(book11);
-		bookList.add(book2);
-		bookList.add(book10);
-		bookList.add(book4);
-		bookList.add(book8);
-		bookList.add(book9);
-		bookList.add(book3);
-		bookList.add(book6);
+		//topBooks
+		topBooks.add(book11);
+		topBooks.add(book2);
+		topBooks.add(book10);
+		topBooks.add(book4);
+		topBooks.add(book8);
+		topBooks.add(book9);
+		topBooks.add(book3);
+		topBooks.add(book6);
+		
+		//allBooks
+		allBooks.add(book1);
+		allBooks.add(book2);
+		allBooks.add(book3);
+		allBooks.add(book4);
+		allBooks.add(book5);
+		allBooks.add(book6);
+		allBooks.add(book7);
+		allBooks.add(book8);
+		allBooks.add(book9);
+		allBooks.add(book10);
+		allBooks.add(book11);
+		
 		
 	}
 	
@@ -168,10 +187,12 @@ public class LibraryMocks {
 //			bookList.add(book6);
 //		}
 		
-		return bookList;
+		return topBooks;
 	}
 	
-
+	public List<Book> getAllBooks(){
+		return allBooks;
+	}
 		 
 
 

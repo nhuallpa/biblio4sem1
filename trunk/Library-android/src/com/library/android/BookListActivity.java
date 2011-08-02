@@ -32,7 +32,7 @@ public class BookListActivity extends Activity {
     }
     
     private void init(){
-    	bookListView.setBookList(BookServicesImpl.getInstance().getTopBooks());
+    	bookListView.setBookList(BookServicesImpl.getInstance(this).getTopBooks());
     }
     
 	 public boolean onCreateOptionsMenu(Menu menu) {

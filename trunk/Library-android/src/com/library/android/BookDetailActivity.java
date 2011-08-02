@@ -14,8 +14,10 @@ import android.widget.Toast;
 
 import com.library.android.config.ConfigurationManager;
 import com.library.android.config.Constants;
+import com.library.android.domain.Book;
 import com.library.android.domain.States;
 import com.library.android.mock.LibraryMocks;
+import com.library.android.services.impl.BookServicesImpl;
 import com.library.android.view.BookDetailView;
 import com.library.android.view.CommentBookListView;
 
@@ -23,7 +25,7 @@ public class BookDetailActivity extends Activity {
 	
 	private BookDetailView bookDetailView;
 	private String bookState;
-	private Bundle extras;
+//	private Bundle extras;
 	
 	
 	public void onCreate(Bundle b){
@@ -31,29 +33,41 @@ public class BookDetailActivity extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.book_content_detail);
 		bookDetailView =(BookDetailView) findViewById(R.id.book_detail_content);
-		extras = getIntent().getExtras();
-		setExtras();
-		
-		//mock
-		fill();
-		
+
+		fillData(getIntent().getExtras().getLong(Constants.ISBN_BOOK));
 		
 	}
 	
-	private void setExtras(){
-		if(extras != null){
-			bookDetailView.setBookTitle(extras.getString("titleBook"));
-			bookDetailView.setBookAuthor(extras.getString("authorBook"));
-			bookDetailView.setBookState(extras.getString("stateBook"));
-			bookState = extras.getString("stateBook");
-			bookDetailView.setBookISBN(extras.getString("isbnBook"));
-			try {
-				bookDetailView.setBookPicture(BitmapFactory.decodeStream(getAssets().open(extras.getString("picture"))));
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+	private void fillData(Long isbn){
+		Book book = BookServicesImpl.getInstance(this).getBookByISBN(isbn);
+		CommentBookListView comments = bookDetailView.getCommentList();
+		comments.setCommentList(book.getListOfComments());
+		bookDetailView.setBookTitle(book.getTitle());
+		bookDetailView.setBookAuthor(book.getAuthor());
+		bookDetailView.setBookState(book.getState().toString());
+		bookState = book.getState().toString();
+		bookDetailView.setBookISBN(String.valueOf(isbn));
+		try {
+			bookDetailView.setBookPicture(BitmapFactory.decodeStream(getAssets().open(book.getPicture())));
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
+	
+//	private void setExtras(){
+//		if(extras != null){
+//			bookDetailView.setBookTitle(extras.getString("titleBook"));
+//			bookDetailView.setBookAuthor(extras.getString("authorBook"));
+//			bookDetailView.setBookState(extras.getString("stateBook"));
+//			bookState = extras.getString("stateBook");
+//			bookDetailView.setBookISBN(extras.getString("isbnBook"));
+//			try {
+//				bookDetailView.setBookPicture(BitmapFactory.decodeStream(getAssets().open(extras.getString("picture"))));
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}
+//		}
+//	}
 	
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data){
@@ -61,11 +75,11 @@ public class BookDetailActivity extends Activity {
 	}
 	
 	
-	private void fill(){
-		//estaria bueno que traiga el book por el ISBN..
-		CommentBookListView bookList = bookDetailView.getCommentList();
-		bookList.setCommentList(LibraryMocks.getInstance().getTopBooks().get(4).getListOfComments());
-	}
+//	private void fill(){
+//		//estaria bueno que traiga el book por el ISBN..
+//		CommentBookListView bookList = bookDetailView.getCommentList();
+//		bookList.setCommentList(LibraryMocks.getInstance().getTopBooks().get(2).getListOfComments());
+//	}
 	
 	public boolean onCreateOptionsMenu(Menu menu) {
 		ConfigurationManager config = ConfigurationManager.getInstance(this);

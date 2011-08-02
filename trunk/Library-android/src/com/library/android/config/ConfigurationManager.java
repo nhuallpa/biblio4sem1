@@ -38,6 +38,11 @@ public class ConfigurationManager {
 		return !myUser.getName().equals("");
 	}
 	
+	//borrar luego...
+	public void setUser(User user){
+		this.myUser = user;
+	}
+	
 	private void load() {
 		settings = context.getSharedPreferences(Constants.PREFS_NAME, 0);
 		this.userName = settings.getString(Constants.USERNAME, "");

@@ -60,11 +60,12 @@ public class BookListItemView extends RelativeLayout {
 			@Override
 			public void onClick(View v) {
 				Intent i = new Intent(context, BookDetailActivity.class);
-				i.putExtra("titleBook", book.getTitle());
-				i.putExtra("authorBook", book.getAuthor());
-				i.putExtra("stateBook", book.getState().toString());
-				i.putExtra("isbnBook", String.valueOf(book.getISBN()));
-				i.putExtra("picture", book.getPicture());
+//				i.putExtra("titleBook", book.getTitle());
+//				i.putExtra("authorBook", book.getAuthor());
+//				i.putExtra("stateBook", book.getState().toString());
+//				i.putExtra("isbnBook", String.valueOf(book.getISBN()));
+//				i.putExtra("picture", book.getPicture());
+				i.putExtra(Constants.ISBN_BOOK, book.getISBN());
 				context.startActivity(i);
 				
 			}
@@ -86,13 +87,14 @@ public class BookListItemView extends RelativeLayout {
 				if(config.isLogged()){
 					Toast.makeText(context, "To Comment..", Toast.LENGTH_SHORT).show();
 					Intent i = new Intent(context, ToCommentBookActivity.class);
-					i.putExtra("bookId", book.getBookId());
-					i.putExtra("bookTitle", book.getTitle());
+//					i.putExtra("bookId", book.getBookId());
+					i.putExtra(Constants.ISBN_BOOK, book.getISBN());
 					context.startActivity(i);
 				} else {
 					Toast.makeText(context, "Comment: to Login", Toast.LENGTH_SHORT).show();
 					Intent i = new Intent(context, LoginActivity.class);
 					i.putExtra(Constants.GO_TO_ACTIVITY, Constants.TO_COMMENT);
+					i.putExtra(Constants.ISBN_BOOK, book.getISBN());
 					context.startActivity(i);
 				}
 			}
