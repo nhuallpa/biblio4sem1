@@ -33,7 +33,9 @@ public class ShowMapActivity extends MapActivity {
 	    GeoPoint point2 = new GeoPoint(35410000, 139460000);
 	    OverlayItem overlayitem2 = new OverlayItem(point2, "Sekai, konichiwa!", "I'm in Japan!");
 	    
-	    itemizedoverlay.addOverlay(overlayitem2);
+	    itemizedoverlay.addOverlay(overlayitem);
+//	    itemizedoverlay.addOverlay(overlayitem2);
+	    
 	    mapOverlays.add(itemizedoverlay);
 	}
 
