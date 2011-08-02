@@ -14,6 +14,7 @@ import android.view.Window;
 
 import com.library.android.config.ConfigurationManager;
 import com.library.android.config.Constants;
+import com.library.android.mock.LibraryMocks;
 import com.library.android.services.impl.BookServicesImpl;
 import com.library.android.view.BookListView;
 
@@ -34,7 +35,8 @@ public class BookListActivity extends Activity {
     }
     
     private void init(){
-    	bookListView.setBookList(BookServicesImpl.getInstance(this).getTopBooks());
+//    	bookListView.setBookList(BookServicesImpl.getInstance(this).getTopBooks());
+    	bookListView.setBookList(LibraryMocks.getInstance().getAllBooks());
     }
     
 	 public boolean onCreateOptionsMenu(Menu menu) {
