@@ -17,7 +17,7 @@
   
   	<TextView
   		android:id="@+id/item_comment_user"
-  		android:layout_width="fill_parent"
+  		android:layout_width="wrap_content"
   		android:layout_height="wrap_content"
   		android:textColor="#000000"
   		android:layout_toRightOf="@id/item_comment_user_tv"
@@ -49,5 +49,25 @@
   		android:textStyle="bold"
   		android:text="Comment">
   	</TextView>  	
+  	
+	<ImageView
+		android:id="@+id/item_comment_star_score"
+		android:layout_width="wrap_content"
+  		android:layout_height="wrap_content"
+  		android:layout_marginRight="5dip"
+  		android:layout_alignParentRight="true"
+  		android:src="@drawable/star">
+	</ImageView>  	
+	
+	<TextView
+		android:id="@+id/item_comment_score_data"
+		android:layout_width="wrap_content"
+  		android:layout_height="wrap_content"
+  		android:layout_marginTop="5dip"
+  		android:textSize="16dip"
+  		android:textColor="#000000"
+  		android:layout_toLeftOf="@id/item_comment_star_score"
+  		android:text="5">
+	</TextView>	
   	
 </RelativeLayout>

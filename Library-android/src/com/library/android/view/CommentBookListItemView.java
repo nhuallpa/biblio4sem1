@@ -14,6 +14,7 @@ public class CommentBookListItemView extends RelativeLayout {
 	
 	private TextView user;
 	private TextView descr;
+	private TextView score;
 	
 	private Comment comment;
 
@@ -23,6 +24,7 @@ public class CommentBookListItemView extends RelativeLayout {
 		inflate(context, R.layout.comment_book_item, this);
 		user = (TextView) findViewById(R.id.item_comment_user);
 		descr = (TextView) findViewById(R.id.item_comment_descr);
+		score = (TextView) findViewById(R.id.item_comment_score_data);
 	}
 	
 	public void setUser(User user){
@@ -45,7 +47,7 @@ public class CommentBookListItemView extends RelativeLayout {
 		comment = aComment;
 		setDescription(aComment.getDescription());
 		setUser(aComment.getUser());
-		
+		this.score.setText(String.valueOf(aComment.getScore()));
 	}
 
 

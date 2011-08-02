@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu
   xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/menu_search" android:title="Search" android:icon="@drawable/search"></item>
-    <item android:id="@+id/menu_location" android:title="Location"></item>
-    <item android:id="@+id/menu_profile" android:title="Profile"></item>
+    <item android:id="@+id/menu_search" android:title="Search" android:icon="@drawable/search2"></item>
+    <item android:id="@+id/menu_location" android:title="Location" android:icon="@drawable/location1"></item>
+    <item android:id="@+id/menu_profile" android:title="Profile" android:icon="@drawable/user_admin_gear"></item>
 </menu>
