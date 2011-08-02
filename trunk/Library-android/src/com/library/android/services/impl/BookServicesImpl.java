@@ -104,7 +104,7 @@ public class BookServicesImpl implements BookService {
 	@Override
 	public List<Book> getTopBooks() {
 		
-		return LibraryMocks.getInstance().getAllBooks();
+		return LibraryMocks.getInstance().getTopBooks();
 	}
 
 

@@ -62,8 +62,9 @@ public class BookDetailActivity extends Activity {
 	
 	
 	private void fill(){
+		//estaria bueno que traiga el book por el ISBN..
 		CommentBookListView bookList = bookDetailView.getCommentList();
-		bookList.setCommentList(LibraryMocks.getInstance().getAllBooks().get(4).getListOfComments());
+		bookList.setCommentList(LibraryMocks.getInstance().getTopBooks().get(4).getListOfComments());
 	}
 	
 	public boolean onCreateOptionsMenu(Menu menu) {
