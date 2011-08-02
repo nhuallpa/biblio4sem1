@@ -1,8 +1,12 @@
 package com.library.android;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -27,8 +31,6 @@ public class BookListActivity extends Activity {
         init();
         
         config = ConfigurationManager.getInstance(this);
-        
-        
     }
     
     private void init(){
@@ -77,4 +79,37 @@ public class BookListActivity extends Activity {
 	        return true;
 	        }
 
+	    public void terminate()
+	    {
+	       Log.i("myid","terminated!!");
+	       super.onDestroy();
+	       this.finish();
+	    }
+	    
+		@Override
+		public boolean onKeyDown(int keyCode, KeyEvent event)  {
+		    if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+		    	
+		    	final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+            	alertDialog.setTitle("Quit Application");
+            	alertDialog.setMessage("Are you sure?");
+            	alertDialog.setButton("Yes", new DialogInterface.OnClickListener() {
+            	   public void onClick(DialogInterface dialog, int which) {
+            		   terminate();
+            	   }
+            	});
+            	alertDialog.setButton2("No", new DialogInterface.OnClickListener() {
+             	   public void onClick(DialogInterface dialog, int which) {
+             		   alertDialog.cancel();
+             	   }
+             	});
+            	
+            	alertDialog.setIcon(R.drawable.logo_library);
+            	alertDialog.show();
+		    	
+		        return true;
+		    }
+
+		    return super.onKeyDown(keyCode, event);
+		}
 }

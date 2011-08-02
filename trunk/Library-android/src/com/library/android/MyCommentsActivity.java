@@ -48,7 +48,6 @@ import com.library.android.mock.LibraryMocks;
 		protected List<Comment> doInBackground(Void... arg0) {
 			
 			List<Comment> comments = config.getCurrentUser().getListOfComments();
-//			List<Comment> comments = LibraryMocks.getInstance().getUser().getListOfComments();
 						
 			return comments;
 		}
@@ -59,7 +58,6 @@ import com.library.android.mock.LibraryMocks;
 			list = new ArrayList<HashMap<String,String>>();
 			
 			if(results.size() > 0) {
-				
 
 				for (Comment dato : results) {
 					HashMap<String,String> temp = new HashMap<String,String>();				
@@ -76,7 +74,7 @@ import com.library.android.mock.LibraryMocks;
 			}else {
 				
 				
-				String msg = "No hay ningun post!";
+				String msg = "You no have comments!!";
 				int duracion = Toast.LENGTH_SHORT;
 				
 				Toast toast = Toast.makeText(getApplicationContext(), msg, duracion);
