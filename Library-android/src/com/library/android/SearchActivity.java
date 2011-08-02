@@ -38,7 +38,7 @@ public class SearchActivity extends Activity {
 		
 //		c.setUser("lalosoft@gmail.com");
 		
-		bookServices = BookServicesImpl.getInstance();
+		bookServices = BookServicesImpl.getInstance(this);
 		
 		editText = (EditText)findViewById(R.id.edit_buscar);
 		searchButton = (ImageButton) findViewById(R.id.search_button);

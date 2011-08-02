@@ -1,10 +1,15 @@
 package com.library.android.services.impl;
 
+import java.util.Iterator;
 import java.util.List;
 
+import android.content.Context;
+
+import com.library.android.config.ConfigurationManager;
 import com.library.android.domain.Book;
 import com.library.android.domain.Comment;
 import com.library.android.domain.Reservation;
+import com.library.android.domain.User;
 import com.library.android.mock.LibraryMocks;
 import com.library.android.services.BookService;
 import com.library.android.services.ConfigWS;
@@ -14,16 +19,18 @@ public class BookServicesImpl implements BookService {
 	private static String url;
 	
 	private static BookServicesImpl instance;
+	private static Context context;
 	
 	private BookServicesImpl(){
 		ConfigWS config = ConfigWS.getInstance();
 		url = ConfigWS.WS_SEARCH + "mail=" + config.getUser();
 	}
 	
-	public static BookServicesImpl getInstance(){
+	public static BookServicesImpl getInstance(Context ctx){
 		if(instance == null){
 			instance = new BookServicesImpl();
 		}
+		context = ctx;
 		return instance;
 	}
 	
@@ -93,8 +100,11 @@ public class BookServicesImpl implements BookService {
 		return false;
 	}
 	
-	public void toComment(Long bookId, Comment aComment){
-		//TODO: implements comunication with WS
+	public void toComment(Book book, Comment aComment){
+		
+		User user = ConfigurationManager.getInstance(context).getCurrentUser();
+		user.addComment(book, aComment);
+		
 	}
 	
 	public void toReserveBook(Long bookId, Reservation aReservation){
@@ -105,6 +115,23 @@ public class BookServicesImpl implements BookService {
 	public List<Book> getTopBooks() {
 		
 		return LibraryMocks.getInstance().getTopBooks();
+	}
+	
+	public Book getBookByISBN(Long isbn){
+		Book aBook = null;
+		
+		List<Book> books = LibraryMocks.getInstance().getAllBooks();
+		Iterator<Book> itBook = books.iterator();
+		boolean founded = false;
+		while(itBook.hasNext() && !founded){
+			Book temp = itBook.next();
+			founded = temp.getISBN().equals(isbn); 
+			if(founded){
+				aBook = temp;
+			}
+		}
+		
+		return aBook;
 	}
 
 

@@ -4,6 +4,7 @@ package com.library.android;
 import java.io.IOException;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -25,6 +26,7 @@ public class LoginActivity extends Activity {
 	private Button loginButton;
 	private ConfigWS config;
 	private ConfigurationManager appConfig;
+	private Context ctx = LoginActivity.this;
 		
 	public void onCreate(Bundle b){
 		super.onCreate(b);
@@ -36,8 +38,9 @@ public class LoginActivity extends Activity {
 		passText = (EditText) findViewById(R.id.pass_login);
 		loginButton = (Button) findViewById(R.id.login_button);
 		appConfig = ConfigurationManager.getInstance(this);
-		
-		final Integer goToActivity = getIntent().getExtras().getInt(Constants.GO_TO_ACTIVITY);
+		Bundle extras = getIntent().getExtras();
+		final Integer goToActivity = extras.getInt(Constants.GO_TO_ACTIVITY);
+		final Long isbnBook = extras.getLong(Constants.ISBN_BOOK);
 		
 		loginButton.setOnClickListener(new OnClickListener() {
 			
@@ -51,7 +54,7 @@ public class LoginActivity extends Activity {
 				} else {
 										
 					try {
-							String token = UserServicesImpl.login(mail, pass);
+							String token = UserServicesImpl.login(mail, pass, ctx);
 							if(token != null){
 								config.setToken(token);
 								saveConfig();
@@ -59,9 +62,8 @@ public class LoginActivity extends Activity {
 								if(goToActivity != null){
 									Class<?> classToGo = resolveClass(goToActivity);
 									Intent i = new Intent(LoginActivity.this, classToGo);
-//									startActivity(i);
-									
-									startActivityIfNeeded(i, RESULT_OK);
+									i.putExtra(Constants.ISBN_BOOK, isbnBook);
+									startActivity(i);
 								} else {
 									Intent i = new Intent(LoginActivity.this, BookListActivity.class);
 									startActivity(i);
