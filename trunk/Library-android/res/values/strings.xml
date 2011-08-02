@@ -28,4 +28,8 @@
 	<string name="to_comment_book_title">Comment: </string>
 	<string name="to_comment_book_edit_txt_hint">Input Text </string>
 	<string name="to_comment_book_submmit_button">To Comment </string>
+	
+<!--  Registration	-->
+	<string name="register_title">Registration</string>
+	<string name="register_username">User Name: </string>
 </resources>
