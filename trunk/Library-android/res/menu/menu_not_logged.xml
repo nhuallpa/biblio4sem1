@@ -2,7 +2,7 @@
 <menu
   xmlns:android="http://schemas.android.com/apk/res/android">
     
-    <item android:id="@+id/menu_location" android:title="Location"></item>
-    <item android:id="@+id/menu_login" android:title="Login"></item>
+    <item android:id="@+id/menu_location" android:title="Location" android:icon="@drawable/location1"></item>
+    <item android:id="@+id/menu_login" android:title="Login" android:icon="@drawable/log_in"></item>
     
 </menu>

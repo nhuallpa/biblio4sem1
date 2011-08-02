@@ -3,7 +3,7 @@
   xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="fill_parent"
   android:layout_height="fill_parent"
-  android:background="#FFFFFF">
+  android:background="#E6E6E6">
   
   	<RelativeLayout
   		android:id="@+id/relative_search_item"
@@ -94,7 +94,7 @@
 				android:id="@+id/item_icon_score"
 				android:layout_width="wrap_content"
    				android:layout_height="wrap_content"
-   				android:background="@drawable/score"
+   				android:background="@drawable/star"
    				android:layout_marginTop="3dip"
    				android:layout_toRightOf="@id/item_book_picture"
    				android:layout_below="@id/item_author_book">
@@ -134,19 +134,28 @@
    				android:textColor="#000000">
 			</TextView>
 			
-			<Button
-				android:id="@+id/item_button_details"
-				android:layout_width="wrap_content"
+			<RelativeLayout
+				android:id="@+id/relative_detail_button"
+		   		android:layout_width="wrap_content"
    				android:layout_height="wrap_content"
-   				android:text="@string/book_list_detail_button"
-   				android:layout_below="@id/item_author_book"
    				android:layout_marginTop="10dip"
-   				android:textColor="#FFFFFF"
-   				android:background="#000000"
-   				android:padding="3dip"
-   				android:layout_toRightOf="@id/item_comments_book"
-   				android:layout_marginLeft="15dip">
-			</Button>						
+   				android:layout_below="@id/item_author_book"
+   				android:layout_marginRight="15dip"
+   				android:layout_alignParentRight="true">
+   				
+		   			<Button
+						android:id="@+id/item_button_details"
+						android:layout_width="wrap_content"
+		   				android:layout_height="wrap_content"
+		   				android:text="@string/book_list_detail_button"
+		   				android:textColor="#FFFFFF"
+		   				android:padding="4dip"
+		   				android:background="#000000">
+					</Button>	
+   				
+			</RelativeLayout>
+			
+					
   	
   	</RelativeLayout>
   	
