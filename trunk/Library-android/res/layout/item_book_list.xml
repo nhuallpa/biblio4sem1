@@ -116,7 +116,7 @@
 				android:id="@+id/item_icon_comment"
 				android:layout_width="wrap_content"
    				android:layout_height="wrap_content"
-   				android:background="@drawable/comment"
+   				android:background="@drawable/comments"
    				android:layout_marginTop="5dip"
    				android:layout_marginLeft="15dip"
    				android:layout_toRightOf="@id/item_score_book"
