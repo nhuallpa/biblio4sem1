@@ -68,7 +68,7 @@ public class LoginActivity extends Activity {
 									Intent i = new Intent(LoginActivity.this, BookListActivity.class);
 									startActivity(i);
 								}
-								
+								Toast.makeText(LoginActivity.this, "You are logged successful!", Toast.LENGTH_SHORT).show();
 							} else {
 								Toast.makeText(LoginActivity.this, "Error login", Toast.LENGTH_SHORT).show();
 							}
