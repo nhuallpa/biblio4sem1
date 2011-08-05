@@ -33,7 +33,8 @@ class ReservationIntegrationTests extends GroovyTestCase {
 		user.makeReservation(aBook)
 		assertNotNull user.save()
 		User userFound = User.get(user.id)
-		assertEquals 1,userFound.reservations?.size()
+		assertEquals 1, userFound.reservations.size()
+		assertTrue userFound.reservations.any{it.getBook().name == aBook.name}
 		assertEquals States.RESERVED,userFound.reservations?.get(0).book.state
 	}
 	
@@ -70,7 +71,13 @@ class ReservationIntegrationTests extends GroovyTestCase {
 		assertNotNull aBook.save()
 		user.makeReservation(aBook)
 		user.makeReservation(aBookTwo)
+		
+		
+		
 		assertEquals 2, user.getReservations().size()
+		
+		assertTrue user.getReservations().any{it.getBook().name == aBook.name}
+		assertTrue user.getReservations().any{it.getBook().name == aBookTwo.name}
 		
 		User userFound = User.get(user.id)
 		userFound.cancelReservation(aBook)

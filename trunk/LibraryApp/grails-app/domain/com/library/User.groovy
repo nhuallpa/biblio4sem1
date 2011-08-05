@@ -131,6 +131,7 @@ class User {
 		
 		if (reservationFound) {
 			this.reservations.remove reservationFound
+			reservationFound.delete()
 			aBook.cancelReservation()
 		} else {
 			throw new ReservationDoesNotExistException()
