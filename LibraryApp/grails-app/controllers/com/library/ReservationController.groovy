@@ -16,9 +16,9 @@ class ReservationController {
 		if(!user){
 			goToHome()
 		}
-		if (!user.isAttached()) {
-			user.attach()
-			listOfMyReservations = user.reservations
+		if (user) {
+			User userFound = User.get(user.id) 
+			listOfMyReservations = userFound.reservations
 		}
 		[reservations : listOfMyReservations]
 	}
