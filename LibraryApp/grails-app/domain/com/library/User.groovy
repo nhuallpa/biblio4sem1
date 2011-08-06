@@ -81,17 +81,10 @@ class User {
 									date:new Date())
 		
 		aBook.addComment(aComment)
-//		def comment = new Comment(sourceUser: this, description:aString, score: score)
-		this.addToCommentsDone(aComment)
+		this.commentsDone.add aComment
+		
 	}
 	
-	//@gonzalo: lo agrege para probar
-//	void addToBookComment(Book aBook, Comment aComment){
-//		aBook.comment(this, aComment.getDescription(), aComment.getScore())
-//		this.commentsDone.add(aComment)
-//		this.comments?.add aComment
-//	}
-
 	void comment(User sourceUser, String aString, Integer score){
 		Comment aComment = new Comment(description:aString, sourceUser:sourceUser, score: score)
 		this.commentsRcvd?.add(aComment)
@@ -139,22 +132,39 @@ class User {
 	}
 	
 	void deleteMyComment(Comment aComment){
-		def flag = 0
-//		for ( o in comments){
-		for(int i = 0; i < commentsDone.size(); i++){
-			Comment obj = commentsDone.get(i)
-//			if ( obj.equals(aComment) ){
-			if(obj.id == aComment.id){
-//				comments?.remove obj
-				this.commentsDone.remove obj
-				flag = 1
+		def commentFound = null;
+		for (comment in this.commentsDone) {
+			if (comment.equals(aComment)) {
+				commentFound = comment
+				break
 			}
 		}
-		if (flag == 0) throw new CommentDoesNotExistException()
-//		else {
-//			aComment.sourceUser.deleteComment(aComment)
-//		}
+		
+		if (commentFound) {
+			this.commentsDone.remove commentFound
+//			commentFound.delete()
+		} else {
+			throw new CommentDoesNotExistException()
+		}
 	}
+	
+//	void deleteMyComment(Comment aComment){
+//		def flag = 0
+////		for ( o in comments){
+//		for(int i = 0; i < commentsDone.size(); i++){
+//			Comment obj = commentsDone.get(i)
+////			if ( obj.equals(aComment) ){
+//			if(obj.id == aComment.id){
+////				comments?.remove obj
+//				this.commentsDone.remove obj
+//				flag = 1
+//			}
+//		}
+//		if (flag == 0) throw new CommentDoesNotExistException()
+////		else {
+////			aComment.sourceUser.deleteComment(aComment)
+////		}
+//	}
 	
 	void deleteComment(Comment aComment){
 		

@@ -56,17 +56,34 @@ class Book implements Taggable{
 	}
 	
 	void deleteComment(Comment aComment){
-		def flag = 0
-		for ( o in this.comments){
-			if ( o.equals(aComment) ){
-				this.comments.remove o
-				flag = 1
+		def commentFound = null;
+		for (comment in this.comments) {
+			if (comment.equals(aComment)) {
+				commentFound = comment
+				break
 			}
 		}
-		if (flag == 0) throw new CommentDoesNotExistException()
 		
-		aComment.sourceUser.deleteComment(aComment)
+		if (commentFound) {
+			this.comments.remove commentFound
+//			commentFound.delete()
+		} else {
+			throw new CommentDoesNotExistException()
+		}
 	}
+	
+//	void deleteComment(Comment aComment){
+//		def flag = 0
+//		for ( o in this.comments){
+//			if ( o.equals(aComment) ){
+//				this.comments.remove o
+//				flag = 1
+//			}
+//		}
+//		if (flag == 0) throw new CommentDoesNotExistException()
+//		
+////		aComment.sourceUser.deleteComment(aComment)
+//	}
 	
 	void returnMe(){
 		this.state = States.AVAILABLE

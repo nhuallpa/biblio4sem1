@@ -51,7 +51,18 @@ class UserController {
 				if(params.type_drama){
 					user.typesFav.add new Tag(name: Constants.TYPE_DRAMA)
 				}
+				if(params.type_ficcion){
+					user.typesFav.add new Tag(name: Constants.TYPE_FICTION)
+				}
+				if(params.type_novela){
+					user.typesFav.add new Tag(name: Constants.TYPE_NOVELAS)
+				}
+				if(params.type_literatura){
+					user.typesFav.add new Tag(name: Constants.TYPE_LITERATURA)
+				}
 				user.setEmail params.email
+				user.setPhone params.phone
+				
 				//setear los demas valores...
 				user.save()
 				redirect(action: "login",userId:user.name, password:user.password)
