@@ -15,7 +15,7 @@
 <%--			<g:link controller="book" action="viewDetails" params="[bookId:book.id]">${book?.name}</g:link>--%>
 			<p>ISBN: ${book?.ISBN}</p>
 
-			<g:form controller="comment" action="toCommentBook" params="[bookId:book?.id]">
+			<g:form controller="comment" action="toCommentBook" params="[bookId:book.id]">
 			
 				<dl class="form-list">
 					<dt class="text-form">Your comment: </dt>

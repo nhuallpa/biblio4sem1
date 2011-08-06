@@ -1,5 +1,7 @@
 package com.library
 
+import com.library.exceptions.CommentDoesNotExistException;
+
 class CommentController {
 	
 	def scaffold = true
@@ -14,10 +16,15 @@ class CommentController {
 		if(!aUser){
 			goToHome()
 		}
-		if (!aUser.isAttached()) {
-			aUser.attach()
-			listOfMyComments = aUser.commentsDone
+//		if (!aUser.isAttached()) {
+//			aUser.attach()
+//			listOfMyComments = aUser.commentsDone
+//		}
+		if(aUser){
+			User userFound = User.get(aUser.id)
+			listOfMyComments = userFound.commentsDone
 		}
+//		listOfMyComments = aUser.commentsDone
 		[comments : listOfMyComments]
 	}
 	
@@ -50,6 +57,7 @@ class CommentController {
 		if (!user.isAttached() && aBook){
 			def userFound = User.get(user.id)
 			assert userFound
+			Comment comment = new Comment(description:aComment,book:aBook).save()
 			userFound.addBookComment aBook, aComment, rating
 			session.user = null
 			session.user = userFound
@@ -66,15 +74,19 @@ class CommentController {
 			goToHome()
 		}
 		Comment aComment = Comment.get(params.commentId)
+		Book aBook = Book.get(params.bookId)
 		
 //		if (!user.isAttached()) {
 //			user.attach()
+		
 			try{
-				aComment.delete()
+				aBook.deleteComment aComment
 				user.deleteMyComment aComment
 				flash.message = "You deleted comment about ${aComment.book.name}"
+				aComment.delete()
+				
 								
-			}catch (Exception e){
+			}catch (CommentDoesNotExistException e){
 				goToHome()
 				}
 //		}

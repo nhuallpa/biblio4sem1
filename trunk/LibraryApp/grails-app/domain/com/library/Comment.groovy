@@ -11,6 +11,7 @@ class Comment {
 
 	static constraints = {
 		description (blank : false, nullable: true)
+		book(blank: false)
 		date(nullable:true)
 		score(nullable:true)
 	}
@@ -21,14 +22,12 @@ class Comment {
 		this.sourceUser = srcUser
 	}
 
-//	@Override
-//	public boolean equals(Object obj){
-//		Comment other = (Comment)obj
-//		return other.getSourceUser() == sourceUser &&
-//				other.getDate().equals(date) &&
-//				other.getDescription().equals(description)
-//				
-//	}
+	@Override
+	public boolean equals(Object obj){
+		Comment other = (Comment) obj
+		return this.id == other.id;
+				
+	}
 	
 	
 
