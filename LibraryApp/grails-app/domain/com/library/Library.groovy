@@ -11,11 +11,10 @@ class Library {
 //	byte[] photo
 	String homepage
 	String email
-	String phone
-	
+	String phone	
 	Location location
 
-	static hasMany = [reservations : Reservation, books : Book]
+	static hasMany = [reservations : Reservation, books : Book, bookCopys:BookCopy]
 
     static constraints = {
 		libraryId(size: 3..20, unique: true)
@@ -26,6 +25,7 @@ class Library {
 		phone(nullable: true)
 		location(nullable: true)
 		reservations(nullable:true)
+		bookCopys(nullable:true)
 		books(nullable:true)
     }
 	

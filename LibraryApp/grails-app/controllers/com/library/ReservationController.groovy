@@ -23,6 +23,11 @@ class ReservationController {
 		[reservations : listOfMyReservations]
 	}
 	
+	def reserveRequest = {
+		
+	}
+	
+	
 	def toReserve = {
 		User user = session.user
 		if (!user){
@@ -40,6 +45,7 @@ class ReservationController {
 		flash.message = aMessage
 		redirect(action: 'viewMyReservation')
 	}
+	
 	
 	def cancelReserve = {
 		User user = session.user
