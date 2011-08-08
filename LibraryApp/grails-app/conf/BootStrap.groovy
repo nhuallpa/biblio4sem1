@@ -1,11 +1,6 @@
-import java.awt.RadialGradientPaint;
+import grails.util.Environment
 
-import grails.util.Environment;
-
-import org.codehaus.groovy.grails.web.servlet.GrailsApplicationAttributes;
-import org.springframework.context.ApplicationContext;
-
-import com.library.Library;
+import org.grails.taggable.Tag
 
 import com.library.*
 
@@ -39,6 +34,10 @@ class BootStrap {
 		def author = "Nulla vehicula"
 		def bookNames = ["It","Thinking in Java","Learning C","Asp.net for Dummies","Codigo da Vinci","Taken","Harry Potter","Flex","HTML 5"]
 		def userNames = ["gonza", "nestor", "ariel", "user", "admin"]
+		
+		def tagAction = new Tag(name: Constants.TYPE_ACTION).save()
+		def tagFiction = new Tag(name: Constants.TYPE_FICTION).save()
+		def tagDrama = new Tag(name: Constants.TYPE_DRAMA).save()
 
 		Random random = new Random()
 		bookNames.each { 
@@ -51,7 +50,10 @@ class BootStrap {
 		}
 		
 		userNames.each {
-			def aUser = new User(name: it, password: it).save()
+			def aUser = new User(name: it, password: it)
+			aUser.typesFav.add tagFiction
+			aUser.typesFav.add tagAction
+			aUser.save()
 			assert aUser
 			listOfUsers << aUser 
 		}

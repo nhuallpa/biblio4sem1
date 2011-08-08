@@ -620,6 +620,12 @@ input:focus {
     padding:0;
 }
 
+#types_fav label{
+	color:#3a454d;
+    margin:9px 0 0 0;
+    font-weight: bold;
+	}
+
 #body label {
     color:#3a454d;
     margin:9px 0 0 0;
@@ -632,6 +638,10 @@ input:focus {
     float:none;
     margin:0 0 6px 0;
 }
+
+.checksForm .title_fav{
+	color:#3a454d;
+	}
 .checksForm {
 	 width:248px; 
     border:1px solid #899caa;
@@ -642,6 +652,7 @@ input:focus {
     padding:6px;
 	float:right;
 }
+
 
 /*------------------------------------------------	END  	REGISTRATION-------------------------------------		*/
 

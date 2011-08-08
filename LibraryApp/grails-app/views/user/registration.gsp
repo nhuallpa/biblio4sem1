@@ -10,25 +10,28 @@
     		<h3>Registration</h3>
 			<g:form class="registerForm" controller="user" action="toRegister">
 			<div class="checksForm">
-				<fieldset>
-					<g:checkBox name="type_accion" value="${false}" />
-					<label for="checkbox">Accion</label>
-				</fieldset>	
-				<fieldset>
-					<g:checkBox name="type_drama" value="${false}" />
-					<label for="checkbox">Drama</label>					
-				</fieldset>	
-				<fieldset>
-					<g:checkBox name="type_ficcion" value="${false}" />
-					<label for="checkbox">Ficcion</label>					
-				</fieldset>	
-				<fieldset>
-					<g:checkBox name="type_novela" value="${false}" />
-					<label for="checkbox">Novela</label>					
-				</fieldset>
-				<fieldset>
-					<g:checkBox name="type_literatura" value="${false}" />
-					<label for="checkbox">Literatura</label>					
+				<span class="title_fav">Favorite Genres</span>	
+				<fieldset id="types_fav">
+					<fieldset>
+						<g:checkBox name="type_accion" value="${false}" />
+						<label for="checkbox">Action</label>
+					</fieldset>	
+					<fieldset>
+						<g:checkBox name="type_drama" value="${false}" />
+						<label for="checkbox">Drama</label>					
+					</fieldset>	
+					<fieldset>
+						<g:checkBox name="type_ficcion" value="${false}" />
+						<label for="checkbox">Fiction</label>					
+					</fieldset>	
+					<fieldset>
+						<g:checkBox name="type_novela" value="${false}" />
+						<label for="checkbox">Novels</label>					
+					</fieldset>
+					<fieldset>
+						<g:checkBox name="type_adventures" value="${false}" />
+						<label for="checkbox">Adventures</label>					
+					</fieldset>
 				</fieldset>													
 			</div>
 				<fieldset id="body">
