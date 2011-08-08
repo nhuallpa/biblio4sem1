@@ -16,19 +16,21 @@ class Book implements Taggable{
 	long totalVotes
 
 	List<Comment> comments = new ArrayList<Comment>()
+	List<BookCopy> bookCopys = new ArrayList<BookCopy>()
 	Library library
 
 	static constraints = {
 		ISBN(blank : false)
 		comments(nullable:true)
+		bookCopys(nullable:true)
 		subject(nullable:true)
 		author(nullable:true)
 		description(nullable:true)
 		state(inList:States.list())
 	}
 
-	static hasMany = [comments : Comment]
-	
+	static hasMany = [comments : Comment, bookCopys:BookCopy]
+
 	static belongsTo = [library:Library]
 	
 	static mapping = {
