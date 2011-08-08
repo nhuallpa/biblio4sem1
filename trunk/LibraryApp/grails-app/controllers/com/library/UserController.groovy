@@ -46,24 +46,28 @@ class UserController {
 			User user = new User(name : params.user_name, password : pass1)
 			if(!isUser(user)){
 				if(params.type_accion){
-					user.typesFav.add new Tag(name: Constants.TYPE_ACTION)
+					Tag tagAction = new Tag(name: Constants.TYPE_ACTION).save() 
+					user.typesFav.add tagAction
 				}
 				if(params.type_drama){
-					user.typesFav.add new Tag(name: Constants.TYPE_DRAMA)
+					Tag tagDrama = new Tag(name: Constants.TYPE_DRAMA).save()
+					user.typesFav.add tagDrama
 				}
 				if(params.type_ficcion){
-					user.typesFav.add new Tag(name: Constants.TYPE_FICTION)
+					Tag tagFiction = new Tag(name: Constants.TYPE_FICTION).save()
+					user.typesFav.add tagFiction
 				}
 				if(params.type_novela){
-					user.typesFav.add new Tag(name: Constants.TYPE_NOVELAS)
+					Tag tagNovelas = new Tag(name: Constants.TYPE_NOVELAS).save()
+					user.typesFav.add tagNovelas
 				}
-				if(params.type_literatura){
-					user.typesFav.add new Tag(name: Constants.TYPE_LITERATURA)
+				if(params.type_adventures){
+					Tag tagLiteratura = new Tag(name: Constants.TYPE_ADVENTURES).save()
+					user.typesFav.add tagLiteratura
 				}
 				user.setEmail params.email
 				user.setPhone params.phone
 				
-				//setear los demas valores...
 				user.save()
 				redirect(action: "login",userId:user.name, password:user.password)
 			} else {
