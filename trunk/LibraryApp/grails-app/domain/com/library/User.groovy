@@ -55,6 +55,12 @@ class User {
 		this.addReservation(aReservation,aBook)	
 	}
 	
+	void makeReservation(BookCopy aBookCopy) {
+		if (aBook.isReserved()) throw new BookAlreadyReservedException()
+		Reservation aReservation = new Reservation(aBook,this)
+		this.addReservation(aReservation,aBook)
+	}
+	
 	/* Alguien tiene que crearlo en la library */
 	void returnBook (Book aBook){
 		

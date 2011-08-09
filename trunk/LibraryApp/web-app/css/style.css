@@ -1,0 +1,601 @@
+/* 
+    Document   : style
+    Created on : 06/08/2011, 10:47:38
+    Author     : Nahuel
+    Description:
+        Purpose of the stylesheet follows.
+*/
+/* ======================= */
+/* Generales */
+/* ======================= */
+body { 
+    background: transparent url(../images/background-pattern.png);  
+    font-size: 16px;
+    font-weight: normal;
+    font-family: tahoma;
+}
+/* ======================= */
+/* Encabezado */
+/* ======================= */
+
+#encabezado { 
+    float: left;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+.centrar{ 
+    width: 720px;
+    margin: 0 auto;
+}
+
+#logo { 
+    height: 195px;
+    width: 215px;
+    background: transparent url(../images/logo.png);  
+    display: block;
+    text-indent: -9999px;
+    float: left;
+    margin-top: 2px; 
+}
+
+#bloque-derecho { 
+    height: 138px;
+    width: 450px;
+    float: right;
+    position: relative;
+}
+
+#usuario {
+    display: block;
+    width: 100%; 
+    height: 50px; 
+    position: relative;
+}
+
+#login-button {
+    margin: 0 0 0 255px;
+    float: left;
+}
+
+#login-button, #registrarse-button {
+    padding: 10px;
+    border: 1px solid black;
+    border-top: 0;
+    background: white;
+    text-decoration: none;
+    color: black;
+}
+
+#registrarse-button {
+    float: right;
+    padding: 11px;
+}
+
+#filtros {
+    display: block;
+    width: 100%; 
+    position: absolute;
+    bottom: 1px;
+    right: 0;
+    background: white;
+    border: 1px solid black;
+    border-bottom: 0;
+    padding: 10px;
+    padding-bottom: 0;
+}
+
+#categorias, #buscar {
+    border: 1px solid black;
+}
+
+#buscar {
+    width: 45%;
+    float: left;
+    padding: 5px;
+}
+
+#categorias {
+    width: 45%;
+    float: right;
+    padding: 4px;
+}
+
+option {
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+}
+
+option:nth-child(even) { background: #ddd }
+option:nth-child(odd) { background: #fff}
+
+
+/* ======================= */
+/* Cuerpo */
+/* ======================= */
+#cuerpo { 
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    background: white;
+    position: relative;
+    top: -61px;
+    width: 100%;
+    float: left;
+    display: block;
+    z-index: 0;
+    padding: 85px 0 25px 0 ;
+    min-height: 660px;
+}
+
+#resultados {
+    width: 790px;
+    margin: 0 auto;
+}
+
+#resultados li.libro {
+    float: left;
+    width: 240px;
+    border: 1px solid black;
+    padding: 5px;
+    margin: 5px;
+}
+
+div.imagen {
+    float: left;
+    width: 122px;
+    height: 180px;
+}
+
+ul.detalles {
+    float: left;
+    width: 113px;
+    height: 180px;
+    margin: 0 0 0 5px;
+    position: relative;
+}
+
+ul.detalles li {
+    float: left;
+    width: 100%;
+    font-weight: normal;
+    padding: 5px 0;
+}
+
+ul.detalles li.titulo {
+    padding:0 0 5px 0;
+    font-weight: bold;
+    border-bottom: 1px dashed black;    
+}
+
+ul.detalles li.autor {
+    border-bottom: 1px dashed black;    
+}
+
+ul.detalles li.votos, ul.detalles li.comentarios {
+    position: absolute;
+    bottom: 35px;
+    width: 45%;
+}
+
+ul.detalles li.comentarios {
+    left: 60px;
+}
+
+ul.detalles li.verDetalles {
+    position: absolute;
+    bottom: 0;
+    background: black;
+    font-size: 14px;
+}
+
+ul.detalles li.verDetalles a {
+    padding: 3px 16px;
+    text-decoration: none;
+    color: white;
+    float: left;
+}
+
+/* ======================= */
+/* Detalles */
+/* ======================= */
+
+#detallesLibro {
+    width: 790px;
+    margin: 0 auto;
+}
+
+#resumen {
+    width: 100%;
+    height: 220px;
+    float: left;
+    padding: 0 0 5px 0;
+    border-bottom: 1px black dashed;
+}
+
+#libro-bloque-izquierdo, #libro-bloque-derecho {
+    display: block;
+    float: left;
+    width: 17%;
+}
+
+#libro-bloque-derecho {
+    width: 83%;
+}
+
+.estadisticas {
+    width: 100%;
+    float: left;
+    margin: 5px 0 0 0;
+}
+
+.estadisticas .votos , .estadisticas .comentarios {
+    width: 50%;
+    float: left;
+    padding: 10px 0;
+}
+
+.datos {
+    display: block;
+    float: left;
+    width: 100%;
+    border-bottom: 1px black dashed;
+    padding: 0 0 5px 0;
+    margin: 0 0 5px 0;
+    line-height: 20px;
+}
+
+.datos .titulo {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.datos .auto{
+    padding: 5px 0 0 0;
+}
+
+.descripcion {
+    line-height: 18px;
+    font-size: 14px;
+    border-bottom: 1px black dashed;
+    padding: 0 0 5px 0;
+    margin: 0 0 5px 0;
+}
+
+.barra {
+    display: block;
+    float: left;
+    width: 100%;
+}
+
+.barra a , .barra span{
+    padding: 10px 10px;
+    text-decoration: none;
+    color: white;
+    float: left;
+    background: black;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.barra a#buscar-librerias, .barra a#buscar-mapa, .barra a#buscar-listado {
+    float: right;
+}
+
+.lista-de-comentarios {
+    padding: 10px 0 10px 0;
+    float: left;
+    border-bottom: 1px black dashed;
+}
+
+.lista-de-comentarios li {
+    padding: 5px;
+    border: 1px solid gray;
+    padding: 10px 30px;
+    position: relative;
+    font-size: 14px;
+    margin: 5px 0 0 0;
+}
+
+.lista-de-comentarios li .nick {
+    font-weight: bold;
+    line-height: 22px;
+}
+
+.lista-de-comentarios li .icon-comment, .lista-de-comentarios li .icon-responder {
+    position: absolute;
+}
+
+.lista-de-comentarios li .icon-comment {
+    top: 12px;
+    left: 3px;
+}
+
+.lista-de-comentarios li .icon-responder {
+    bottom: 10px;
+    right: 3px;
+}
+
+.lista-de-comentarios li.respuesta div {
+    position: relative;
+    padding: 15px 30px;
+    background: white;
+    border: 1px gray solid;
+
+}
+
+.lista-de-comentarios li.respuesta .icon-comment {
+    top: 38px;
+}
+
+.lista-de-comentarios li.respuesta {
+    background: #E6E6E6;
+    border-top: 0;
+    margin-top: 0;
+    padding: 15px 45px ;
+}
+
+.hacia-el-usuario {
+    font-size: 14px;
+    border-bottom: 1px black dashed;
+    width: 100%;
+    display: block;
+    padding: 0 0 5px 0;
+}
+
+.barra #comentar {
+    margin: 5px 0;
+    float: right;
+}
+
+#nuevo-comentario {
+    float: left;
+    width: 100%;
+    position: relative;
+    min-height: 130px;
+    display: none;
+}
+
+#nuevo-comentario p {
+    padding: 5px 0; 
+    width: 90%;
+    margin: 0 auto;
+    display: block;
+}
+
+#nuevo-comentario textarea {
+    width: 90%;
+    margin: 0 auto;
+    display: block;
+}
+
+#nuevo-comentario #enviar {
+    padding: 10px 10px;
+    text-decoration: none;
+    color: white;
+    float: right;
+    background: black;
+    font-size: 14px;
+    position: absolute;
+    bottom: 0;
+    right: 35px;
+}
+
+/* ======================= */
+/* Lista de librarias */
+/* ======================= */
+
+#buscar-listado {
+    display: none;
+}
+
+#lista-de-librerias {
+    float: left;
+    width: 100%;
+    padding: 10px 0;
+    border-bottom: 1px black dashed;
+    display: none;
+}
+
+#lista-de-librerias table {
+    width: 100%;
+    border: 1px gray solid;
+}
+
+#lista-de-librerias table tr {
+    border: 1px gray solid;
+}
+
+#lista-de-librerias table td {
+    padding: 5px 0;
+    text-align: right;
+}
+
+#lista-de-librerias table td:first-child {
+    text-align: left;
+    padding: 0 0 0 5px;
+}
+
+#lista-de-librerias table td .icon {
+    margin: 0 5px;
+    float: right;
+}
+#lista-de-librerias table tr:nth-child(even) { background: #ddd }
+#lista-de-librerias table tr:nth-child(odd) { background: #fff}
+
+/* ======================= */
+/* Mapa */
+/* ======================= */
+
+#buscar-mapa {
+    display: none;
+}
+
+#mapa {
+    float: left;
+    width: 100%;
+    padding: 10px 0;
+    border-bottom: 1px black dashed;
+    display: none;
+}
+
+/* ======================= */
+/* POPUP */
+/* ======================= */
+
+#fondo-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    opacity: 0.75;
+    z-index: 3;
+    display: none;
+}
+
+.popup {
+    z-index: 4;
+    width: 250px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin: -125px 0 0 -125px;
+    background: white;
+    border: 4px black solid;
+    padding: 10px;
+    display: none;
+}
+
+.popup .head{
+    width: 100%;
+    border-bottom: 1px black solid;
+    padding: 5px 0;
+}
+
+.popup .body{
+    width: 100%;
+    border-bottom: 1px black solid;
+    padding: 5px 0;
+}
+
+.popup a#boton-recuperar-pass, .popup a#boton-registrarse {
+    padding: 10px 10px;
+    text-decoration: none;
+    color: white;
+    float: left;
+    background: gray;
+    font-size: 14px;
+    width: 92%;
+    text-align: center;
+    margin: 5px 0 0 0;
+}
+
+.popup a#boton-recuperar-pass {
+    background: none;
+    color: black;
+}
+
+.popup a#boton-recuperar-pass:hover {
+    text-decoration: underline;
+}
+
+.popup input{
+    width: 100%;
+    border: 1px black solid;
+    padding: 5px 0;
+    margin: 5px 0;
+}
+
+.popup input[type=submit]{
+    cursor: pointer;
+}
+
+#boton-cerrar{
+    float: right;
+}
+
+#login {
+}
+#registrarse {   
+}
+#recuperar {
+}
+
+/* ======================= */
+/* Iconos */
+/* ======================= */
+.icon {
+    display: block;
+    width: 18px;
+    height: 18px;
+    float: left;
+    margin: 0 5px 0 0;
+}
+
+.icon-buscar {
+    background: transparent url(../images/icons/icon-search.png) 95% 50% no-repeat;
+}
+.icon-comments {
+    background: transparent url(../images/icons/icon-comments.png) 0 0 no-repeat;
+}
+.icon-votos {
+    background: transparent url(../images/icons/icon-votes.png) 0 0 no-repeat;    
+}
+.icon-login {
+    background: transparent url(../images/icons/icon-user.png) 0 0 no-repeat;    
+}
+.icon-comment {
+    background: transparent url(../images/icons/icon-comment.png) 0 0 no-repeat;    
+}
+.icon-responder {
+    background: transparent url(../images/icons/icon-replay-comment.png) 0 0 no-repeat;    
+}
+.icon-marker {
+    background: transparent url(../images/icons/icon-marker.png) 0 0 no-repeat;    
+}
+.icon-mail {
+    background: transparent url(../images/icons/icon-mail.png) 0 0 no-repeat;    
+}
+.icon-cell {
+    background: transparent url(../images/icons/icon-cell.png) 0 0 no-repeat;    
+}
+.icon-close {
+    background: transparent url(../images/icons/icon-close.png) 0 0 no-repeat;    
+}
+
+
+/********* [PAGINAR] *********/
+.paginator { 
+    height: 40px; 
+    text-indent: -9999px;
+    width: 920px; 
+    margin: 0 auto;
+    position: relative;
+    top: 280px;
+}
+.paginator a {
+    background-position: -5px -594px; 
+    color: #000; 
+    cursor: pointer; 
+    height: 35px; 
+    text-indent: -9999px; 
+    width: 35px; 
+}
+a[title="Previous Page"], a[title="Next Page"] { 
+    position: absolute;
+    top: 0;
+    display: block;
+    width: 36px;
+    height: 36px;
+}
+
+a[title="Previous Page"] { 
+    left: 0;
+    background: transparent url(../images/icons/icon-arrow-left.png) 0 0 no-repeat; 
+}
+a[title="Next Page"] { 
+    right: 0;
+    background: transparent url(../images/icons/icon-arrow-right.png) 0 0 no-repeat; 
+}
