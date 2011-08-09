@@ -18,13 +18,16 @@
 						
 							 <g:if test="${comment}">
 								 	<li class="book">
+								 	  <g:link controller="book" action="viewDetails" params="[bookId:comment.book.id]">
+									  	<img  src="<g:createLinkTo dir="images/Book/${comment.book.name}" file="cover.jpg" />"/>
+									  </g:link>
 									 <h4>${comment.description}</h4>
 									 <p>Score: ${comment.score}</p>
 									 <g:link controller="book" action="viewDetails" params="[bookId:comment.book.id]">${comment.book.name}</g:link>
 							    	 <div class="list-operator-item">
-						        	 <span class="link-item"><g:link controller="comment" action="deleteComment" params="[commentId:comment.id,bookId:comment.book.id]">Delete</g:link></span>
-		<%--				        	|--%>
-		<%--				        	<span class="link-item"><g:link controller="comment" action="toComment" params="[bookId:book.id]">to Comment</g:link></span>--%>
+						        	 <span class="link-item"><g:link controller="comment" action="deleteComment" params="[commentId:comment.id,bookId:comment.book.id]">Delete comment</g:link></span>
+						        	|
+						        	<span class="link-item"><g:link controller="comment" action="toComment" params="[bookId:comment.book.id]">to Comment Book</g:link></span>
 						        	 </div>
 						        	 </li>		
 							 </g:if>

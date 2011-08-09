@@ -48,6 +48,7 @@ class Book implements Taggable{
 	}
 	void reserveMe(){
 		this.state = States.RESERVED
+//		this.library = library
 	}
 
 	void addComment(Comment aComment){

@@ -16,6 +16,9 @@
 				<ul class="item-list">
 					<g:each var="reservation" in="${reservations}">
 						<li class="book">
+					 	  <g:link controller="book" action="viewDetails" params="[bookId:reservation.book.id]">
+						  	<img  src="<g:createLinkTo dir="images/Book/${reservation.book.name}" file="cover.jpg" />"/>
+						  </g:link>
 							  <span class="item-title"><g:link controller="book" action="viewDetails" params="[bookId:reservation.book.id]">${reservation.book.name}</g:link></span>
 					          <h4>ISBN: ${reservation.book.ISBN}</h4>
 					          <span class="text">${reservation.book.state}</span>

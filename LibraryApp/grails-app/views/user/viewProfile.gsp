@@ -17,7 +17,9 @@
 				|
 				<span class="text">Total Votes: ${userProfile?.totalVotes}</span>
 		</div>				
+				<h4>Favourite Genres</h4>
 				<ul class="item-list">
+					
 					<g:each var="tag_fav" in="${userProfile?.typesFav}">
 						<li>
 							<span class="text">${tag_fav.name}</span>
@@ -28,11 +30,15 @@
 				<h4>Reservations</h4>
 				<ul class="item-list">
 					<g:each var="reservation" in="${userProfile?.reservations}">
-						<li>
+						<li class="book">
+						  <g:link controller="book" action="viewDetails" params="[bookId:reservation.book.id]">
+						  	<img  src="<g:createLinkTo dir="images/Book/${reservation.book.name}" file="cover.jpg" />"/>
+						  </g:link>
 							<span class="text"><g:link controller="book" action="viewDetails" params="[bookId:reservation.book.id]">${reservation.book.name}</g:link></span>
 							|
-							<span class="text">${reservation.reservationDate.toString()}</span>
-<%--							<p>${reservation.library.name}</p>  FALTA EL NOMBRE...--%>
+							<span class="text">${reservation.reservationDate}</span>
+<%--							|--%>
+<%--							<p>${reservation.library.name}</p>--%>
 					    </li>
 					</g:each>
 				</ul>
@@ -40,7 +46,10 @@
 				<h4>Comments Done</h4>
 				<ul class="item-list">
 					<g:each var="commentDone" in="${userProfile?.commentsDone}">
-						<li>
+						<li class="book">
+						  <g:link controller="book" action="viewDetails" params="[bookId:commentDone.book.id]">
+						  	<img  src="<g:createLinkTo dir="images/Book/${commentDone.book.name}" file="cover.jpg" />"/>
+						  </g:link>
 							<g:link controller="book" action="viewDetails" params="[bookId:commentDone.book.id]">${commentDone.book.name}</g:link>
 							<h4>"${commentDone.description}"</h4>
 							<p>Comment Score: ${commentDone.score}</p>

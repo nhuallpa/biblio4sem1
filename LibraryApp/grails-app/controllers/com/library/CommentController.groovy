@@ -97,5 +97,8 @@ class CommentController {
 		redirect(uri: '/')
 	}
 
+	void goToHomeAndBack(String urlBack){
+		
+	}
 	
 }

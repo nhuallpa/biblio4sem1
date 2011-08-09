@@ -11,7 +11,7 @@
 			<div class="inner-boundary">
 			<h4>${book?.name}</h4>
 			
-			<img  src="<g:createLinkTo dir="images/Book/${book.name}" file="cover.jpg" />"/>
+			<g:link controller="book" action="viewDetails" params="[bookId:book.id]"><img  src="<g:createLinkTo dir="images/Book/${book.name}" file="cover.jpg" />"/></g:link>
 <%--			<g:link controller="book" action="viewDetails" params="[bookId:book.id]">${book?.name}</g:link>--%>
 			<p>ISBN: ${book?.ISBN}</p>
 

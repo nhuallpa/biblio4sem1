@@ -205,6 +205,8 @@ class User {
 	
 	void addReservation(Reservation aReservation, Book aBook){
 		aBook.reserveMe()
+		Date date = new Date()
+		aReservation.reservationDate = date
 		this.reservations?.add aReservation
 
 	}
