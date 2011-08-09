@@ -19,7 +19,7 @@
 				<div id="loginContainer">
 					<g:if test="${session.user}">
 						<span id="logoutButton"><g:link controller="user"  action="logout">Logout</g:link></span>
-						<span id="userWelcome">Welcome <g:link controller="user" action="viewProfile">${session.user.name}</g:link></span>
+						<span id="userWelcome">Welcome <g:link controller="user" action="viewProfile" params="[userId:session.user.id]">${session.user.name}</g:link></span>
 					</g:if>
 					<g:else>
 						<a href="#" id="loginButton"><span>Login</span><em></em></a>

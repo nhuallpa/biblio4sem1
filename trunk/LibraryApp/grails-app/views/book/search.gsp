@@ -15,7 +15,9 @@
 				<g:each in="${searchResults}" status="i" var="book">
 					<ul class="item-list">
 						<li class="book">
-						  <img  src="<g:createLinkTo dir="images/Book/${book.name}" file="cover.jpg" />"/>
+						  <g:link controller="book" action="viewDetails" params="[bookId:book.id]">
+						  	<img  src="<g:createLinkTo dir="images/Book/${book.name}" file="cover.jpg" />"/>
+						  </g:link>
 						  <div class="book-resume-item">
 							  <span class="item-title"><g:link controller="book" action="viewDetails" params="[bookId:book.id]">${book.name}</g:link></span>
 					          <h4>ISBN: ${book.ISBN}</h4>
