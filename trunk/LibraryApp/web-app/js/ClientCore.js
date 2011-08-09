@@ -18,6 +18,8 @@ $(function() {
             box.hide();
         }
     });
+	
+	
 });
 
 
@@ -49,3 +51,4 @@ geocoder.geocode( { address: "${session.user.seeAddress()}" }, function(results,
       alert("Geocode was unsuccessful due to: " + status);
     }
   });
+  
