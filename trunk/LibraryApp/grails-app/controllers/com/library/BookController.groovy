@@ -117,8 +117,4 @@ class BookController {
 		def results = bookService.getTopFive()
 		[booksInTopFive:results]
 	}
-	
-	def results = {
-		
-	}
 }
