@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
   xmlns:android="http://schemas.android.com/apk/res/android"
   android:id="@+id/library_map_layout"
   android:orientation="vertical"
@@ -15,4 +15,4 @@
         android:apiKey="06VodRsRvFxte97Zhz01LJle3sFuSYTO0MQqymQ"
         />
   
-</RelativeLayout>
+</LinearLayout>
