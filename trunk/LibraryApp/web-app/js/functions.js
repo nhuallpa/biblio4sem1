@@ -1,6 +1,3 @@
-$(document).ready(function() {
-
-	itemsPerPage = 9; $("#resultados").pagination();
 
 	/**
 	 * Login PopUp
@@ -104,4 +101,3 @@ $(document).ready(function() {
 		$('#buscar-listado').css('display', 'block');
 		$('#lista-de-librerias').css('display', 'none');
 	});
-});

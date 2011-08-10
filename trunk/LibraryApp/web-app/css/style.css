@@ -54,12 +54,12 @@ body {
     position: relative;
 }
 
-#login-button {
+#login-button, #logout-button {
     margin: 0 0 0 255px;
     float: left;
 }
 
-#login-button, #registrarse-button {
+#login-button, #name-to-profile, #logout-button, #registrarse-button {
     padding: 10px;
     border: 1px solid black;
     border-top: 0;
@@ -68,7 +68,7 @@ body {
     color: black;
 }
 
-#registrarse-button {
+#registrarse-button, #name-to-profile {
     float: right;
     padding: 11px;
 }
@@ -127,6 +127,28 @@ option:nth-child(odd) { background: #fff}
     padding: 85px 0 25px 0 ;
     min-height: 660px;
 }
+
+
+.container {
+    margin: 0 auto;
+    width: 1000px;
+}
+
+.col-s-content {
+    float: left;
+    width: 850px;
+}
+
+.large-sidebar {
+    color: #353535;
+    float: right;
+    width: 138px;
+}
+
+
+/* ======================= */
+/* Resultado */
+/* ======================= */
 
 #resultados {
     width: 790px;
@@ -570,7 +592,7 @@ ul.detalles li.verDetalles a {
 .paginator { 
     height: 40px; 
     text-indent: -9999px;
-    width: 920px; 
+    width: 845px; 
     margin: 0 auto;
     position: relative;
     top: 280px;
@@ -599,3 +621,37 @@ a[title="Next Page"] {
     right: 0;
     background: transparent url(../images/icons/icon-arrow-right.png) 0 0 no-repeat; 
 }
+
+
+/*------------------------------------------------	BEGIN  	TOP OF BOOK-------------------------------------		*/
+
+
+#book-in-top-container {
+	padding-top: 20px;
+	padding-bottom: 30px;
+	height: 500px;
+	clear: both;
+}
+
+.book-in-top-item {
+	float:left;
+	padding-top: 10px;
+	width: 150px;
+	height: 250px;
+	
+}
+
+.book-in-top-item #title a{
+	font-weight: bold;
+	color:#000000;
+}
+.book-in-top-item #title a:hover{
+	color:#FF7F2A;
+}
+
+.book-in-top-item img {
+	width: 50px;
+	height: 75px;
+}
+
+/*------------------------------------------------	END  	TOP OF BOOK-------------------------------------		*/
