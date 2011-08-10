@@ -2,10 +2,11 @@ package com.library.android.mock;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import com.library.android.domain.Book;
 import com.library.android.domain.Comment;
+import com.library.android.domain.Library;
+import com.library.android.domain.Location;
 import com.library.android.domain.User;
 
 public class LibraryMocks {
@@ -37,8 +38,14 @@ public class LibraryMocks {
 	private User nestor;
 	private User ariel;
 	
+	private Library floridaLibrary;
+	private Library floresLibrary;
+	private Library liniersLibrary;
+	
 	private List<Book> topBooks = new ArrayList<Book>();
 	private List<Book> allBooks = new ArrayList<Book>();
+	private List<Library> libraries = new ArrayList<Library>();
+
 		
 	private static LibraryMocks instance;
 	
@@ -51,6 +58,10 @@ public class LibraryMocks {
 	
 	
 	private LibraryMocks(){
+		floridaLibrary = new Library("Florida Library",new Location("Florida 600", -34.60107, -58.37535));
+		floresLibrary = new Library("Flores Library", new Location("Av Rivadavia 6800", -34.62845, -58.46118));
+		liniersLibrary = new Library("Liniers Library", new Location("Av Rivadavia 11684", -34.63936, -58.52867));
+		
 		book1 = new Book(new Long(1234), "Thinking in Java", "Autor 1", ConstantsMock.book1_picture);
 		book2 = new Book(new Long(6789),"Objective-C", "Autor 2",  ConstantsMock.book2_picture);
 		book3 = new Book(new Long(7894), "It","Autor 3", ConstantsMock.book3_picture);
@@ -84,6 +95,10 @@ public class LibraryMocks {
 	}
 	
 	private void init(){
+		
+		libraries.add(floridaLibrary);
+		libraries.add(floresLibrary);
+		libraries.add(liniersLibrary);
 		
 		//gonza
 		gonza = new User();
@@ -194,6 +209,8 @@ public class LibraryMocks {
 		return allBooks;
 	}
 		 
-
+	public List<Library> getLibraries(){
+		return this.libraries;
+	}
 
 }

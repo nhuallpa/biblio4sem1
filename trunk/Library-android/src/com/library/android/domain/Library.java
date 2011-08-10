@@ -9,11 +9,17 @@ public class Library {
 	private Location location;
 	private List<Reservation> listOfReservations;
 	private List<Comment> listOfComments;
+	private String name;
 	
-	public Library(Location location){
+	public Library(String name, Location location){
+		this.name = name;
 		this.location = location;
 		this.listOfComments = new ArrayList<Comment>();
 		this.listOfReservations = new ArrayList<Reservation>();
+	}
+	
+	public String getName(){
+		return this.name;
 	}
 	
 	public void isSitueted(Location location){
