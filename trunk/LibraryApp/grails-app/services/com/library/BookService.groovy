@@ -4,13 +4,13 @@ class BookService {
 
     static transactional = true
 
-    def getTopFive() {
-		def five = 5;
+    def getInTop() {
+		def number = 6;
 		
 		def criteria = Book.createCriteria()
 		def results = criteria.list {
 			order("rating", "desc")
-			maxResults(five)
+			maxResults(number)
 		}
 		results
     }

@@ -118,7 +118,7 @@ option:nth-child(odd) { background: #fff}
 	border: none;	
 	z-index: 2;
 	}
-
+	
 .botones_header #book_store, #librarys{
 	background: black;
 	color: white;
@@ -692,3 +692,35 @@ a[title="Next Page"] {
 	padding-bottom: 25px;
 }
 /*------------------------------------------------	END  	TOP OF BOOK-------------------------------------		*/
+
+.message {
+    background: #f3f8fc url(../images/skin/information.png) 8px 50% no-repeat;
+    border: 1px solid #000000;
+    background-color: #F7F7F7;
+   	color:#000000;
+    margin: 0 auto;
+    width: 743px;
+    padding: 5px 5px 5px 30px
+}
+
+.paginateButtons {
+	width: 790px;
+	margin: 0 auto;
+	padding-bottom: 10px;
+	padding-top: 10px;
+}
+
+.paginateButtons a, .currentStep	{
+	text-decoration: none;
+	padding-left: 5px;
+}
+
+.paginateButtons .currentStep {
+	color: #557FFF;
+	font-weight: bold;
+}
+
+.paginateButtons .step, .paginateButtons .nextLink, .paginateButtons .prevLink{
+	color: black;
+}
+

@@ -8,36 +8,22 @@
     <g:if test="${flash.message}">
       <div class="message">${flash.message}</div>
     </g:if>
-
-    <div class="body">
-    	<div id="items" class="shadowed">
-			<div class="inner-boundary">
-				<g:each in="${searchResults}" status="i" var="book">
-					<ul class="item-list">
-						<li class="book">
-						  <g:link controller="book" action="viewDetails" params="[bookId:book.id]">
-						  	<img  src="<g:createLinkTo dir="images/Book/${book.name}" file="cover.jpg" />"/>
-						  </g:link>
-						  <div class="book-resume-item">
-							  <span class="item-title"><g:link controller="book" action="viewDetails" params="[bookId:book.id]">${book.name}</g:link></span>
-					          <h4>ISBN: ${book.ISBN}</h4>
-					          <span class="text">${book.state}</span><br/>
-					          <span class="text">Raiting: ${book.rating}</span><br/>
-					          <span class="text">Total Votes: ${book.totalVotes}</span>
-						  </div>
-				          <div class="list-operator-item">
-				          		<span class="link-item"><g:link controller="reservation" action="toReserve" params="[bookId:book.id]">to Reserve</g:link></span>
-				          		|
-				          		<span class="link-item"><g:link controller="comment" action="toComment" params="[bookId:book.id]">to Comment</g:link></span>
-				          </div>
-				        </li>			
-					</ul>
-				</g:each>
-			</div>
-		</div>
-    </div>
     <div class="paginateButtons">
-      <g:paginate total="${resultCount}" params="${flash}"/>
+      <g:paginate total="${resultCount}" params="${flash}" max="9" />
     </div>
-  </body>
+	<ul id="resultados" class="columns">
+  		<g:each in="${searchResults}" status="i" var="book">
+  			<li class="libro">
+			    <div class="imagen"><img  src="<g:createLinkTo dir="images/Book/${book.name}" file="cover.jpg"  />" alt="images/Book/${book.name}" title="images/Book/${book.name}" width="122px" height="180px"/></div>
+			    <ul class="detalles">
+			        <li class="titulo">Titulo ${book.name}</li>
+			        <li class="autor">Autor: ${book.author}</li>
+			        <li class="votos"><span class="icon icon-votos"></span>${book.rating}</li>
+			        <li class="comentarios"><span class="icon icon-comments"></span>${book.totalVotes}</li>
+			        <li class="verDetalles"><a href="${createLink(controller:'book', action:'viewDetails', params:[bookId:book.id])}">ver detalles</a></li>
+			    </ul>                
+			</li>
+  		</g:each>
+	</ul>
+	</body>
 </html>
