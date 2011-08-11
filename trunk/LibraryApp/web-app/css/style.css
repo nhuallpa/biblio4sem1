@@ -110,6 +110,12 @@ option {
 option:nth-child(even) { background: #ddd }
 option:nth-child(odd) { background: #fff}
 
+.botones_header {
+	background: none repeat scroll 0 0 black;
+    font-size: 14px;
+    position: absolute;
+	}
+
 
 /* ======================= */
 /* Cuerpo */
@@ -131,17 +137,18 @@ option:nth-child(odd) { background: #fff}
 
 .container {
     margin: 0 auto;
-    width: 1000px;
+    width: 960px;
 }
 
 .col-s-content {
-    float: left;
-    width: 850px;
+/*     float: left; */
+/*     width: 850px; */
+/*     margin : 0 auto; */
 }
 
 .large-sidebar {
     color: #353535;
-    float: right;
+    float: bottom;
     width: 138px;
 }
 
@@ -600,7 +607,7 @@ ul.detalles li.verDetalles a {
 .paginator { 
     height: 40px; 
     text-indent: -9999px;
-    width: 845px; 
+    width: 925px; 
     margin: 0 auto;
     position: relative;
     top: 280px;
@@ -668,7 +675,7 @@ a[title="Next Page"] {
 .title-section {
 	font-weight: bold;
 	font-size: 18px;
-	margin: 0 auto;	
+	margin: 0 0 0 89px;	
 	width: 250px;
 	padding-top: 50px;
 	padding-bottom: 25px;
