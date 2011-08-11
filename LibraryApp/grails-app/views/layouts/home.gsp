@@ -13,7 +13,10 @@
             <div class="centrar">
                 <h1 id="logo">The Map Of Books</h1>
                 <div id="bloque-derecho">
+<%--                	<g:link class="botones_header controller="book"  action="index">Books store</g:link>--%>
+                	<a class="botones_header" href="${createLink(controller:'book', action:'index')}">Books store</a>
                     <div id="usuario">
+                    		
                     	<g:if test="${session.user}">
                     		<a id="logout-button" href="${createLink(controller:'user', action:'logout')}">Logout<span class="icon icon-login"></span></a>
                     		<a id="name-to-profile" href="${createLink(controller:'user', action:'viewProfile', params:[userId:session.user.id])}">${session.user.name}</a>
