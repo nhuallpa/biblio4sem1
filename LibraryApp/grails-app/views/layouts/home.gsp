@@ -14,7 +14,11 @@
                 <h1 id="logo">The Map Of Books</h1>
                 <div id="bloque-derecho">
 <%--                	<g:link class="botones_header controller="book"  action="index">Books store</g:link>--%>
-                	<a class="botones_header" href="${createLink(controller:'book', action:'index')}">Books store</a>
+					<div class="botones_header">
+						<a id="book_store" href="${createLink(controller:'book', action:'index')}">Books store</a>
+                		<a id="librarys" href="${createLink(controller:'library', action:'gmaps')}">Librarys</a>
+					</div>
+
                     <div id="usuario">
                     		
                     	<g:if test="${session.user}">
@@ -50,8 +54,6 @@
 				</div>
 				<div class="large-sidebar">
 					<ul>
-						<li><g:link controller="book"  action="index">Books store</g:link></li>
-						<li><g:link controller="library"  action="gmaps">Librarys</g:link></li>
 						<g:if test="${session.user}">
 							<g:if test="${session.user.name.equals('admin') }">
 								<li><g:link controller="home"  action="administration">Administration</g:link></li>
