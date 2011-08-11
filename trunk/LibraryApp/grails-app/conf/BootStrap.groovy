@@ -30,7 +30,12 @@ class BootStrap {
 		def listOfBooks = []
 		def listOfUsers = []
 		
-		def description = "	Sed eros ligula, fermentum et tincidunt vitae, dictum in felis."
+		def description = """	Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor
+							quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean
+                            ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat
+                            wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum,
+                            eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent
+                            dapibus, neque id cursus faucibus"""
 		def author = "Nulla vehicula"
 		def bookNames = ["It","Thinking in Java","Learning C","Asp.net for Dummies","Codigo da Vinci","Taken","Harry Potter","Flex","HTML 5"]
 		def userNames = ["gonza", "nestor", "ariel", "user", "admin"]

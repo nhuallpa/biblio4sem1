@@ -4,8 +4,137 @@
 		<title>Book View: ${book?.name}</title>
 	</head>
 	<body>
+		<div id="detallesLibro">
+                <div id="resumen">
+                    <div id="libro-bloque-izquierdo">
+                        <div class="imagen"><img src="<g:createLinkTo dir="images/Book/${book.name}" file="cover.jpg"/>" alt="01" title="01" width="122px" height="180px"/></div>
+                        <div class="estadisticas">
+                            <div class="votos"><span class="icon icon-votos"></span>${book.rating}</div>
+                            <div class="comentarios"><span class="icon icon-comments"></span>${book.totalVotes}</div>
+                        </div>
+                    </div>
+                    <div id="libro-bloque-derecho">
+                        <div class="datos">
+                            <span class="titulo">${book.name}</span><br/>
+                            <span class="autor">${book.author}</span><br/>
+                            <span class="isbn">${book?.ISBN}</span>
+                        </div>
+                        <p class="descripcion">${book.description}</p>
+                        <div class="barra">
+                            <a href="#" id="votar" class="boton">Votar</a>
+                            <a href="#" id="buscar-librerias" class="boton">Buscar Librerias</a>
+                            <a href="#" id="buscar-listado" class="boton">Ver Listado</a>
+                            <a href="#" id="buscar-mapa" class="boton">Ver Mapa</a>
+                        </div>
+                    </div>
+                </div>
+                <div id="mapa">
+                    <div id="map_canvas">
+
+                    </div>
+                </div>
+                <div id="lista-de-librerias">
+                    <table>
+                        <tr>
+                            <td><b>Nombre de Libreria</b></td>
+                            <td>Direccion Corrientes 485<span class="icon icon-marker"></span></td>
+                            <td>46218091<span class="icon icon-cell"></span></td>
+                            <td>nombre@libreria.com.ar<span class="icon icon-mail"></td>
+                        </tr>
+                        <tr>
+                            <td><b>Nombre de Libreria</b></td>
+                            <td>Direccion Corrientes 485<span class="icon icon-marker"></span></td>
+                            <td>46218091<span class="icon icon-cell"></span></td>
+                            <td>nombre@libreria.com.ar<span class="icon icon-mail"></td>
+                        </tr>
+                        <tr>
+                            <td><b>Nombre de Libreria</b></td>
+                            <td>Direccion Corrientes 485<span class="icon icon-marker"></span></td>
+                            <td>46218091<span class="icon icon-cell"></span></td>
+                            <td>nombre@libreria.com.ar<span class="icon icon-mail"></td>
+                        </tr>
+                        <tr>
+                            <td><b>Nombre de Libreria</b></td>
+                            <td>Direccion Corrientes 485<span class="icon icon-marker"></span></td>
+                            <td>46218091<span class="icon icon-cell"></span></td>
+                            <td>nombre@libreria.com.ar<span class="icon icon-mail"></td>
+                        </tr>
+                        <tr>
+                            <td><b>Nombre de Libreria</b></td>
+                            <td>Direccion Corrientes 485<span class="icon icon-marker"></span></td>
+                            <td>46218091<span class="icon icon-cell"></span></td>
+                            <td>nombre@libreria.com.ar<span class="icon icon-mail"></td>
+                        </tr>
+                        <tr>
+                            <td><b>Nombre de Libreria</b></td>
+                            <td>Direccion Corrientes 485<span class="icon icon-marker"></span></td>
+                            <td>46218091<span class="icon icon-cell"></span></td>
+                            <td>nombre@libreria.com.ar<span class="icon icon-mail"></td>
+                        </tr>
+                        <tr>
+                            <td><b>Nombre de Libreria</b></td>
+                            <td>Direccion Corrientes 485<span class="icon icon-marker"></span></td>
+                            <td>46218091<span class="icon icon-cell"></span></td>
+                            <td>nombre@libreria.com.ar<span class="icon icon-mail"></td>
+                        </tr>
+                        <tr>
+                            <td><b>Nombre de Libreria</b></td>
+                            <td>Direccion Corrientes 485<span class="icon icon-marker"></span></td>
+                            <td>46218091<span class="icon icon-cell"></span></td>
+                            <td>nombre@libreria.com.ar<span class="icon icon-mail"></td>
+                        </tr>
+                        <tr>
+                            <td><b>Nombre de Libreria</b></td>
+                            <td>Direccion Corrientes 485<span class="icon icon-marker"></span></td>
+                            <td>46218091<span class="icon icon-cell"></span></td>
+                            <td>nombre@libreria.com.ar<span class="icon icon-mail"></td>
+                        </tr>
+                        <tr>
+                            <td><b>Nombre de Libreria</b></td>
+                            <td>Direccion Corrientes 485<span class="icon icon-marker"></span></td>
+                            <td>46218091<span class="icon icon-cell"></span></td>
+                            <td>nombre@libreria.com.ar<span class="icon icon-mail"></td>
+                        </tr>
+                        <tr>
+                            <td><b>Nombre de Libreria</b></td>
+                            <td>Direccion Corrientes 485<span class="icon icon-marker"></span></td>
+                            <td>46218091<span class="icon icon-cell"></span></td>
+                            <td>nombre@libreria.com.ar<span class="icon icon-mail"></td>
+                        </tr>
+                        <tr>
+                            <td><b>Nombre de Libreria</b></td>
+                            <td>Direccion Corrientes 485<span class="icon icon-marker"></span></td>
+                            <td>46218091<span class="icon icon-cell"></span></td>
+                            <td>nombre@libreria.com.ar<span class="icon icon-mail"></td>
+                        </tr>
+                    </table>
+                </div>
+                <ul class="lista-de-comentarios">
+                	<g:if test="${flash.message}">
+      						<div class="message">${flash.message}</div>
+    				</g:if>
+                	<g:each var="comment" in="${book?.comments}">
+	                    <li>
+	                        <span class="icon icon-comment"></span>
+	                        <span id="responder" class="icon icon-responder"></span>
+	                        <p><span class="nick"> <g:link controller="user" action="viewProfile" params="[userId:comment.sourceUser.id]">${comment.sourceUser.name}</g:link> </span></p>
+	                        <p>${comment.description}</p>
+	                    </li>
+	                </g:each>
+                </ul>
+                <div class="barra">
+                    <span id="comentar">Comentar</span>
+                </div>
+                <div id="nuevo-comentario">
+                    <form id="new-comment" action="#" method="post">
+                        <p>Escriba aqui su comentario</p>
+                        <textarea></textarea>
+                        <a href="#" id="enviar">Enviar</a>
+                    </form>
+                </div>
+            </div>
 		
-		<h3 class="long-title">${book?.name}</h3>
+		<%--<h3 class="long-title">${book?.name}</h3>
 		
 		<div id="items" class="shadowed">
 			<div class="inner-boundary">
@@ -42,5 +171,5 @@
 				</div>
 			</div>
 		</div>
-	</body>
+	--%></body>
 </html>

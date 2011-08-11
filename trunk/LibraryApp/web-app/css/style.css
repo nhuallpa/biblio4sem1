@@ -26,7 +26,7 @@ body {
 }
 
 .centrar{ 
-    width: 720px;
+    width: 900px;
     margin: 0 auto;
 }
 
@@ -190,7 +190,7 @@ ul.detalles li.titulo {
     border-bottom: 1px dashed black;    
 }
 
-ul.detalles li.autor {
+ul.detalles li.autor, ul.detalles li.isbn {
     border-bottom: 1px dashed black;    
 }
 
@@ -228,7 +228,7 @@ ul.detalles li.verDetalles a {
 }
 
 #resumen {
-    width: 100%;
+    width: 800px;
     height: 220px;
     float: left;
     padding: 0 0 5px 0;
@@ -317,11 +317,19 @@ ul.detalles li.verDetalles a {
     position: relative;
     font-size: 14px;
     margin: 5px 0 0 0;
+    width: 738px;
 }
 
 .lista-de-comentarios li .nick {
     font-weight: bold;
     line-height: 22px;
+}
+
+.lista-de-comentarios li .nick a{
+    font-weight: bold;
+    line-height: 22px;
+    text-decoration: none;
+    color: black;
 }
 
 .lista-de-comentarios li .icon-comment, .lista-de-comentarios li .icon-responder {
