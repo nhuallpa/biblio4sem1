@@ -10,7 +10,7 @@ class BookController {
 	
 	
     def index = { 
-		def results = bookService.getTopFive()
+		def results = bookService.getInTop()
 		def books = Book.list()
 		[booksInTopFive:results, listOfBooks:books]
 	}
@@ -20,9 +20,10 @@ class BookController {
 	def searchBookHome = {
 	}
 	def search = {
-		//render Book.search(params.q, params)
+
+		def itemPerPage = 9
 		def param_q = params.q
-		
+		params.max = itemPerPage
 		if(param_q != ""){
 			def searchResults = Book.search(param_q, params)
 			flash.message = "${searchResults.total} results found for search: ${param_q}"

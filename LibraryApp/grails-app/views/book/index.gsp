@@ -26,7 +26,7 @@
 	 </ul>
   	<div id="book-in-top-container">
   		
-  		<h4 class="title-section">Top 5 of Book</h4>
+  		<h4 class="title-section">Top of Book</h4>
   		<ul id="resultados-book-in-top-list" class="columns">
 	  		<g:each in="${booksInTopFive}" status="i" var="book">
 	  			<li class="libro">
