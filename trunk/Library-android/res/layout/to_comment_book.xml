@@ -4,7 +4,7 @@
   android:orientation="vertical"
   android:layout_width="fill_parent"
   android:layout_height="fill_parent"
-  android:background="#848484">
+  android:background="#FFFFFF">
   	
   	<TextView
   		android:id="@+id/to_comment_book_title_book"

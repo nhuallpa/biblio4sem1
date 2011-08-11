@@ -3,7 +3,7 @@
   xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="wrap_content"
   android:layout_height="wrap_content"
-  android:background="#6E6E6E">
+  android:background="#FFFFFF">
 
 	<com.library.android.view.LibraryHeaderView
 		android:id="@+id/header_library_app" android:layout_width="fill_parent"
