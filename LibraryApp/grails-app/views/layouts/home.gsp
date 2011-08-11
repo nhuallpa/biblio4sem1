@@ -51,7 +51,7 @@
 			<div class="container">
 				<div class="col-s-content">
 					<g:layoutBody />
-				</div>
+				</div><%--
 				<div class="large-sidebar">
 					<ul>
 						<g:if test="${session.user}">
@@ -68,7 +68,7 @@
 						</ul>
 					</g:if>
 				</div>	
-			</div>
+			--%></div>
 		</div>
 		<div id="fondo-popup"></div>
         <div id="login" class="popup">
