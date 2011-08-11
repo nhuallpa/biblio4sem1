@@ -52,6 +52,7 @@ body {
     width: 100%; 
     height: 50px; 
     position: relative;
+	z-index: 1;
 }
 
 #login-button, #logout-button {
@@ -59,7 +60,7 @@ body {
     float: left;
 }
 
-#login-button, #name-to-profile, #logout-button, #registrarse-button {
+#login-button, #name-to-profile, #logout-button, #registrarse-button, .botones_header{
     padding: 10px;
     border: 1px solid black;
     border-top: 0;
@@ -111,11 +112,21 @@ option:nth-child(even) { background: #ddd }
 option:nth-child(odd) { background: #fff}
 
 .botones_header {
-	background: none repeat scroll 0 0 black;
+	background: none;
     font-size: 14px;
-    position: absolute;
+	position: absolute;
+	border: none;	
+	z-index: 2;
 	}
 
+.botones_header #book_store, #librarys{
+	background: black;
+	color: white;
+	text-decoration: none;
+	cursor: pointer;
+	margin: 0 13px 0 0;
+	padding: 13px;
+	}
 
 /* ======================= */
 /* Cuerpo */
