@@ -150,12 +150,12 @@ option:nth-child(odd) { background: #fff}
 /* Resultado */
 /* ======================= */
 
-#resultados {
+#resultados,  #resultados-book-in-top-list {
     width: 790px;
     margin: 0 auto;
 }
 
-#resultados li.libro {
+#resultados li.libro, #resultados-book-in-top-list li.libro{
     float: left;
     width: 240px;
     border: 1px solid black;
@@ -631,6 +631,9 @@ a[title="Next Page"] {
 	padding-bottom: 30px;
 	height: 500px;
 	clear: both;
+	position: relative;
+	x: 500px;
+	y: 500px;
 }
 
 .book-in-top-item {
@@ -654,4 +657,12 @@ a[title="Next Page"] {
 	height: 75px;
 }
 
+.title-section {
+	font-weight: bold;
+	font-size: 18px;
+	margin: 0 auto;	
+	width: 250px;
+	padding-top: 50px;
+	padding-bottom: 25px;
+}
 /*------------------------------------------------	END  	TOP OF BOOK-------------------------------------		*/

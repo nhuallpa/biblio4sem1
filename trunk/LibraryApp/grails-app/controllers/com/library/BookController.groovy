@@ -11,7 +11,8 @@ class BookController {
 	
     def index = { 
 		def results = bookService.getTopFive()
-		[booksInTopFive:results]
+		def books = Book.list()
+		[booksInTopFive:results, listOfBooks:books]
 	}
 	def view = {
 		[bookList : Book.list()]
