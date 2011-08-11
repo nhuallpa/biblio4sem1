@@ -3,7 +3,7 @@
   xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="fill_parent"
   android:layout_height="fill_parent"
-  android:background="#E6E6E6">
+  android:background="#FFFFFF">
   
   	<RelativeLayout
   		android:id="@+id/relative_search_item"
@@ -150,7 +150,7 @@
 		   				
 		   				android:textColor="#FFFFFF"
 		   				android:padding="3dip"
-		   				android:background="@drawable/detail1">
+		   				android:background="@drawable/detail2">
 		   			</Button>	
    				
 			</RelativeLayout>

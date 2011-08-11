@@ -10,7 +10,7 @@
 	 	android:layout_width="fill_parent"
 	 	
 	 	android:paddingBottom="5dip"
-	 	android:background="#D8D8D8"
+	 	android:background="#FFFFFF"
 	 	android:layout_height="wrap_content">
 	 	
 	 	<ImageView
