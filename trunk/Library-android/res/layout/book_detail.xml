@@ -116,7 +116,7 @@
   			android:layout_marginLeft="5dip"
   			android:textColor="#000000"
   			android:layout_below="@id/book_detail_line2"
-  			android:text="Comments">
+  			android:text="@string/book_detail_comments_title">
 	 	</TextView>				
 	 	
 	 	<com.library.android.view.CommentBookListView
