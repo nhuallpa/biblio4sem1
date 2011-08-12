@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+<!-- App -->
+    <string name="hello">Hello World, MainActivity!</string>
+    <string name="app_name">Biblioteca</string>
+    <string name="are_you_sure">Seguro?</string>
+    <string name="reserve_title">Reserva: </string>
+    <string name="reserve_button">Reservar</string>
+    
+<!--  BookList  -->
+    <string name="book_list_title_book">Titulo: </string> 
+    <string name="book_list_author_book">Autor: </string>
+    <string name="book_list_state_book">Estado: </string>
+    <string name="book_list_detail_button">Ver detalles</string>
+    
+<!--  Book Comment Item  -->
+	<string name="book_comment_item_user_name">Usuario: </string>
+	<string name="book_comment_item_description">Comentario: </string>
+	<string name="planet_prompt">Score</string>
+	
+<!--  Book Detail	-->
+	<string name="book_detail_default_title">sin titulo</string>
+	<string name="book_detail_default_author">sin autor</string>
+	<string name="book_detail_default_desc">sin descripcion</string>
+	<string name="book_detail_isbn_title">ISBN: </string>
+	<string name="book_detail_comments_title">Comentarios: </string>
+	
+<!--  To Comment Book	-->
+	<string name="to_comment_book_title">Comentario: </string>
+	<string name="to_comment_book_edit_txt_hint">Ingrese texto </string>
+	<string name="to_comment_book_submmit_button">Comentar </string>
+	<string name="to_comment_book_title_char_left">Restantes: </string>
+	
+<!--  Registration	-->
+	<string name="register_title">Registracion</string>
+	<string name="register_username">Nombre Usuario: </string>
+	
+	
+</resources>
