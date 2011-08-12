@@ -10,7 +10,8 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:background="@drawable/logo"
-			android:layout_centerHorizontal="true"
+			android:layout_marginLeft="5dip"
+			android:layout_marginRight="5dip"
 			android:padding="5dip">
 		  </ImageButton>
 		  
@@ -24,7 +25,8 @@
    				android:textColor="#FFFFFF"
    				android:background="#000000"
    				android:padding="5dip"
-   				android:layout_toLeftOf="@id/header_button_home"
+   				android:layout_toRightOf="@id/header_button_home"
+   				android:layout_marginLeft="10dip"
    				android:layout_marginRight="10dip">
 			</Button>	
 
@@ -37,7 +39,7 @@
    				android:textColor="#FFFFFF"
    				android:background="#000000"
    				android:padding="5dip"
-   				android:layout_toRightOf="@id/header_button_home"
+   				android:layout_toRightOf="@id/header_librarys_button"
    				android:layout_marginLeft="10dip">
 			</Button>			
 </RelativeLayout>

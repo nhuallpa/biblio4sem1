@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu
   xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/menu_location" android:title="Location" android:icon="@drawable/location1"></item>
     <item android:id="@+id/menu_book_detail_comment" android:title="Comment Book" android:icon="@drawable/comment"></item>
 </menu>
