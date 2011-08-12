@@ -58,6 +58,7 @@ public class BookDetailActivity extends Activity {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		bookDetailView.setBookDescription(book.getDescription());
 	}
 	
 //	private void setExtras(){
@@ -116,12 +117,6 @@ public class BookDetailActivity extends Activity {
         		i.putExtra(Constants.ISBN_BOOK, bookIsbn);
         		startActivity(i);
         	}break;
-        
-//            case R.id.menu_location: {
-//            	Toast.makeText(this, "Location", Toast.LENGTH_SHORT).show();
-//            	Intent i = new Intent(BookDetailActivity.this, ShowMapActivity.class);
-//        		startActivity(i);
-//            }break;
             
             case R.id.menu_book_detail_reserve: {
             	final Book book = BookServicesImpl.getInstance(this).getBookByISBN(bookIsbn);

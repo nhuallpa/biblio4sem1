@@ -73,11 +73,55 @@
   			android:layout_below="@id/book_detail_author_book"
   			android:layout_toRightOf="@id/book_detail_picture"
   			android:text="state">
-	 	</TextView>	 	
+	 	</TextView>	 
+	 		
+		 <ImageView
+		 	android:id="@+id/book_detail_line"
+			android:layout_width="fill_parent"
+			android:layout_height="1px"
+			android:layout_marginLeft="5dip"
+			android:layout_marginRight="5dip"
+			android:layout_marginTop="3dip"
+			android:layout_marginBottom="3dip"
+			android:layout_below="@id/book_detail_state_book"
+			android:background="#A4A4A4"/>
+	 	
+	 	
+	 	<TextView
+	 		android:id="@+id/book_detail_description"
+	 		android:layout_width="wrap_content"
+  			android:layout_height="wrap_content"
+  			android:layout_marginLeft="5dip"
+  			android:textColor="#000000"
+  			android:layout_below="@id/book_detail_line"
+  			android:layout_toRightOf="@id/book_detail_picture"
+  			android:text="description">
+	 	</TextView>	
+	 	
+	 	<ImageView
+		 	android:id="@+id/book_detail_line2"
+			android:layout_width="fill_parent"
+			android:layout_height="1px"
+			android:layout_marginLeft="5dip"
+			android:layout_marginRight="5dip"
+			android:layout_marginTop="3dip"
+			android:layout_marginBottom="3dip"
+			android:layout_below="@id/book_detail_description"
+			android:background="#A4A4A4"/>
+			
+		<TextView
+	 		android:id="@+id/book_detail_comment_title"
+	 		android:layout_width="wrap_content"
+  			android:layout_height="wrap_content"
+  			android:layout_marginLeft="5dip"
+  			android:textColor="#000000"
+  			android:layout_below="@id/book_detail_line2"
+  			android:text="Comments">
+	 	</TextView>				
 	 	
 	 	<com.library.android.view.CommentBookListView
 	  		android:id="@+id/book_detail_content_comment"
-	  		android:layout_below="@+id/book_detail_state_book"
+	  		android:layout_below="@+id/book_detail_comment_title"
 	  		android:layout_width="fill_parent"
 	  		android:layout_marginTop="5dip"
 	  		android:layout_height="wrap_content"/>

@@ -18,6 +18,7 @@ public class BookDetailView extends RelativeLayout {
 	private TextView bookAuthor;
 	private TextView bookState;
 	private TextView bookISBN;
+	private TextView bookDescription;
 	
 	private CommentBookListView listView;
 
@@ -56,6 +57,7 @@ public class BookDetailView extends RelativeLayout {
 		listView = (CommentBookListView)findViewById(R.id.book_detail_content_comment);
 		bookState = (TextView) findViewById(R.id.book_detail_state_book);
 		bookISBN = (TextView) findViewById(R.id.book_detail_ISBN_book_tv);
+		bookDescription = (TextView) findViewById(R.id.book_detail_description);
 	}
 	
 	public CommentBookListView getCommentList(){
@@ -92,6 +94,14 @@ public class BookDetailView extends RelativeLayout {
 			bookPicture.setImageBitmap(image);
 		}else{
 			bookPicture.setImageResource(R.drawable.not_picture_book);
+		}
+	}
+	
+	public void setBookDescription(String text){
+		if(text != null){
+			this.bookDescription.setText(text);
+		} else {
+			this.bookDescription.setText("No description");
 		}
 	}
 	
