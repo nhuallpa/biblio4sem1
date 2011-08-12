@@ -22,8 +22,10 @@
 				</ul>
 			</div>
 		</div>
+		<g:if test="${flash.message}">
+      		<div class="message">${flash.message}</div>
+    	</g:if>
 		<h4 class="title-section" >Reservations</h4>
-			
 		<ul class="item-list">
 			<g:each var="reservation" in="${userProfile?.reservations}">
 				<li class="book">
@@ -33,6 +35,7 @@
 					<span class="text"><g:link controller="book" action="viewDetails" params="[bookId:reservation.book.id]">${reservation.book.name}</g:link></span>
 					|
 					<span class="text">${reservation.reservationDate}</span>
+					<span class="link-item"><g:link controller="reservation" action="cancelReserve" params="[bookId:reservation.book.id]">Cancel</g:link></span>
 			    </li>
 			</g:each>
 		</ul>
@@ -48,6 +51,7 @@
 					  	<g:link controller="book" action="viewDetails" params="[bookId:commentDone.book.id]">${commentDone.book.name}</g:link>
 						<h4>"${commentDone.description}"</h4>
 						<p>Comment Score: ${commentDone.score}</p>
+						 <span class="link-item"><g:link controller="comment" action="deleteComment" params="[commentId:commentDone.id,bookId:commentDone.book.id]">Delete</g:link></span>
 				  </div>
 			    </li>
 			</g:each>

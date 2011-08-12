@@ -10,19 +10,6 @@ class ReservationController {
 		redirect(action: 'create')
 	}
 	
-	def viewMyReservation = {
-		User user = session.user
-		def listOfMyReservations = null
-		if(!user){
-			goToHome()
-		}
-		if (user) {
-			User userFound = User.get(user.id) 
-			listOfMyReservations = userFound.reservations
-		}
-		[reservations : listOfMyReservations]
-	}
-	
 	def reserveRequest = {
 		
 	}
@@ -31,7 +18,7 @@ class ReservationController {
 	def toReserve = {
 		User user = session.user
 		if (!user){
-			redirect(uri: '/')
+			goToHome()
 		}
 		def aMessage = null
 		Book aBook = Book.get(params.bookId)
@@ -40,7 +27,7 @@ class ReservationController {
 		} else if (!user.isAttached() && aBook) {
 					user.attach()
 					user.makeReservation(aBook)
-					aMessage = "You are reserved ${aBook.name}!"
+					aMessage = "You have reserved ${aBook.name}!"
 				} 
 		flash.message = aMessage
 		redirect(action: 'viewMyReservation')
@@ -52,9 +39,9 @@ class ReservationController {
 		Book aBook = Book.get(params.bookId)
 		if (!user.isAttached()){
 			user.attach();
-			user.cancelReservation aBook   //--> @gonza: no cancela la reserva porque no la encuentra, pero esta creada...
-			flash.message = "You canceled the reservation ${aBook.name}"
-			redirect(action: 'viewMyReservation')
+			user.cancelReservation aBook  
+			flash.message = "You have canceled the reservation ${aBook.name}"
+			redirect(controller:'user', action: 'viewProfile', params:[userId:user.id])
 		}
 	}
 	

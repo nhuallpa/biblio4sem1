@@ -138,19 +138,25 @@ class User {
 	}
 	
 	void deleteMyComment(Comment aComment){
-		def commentFound = null;
-		for (comment in this.commentsDone) {
-			if (comment.equals(aComment)) {
-				commentFound = comment
-				break
-			}
-		}
+//		def commentFound = null;
+//		for (comment in this.commentsDone) {
+//			if (comment.equals(aComment)) {
+//				commentFound = comment
+//				break
+//			}
+//		}
+//		
+//		if (commentFound != null) {
+//			this.commentsDone.remove(commentFound)
+//		} else {
+//			throw new CommentDoesNotExistException()
+//		}
 		
-		if (commentFound) {
-			this.commentsDone.remove commentFound
-//			commentFound.delete()
-		} else {
+		
+		if (!(this.commentsDone as ArrayList<Book>).contains(aComment)) {
 			throw new CommentDoesNotExistException()
+		} else {
+			this.commentsDone.remove aComment
 		}
 	}
 	
