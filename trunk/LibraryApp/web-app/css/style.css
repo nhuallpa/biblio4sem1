@@ -702,7 +702,8 @@ a[title="Next Page"] {
    	color:#000000;
     margin: 0 auto;
     width: 743px;
-    padding: 5px 5px 5px 30px
+    padding: 5px 5px 5px 30px;
+    clear: both;
 }
 
 .paginateButtons {
