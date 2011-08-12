@@ -109,6 +109,19 @@
                         </tr>
                     </table>
                 </div>
+                <g:if test="${session.user}">
+                	<div class="barra">
+	                    <span id="comentar">Comentar</span>
+	                </div>
+	                <div id="nuevo-comentario">
+	                    <g:form id="new-comment" controller="comment" action="addCommentToBook">
+	                        <p>Write here your comment</p>
+	                        <g:textArea name="commentText" id="commentText"></g:textArea>
+	                        <g:hiddenField name="bookId" value="${book.id}"/>
+	                        <g:submitButton name="enviar"></g:submitButton>
+	                    </g:form>
+	                </div>
+                </g:if>
                 <ul class="lista-de-comentarios">
                 	<g:if test="${flash.message}">
       						<div class="message">${flash.message}</div>
@@ -122,16 +135,6 @@
 	                    </li>
 	                </g:each>
                 </ul>
-                <div class="barra">
-                    <span id="comentar">Comentar</span>
-                </div>
-                <div id="nuevo-comentario">
-                    <form id="new-comment" action="#" method="post">
-                        <p>Escriba aqui su comentario</p>
-                        <textarea></textarea>
-                        <a href="#" id="enviar">Enviar</a>
-                    </form>
-                </div>
             </div>
 		
 		<%--<h3 class="long-title">${book?.name}</h3>
