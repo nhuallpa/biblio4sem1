@@ -47,9 +47,34 @@
   		android:layout_marginTop="5dip"
   		android:layout_marginLeft="5dip"
   		android:layout_marginRight="5dip"
+  		android:maxLength="100"
   		android:layout_below="@id/to_comment_book_title"
   		android:hint="@string/to_comment_book_edit_txt_hint">
   	</EditText>
+
+  	
+  	<TextView
+  		android:id="@+id/to_comment_text_char_left"
+  		android:layout_width="wrap_content"
+  		android:layout_height="wrap_content"
+  		android:layout_marginLeft="5dip"
+  		android:layout_below="@id/to_comment_book_edit_text"
+  		android:text="char"
+  		android:layout_marginRight="5dip"
+  		android:layout_alignParentRight="true"
+  		android:textColor="#000000">
+  	</TextView>  	
+  	  	
+  	<TextView
+  		android:id="@+id/to_comment_title_char_left"
+  		android:layout_width="wrap_content"
+  		android:layout_height="wrap_content"
+  		android:layout_marginLeft="5dip"
+		android:layout_toLeftOf="@id/to_comment_text_char_left"
+  		android:layout_below="@id/to_comment_book_edit_text"
+  		android:text="@string/to_comment_book_title_char_left"
+  		android:textColor="#000000">
+  	</TextView>
   	
   	<Button
   		android:id="@+id/to_comment_book_submmit_button"

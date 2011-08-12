@@ -14,7 +14,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.Window;
-import android.widget.Toast;
 
 import com.library.android.config.ConfigurationManager;
 import com.library.android.config.Constants;
