@@ -3,13 +3,15 @@
   android:id="@+id/login_relative"
   xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="fill_parent"
-  android:layout_height="fill_parent">
+  android:layout_height="fill_parent"
+  android:background="#FFFFFF">
   
   <TextView	
   		android:id="@+id/title_login"
   		android:layout_width="wrap_content"
   		android:layout_height="wrap_content"
   		android:text="Biblioteca 2.0"
+  		android:textColor="#000000"
   		android:layout_marginTop="10dip"
   		android:layout_centerHorizontal="true">
   	</TextView>
@@ -22,6 +24,7 @@
   		android:layout_below="@id/title_login"
   		android:layout_marginLeft="8dip"
   		android:layout_marginTop="40dip"
+  		android:textColor="#000000"
   		android:text="Name: ">
   	</TextView>
   	
@@ -29,7 +32,7 @@
   		android:id="@+id/name_login"
   		android:layout_width="200dip"
   		android:textSize="15dip"
-  		
+  		android:textColor="#000000"
   		android:layout_below="@id/title_login"
   		android:layout_marginLeft="29dip"
   		android:layout_marginTop="20dip"
@@ -48,6 +51,7 @@
   		android:layout_height="wrap_content"
   		android:layout_below="@id/text_name_login"
   		android:layout_marginLeft="8dip"
+  		android:textColor="#000000"
   		android:layout_marginTop="63dip"
   		android:text="Password: ">
   	</TextView>
@@ -77,7 +81,9 @@
   		android:text="Login"
   		android:layout_centerHorizontal="true"
   		android:layout_marginTop="10dip"
-  		
+  		android:background="#000000"
+  		android:padding="5dip"
+  		android:textColor="#FFFFFF"
   		android:layout_below="@id/pass_login">
   	</Button>
   	

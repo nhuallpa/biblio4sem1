@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
@@ -24,13 +26,14 @@ public class ToCommentBookActivity extends Activity {
 	private Book book;
 	private Context ctx = ToCommentBookActivity.this;
 	private Spinner mySpinner;
+	private static int MAX_CHAR = 100;
 	
 	public void onCreate(Bundle b){
 		super.onCreate(b);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.to_comment_book_content);
 		toCommentBookView = (ToCommentBookView) findViewById(R.id.to_comment_book_content_relative);
-		
+		toCommentBookView.setCharLeft(MAX_CHAR);
 		mySpinner = toCommentBookView.getSpinner();
 		ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.scores_arrays, android.R.layout.simple_spinner_item); 
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -44,7 +47,27 @@ public class ToCommentBookActivity extends Activity {
 			toCommentBookView.setBookTitle("No title");
 		}
 
-		
+		toCommentBookView.getEditTextComment().addTextChangedListener(new TextWatcher() {
+			
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+				int lenght = toCommentBookView.getEditTextComment().getText().length();
+				toCommentBookView.setCharLeft(MAX_CHAR - lenght);
+			}
+			
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void afterTextChanged(Editable s) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		toCommentBookView.getCommentButton().setOnClickListener(new OnClickListener() {
 			
 			@Override

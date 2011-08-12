@@ -18,6 +18,7 @@ public class ToCommentBookView extends RelativeLayout {
 	private EditText editText;
 	private Button toCommentButton;
 	private Spinner spinner;
+	private TextView charLeft;
 	
 	public ToCommentBookView(Context context) {
 		super(context);
@@ -52,6 +53,7 @@ public class ToCommentBookView extends RelativeLayout {
 		this.editText = (EditText) findViewById(R.id.to_comment_book_edit_text);
 		this.toCommentButton = (Button) findViewById(R.id.to_comment_book_submmit_button);
 		this.spinner = (Spinner) findViewById(R.id.myspinner);
+		this.charLeft = (TextView) findViewById(R.id.to_comment_text_char_left);
 	}
 	
 	public Spinner getSpinner(){
@@ -70,6 +72,12 @@ public class ToCommentBookView extends RelativeLayout {
 		return this.editText.getText().toString();
 	}
 	
+	public EditText getEditTextComment(){
+		return this.editText;
+	}
 	
+	public void setCharLeft(int text){
+		this.charLeft.setText(String.valueOf(text));
+	}
 
 }

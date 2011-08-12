@@ -14,7 +14,7 @@
   		android:layout_marginLeft="85dip"
   		android:maxWidth="300px"
   		android:layout_height="wrap_content"
-  		
+  		android:textSize="13dip"
   		android:textColor="#000000"
   		android:textStyle="bold"
   		android:text="Comment">
