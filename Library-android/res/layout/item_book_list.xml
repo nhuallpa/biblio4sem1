@@ -13,21 +13,22 @@
 		android:layout_marginLeft="5dip"
 		android:layout_marginBottom="5dip"
 		>
-			<ImageView
-				android:id="@+id/item_book_picture"
+			<ImageButton
+				android:id="@+id/item_button_more_detail"
 				android:layout_width="wrap_content"
    				android:layout_height="wrap_content"
    				android:layout_marginRight="5dip"
    				android:layout_marginTop="3dip"
-   				android:src="@drawable/not_picture_book">
+   				android:padding="0px"
+   				android:background="@drawable/not_picture_book">
 				
-			</ImageView>
+			</ImageButton>
 			
 			<TextView
 				android:id="@+id/item_title_book_tv"
 				android:layout_width="wrap_content"
    				android:layout_height="wrap_content"
-   				android:layout_toRightOf="@id/item_book_picture"
+   				android:layout_toRightOf="@id/item_button_more_detail"
    				android:layout_marginTop="3dip"
    				android:text="@string/book_list_title_book"
    				android:textColor="#000000">
@@ -50,7 +51,7 @@
 				android:id="@+id/item_state_book_tv"
 				android:layout_width="wrap_content"
    				android:layout_height="wrap_content"
-   				android:layout_toRightOf="@id/item_book_picture"
+   				android:layout_toRightOf="@id/item_button_more_detail"
    				android:layout_marginTop="3dip"
    				android:layout_below="@id/item_title_book_tv"
    				android:text="@string/book_list_state_book"
@@ -73,7 +74,7 @@
 				android:id="@+id/item_author_book_tv"
 				android:layout_width="wrap_content"
    				android:layout_height="wrap_content"
-   				android:layout_toRightOf="@id/item_book_picture"
+   				android:layout_toRightOf="@id/item_button_more_detail"
    				android:layout_marginTop="3dip"
    				android:layout_below="@id/item_state_book_tv"
    				android:text="@string/book_list_author_book"
@@ -96,7 +97,7 @@
    				android:layout_height="wrap_content"
    				android:background="@drawable/star"
    				android:layout_marginTop="3dip"
-   				android:layout_toRightOf="@id/item_book_picture"
+   				android:layout_toRightOf="@id/item_button_more_detail"
    				android:layout_below="@id/item_author_book">
 			</ImageButton>
 			<TextView
@@ -134,26 +135,7 @@
    				android:textColor="#000000">
 			</TextView>
 			
-			<RelativeLayout
-				android:id="@+id/relative_detail_button"
-		   		android:layout_width="wrap_content"
-   				android:layout_height="wrap_content"
-   				android:layout_marginTop="25dip"
-   				
-   				android:layout_marginRight="15dip"
-   				android:layout_alignParentRight="true">
-   				
-		   			<Button
-						android:id="@+id/item_button_details"
-						android:layout_width="wrap_content"
-		   				android:layout_height="wrap_content"
-		   				
-		   				android:textColor="#FFFFFF"
-		   				android:padding="3dip"
-		   				android:background="@drawable/detail2">
-		   			</Button>	
-   				
-			</RelativeLayout>
+
 			
 					
   	

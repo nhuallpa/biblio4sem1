@@ -9,9 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,10 +25,10 @@ import com.library.android.domain.States;
 
 public class BookListItemView extends RelativeLayout {
 	
-	private ImageView bookPicture;
+
 	private ImageButton scoreButton;
 	private ImageButton commentsButton;
-	private Button moreDetailButton;
+	private ImageButton moreDetailButton;
 	private TextView bookTitleTv;
 	private TextView bookAuthorTv;
 	private TextView bookStateTv;
@@ -44,10 +42,10 @@ public class BookListItemView extends RelativeLayout {
 		super(context);
 		inflate(context, R.layout.item_book_list, this);
 		
-		bookPicture = (ImageView) findViewById(R.id.item_book_picture);
+
 		scoreButton = (ImageButton) findViewById(R.id.item_icon_score);
 		commentsButton = (ImageButton) findViewById(R.id.item_icon_comment);
-		moreDetailButton = (Button) findViewById(R.id.item_button_details);
+		moreDetailButton = (ImageButton) findViewById(R.id.item_button_more_detail);
 		bookTitleTv = (TextView) findViewById(R.id.item_title_book);
 		bookAuthorTv = (TextView) findViewById(R.id.item_author_book);
 		bookStateTv = (TextView) findViewById(R.id.item_state_book);
@@ -101,10 +99,6 @@ public class BookListItemView extends RelativeLayout {
 		});
 	}
 
-	public ImageView getBookPicture() {
-		return bookPicture;
-	}
-	
 	public void setBookScoreCount(String text){
 		
 		this.bookScoreCount.setText(text);
@@ -124,9 +118,9 @@ public class BookListItemView extends RelativeLayout {
 
 	public void setBookPicture(Bitmap image) {
 		if(image != null){			
-			bookPicture.setImageBitmap(image);
+			moreDetailButton.setImageBitmap(image);
 		}else{
-			bookPicture.setImageResource(R.drawable.not_picture_book);
+			moreDetailButton.setImageResource(R.drawable.not_picture_book);
 		}
 	}
 	
@@ -178,11 +172,11 @@ public class BookListItemView extends RelativeLayout {
 		this.commentsButton = commentsButton;
 	}
 
-	public Button getMoreDetailButton() {
+	public ImageButton getMoreDetailButton() {
 		return moreDetailButton;
 	}
 
-	public void setMoreDetailButton(Button moreDetailButton) {
+	public void setMoreDetailButton(ImageButton moreDetailButton) {
 		this.moreDetailButton = moreDetailButton;
 	}
 	

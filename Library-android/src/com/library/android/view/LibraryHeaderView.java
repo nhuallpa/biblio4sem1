@@ -7,17 +7,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.library.android.BookListActivity;
-import com.library.android.ShowMapActivity;
 import com.library.android.R;
 
 public class LibraryHeaderView extends RelativeLayout {
 	
-	private TextView headerTitle;
+	private ImageButton homeButton;
 	private Button librarysButton;
 	private Button bookStoreButton;
 	
@@ -56,10 +55,18 @@ public class LibraryHeaderView extends RelativeLayout {
 		LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		ViewGroup inflated = (ViewGroup) inflater.inflate(R.layout.library_header, null);
 		this.addView(inflated);
-		headerTitle = (TextView) findViewById(R.id.header_title);
+		homeButton = (ImageButton) findViewById(R.id.header_button_home);
 		librarysButton = (Button) findViewById(R.id.header_librarys_button);
 		bookStoreButton = (Button) findViewById(R.id.header_book_store_button);
 		
+		homeButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent i = new Intent(context, BookListActivity.class);
+				context.startActivity(i);
+			}
+		});
 		
 		librarysButton.setOnClickListener(new OnClickListener() {
 			
@@ -88,12 +95,6 @@ public class LibraryHeaderView extends RelativeLayout {
 		return this.librarysButton;
 	}
 	
-	public void setHeaderTitle(String text){
-		this.headerTitle.setText(text);
-	}
 	
-	public String getHeaderTitle(){
-		return this.headerTitle.toString();
-	}
 
 }

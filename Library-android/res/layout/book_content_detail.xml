@@ -3,16 +3,16 @@
   xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="fill_parent"
   android:layout_height="fill_parent"
-  android:background="#FFFFFF">
+  android:background="#000000">
   
   		<com.library.android.view.LibraryHeaderView
-		android:id="@+id/header_library_app2" android:layout_width="fill_parent"
+		android:id="@+id/header_library_app2" android:layout_width="wrap_content"
 		android:layout_height="wrap_content" />
 		
 		<com.library.android.view.BookDetailView
 		android:id="@+id/book_detail_content"
   		android:layout_below="@id/header_library_app2"
-  		android:layout_width="wrap_content"
+  		android:layout_width="fill_parent"
   		android:layout_height="wrap_content"/>
   
 </RelativeLayout>
