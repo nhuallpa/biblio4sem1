@@ -50,7 +50,7 @@ public class ShowMapActivity extends MapActivity {
 		mapView.setBuiltInZoomControls(true);
 		mapView.setTraffic(true);
 		
-
+		//Load Map Librarys
 		List<Library> libraries = LibraryMocks.getInstance().getLibraries();
 		for(Library item : libraries){
 			MapLocationOverlay itemizedoverlay = new MapLocationOverlay(drawable, this);

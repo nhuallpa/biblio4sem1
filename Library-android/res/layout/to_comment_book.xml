@@ -14,7 +14,7 @@
   		android:textSize="20dip"
   		android:layout_marginTop="5dip"
   		android:layout_marginLeft="5dip"
-  		android:textColor="#FFFFFF">
+  		android:textColor="#000000">
   	</TextView>
 
   
@@ -26,7 +26,7 @@
   		android:layout_marginLeft="5dip"
   		android:layout_below="@id/to_comment_book_title_book"
   		android:text="@string/to_comment_book_title"
-  		android:textColor="#FFFFFF">
+  		android:textColor="#000000">
   	</TextView>
   	
   	<Spinner
@@ -58,6 +58,9 @@
   		android:layout_below="@id/to_comment_book_edit_text"
   		android:layout_marginTop="15dip"
   		android:layout_marginLeft="5dip"
+  		android:background="#000000"
+  		android:textColor="#FFFFFF"
+  		android:padding="5dip"
   		android:text="@string/to_comment_book_submmit_button">
   	</Button>
   	

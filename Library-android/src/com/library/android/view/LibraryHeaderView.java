@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.library.android.BookListActivity;
 import com.library.android.R;
+import com.library.android.ShowMapActivity;
 
 public class LibraryHeaderView extends RelativeLayout {
 	
@@ -73,8 +74,8 @@ public class LibraryHeaderView extends RelativeLayout {
 			@Override
 			public void onClick(View v) {
 				Toast.makeText(context, "Show Library Map", Toast.LENGTH_SHORT).show();
-//				Intent i = new Intent(context, ShowMapActivity.class);
-//				context.startActivity(i);
+				Intent i = new Intent(context, ShowMapActivity.class);
+				context.startActivity(i);
 			}
 		});
 		

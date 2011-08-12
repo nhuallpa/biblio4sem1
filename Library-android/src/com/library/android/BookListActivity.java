@@ -60,10 +60,10 @@ public class BookListActivity extends Activity {
 	        		startActivity(i);
 	        	}break;
 	        
-	            case R.id.menu_location: {
-	            	Intent i = new Intent(BookListActivity.this, ShowMapActivity.class);
-	        		startActivity(i);
-	            }break;
+//	            case R.id.menu_location: {
+//	            	Intent i = new Intent(BookListActivity.this, ShowMapActivity.class);
+//	        		startActivity(i);
+//	            }break;
 
 	            case R.id.menu_login:{
 	            	Intent i = new Intent(BookListActivity.this, LoginActivity.class);
