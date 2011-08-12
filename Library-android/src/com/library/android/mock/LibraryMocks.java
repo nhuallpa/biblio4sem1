@@ -11,18 +11,19 @@ import com.library.android.domain.User;
 
 public class LibraryMocks {
 	
-	private Book book1;
-	private Book book2;
-	private Book book3;
-	private Book book4;
-	private Book book5;
-	private Book book6;
-	private Book book7;
-	private Book book8;
-	private Book book9;
-	private Book book10;
-	private Book book11;
+	private Book book1; private String description1;
+	private Book book2; private String description2;
+	private Book book3; private String description3;
+	private Book book4; private String description4;
+	private Book book5; private String description5;
+	private Book book6; private String description6;
+	private Book book7; private String description7;
+	private Book book8; private String description8;
+	private Book book9; private String description9;
+	private Book book10; private String description10;
+	private Book book11; private String description11;
 	
+	private String textDesc = "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.";
 	
 	private Comment comment1;
 	private Comment comment2;
@@ -62,18 +63,29 @@ public class LibraryMocks {
 		floresLibrary = new Library("Flores Library", new Location("Av Rivadavia 6800", -34.62845, -58.46118));
 		liniersLibrary = new Library("Liniers Library", new Location("Av Rivadavia 11684", -34.63936, -58.52867));
 		
-		book1 = new Book(new Long(1234), "Thinking in Java", "Autor 1", ConstantsMock.book1_picture);
-		book2 = new Book(new Long(6789),"Objective-C", "Autor 2",  ConstantsMock.book2_picture);
-		book3 = new Book(new Long(7894), "It","Autor 3", ConstantsMock.book3_picture);
-		book4 = new Book(new Long(4656), "Grails in Action","Dierk Koenig", ConstantsMock.book4_picture);
-		book5 = new Book(new Long(6547), "Groovy in Action", "Andrew Glover", ConstantsMock.book5_picture);
-		book6 = new Book(new Long(7461), "The Ruby Programming", "David Flanagan", ConstantsMock.book6_picture);
-		book7 = new Book(new Long(8714), "Hello, Android", "Ed Burnette", ConstantsMock.book7_picture);
-		book8 = new Book(new Long(1092), "BlackBerry for Dummies", "Robert Kao", ConstantsMock.book8_picture);
-		book9 = new Book(new Long(7671), "iPad 2", "J D Biersdorfer", ConstantsMock.book9_picture);
-		book10 = new Book(new Long(2345), "iPhone 4", "David Mark", ConstantsMock.book10_picture);
-		book11 = new Book(new Long(5786), "Pro C# and .NET", "Andrew W. Troelsen", ConstantsMock.book11_picture);
+		description1 = textDesc;
+		description2 = textDesc;
+		description3 = textDesc;
+		description4 = textDesc;
+		description5 = textDesc;
+		description6 = textDesc;
+		description7 = textDesc;
+		description8 = textDesc;
+		description9 = textDesc;
+		description10 = textDesc;
+		description11 = textDesc;
 		
+		book1 = new Book(new Long(1234), "Thinking in Java", "Autor 1", ConstantsMock.book1_picture, description1);
+		book2 = new Book(new Long(6789),"Objective-C", "Autor 2",  ConstantsMock.book2_picture, description2);
+		book3 = new Book(new Long(7894), "It","Autor 3", ConstantsMock.book3_picture, description3);
+		book4 = new Book(new Long(4656), "Grails in Action","Dierk Koenig", ConstantsMock.book4_picture, description4);
+		book5 = new Book(new Long(6547), "Groovy in Action", "Andrew Glover", ConstantsMock.book5_picture, description5);
+		book6 = new Book(new Long(7461), "The Ruby Programming", "David Flanagan", ConstantsMock.book6_picture, description6);
+		book7 = new Book(new Long(8714), "Hello, Android", "Ed Burnette", ConstantsMock.book7_picture, description7);
+		book8 = new Book(new Long(1092), "BlackBerry for Dummies", "Robert Kao", ConstantsMock.book8_picture, description8);
+		book9 = new Book(new Long(7671), "iPad 2", "J D Biersdorfer", ConstantsMock.book9_picture, description9);
+		book10 = new Book(new Long(2345), "iPhone 4", "David Mark", ConstantsMock.book10_picture, description10);
+		book11 = new Book(new Long(5786), "Pro C# and .NET", "Andrew W. Troelsen", ConstantsMock.book11_picture, description11);
 		
 		comment1 = new Comment("Feo libroo", 2);
 		comment2 = new Comment("Bastante bueno",4);

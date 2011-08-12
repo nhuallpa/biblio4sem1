@@ -32,6 +32,15 @@ public class Book implements Comparable<Book>{
 		init();
 	}
 	
+	public Book(Long ISBN, String title, String author, String picture, String description){
+		this.ISBN = ISBN;
+		this.picture = picture;
+		this.title = title;
+		this.author = author;
+		this.description = description;
+		init();
+	}
+	
 	public Book(Long ISBN, String title, Library lib, String picture){
 		this.ISBN = ISBN;
 		this.library = lib;
