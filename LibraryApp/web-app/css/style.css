@@ -117,8 +117,9 @@ option:nth-child(odd) { background: #fff}
 	position: absolute;
 	border: none;	
 	z-index: 2;
-	}
-	
+}
+
+
 .botones_header #book_store, #librarys{
 	background: black;
 	color: white;
@@ -690,6 +691,7 @@ a[title="Next Page"] {
 	width: 250px;
 	padding-top: 50px;
 	padding-bottom: 25px;
+	clear: both;
 }
 /*------------------------------------------------	END  	TOP OF BOOK-------------------------------------		*/
 
@@ -780,3 +782,38 @@ a[title="Next Page"] {
 
 /*------------------------------------------------	END  	REGISTRATION-------------------------------------		*/
 
+
+/*------------------------------------------------	BEGIN  	PROFILE   -------------------------------------		*/
+.item-list, #profile-details {
+	width: 782px;
+	margin: 0 auto;
+}
+
+.item-list li{
+	border: 1px solid #000000;
+	margin-bottom: 5px;
+	height: 100px; 
+	clear: both;
+	
+}
+
+.item-list li img{
+	padding: 5px 5px 5px 5px;
+	width: 60px;
+	height: 90px;
+	float: left;
+}
+
+.resumen-derecho {
+	float: left;
+}
+
+#profile-details #name{
+	font-weight: bold;
+}
+
+#profile-details img {
+	float: left;
+	margin-right: 10px; 
+}
+/*------------------------------------------------	END  	PROFILE     -------------------------------------		*/
