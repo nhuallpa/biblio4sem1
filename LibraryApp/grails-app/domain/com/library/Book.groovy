@@ -100,8 +100,8 @@ class Book implements Taggable{
 		return (state == States.RESERVED)
 	}
 	
-	boolean equals(Object aBook) {
-		return (this.id == aBook.id)
-	}
+//	boolean equals(Object aBook) {
+//		return (this.id == aBook.id)
+//	}
 		
 }
