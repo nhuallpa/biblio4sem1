@@ -7,12 +7,19 @@ import com.library.*
 class BootStrap {
 
     def init = { servletContext ->
-		if (Environment.current == Environment.DEVELOPMENT){
+		if (Environment.current == Environment.PRODUCTION){
 			initOneLibray()
 			initOtherLibrary()
 			initThirdLibrary()
 			initFourthLibrary()
 		}
+		
+//		if(Environment.current == Environment.DEVELOPMENT){
+//			initOneLibray()
+//			initOtherLibrary()
+//			initThirdLibrary()
+//			initFourthLibrary()
+//		}
     }
 	
 	private def initOneLibray(){
