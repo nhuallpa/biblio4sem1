@@ -1,13 +1,25 @@
 package com.library
 
-import org.codehaus.groovy.grails.web.servlet.GrailsApplicationAttributes;
-import org.springframework.context.ApplicationContext;
+import grails.converters.JSON
+
+import org.codehaus.groovy.grails.web.servlet.GrailsApplicationAttributes
+import org.springframework.context.ApplicationContext
 
 class BookController {
 
 	def bookService
 	def scaffold = true
 	
+	def getAll = {
+		def books = Book.list()
+		render books as JSON
+	}
+	
+	def getBook = {
+		def bookId = params.bookId
+		def bookFounded = Book.get(bookId)
+		render bookFounded as JSON
+	}
 	
     def index = { 
 		def results = bookService.getInTop()

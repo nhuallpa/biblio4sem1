@@ -1,10 +1,18 @@
 package com.library
 
-import com.library.exceptions.CommentDoesNotExistException;
+import grails.converters.JSON
+
+import com.library.exceptions.CommentDoesNotExistException
 
 class CommentController {
 	
 	def scaffold = true
+	
+	def getComment = {
+		def commentId = params.commentId
+		def commentFounded = Comment.get(commentId)
+		render commentFounded as JSON
+	}
 	
 	def index = {
 		redirect(action: 'create')

@@ -22,12 +22,12 @@ class Comment {
 		this.sourceUser = srcUser
 	}
 
-	@Override
-	public boolean equals(Object obj){
-		Comment other = (Comment) obj
-		return this.id == other.id;
-				
-	}
+//	@Override
+//	public boolean equals(Object obj){
+//		Comment other = (Comment) obj
+//		return this.id == other.id;
+//				
+//	}
 	
 	
 
