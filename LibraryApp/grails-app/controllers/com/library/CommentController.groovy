@@ -9,10 +9,24 @@ class CommentController {
 	def scaffold = true
 	
 	def getComment = {
-		def commentId = params.commentId
-		def commentFounded = Comment.get(commentId)
-		render commentFounded as JSON
+		def commentFounded = Comment.get(params.commentId)
+//		render commentFounded as JSON
+		def jsonData = [
+				description: commentFounded.description,
+				date: commentFounded.date,
+				user: [
+					id: commentFounded.sourceUser.id,
+					name: commentFounded.sourceUser.name,
+					
+					],
+				book: [
+					id:commentFounded.book.id,
+					name: commentFounded.book.name,
+					]
+			]
+		render jsonData
 	}
+	
 	
 	def index = {
 		redirect(action: 'create')
