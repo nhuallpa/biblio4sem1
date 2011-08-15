@@ -67,6 +67,13 @@ class CommentController {
 //		}				
 //	}
 	
+	//params: userId,text,rating,bookId
+	def toCommentBook = {
+		User user = User.get(Long.valueOf(params.userId))
+		redirect(controller:'comment', action:'addCommentToBook', user:user, commentText: params.text,
+					rating:params.rating, bookId: params.bookId)
+	}
+	
 	def addCommentToBook = {
 		User user = session.user
 		if (!user){
