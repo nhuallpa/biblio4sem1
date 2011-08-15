@@ -7,16 +7,16 @@ import org.springframework.context.ApplicationContext
 
 
 class BookController {
-
+	
+	static TOP_BOOKS = 6;
 	def bookService
 	def scaffold = true
 	
-	def getAll = {
+	def getTopBooks = {
 		def books = Book.list()
-//		render books as JSON
 		def result = new ArrayList()
-		
-		for(obj in books){
+		for(int i = 0; i < TOP_BOOKS; i++){
+			Book obj = books.get(i)
 			def jsonBook = [
 				
 				id:obj.id,
@@ -34,10 +34,8 @@ class BookController {
 		}
 		
 		render result as JSON
-		
-
-		
 	}
+	
 	
 	def getBookComments = {
 		def book = Book.get(params.bookId)
@@ -65,17 +63,18 @@ class BookController {
 	}
 	
 	def getBook = {
+		
 		def bookFounded = Book.get(params.bookId)
+//		def comments = render (controller:'book', action:'getBookComments', bookId: bookFounded.id)
 		def jsonData = [
 			isbn: bookFounded.ISBN,
 			state: bookFounded.state.state,
 			name: bookFounded.name,
 			description: bookFounded.description,
 			author: bookFounded.author,
-			comments: [
-				bookFounded.comments
-				]
+//			comments: comments,
 			] as JSON
+		
 		render jsonData
 	}
 	
