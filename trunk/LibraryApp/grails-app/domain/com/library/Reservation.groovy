@@ -1,5 +1,7 @@
 package com.library
 
+import grails.converters.JSON
+
 
 class Reservation {
 	

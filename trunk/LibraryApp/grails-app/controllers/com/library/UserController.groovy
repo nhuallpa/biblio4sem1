@@ -1,5 +1,7 @@
 package com.library
 
+import grails.converters.JSON
+
 import org.grails.taggable.Tag
 
 
@@ -7,6 +9,49 @@ class UserController {
 	
 	def geocoderService
 	def scaffold = true
+	
+	def getUser = {
+		def user = User.get(params.userId)
+		def reservationList = new ArrayList()
+		def commentsList = new ArrayList()
+		
+		for (obj in user.reservations){
+			def jsonReservation = [
+				book: [
+					 id: obj.book.id,
+					 name: obj.book.name
+					],
+				reservationDate: obj.reservationDate,
+				state: obj.state.state,
+				
+			]
+			reservationList.add jsonReservation
+		}
+		
+		for(obj in user.commentsDone){
+			def jsonComment = [
+					description:obj.description,
+					date: obj.date,
+					book: [
+							id: obj.book.id,
+							name: obj.book.name
+						],
+					score: obj.score,
+				]
+			commentsList.add jsonComment
+		}
+		
+		def jsonData = [
+				name: user.name,
+				homepage: user.homepage,
+				email: user.email,
+				phone: user.phone,
+				rating: user.rating,
+				reservations:  reservationList,	
+				comments: commentsList,
+			]
+		render jsonData as JSON
+	}
 	
     def index = { 
 		redirect(action: 'create')

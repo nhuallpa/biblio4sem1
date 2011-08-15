@@ -5,6 +5,7 @@ import grails.converters.JSON
 import org.codehaus.groovy.grails.web.servlet.GrailsApplicationAttributes
 import org.springframework.context.ApplicationContext
 
+
 class BookController {
 
 	def bookService
@@ -12,13 +13,70 @@ class BookController {
 	
 	def getAll = {
 		def books = Book.list()
-		render books as JSON
+//		render books as JSON
+		def result = new ArrayList()
+		
+		for(obj in books){
+			def jsonBook = [
+				
+				id:obj.id,
+				isbn: obj.ISBN,
+				state: obj.state.state,
+				name: obj.name,
+				description: obj.description,
+				author: obj.author,
+				comments: [
+						obj.comments
+					]
+				]
+			
+			result.add jsonBook
+		}
+		
+		render result as JSON
+		
+
+		
+	}
+	
+	def getBookComments = {
+		def book = Book.get(params.bookId)
+		def comments = new ArrayList()
+		for(obj in book.comments){
+			def jsonData = [
+					id: obj.id,
+					description : obj.description,
+					date: obj.date,
+					user: [
+							id:obj.sourceUser.id,
+							name: obj.sourceUser.name
+						],
+					book: [
+							id:obj.book.id,
+							name: obj.book.name,
+							description: obj.book.description
+						],
+					score: obj.score
+				]
+			comments.add jsonData
+		}
+		
+		render comments as JSON
 	}
 	
 	def getBook = {
-		def bookId = params.bookId
-		def bookFounded = Book.get(bookId)
-		render bookFounded as JSON
+		def bookFounded = Book.get(params.bookId)
+		def jsonData = [
+			isbn: bookFounded.ISBN,
+			state: bookFounded.state.state,
+			name: bookFounded.name,
+			description: bookFounded.description,
+			author: bookFounded.author,
+			comments: [
+				bookFounded.comments
+				]
+			] as JSON
+		render jsonData
 	}
 	
     def index = { 
