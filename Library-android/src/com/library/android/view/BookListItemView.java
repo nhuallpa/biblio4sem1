@@ -63,7 +63,7 @@ public class BookListItemView extends RelativeLayout {
 //				i.putExtra("stateBook", book.getState().toString());
 //				i.putExtra("isbnBook", String.valueOf(book.getISBN()));
 //				i.putExtra("picture", book.getPicture());
-				i.putExtra(Constants.ISBN_BOOK, book.getISBN());
+				i.putExtra(Constants.BOOK_ID, String.valueOf(book.getBookId()));
 				context.startActivity(i);
 				
 			}
@@ -189,11 +189,12 @@ public class BookListItemView extends RelativeLayout {
 		setBookAuthor(aBook.getAuthor());
 		setBookScoreCount(decimalFormat.format(aBook.getScore()));
 		setBookCommentsCount(String.valueOf(aBook.getListOfComments().size()));
-		try {
-			setBookPicture(BitmapFactory.decodeStream(getContext().getAssets().open(aBook.getPicture())));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+//		try {
+////			setBookPicture(BitmapFactory.decodeStream(getContext().getAssets().open(aBook.getPicture())));
+////			setBookPicture(aBook.getPicture());
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 		
 		
 		

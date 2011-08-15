@@ -11,6 +11,7 @@ public class ConfigurationManager {
 	private String password = "";
 	private String authKey = "";
 	private User myUser;
+	private String userId;
 	
 	private Context context;
 	private SharedPreferences settings;
@@ -55,6 +56,12 @@ public class ConfigurationManager {
 		editor.putString(Constants.USERNAME, this.userName);
 		editor.putString(Constants.PASSWORD, this.password);
 		myUser.setName(this.userName);
+		myUser.setId(this.userId);
+	}
+	
+	
+	public void setUserId(String userId){
+		this.userId = userId;
 	}
 	
 	public User getCurrentUser(){

@@ -23,10 +23,11 @@ import com.library.android.view.ToCommentBookView;
 public class ToCommentBookActivity extends Activity {
 	
 	private ToCommentBookView toCommentBookView;
-	private Book book;
+//	private Book book;
 	private Context ctx = ToCommentBookActivity.this;
 	private Spinner mySpinner;
 	private static int MAX_CHAR = 100;
+	private String bookId;
 	
 	public void onCreate(Bundle b){
 		super.onCreate(b);
@@ -40,9 +41,10 @@ public class ToCommentBookActivity extends Activity {
 		mySpinner.setAdapter(adapter); 
 		
 		if(getIntent().getExtras() != null){
-			Long isbn = getIntent().getExtras().getLong(Constants.ISBN_BOOK);
-			book = BookServicesImpl.getInstance(ctx).getBookByISBN(isbn);
-			toCommentBookView.setBookTitle(book.getTitle());
+			bookId = getIntent().getExtras().getString(Constants.BOOK_ID);
+			String bookName = getIntent().getExtras().getString(Constants.BOOK_NAME);
+//			book = BookServicesImpl.getInstance(ctx).getBookById(bookId);
+			toCommentBookView.setBookTitle(bookName);
 		} else {
 			toCommentBookView.setBookTitle("No title");
 		}
@@ -75,8 +77,8 @@ public class ToCommentBookActivity extends Activity {
 				String text = toCommentBookView.getTextFromInput();
 				if(!text.equals("")){
 					String scoreSelected = (String)mySpinner.getSelectedItem();
-					Comment aComment = new Comment(text, book, Float.valueOf(scoreSelected));
-					BookServicesImpl.getInstance(ctx).toComment(book, aComment);
+//					Comment aComment = new Comment(text, Float.valueOf(scoreSelected));
+					BookServicesImpl.getInstance(ctx).toComment(bookId, text, scoreSelected);
 					Toast.makeText(ToCommentBookActivity.this, "Send Comment..", Toast.LENGTH_SHORT).show();
 					Intent i = new Intent(ToCommentBookActivity.this, BookListActivity.class);
 					startActivity(i);

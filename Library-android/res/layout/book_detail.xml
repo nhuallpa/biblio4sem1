@@ -93,6 +93,7 @@
   			android:layout_height="wrap_content"
   			android:layout_marginLeft="5dip"
   			android:textColor="#000000"
+  			android:textSize="12dip"
   			android:layout_below="@id/book_detail_line"
   			android:text="description">
 	 	</TextView>	
