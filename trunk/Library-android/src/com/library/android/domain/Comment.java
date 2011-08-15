@@ -12,6 +12,8 @@ public class Comment {
 	private float score;
 	private Book bookSource;
 	
+	public Comment(){}
+	
 	public Comment(String desc, Book book){
 		this.bookSource = book;
 		this.description = desc;

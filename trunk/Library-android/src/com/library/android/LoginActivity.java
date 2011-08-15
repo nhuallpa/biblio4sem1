@@ -40,7 +40,7 @@ public class LoginActivity extends Activity {
 		appConfig = ConfigurationManager.getInstance(this);
 		Bundle extras = getIntent().getExtras();
 		final Integer goToActivity = extras.getInt(Constants.GO_TO_ACTIVITY);
-		final Long isbnBook = extras.getLong(Constants.ISBN_BOOK);
+		final String bookId = extras.getString(Constants.BOOK_ID);
 		
 		loginButton.setOnClickListener(new OnClickListener() {
 			
@@ -62,7 +62,7 @@ public class LoginActivity extends Activity {
 								if(goToActivity != null){
 									Class<?> classToGo = resolveClass(goToActivity);
 									Intent i = new Intent(LoginActivity.this, classToGo);
-									i.putExtra(Constants.ISBN_BOOK, isbnBook);
+									i.putExtra(Constants.BOOK_ID, bookId);
 									startActivity(i);
 								} else {
 									Intent i = new Intent(LoginActivity.this, BookListActivity.class);
@@ -107,9 +107,11 @@ public class LoginActivity extends Activity {
 				appConfig.setUserName(mail);
 				appConfig.setPassword(pass);
 				config.setUser(mail);
+				appConfig.setUserId("1");//cambiar
+				
 				appConfig.save();
-			}
 
+			}
 
 			private void fillData() {
 				this.mail = "lalosoft@gmail.com";

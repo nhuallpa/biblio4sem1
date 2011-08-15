@@ -28,7 +28,8 @@ public class BookDetailActivity extends Activity {
 	private BookDetailView bookDetailView;
 	private String bookState;
 //	private Bundle extras;
-	private Long bookIsbn;
+	private String bookId;
+	private String bookName;
 	
 	private Context ctx = BookDetailActivity.this;
 	
@@ -38,26 +39,27 @@ public class BookDetailActivity extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.book_content_detail);
 		bookDetailView =(BookDetailView) findViewById(R.id.book_detail_content);
-		bookIsbn = getIntent().getExtras().getLong(Constants.ISBN_BOOK);
+		bookId = getIntent().getExtras().getString(Constants.BOOK_ID);
 		fillData();
 		
 	}
 	
 	private void fillData(){
-		Book book = BookServicesImpl.getInstance(this).getBookByISBN(bookIsbn);
+		Book book = BookServicesImpl.getInstance(this).getBookById(bookId);
 		CommentBookListView comments = bookDetailView.getCommentList();
 		comments.setCommentList(book.getListOfComments());
 		bookDetailView.setBookTitle(book.getTitle());
 		bookDetailView.setBookAuthor(book.getAuthor());
 		bookDetailView.setBookState(book.getState().toString());
 		bookState = book.getState().toString();
-		bookDetailView.setBookISBN(String.valueOf(bookIsbn));
-		try {
-			bookDetailView.setBookPicture(BitmapFactory.decodeStream(getAssets().open(book.getPicture())));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+//		bookDetailView.setBookISBN(String.valueOf(bookIsbn));
+//		try {
+//			bookDetailView.setBookPicture(BitmapFactory.decodeStream(getAssets().open(book.getPicture())));
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 		bookDetailView.setBookDescription(book.getDescription());
+		bookName = book.getTitle();
 	}
 	
 //	private void setExtras(){
@@ -113,12 +115,13 @@ public class BookDetailActivity extends Activity {
 
         	case R.id.menu_book_detail_comment: {
         		Intent i = new Intent(BookDetailActivity.this, ToCommentBookActivity.class);
-        		i.putExtra(Constants.ISBN_BOOK, bookIsbn);
+        		i.putExtra(Constants.BOOK_ID, bookId);
+        		i.putExtra(Constants.BOOK_NAME, bookName);
         		startActivity(i);
         	}break;
             
             case R.id.menu_book_detail_reserve: {
-            	final Book book = BookServicesImpl.getInstance(this).getBookByISBN(bookIsbn);
+            	final Book book = BookServicesImpl.getInstance(this).getBookById(bookId);
             	
             	final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
             	alertDialog.setTitle(getString(R.string.reserve_title) + " " +book.getTitle());
@@ -147,7 +150,7 @@ public class BookDetailActivity extends Activity {
             case R.id.menu_login: {
             	Intent i = new Intent(BookDetailActivity.this, LoginActivity.class);
             	i.putExtra(Constants.GO_TO_ACTIVITY, Constants.BOOK_DETAIL);
-				i.putExtra(Constants.ISBN_BOOK, bookIsbn);
+				i.putExtra(Constants.BOOK_ID, bookId);
             	startActivity(i);
             }break;
             

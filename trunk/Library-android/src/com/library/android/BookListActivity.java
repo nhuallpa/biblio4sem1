@@ -35,8 +35,9 @@ public class BookListActivity extends Activity {
     }
     
     private void init(){
-//    	bookListView.setBookList(BookServicesImpl.getInstance(this).getTopBooks());
-    	bookListView.setBookList(LibraryMocks.getInstance().getAllBooks());
+    	bookListView.setBookList(BookServicesImpl.getInstance(this).getTopBooks());
+//    	bookListView.setBookList(LibraryMocks.getInstance().getAllBooks());
+//    	bookListView.setBookList(BookServicesImpl.getInstance(this).getAllBooks());
     }
     
 	 public boolean onCreateOptionsMenu(Menu menu) {

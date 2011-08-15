@@ -11,7 +11,7 @@ public class Book implements Comparable<Book>{
 	private String subject;
 	private Long ISBN;
 	private List<Comment> listOfComments;
-	private List<String> tags;
+//	private List<String> tags;
 	private Library library;
 	private String picture;
 	private String description;
@@ -79,7 +79,7 @@ public class Book implements Comparable<Book>{
 		
 	private void init(){
 		this.listOfComments = new ArrayList<Comment>();
-		this.tags = new ArrayList<String>();
+//		this.tags = new ArrayList<String>();
 		this.state = States.AVAILABLE;
 	}
 	
@@ -130,9 +130,9 @@ public class Book implements Comparable<Book>{
 		reserveMe();
 	}
 	
-	public void categorizeMe(String tag){
-		this.tags.add(tag);
-	}
+//	public void categorizeMe(String tag){
+//		this.tags.add(tag);
+//	}
 
 	public void setTitle(String title) {
 		this.title = title;
@@ -154,13 +154,13 @@ public class Book implements Comparable<Book>{
 		this.listOfComments = listOfComments;
 	}
 
-	public List<String> getTags() {
-		return tags;
-	}
-
-	public void setTags(List<String> tags) {
-		this.tags = tags;
-	}
+//	public List<String> getTags() {
+//		return tags;
+//	}
+//
+//	public void setTags(List<String> tags) {
+//		this.tags = tags;
+//	}
 
 	public Library getLibrary() {
 		return library;

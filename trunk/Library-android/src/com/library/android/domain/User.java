@@ -10,6 +10,7 @@ public class User {
 	private String email;
 	private List<Comment> listOfComments;
 	private List<Reservation> listOfReservations;
+	private String id;
 		
 	public User(){
 		init();
@@ -26,6 +27,14 @@ public class User {
 	private void init(){
 		this.listOfComments = new ArrayList<Comment>();
 		this.listOfReservations = new ArrayList<Reservation>();
+	}
+	
+	public String getId(){
+		return id;
+	}
+	
+	public void setId(String id){
+		this.id = id;
 	}
 	
 	public void makeReservation(Book aBook){
