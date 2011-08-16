@@ -1,10 +1,16 @@
 package com.library
 
-import com.sun.jndi.toolkit.url.Uri;
+import grails.converters.JSON
 
 class ReservationController {
 
 	def scaffold = true
+	
+	def getReservation = {
+		def reservation = Reservation.get(params.reservationId)
+		render reservation as JSON
+		
+	}
 	
     def index = { 
 		redirect(action: 'create')
