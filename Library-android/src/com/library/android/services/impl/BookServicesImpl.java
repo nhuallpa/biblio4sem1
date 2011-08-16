@@ -24,6 +24,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.library.android.config.ConfigurationManager;
+import com.library.android.config.Constants;
 import com.library.android.domain.Book;
 import com.library.android.domain.Comment;
 import com.library.android.domain.States;
@@ -126,8 +127,10 @@ public class BookServicesImpl implements BookService {
 			JSONObject json = new JSONObject();
 			HttpPost request = new HttpPost(url);
 			HttpClient client = new DefaultHttpClient();
+			aComment = aComment.concat(" --" + Constants.COMMENT_EXTRA + "--");
 			json.put("text", aComment);
 	        json.put("rating", score);
+	        
             StringEntity se = new StringEntity(json.toString());  
             se.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
             request.setEntity(se);

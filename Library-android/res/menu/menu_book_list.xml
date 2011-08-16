@@ -3,4 +3,5 @@
   xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/menu_search" android:title="Search" android:icon="@drawable/search2"></item>
     <item android:id="@+id/menu_profile" android:title="Profile" android:icon="@drawable/user_admin_gear"></item>
+    <item android:id="@+id/menu_refresh" android:title="Refresh" android:icon="@drawable/refresh"></item>
 </menu>

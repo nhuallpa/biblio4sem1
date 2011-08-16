@@ -56,8 +56,8 @@ public class LoginActivity extends Activity {
 				} else {
 										
 					try {
-							//BORRAR
-							fillData();
+//							//BORRAR
+//							fillData();
 							
 							String userId = UserServicesImpl.login(mail, pass, ctx);
 							if(userId != null){

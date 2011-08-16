@@ -4,8 +4,9 @@ package com.library.android.services;
 public class ConfigWS {
 	
 //	public static String APP = "http://biblioteca-web.appspot.com";
-	public static String URL_BASE = "http://172.17.193.113:8080/Library"; //DEVELOPMENT
-//	public static String URL_BASE = "http://library-grails.cloudfoundry.com"; //PRODUCTION
+//	public static String URL_BASE = "http://172.17.193.113:8080/Library"; //DEVELOPMENT
+	public static String URL_BASE = "http://library-grails.cloudfoundry.com"; //PRODUCTION
+	
 	
 //	public static String FIND_ALL_BOOKS = URL_BASE + "/book/getAll";
 	public static String BOOK_CONTROLLER = "/book";
