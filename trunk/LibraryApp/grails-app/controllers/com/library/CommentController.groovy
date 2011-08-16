@@ -1,7 +1,5 @@
 package com.library
 
-import grails.converters.JSON
-
 import org.codehaus.groovy.grails.web.json.JSONObject
 
 import com.library.exceptions.CommentDoesNotExistException
@@ -70,7 +68,7 @@ class CommentController {
 //	}
 	
 	//params: userId,bookId
-	//request: text,rating
+	//request: text,rating,extra
 	def toCommentBook = {
 		User user = User.get(params.userId)
 		Book aBook = Book.get(params.bookId)
@@ -78,6 +76,8 @@ class CommentController {
 		JSONObject jsonObject = request.JSON 
 		String aComment = jsonObject.getString("text")
 		Integer rating = jsonObject.getString("rating")
+
+
 
 		rating -= 48
 		user.addBookComment aBook, aComment, rating
