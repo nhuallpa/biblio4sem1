@@ -23,6 +23,8 @@ public class LoginActivity extends Activity {
 	
 	private EditText nameText;
 	private EditText passText;
+	private String mail;
+	private String pass;
 	private Button loginButton;
 	private ConfigWS config;
 	private ConfigurationManager appConfig;
@@ -46,11 +48,12 @@ public class LoginActivity extends Activity {
 		
 		loginButton.setOnClickListener(new OnClickListener() {
 			
-			String mail = nameText.getText().toString();
-			String pass = passText.getText().toString();
+
 			
 			@Override
 			public void onClick(View v) {
+				mail = nameText.getText().toString();
+				pass = passText.getText().toString();
 				if(isWrong()){
 					Toast.makeText(LoginActivity.this, "Invalid input...", Toast.LENGTH_SHORT).show();
 				} else {
@@ -117,10 +120,10 @@ public class LoginActivity extends Activity {
 
 			}
 
-			private void fillData() {
-				this.mail = "gonza";
-				this.pass = "gonza";
-			}
+//			private void fillData() {
+//				mail = "gonza";
+//				pass = "gonza";
+//			}
 			
 			
 		});
