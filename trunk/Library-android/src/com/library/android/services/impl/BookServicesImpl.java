@@ -1,15 +1,21 @@
 package com.library.android.services.impl;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicHeader;
+import org.apache.http.protocol.HTTP;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,9 +26,11 @@ import android.util.Log;
 import com.library.android.config.ConfigurationManager;
 import com.library.android.domain.Book;
 import com.library.android.domain.Comment;
+import com.library.android.domain.States;
 import com.library.android.domain.User;
 import com.library.android.services.BookService;
 import com.library.android.services.ConfigWS;
+import com.library.android.utils.Utils;
 
 public class BookServicesImpl implements BookService {
 	
@@ -110,94 +118,36 @@ public class BookServicesImpl implements BookService {
 		return false;
 	}
 	
-	public boolean toComment(String bookId, String aComment, String score){
+	public void toComment(String bookId, String aComment, String score){
 		
 		User user = ConfigurationManager.getInstance(context).getCurrentUser();
-//		user.addComment(book, aComment);
-		String url = ConfigWS.TO_COMMENT_BOOK + "?bookId=" + bookId + "&userId=" + user.getId() + 
-					"&text=" + aComment + "&rating=" + score;
-		
-		boolean result = false;
+		String url = ConfigWS.TO_COMMENT_BOOK + "?bookId=" + bookId + "&userId=" + user.getId();
 		try{
-			URL u = new URL(url);
-			HttpURLConnection con = (HttpURLConnection) u.openConnection ();
-			con.setDoInput(true);
-			con.connect();
-			String request = con.getResponseMessage();
-			result = request.equals("OK"); 
+			JSONObject json = new JSONObject();
+			HttpPost request = new HttpPost(url);
+			HttpClient client = new DefaultHttpClient();
+			json.put("text", aComment);
+	        json.put("rating", score);
+            StringEntity se = new StringEntity(json.toString());  
+            se.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
+            request.setEntity(se);
+            
+            client.execute(request);
+            
+            
 
-			con.disconnect();
-			
-			
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
+		}catch (JSONException e){} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		} catch (ClientProtocolException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} 
-		
-		return result;
+		}
+	
 	}
 	
-//	public void toReserveBook(Long bookId, Reservation aReservation){
-//		
-//	}
+
 	
-//	public List<Book> getAllBooks(){
-//		List<Book> books = new ArrayList<Book>();
-//		String url = ConfigWS.FIND_ALL_BOOKS;
-//		try{
-//			URL u = new URL(url);
-//			HttpURLConnection con = (HttpURLConnection) u.openConnection ();
-//			con.setDoInput(true);
-//			con.setRequestMethod("GET");
-//			con.connect();
-//			String request = con.getResponseMessage();
-//			if(request.equals("OK")){
-//				
-//				
-////				// Parse it line by line
-////			    BufferedReader bufferedReader = new BufferedReader(
-////			                new InputStreamReader(inputStream));
-////			    StringBuffer sb = new StringBuffer();
-////	
-////			    String str = "";
-////			    while ((str = bufferedReader.readLine()) != null) {
-////			     sb.append(str);
-////			    }
-//			    JSONArray array = new JSONArray(parseLine(con.getInputStream()));
-//			    
-//			    for(int i = 0; i < array.length(); i++){
-//			    	JSONObject obj = array.getJSONObject(i);
-//			    	Book aBook = new Book(Long.valueOf(obj.getString("isbn")),
-//			    						obj.getString("name"),
-//			    						obj.getString("author"),
-//			    						null,
-//			    						obj.getString("description"));
-//			    	aBook.setBookId(Long.valueOf(obj.getString("id")));
-//			    	aBook.setListOfComments(findCommentsByBook(obj.getString("id")));
-//			    	
-//			    	books.add(aBook);
-//			    }
-//					
-//				
-//			}
-//			//array = new JSONArray(request);
-//			con.disconnect();
-//			
-//		} catch (MalformedURLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (JSONException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		return books;
-//	}
 	
 	private List<Comment> findCommentsByBook(String bookId) {
 		List<Comment> comments = new ArrayList<Comment>();
@@ -213,7 +163,7 @@ public class BookServicesImpl implements BookService {
 			if(request.equals("OK")){
 				
 
-			    JSONArray array = new JSONArray(parseLine(con.getInputStream()));
+			    JSONArray array = new JSONArray(Utils.parseLine(con.getInputStream()));
 			    
 			    for(int i = 0; i < array.length(); i++){
 			    	JSONObject obj = array.getJSONObject(i);
@@ -251,27 +201,31 @@ public class BookServicesImpl implements BookService {
 		
 		return comments;
 	}
-	
-	private String parseLine(InputStream is){
-		// Parse it line by line
-	    BufferedReader bufferedReader = new BufferedReader(
-	                new InputStreamReader(is));
-	    StringBuffer sb = new StringBuffer();
 
-	    String str = "";
-	    try {
-			while ((str = bufferedReader.readLine()) != null) {
-			 sb.append(str);
-			}
+	public void toReserveBook(String bookId){
+//		book.reserveMe();
+		User user = ConfigurationManager.getInstance(context).getCurrentUser();
+		String url = ConfigWS.TO_RESERVE_BOOK + "?bookId=" + bookId + "&userId=" + user.getId();
+		boolean result = false;
+		try{
+			URL u = new URL(url);
+			HttpURLConnection con = (HttpURLConnection) u.openConnection ();
+			con.setDoInput(true);
+			con.connect();
+			String request = con.getResponseMessage();
+			result = request.equals("OK"); 
+
+			con.disconnect();
+			
+			
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-	    return sb.toString();
-	}
-
-	public void toReserveBook(Book book){
-		book.reserveMe();
+		} 
+		
 	}
 
 	@Override
@@ -287,7 +241,7 @@ public class BookServicesImpl implements BookService {
 			String request = con.getResponseMessage();
 			if(request.equals("OK")){
 
-				JSONArray array = new JSONArray(parseLine(con.getInputStream()));
+				JSONArray array = new JSONArray(Utils.parseLine(con.getInputStream()));
 			    
 			    for(int i = 0; i < array.length(); i++){
 			    	JSONObject obj = array.getJSONObject(i);
@@ -298,6 +252,11 @@ public class BookServicesImpl implements BookService {
 			    						obj.getString("description"));
 			    	aBook.setBookId(Long.valueOf(obj.getString("id")));
 			    	aBook.setListOfComments(findCommentsByBook(obj.getString("id")));
+			    	
+			    	if(obj.getString("state").equals(States.RESERVED.toString())){
+			    		aBook.reserveMe();
+			    	}
+			    	
 			    	
 			    	books.add(aBook);
 			    }
@@ -321,19 +280,7 @@ public class BookServicesImpl implements BookService {
 	
 	public Book getBookById(String bookId){
 		Book aBook = null;
-
 		String url = ConfigWS.FIND_BOOK + bookId;
-//		List<Book> books = LibraryMocks.getInstance().getAllBooks();
-//		Iterator<Book> itBook = books.iterator();
-//		boolean founded = false;
-//		while(itBook.hasNext() && !founded){
-//			Book temp = itBook.next();
-//			founded = temp.getISBN().equals(isbn); 
-//			if(founded){
-//				aBook = temp;
-//			}
-//		}
-		
 		try{
 			URL u = new URL(url);
 			HttpURLConnection con = (HttpURLConnection) u.openConnection ();
@@ -343,7 +290,7 @@ public class BookServicesImpl implements BookService {
 			String request = con.getResponseMessage();
 			if(request.equals("OK")){
 
-				JSONObject obj = new JSONObject(parseLine(con.getInputStream()));
+				JSONObject obj = new JSONObject(Utils.parseLine(con.getInputStream()));
 			    
 				aBook = new Book(Long.valueOf(obj.getString("isbn")),
 			    						obj.getString("name"),
@@ -352,11 +299,9 @@ public class BookServicesImpl implements BookService {
 			    						obj.getString("description"));
 			    	aBook.setBookId(Long.valueOf(bookId));
 			    	aBook.setListOfComments(findCommentsByBook(bookId));
-			    	
-//			    	books.add(aBook);
-			    
-					
-				
+			    	if(obj.getString("state").equals(States.RESERVED.toString())){
+			    		aBook.reserveMe();
+			    	}		
 			}
 			con.disconnect();
 			

@@ -1,13 +1,22 @@
 package com.library.android.services.impl;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.content.Context;
 
 import com.library.android.config.ConfigurationManager;
-import com.library.android.domain.User;
 import com.library.android.mock.LibraryMocks;
 import com.library.android.repository.LibraryRepository;
+import com.library.android.services.ConfigWS;
 import com.library.android.utils.Utils;
 
 public class UserServicesImpl{
@@ -18,49 +27,25 @@ public class UserServicesImpl{
 	
 	public static String login(String mail, String pass, Context ctx) throws IOException{
 		 
-//		String url = ConfigWS.WS_LOGIN + "mail_login=" + mail + "&pass_login=" + pass;
-//		String token = null;
-//		HttpURLConnection conn = null;
-//				
-//		URL u = new URL(url);
-//		   conn = (HttpURLConnection) u.openConnection();
-//
-//		   conn.setDoOutput(true);
-//
-//		   String data = URLEncoder.encode("key1", "UTF-8") + "=" + URLEncoder.encode("value1", "UTF-8");
-//		   
-//           conn.setDoOutput(true);
-//           OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
-//           wr.write(data);
-//           wr.flush();
-//
-//           
-//           // Get the response
-//           BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream(),"UTF-8"));
-//           String line = null;
-//           String response = "";
-//           while ((line = rd.readLine()) != null) {
-//              response += line;
-//           }
-//
-//           wr.close();
-//           rd.close();
-//           
-//           if(response != null){
-//        	 //make JSONObject
-//               try {
-//				JSONObject json = new JSONObject(response);
-//				token = json.getString("token");
-//			} catch (JSONException e) {
-//				
-//				e.printStackTrace();
-//			}
-//           }
-			ConfigurationManager config = ConfigurationManager.getInstance(ctx);
-			config.setUser(LibraryMocks.getInstance().getUser());
-			
-         	String token = Utils.md5("123456");
-           return token;
+		String url = ConfigWS.LOGIN + "?name=" + mail + "&password=" + pass;
+		String id = null;
+		try{
+		URL u = new URL(url);
+		HttpURLConnection con = (HttpURLConnection) u.openConnection ();
+		con.setDoInput(true);
+		con.connect();
+		String request = con.getResponseMessage();
+		if(request.equals("OK")){
+			JSONObject json = new JSONObject(Utils.parseLine(con.getInputStream()));
+			if(json.getString("state").equals("OK")){
+				id = json.getString("userId");
+			}
+		}
+		}catch(IOException e){} 
+		catch (JSONException e) {
+			e.printStackTrace();
+		}
+        return id;
 	}
 
 }

@@ -58,10 +58,10 @@ public class BookListItemView extends RelativeLayout {
 			@Override
 			public void onClick(View v) {
 				Intent i = new Intent(context, BookDetailActivity.class);
-//				i.putExtra("titleBook", book.getTitle());
-//				i.putExtra("authorBook", book.getAuthor());
-//				i.putExtra("stateBook", book.getState().toString());
-//				i.putExtra("isbnBook", String.valueOf(book.getISBN()));
+				i.putExtra("titleBook", book.getTitle());
+				i.putExtra("authorBook", book.getAuthor());
+				i.putExtra("stateBook", book.getState().toString());
+				i.putExtra("isbnBook", String.valueOf(book.getISBN()));
 //				i.putExtra("picture", book.getPicture());
 				i.putExtra(Constants.BOOK_ID, String.valueOf(book.getBookId()));
 				context.startActivity(i);
@@ -94,7 +94,7 @@ public class BookListItemView extends RelativeLayout {
 					Toast.makeText(context, "Comment: to Login", Toast.LENGTH_SHORT).show();
 					Intent i = new Intent(context, LoginActivity.class);
 					i.putExtra(Constants.GO_TO_ACTIVITY, Constants.TO_COMMENT);
-					i.putExtra(Constants.BOOK_ID, book.getBookId());
+					i.putExtra(Constants.BOOK_ID, String.valueOf(book.getBookId()));
 					i.putExtra(Constants.BOOK_NAME, book.getTitle());
 					context.startActivity(i);
 				}
