@@ -6,10 +6,19 @@ class ReservationController {
 
 	def scaffold = true
 	
+	//mobile
 	def getReservation = {
 		def reservation = Reservation.get(params.reservationId)
 		render reservation as JSON
 		
+	}
+	
+	//mobile
+	def reserveBook = {
+		User user = User.get(params.userId)
+		Book book = Book.get(params.bookId)
+		user.makeReservation(book)
+		response.writer.println("OK")
 	}
 	
     def index = { 
