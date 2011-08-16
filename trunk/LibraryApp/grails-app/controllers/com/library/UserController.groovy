@@ -61,6 +61,26 @@ class UserController {
 		
 	}
 	
+	//mobile
+	def loginUser = {
+		User user = User.findByNameAndPassword(params.name, params.password)
+		def jsonData = null;
+		if(user){
+			session.user = user
+			jsonData = [
+					userId: user.id,
+					state:"OK"
+				]
+			
+		} else {
+			session.user = null
+			jsonData = [
+				state:"Error params"
+			]
+		}
+		render jsonData as JSON
+	}
+	
 	def login = {
 		
 		User user = User.findByNameAndPassword(params.userId, params.password)
