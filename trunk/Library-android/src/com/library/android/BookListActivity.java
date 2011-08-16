@@ -77,42 +77,18 @@ public class BookListActivity extends Activity {
 	            	Intent i = new Intent(BookListActivity.this, UserProfileActivity.class);
 	            	startActivity(i);
 	            }break;
+	            
+	            case R.id.menu_refresh: {
+//	            	onRestart();
+	            }
 	        }
 	        
 	        return true;
 	        }
 
-//	    public void terminate()
-//	    {
-//	       Log.i("myid","terminated!!");
-//	       super.onDestroy();
-//	       this.finish();
+//	    @Override
+//	    public void onRestart(){
+//	    	super.onRestart();
+//	    	init();
 //	    }
-	    
-//		@Override
-//		public boolean onKeyDown(int keyCode, KeyEvent event)  {
-//		    if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-//		    	
-//		    	final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-//            	alertDialog.setTitle("Quit Application");
-//            	alertDialog.setMessage("Are you sure?");
-//            	alertDialog.setButton("Yes", new DialogInterface.OnClickListener() {
-//            	   public void onClick(DialogInterface dialog, int which) {
-//            		   terminate();
-//            	   }
-//            	});
-//            	alertDialog.setButton2("No", new DialogInterface.OnClickListener() {
-//             	   public void onClick(DialogInterface dialog, int which) {
-//             		   alertDialog.cancel();
-//             	   }
-//             	});
-//            	
-//            	alertDialog.setIcon(R.drawable.logo_library);
-//            	alertDialog.show();
-//		    	
-//		        return true;
-//		    }
-//
-//		    return super.onKeyDown(keyCode, event);
-//		}
 }
