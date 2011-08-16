@@ -52,7 +52,7 @@ public class BookDetailActivity extends Activity {
 		bookDetailView.setBookAuthor(book.getAuthor());
 		bookDetailView.setBookState(book.getState().toString());
 		bookState = book.getState().toString();
-//		bookDetailView.setBookISBN(String.valueOf(bookIsbn));
+		bookDetailView.setBookISBN(String.valueOf(book.getISBN()));
 //		try {
 //			bookDetailView.setBookPicture(BitmapFactory.decodeStream(getAssets().open(book.getPicture())));
 //		} catch (IOException e) {
@@ -128,7 +128,7 @@ public class BookDetailActivity extends Activity {
             	alertDialog.setMessage(getString(R.string.are_you_sure));
             	alertDialog.setButton(getString(R.string.reserve_button), new DialogInterface.OnClickListener() {
             	   public void onClick(DialogInterface dialog, int which) {
-            		  BookServicesImpl.getInstance(ctx).toReserveBook(book); 
+            		  BookServicesImpl.getInstance(ctx).toReserveBook(String.valueOf(book.getBookId())); 
             		  Intent i = new Intent(BookDetailActivity.this, BookListActivity.class);
               		  startActivity(i);
             	   }

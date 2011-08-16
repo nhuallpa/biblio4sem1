@@ -41,6 +41,8 @@ public class LoginActivity extends Activity {
 		Bundle extras = getIntent().getExtras();
 		final Integer goToActivity = extras.getInt(Constants.GO_TO_ACTIVITY);
 		final String bookId = extras.getString(Constants.BOOK_ID);
+		final String bookName = extras.getString(Constants.BOOK_NAME);
+		
 		
 		loginButton.setOnClickListener(new OnClickListener() {
 			
@@ -54,15 +56,18 @@ public class LoginActivity extends Activity {
 				} else {
 										
 					try {
-							String token = UserServicesImpl.login(mail, pass, ctx);
-							if(token != null){
-								config.setToken(token);
-								saveConfig();
+							//BORRAR
+							fillData();
+							
+							String userId = UserServicesImpl.login(mail, pass, ctx);
+							if(userId != null){
+								saveConfig(userId);
 								
 								if(goToActivity != null){
 									Class<?> classToGo = resolveClass(goToActivity);
 									Intent i = new Intent(LoginActivity.this, classToGo);
 									i.putExtra(Constants.BOOK_ID, bookId);
+									i.putExtra(Constants.BOOK_NAME, bookName);
 									startActivity(i);
 								} else {
 									Intent i = new Intent(LoginActivity.this, BookListActivity.class);
@@ -81,7 +86,6 @@ public class LoginActivity extends Activity {
 				}
 				
 			}
-			
 			
 			private Class<?> resolveClass(Integer cod){
 				Class<?> classToGo = null;
@@ -102,20 +106,20 @@ public class LoginActivity extends Activity {
 				return classToGo;
 			}
 			
-			private void saveConfig(){
-				fillData();
+			private void saveConfig(String userId){
+//				fillData();
 				appConfig.setUserName(mail);
 				appConfig.setPassword(pass);
 				config.setUser(mail);
-				appConfig.setUserId("1");//cambiar
+				appConfig.setUserId(userId);//cambiar
 				
 				appConfig.save();
 
 			}
 
 			private void fillData() {
-				this.mail = "lalosoft@gmail.com";
-				this.pass = "123456";
+				this.mail = "gonza";
+				this.pass = "gonza";
 			}
 			
 			

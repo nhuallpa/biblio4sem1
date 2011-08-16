@@ -1,5 +1,9 @@
 package com.library.android.utils;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -27,6 +31,24 @@ public class Utils {
 	    }
 	    return "";
 
+	}
+	
+	public static String parseLine(InputStream is){
+		// Parse it line by line
+	    BufferedReader bufferedReader = new BufferedReader(
+	                new InputStreamReader(is));
+	    StringBuffer sb = new StringBuffer();
+
+	    String str = "";
+	    try {
+			while ((str = bufferedReader.readLine()) != null) {
+			 sb.append(str);
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    return sb.toString();
 	}
 
 }
