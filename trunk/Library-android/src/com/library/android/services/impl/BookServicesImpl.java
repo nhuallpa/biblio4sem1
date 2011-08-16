@@ -8,7 +8,6 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -22,7 +21,6 @@ import com.library.android.config.ConfigurationManager;
 import com.library.android.domain.Book;
 import com.library.android.domain.Comment;
 import com.library.android.domain.User;
-import com.library.android.mock.LibraryMocks;
 import com.library.android.services.BookService;
 import com.library.android.services.ConfigWS;
 
@@ -124,13 +122,12 @@ public class BookServicesImpl implements BookService {
 			URL u = new URL(url);
 			HttpURLConnection con = (HttpURLConnection) u.openConnection ();
 			con.setDoInput(true);
-			con.setRequestMethod("POST");
 			con.connect();
 			String request = con.getResponseMessage();
 			result = request.equals("OK"); 
 
-			//array = new JSONArray(request);
 			con.disconnect();
+			
 			
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
@@ -139,7 +136,6 @@ public class BookServicesImpl implements BookService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
-		
 		
 		return result;
 	}
