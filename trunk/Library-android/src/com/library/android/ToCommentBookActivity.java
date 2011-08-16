@@ -79,9 +79,11 @@ public class ToCommentBookActivity extends Activity {
 					String scoreSelected = (String)mySpinner.getSelectedItem();
 //					Comment aComment = new Comment(text, Float.valueOf(scoreSelected));
 					BookServicesImpl.getInstance(ctx).toComment(bookId, text, scoreSelected);
-					Toast.makeText(ToCommentBookActivity.this, "Send Comment..", Toast.LENGTH_SHORT).show();
-					Intent i = new Intent(ToCommentBookActivity.this, BookListActivity.class);
-					startActivity(i);
+						Toast.makeText(ToCommentBookActivity.this, "Send Comment..", Toast.LENGTH_SHORT).show();
+						Intent i = new Intent(ToCommentBookActivity.this, BookListActivity.class);
+						startActivity(i);
+					
+					
 				} else {
 					Toast.makeText(ToCommentBookActivity.this, "Invalid input...", Toast.LENGTH_LONG).show();
 				}	
