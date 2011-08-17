@@ -1,11 +1,8 @@
 package com.library.android.view;
 
-import java.io.IOException;
-import java.text.DecimalFormat;
 import java.util.List;
 
 import android.content.Context;
-import android.graphics.BitmapFactory;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;

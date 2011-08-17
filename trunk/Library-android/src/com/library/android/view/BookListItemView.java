@@ -1,12 +1,10 @@
 package com.library.android.view;
 
-import java.io.IOException;
 import java.text.DecimalFormat;
 
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.view.View;
 import android.widget.ImageButton;
@@ -187,11 +185,18 @@ public class BookListItemView extends RelativeLayout {
 	public void setItemBook(Book aBook) {
 		DecimalFormat decimalFormat = new DecimalFormat("#");
 		book = aBook;
+		int commentsSize = aBook.getListOfComments().size();
 		setBookTitle(aBook.getTitle());
 		setBookState(String.valueOf(aBook.getState()));
 		setBookAuthor(aBook.getAuthor());
-		setBookScoreCount(decimalFormat.format(aBook.getScore()));
-		setBookCommentsCount(String.valueOf(aBook.getListOfComments().size()));
+	
+		setBookCommentsCount(String.valueOf(commentsSize));
+		if(commentsSize == 0){
+			setBookScoreCount("0");
+		} else {
+			setBookScoreCount(decimalFormat.format(aBook.getScore()));
+		}
+		
 //		try {
 ////			setBookPicture(BitmapFactory.decodeStream(getContext().getAssets().open(aBook.getPicture())));
 ////			setBookPicture(aBook.getPicture());

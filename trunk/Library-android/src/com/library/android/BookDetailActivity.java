@@ -1,13 +1,10 @@
 package com.library.android;
 
-import java.io.IOException;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -60,6 +57,7 @@ public class BookDetailActivity extends Activity {
 //		}
 		bookDetailView.setBookDescription(book.getDescription());
 		bookName = book.getTitle();
+		
 	}
 	
 //	private void setExtras(){
