@@ -8,9 +8,12 @@ import org.springframework.context.ApplicationContext
 
 class BookController {
 	
+	
 	static TOP_BOOKS = 6;
 	def bookService
 	def scaffold = true
+	
+	/** MOBILE **/
 	
 	def getTopBooks = {
 		def books = Book.list()
@@ -77,6 +80,36 @@ class BookController {
 		
 		render jsonData
 	}
+	
+	def searchBook = {
+		def param_q = params.q
+		def searchResults = Book.search(param_q, params)
+		List<Book> resultList = searchResults.results
+		def jsonList = new ArrayList()
+		if(searchResults.total > 0){
+			for(obj in resultList){
+				def jsonData = [
+					bookId: obj.id,
+					name: obj.name,
+					state: obj.state.state,
+					description: obj.description,
+					author: obj.author,
+					score: obj.rating,
+					comments: [
+							obj.comments
+						]
+				]
+				jsonList.add jsonData
+			}
+		}
+		
+		
+		
+		render jsonList as JSON
+	}
+	
+	
+	/************************************************************/
 	
     def index = { 
 		def results = bookService.getInTop()
