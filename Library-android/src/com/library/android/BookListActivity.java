@@ -1,12 +1,8 @@
 package com.library.android;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -14,13 +10,14 @@ import android.view.Window;
 
 import com.library.android.config.ConfigurationManager;
 import com.library.android.config.Constants;
-import com.library.android.mock.LibraryMocks;
 import com.library.android.services.impl.BookServicesImpl;
 import com.library.android.view.BookListView;
+import com.library.android.view.LibraryHeaderView;
 
 public class BookListActivity extends Activity {
 
 	private BookListView bookListView;
+	private LibraryHeaderView header;
 	private ConfigurationManager config;
     
     @Override
@@ -29,6 +26,7 @@ public class BookListActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.book_list_view);
         bookListView = (BookListView)findViewById(R.id.book_list);
+        header = (LibraryHeaderView) findViewById(R.id.header_library_app);
         init();
         
         config = ConfigurationManager.getInstance(this);
@@ -36,8 +34,6 @@ public class BookListActivity extends Activity {
     
     private void init(){
     	bookListView.setBookList(BookServicesImpl.getInstance(this).getTopBooks());
-//    	bookListView.setBookList(LibraryMocks.getInstance().getAllBooks());
-//    	bookListView.setBookList(BookServicesImpl.getInstance(this).getAllBooks());
     }
     
 	 public boolean onCreateOptionsMenu(Menu menu) {

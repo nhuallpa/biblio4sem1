@@ -6,7 +6,7 @@ import com.library.android.domain.Book;
 
 public interface BookService {
 	
-	public List<Book> findBook(String text);
+	public List<Book> findBooks(String text);
 	
 	public List<Book> getTopBooks();
 

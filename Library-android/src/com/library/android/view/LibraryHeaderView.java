@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.library.android.BookListActivity;
@@ -20,6 +21,7 @@ public class LibraryHeaderView extends RelativeLayout {
 	private ImageButton homeButton;
 	private Button librarysButton;
 	private Button bookStoreButton;
+	private TextView textInfo;
 	
 	public LibraryHeaderView(Context context) {
 		super(context);
@@ -59,6 +61,7 @@ public class LibraryHeaderView extends RelativeLayout {
 		homeButton = (ImageButton) findViewById(R.id.header_button_home);
 		librarysButton = (Button) findViewById(R.id.header_librarys_button);
 		bookStoreButton = (Button) findViewById(R.id.header_book_store_button);
+		textInfo = (TextView) findViewById(R.id.header_text);
 		
 		homeButton.setOnClickListener(new OnClickListener() {
 			
@@ -90,7 +93,11 @@ public class LibraryHeaderView extends RelativeLayout {
 
 	}
 	
-
+	
+	public void setInfo(String text){
+		this.textInfo.setText(text);
+		this.textInfo.setVisibility(VISIBLE);
+	}
 	
 	public Button getLibraryButton(){
 		return this.librarysButton;

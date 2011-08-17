@@ -79,7 +79,7 @@ public class SearchActivity extends Activity {
 //					List<Book> listOfbooks = BookServicesImpl.findBook(editText.getText().toString());//pero tendria que ser asi
 					
 					Intent i = new Intent(SearchActivity.this, ResultSearchActivity.class);
-					i.putExtra("inputText", editText.getText().toString());
+					i.putExtra("q_search", editText.getText().toString());
 //					i.putExtra("title", book.getTitle());
 					startActivity(i);
 				}

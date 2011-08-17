@@ -8,7 +8,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
@@ -54,70 +53,43 @@ public class BookServicesImpl implements BookService {
 	}
 	
 	@Override
-	public List<Book> findBook(String text){
+	public List<Book> findBooks(String text){
 		
-//		String urlFinal = url + "&bookId=" + text;
-//		String request = null;
-//		
-//		JSONArray array = null;
-//		JSONObject bookJs = null;
-//		Book book = new Book();
-//		try {
-//			URL u = new URL(urlFinal);
-//			HttpURLConnection con = (HttpURLConnection) u.openConnection ();
-//			con.setDoInput(true);
-//			con.setRequestMethod("GET");
-//			con.connect();
-//			request = con.getResponseMessage();
-//			if(request.equals("OK")){
-//				
-//				InputStream inputStream = con.getInputStream();
-//					
-//				// Parse it line by line
-//			    BufferedReader bufferedReader = new BufferedReader(
-//			                new InputStreamReader(inputStream));
-//			    StringBuffer sb = new StringBuffer();
-//
-//			    String str = "";
-//			    while ((str = bufferedReader.readLine()) != null) {
-//			     sb.append(str);
-//			    }
-//			    array = new JSONArray(sb.toString());
-//				bookJs = array.getJSONObject(1);
-//				book.setBookId(bookJs.getLong("bookId"));
-//				book.setTitle(bookJs.getString("title"));
-//					
-//				con.disconnect();
-//			}
-//			//array = new JSONArray(request);
-//			
-//				
-//		} catch (MalformedURLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (JSONException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//					
+		List<Book> booksFounded = new ArrayList<Book>();
+		String url = ConfigWS.SEARCH_BOOK + "?q=" + text;
+
+		try{
+			URL u = new URL(url);
+			HttpURLConnection con = (HttpURLConnection) u.openConnection ();
+			con.setDoInput(true);
+			con.setRequestMethod("GET");
+			con.connect();
+			String request = con.getResponseMessage();
+			if(request.equals("OK")){
 				
-		List<Book> booksFounded = null;//LibraryServiceImpl.getInstance().booksFounded(BooksMock.getListBooks(), text);
-		
-//		return book;
+			    JSONArray array = new JSONArray(Utils.parseLine(con.getInputStream()));
+			    
+			    for(int i = 0; i < array.length(); i++){
+			    	JSONObject obj = array.getJSONObject(i);
+			    	Book book = convertToBook(obj);
+			    	booksFounded.add(book);
+			    }
+					
+			}
+
+			con.disconnect();
+			
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+
 		return booksFounded;
 	}
-	
-	public void addBook(String aRequest){
-		
-	}
-	
-	public boolean validate(Long bookId){
-		
-		return false;
-	}
+
 	
 	public void toComment(String bookId, String aComment, String score){
 		
@@ -150,8 +122,6 @@ public class BookServicesImpl implements BookService {
 	}
 	
 
-	
-	
 	private List<Comment> findCommentsByBook(String bookId) {
 		List<Comment> comments = new ArrayList<Comment>();
 		
@@ -248,17 +218,18 @@ public class BookServicesImpl implements BookService {
 			    
 			    for(int i = 0; i < array.length(); i++){
 			    	JSONObject obj = array.getJSONObject(i);
-			    	Book aBook = new Book(Long.valueOf(obj.getString("isbn")),
-			    						obj.getString("name"),
-			    						obj.getString("author"),
-			    						null,
-			    						obj.getString("description"));
-			    	aBook.setBookId(Long.valueOf(obj.getString("id")));
-			    	aBook.setListOfComments(findCommentsByBook(obj.getString("id")));
-			    	
-			    	if(obj.getString("state").equals(States.RESERVED.toString())){
-			    		aBook.reserveMe();
-			    	}
+			    	Book aBook = convertToBook(obj);
+//			    	Book aBook = new Book(Long.valueOf(obj.getString("isbn")),
+//			    						obj.getString("name"),
+//			    						obj.getString("author"),
+//			    						null,
+//			    						obj.getString("description"));
+//			    	aBook.setBookId(Long.valueOf(obj.getString("id")));
+//			    	aBook.setListOfComments(findCommentsByBook(obj.getString("id")));
+//			    	
+//			    	if(obj.getString("state").equals(States.RESERVED.toString())){
+//			    		aBook.reserveMe();
+//			    	}
 			    	
 			    	
 			    	books.add(aBook);
@@ -295,16 +266,18 @@ public class BookServicesImpl implements BookService {
 
 				JSONObject obj = new JSONObject(Utils.parseLine(con.getInputStream()));
 			    
-				aBook = new Book(Long.valueOf(obj.getString("isbn")),
-			    						obj.getString("name"),
-			    						obj.getString("author"),
-			    						null,
-			    						obj.getString("description"));
-			    	aBook.setBookId(Long.valueOf(bookId));
-			    	aBook.setListOfComments(findCommentsByBook(bookId));
-			    	if(obj.getString("state").equals(States.RESERVED.toString())){
-			    		aBook.reserveMe();
-			    	}		
+				aBook = convertToBook(obj);
+				
+//				aBook = new Book(Long.valueOf(obj.getString("isbn")),
+//			    						obj.getString("name"),
+//			    						obj.getString("author"),
+//			    						null,
+//			    						obj.getString("description"));
+//			    	aBook.setBookId(Long.valueOf(bookId));
+//			    	aBook.setListOfComments(findCommentsByBook(bookId));
+//			    	if(obj.getString("state").equals(States.RESERVED.toString())){
+//			    		aBook.reserveMe();
+//			    	}		
 			}
 			con.disconnect();
 			
@@ -320,4 +293,24 @@ public class BookServicesImpl implements BookService {
 	}
 
 
+	private Book convertToBook(JSONObject obj){
+		Book aBook = null;
+		try{
+			aBook = new Book(Long.valueOf(obj.getString("isbn")),
+								obj.getString("name"),
+								obj.getString("author"),
+								null,
+								obj.getString("description"));
+			aBook.setBookId(Long.valueOf(obj.getString("id")));
+			aBook.setListOfComments(findCommentsByBook(obj.getString("id")));
+			
+			if(obj.getString("state").equals(States.RESERVED.toString())){
+				aBook.reserveMe();
+			}
+		}catch(JSONException e){
+			Log.e("Convert to Book", e.getMessage());
+		}
+		
+		return aBook;
+	}
 }
