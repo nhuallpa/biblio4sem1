@@ -62,7 +62,7 @@ public class LoginActivity extends Activity {
 //							//BORRAR
 //							fillData();
 							
-							String userId = UserServicesImpl.login(mail, pass, ctx);
+							String userId = UserServicesImpl.getInstance(ctx).login(mail, pass);
 							if(userId != null){
 								saveConfig(userId);
 								

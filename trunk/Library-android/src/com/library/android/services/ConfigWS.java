@@ -7,13 +7,13 @@ public class ConfigWS {
 	public static String URL_BASE = "http://172.17.193.113:8080/Library"; //DEVELOPMENT
 //	public static String URL_BASE = "http://library-grails.cloudfoundry.com"; //PRODUCTION
 	
-	
-//	public static String FIND_ALL_BOOKS = URL_BASE + "/book/getAll";
+	//controllers
 	public static String BOOK_CONTROLLER = URL_BASE + "/book";
 	public static String COMMENT_CONTROLLER = URL_BASE + "/comment";
 	public static String RESERVATION_CONTROLLER = URL_BASE + "/reservation";
 	public static String USER_CONTROLLER = URL_BASE + "/user";
 	
+	//actions
 	public static String FIND_TOP_BOOKS = BOOK_CONTROLLER + "/getTopBooks";
 	public static String FIND_BOOK = BOOK_CONTROLLER + "/getBook?bookId=";
 	public static String FIND_USER = USER_CONTROLLER + "/getUser?userId=";
@@ -24,6 +24,8 @@ public class ConfigWS {
 	public static String TO_RESERVE_BOOK = RESERVATION_CONTROLLER + "/reserveBook";
 	public static String LOGIN = USER_CONTROLLER + "/loginUser";
 	public static String SEARCH_BOOK = BOOK_CONTROLLER + "/searchBook";
+	public static String MY_COMMENTS = USER_CONTROLLER + "/getMyComments";
+	public static String PICTURE_BOOK = BOOK_CONTROLLER + "/getPicture?name=";
 	
 	private String user;
 	private static ConfigWS instance; 

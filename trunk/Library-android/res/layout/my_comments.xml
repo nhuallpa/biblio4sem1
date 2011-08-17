@@ -4,11 +4,11 @@
   android:layout_width="fill_parent"
   android:layout_height="fill_parent">
   
-  	<ListView
-  		android:id="@android:id/list"
-  		
-  		android:layout_width="fill_parent"
-  		android:layout_height="fill_parent">
-  	</ListView>
+  		 	<com.library.android.view.CommentBookListView
+	  		android:id="@+id/my_comments_list"
+	  		android:layout_below="@+id/book_detail_comment_title"
+	  		android:layout_width="fill_parent"
+	  		android:layout_marginTop="5dip"
+	  		android:layout_height="wrap_content"/>
   
 </LinearLayout>

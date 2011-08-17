@@ -20,6 +20,7 @@ import com.library.android.config.ConfigurationManager;
 import com.library.android.config.Constants;
 import com.library.android.domain.Book;
 import com.library.android.domain.States;
+import com.library.android.services.impl.BookServicesImpl;
 
 public class BookListItemView extends RelativeLayout {
 	
@@ -35,9 +36,11 @@ public class BookListItemView extends RelativeLayout {
 	
 	private Book book;
 	private ConfigurationManager config;
+	private Context ctx;
 	
 	public BookListItemView(final Context context) {
 		super(context);
+		ctx = context;
 		inflate(context, R.layout.item_book_list, this);
 		
 
@@ -197,6 +200,7 @@ public class BookListItemView extends RelativeLayout {
 			setBookScoreCount(decimalFormat.format(aBook.getScore()));
 		}
 		
+		setBookPicture(BookServicesImpl.getInstance(ctx).getPicture(aBook.getTitle()));
 //		try {
 ////			setBookPicture(BitmapFactory.decodeStream(getContext().getAssets().open(aBook.getPicture())));
 ////			setBookPicture(aBook.getPicture());

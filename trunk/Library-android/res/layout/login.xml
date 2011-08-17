@@ -6,15 +6,16 @@
   android:layout_height="fill_parent"
   android:background="#FFFFFF">
   
-  <TextView	
+  <ImageView	
   		android:id="@+id/title_login"
   		android:layout_width="wrap_content"
   		android:layout_height="wrap_content"
-  		android:text="Biblioteca 2.0"
-  		android:textColor="#000000"
+		android:src="@drawable/logo"
   		android:layout_marginTop="10dip"
   		android:layout_centerHorizontal="true">
-  	</TextView>
+  	</ImageView>
+  	
+
   
     	
   	<TextView

@@ -75,18 +75,18 @@ public class LibraryMocks {
 		description10 = textDesc;
 		description11 = textDesc;
 		
-		book1 = new Book(new Long(1234), "Thinking in Java", "Autor 1", ConstantsMock.book1_picture, description1);
-		book2 = new Book(new Long(6789),"Objective-C", "Autor 2",  ConstantsMock.book2_picture, description2);
-		book3 = new Book(new Long(7894), "It","Autor 3", ConstantsMock.book3_picture, description3);
-		book4 = new Book(new Long(4656), "Grails in Action","Dierk Koenig", ConstantsMock.book4_picture, description4);
-		book5 = new Book(new Long(6547), "Groovy in Action", "Andrew Glover", ConstantsMock.book5_picture, description5);
-		book6 = new Book(new Long(7461), "The Ruby Programming", "David Flanagan", ConstantsMock.book6_picture, description6);
-		book7 = new Book(new Long(8714), "Hello, Android", "Ed Burnette", ConstantsMock.book7_picture, description7);
-		book8 = new Book(new Long(1092), "BlackBerry for Dummies", "Robert Kao", ConstantsMock.book8_picture, description8);
-		book9 = new Book(new Long(7671), "iPad 2", "J D Biersdorfer", ConstantsMock.book9_picture, description9);
-		book10 = new Book(new Long(2345), "iPhone 4", "David Mark", ConstantsMock.book10_picture, description10);
-		book11 = new Book(new Long(5786), "Pro C# and .NET", "Andrew W. Troelsen", ConstantsMock.book11_picture, description11);
-		
+//		book1 = new Book(new Long(1234), "Thinking in Java", "Autor 1", ConstantsMock.book1_picture, description1);
+//		book2 = new Book(new Long(6789),"Objective-C", "Autor 2",  ConstantsMock.book2_picture, description2);
+//		book3 = new Book(new Long(7894), "It","Autor 3", ConstantsMock.book3_picture, description3);
+//		book4 = new Book(new Long(4656), "Grails in Action","Dierk Koenig", ConstantsMock.book4_picture, description4);
+//		book5 = new Book(new Long(6547), "Groovy in Action", "Andrew Glover", ConstantsMock.book5_picture, description5);
+//		book6 = new Book(new Long(7461), "The Ruby Programming", "David Flanagan", ConstantsMock.book6_picture, description6);
+//		book7 = new Book(new Long(8714), "Hello, Android", "Ed Burnette", ConstantsMock.book7_picture, description7);
+//		book8 = new Book(new Long(1092), "BlackBerry for Dummies", "Robert Kao", ConstantsMock.book8_picture, description8);
+//		book9 = new Book(new Long(7671), "iPad 2", "J D Biersdorfer", ConstantsMock.book9_picture, description9);
+//		book10 = new Book(new Long(2345), "iPhone 4", "David Mark", ConstantsMock.book10_picture, description10);
+//		book11 = new Book(new Long(5786), "Pro C# and .NET", "Andrew W. Troelsen", ConstantsMock.book11_picture, description11);
+//		
 		comment1 = new Comment("Feo libroo", 2);
 		comment2 = new Comment("Bastante bueno",4);
 		comment3 = new Comment("Zafa", 2);
