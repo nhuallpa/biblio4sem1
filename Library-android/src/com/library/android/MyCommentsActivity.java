@@ -15,9 +15,9 @@ import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import com.library.android.config.ConfigurationManager;
-import com.library.android.domain.Book;
 import com.library.android.domain.Comment;
-import com.library.android.mock.LibraryMocks;
+import com.library.android.services.impl.UserServicesImpl;
+import com.library.android.view.CommentBookListView;
 
 	public class MyCommentsActivity extends ListActivity {
 		
@@ -25,6 +25,10 @@ import com.library.android.mock.LibraryMocks;
 		private ArrayList<HashMap<String, String>> list;
 		private Handler mHandler = new Handler();
 		private ConfigurationManager config;
+		private Context ctx = MyCommentsActivity.this;
+		
+		
+		private CommentBookListView commentView;
 
 		public void OnCreate(Bundle b){
 			super.onCreate(b);
@@ -32,7 +36,12 @@ import com.library.android.mock.LibraryMocks;
 			setContentView(R.layout.my_comments);
 			config = ConfigurationManager.getInstance(this);
 		
+//			commentView = (CommentBookListView)findViewById(R.id.my_comments_list);
+//			commentView.setCommentList(UserServicesImpl.getInstance(ctx).getMyComments());
 		}
+		
+		
+		
 
 	public void onStart(){
 		super.onStart();
@@ -47,7 +56,7 @@ import com.library.android.mock.LibraryMocks;
 		@Override
 		protected List<Comment> doInBackground(Void... arg0) {
 			
-			List<Comment> comments = config.getCurrentUser().getListOfComments();
+			List<Comment> comments = UserServicesImpl.getInstance(ctx).getMyComments();
 						
 			return comments;
 		}
@@ -62,13 +71,13 @@ import com.library.android.mock.LibraryMocks;
 				for (Comment dato : results) {
 					HashMap<String,String> temp = new HashMap<String,String>();				
 							temp.put("description", dato.getDescription());
-							temp.put("user", dato.getUser().getName());
+//							temp.put("user", dato.getUser().getName());
 							temp.put("book", dato.getBookSource().getTitle());
 					
 					list.add(temp);
 				}
-				simpleAdapter = new SimpleAdapter(MyCommentsActivity.this, list, R.layout.my_comments_item, new String[] { "description", "user", "book"},
-			        new int[] { R.id.item_comment_description, R.id.item_comment_user_name, R.id.item_comment_book_name});
+				simpleAdapter = new SimpleAdapter(MyCommentsActivity.this, list, R.layout.my_comments_item, new String[] { "description", "book"},
+			        new int[] { R.id.item_comment_description, R.id.item_comment_book_name});
 			        setListAdapter(simpleAdapter);
 			        
 			}else {
@@ -93,14 +102,7 @@ import com.library.android.mock.LibraryMocks;
 
 
 		}
-		
-//		private Book getBook(Comment aComment){
-//			
-//			//WS
-//			Book book = new Book();
-//			
-//			return book;
-//		}
+
 			
 		}
 		

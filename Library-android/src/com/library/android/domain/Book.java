@@ -3,6 +3,8 @@ package com.library.android.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.graphics.Bitmap;
+
 public class Book implements Comparable<Book>{
 
 	private Long bookId;
@@ -13,7 +15,7 @@ public class Book implements Comparable<Book>{
 	private List<Comment> listOfComments;
 //	private List<String> tags;
 	private Library library;
-	private String picture;
+	private Bitmap picture;
 	private String description;
 	private States state;
 	
@@ -24,7 +26,7 @@ public class Book implements Comparable<Book>{
 		init();
 	}
 	
-	public Book(Long ISBN, String title, String author, String picture){
+	public Book(Long ISBN, String title, String author, Bitmap picture){
 		this.ISBN = ISBN;
 		this.picture = picture;
 		this.title = title;
@@ -32,7 +34,7 @@ public class Book implements Comparable<Book>{
 		init();
 	}
 	
-	public Book(Long ISBN, String title, String author, String picture, String description){
+	public Book(Long ISBN, String title, String author, Bitmap picture, String description){
 		this.ISBN = ISBN;
 		this.picture = picture;
 		this.title = title;
@@ -41,7 +43,7 @@ public class Book implements Comparable<Book>{
 		init();
 	}
 	
-	public Book(Long ISBN, String title, Library lib, String picture){
+	public Book(Long ISBN, String title, Library lib, Bitmap picture){
 		this.ISBN = ISBN;
 		this.library = lib;
 		this.title = title;
@@ -92,11 +94,11 @@ public class Book implements Comparable<Book>{
 		return score;
 	}
 	
-	public void setPicture(String source){
+	public void setPicture(Bitmap source){
 		this.picture = source;
 	}
 	
-	public String getPicture(){
+	public Bitmap getPicture(){
 		return this.picture;
 	}
 	

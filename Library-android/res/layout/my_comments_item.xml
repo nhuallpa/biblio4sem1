@@ -3,7 +3,7 @@
   xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="fill_parent"
   android:layout_height="fill_parent"
-  android:background="#DDDDDD">
+  android:background="#FFFFFF">
   
   	<TextView
   		android:id="@+id/item_comment_description"
@@ -17,24 +17,13 @@
   	</TextView>
   	
   	<TextView
-  		android:id="@+id/item_comment_user_name"
-  		android:layout_width="fill_parent"
-  		android:layout_height="wrap_content"
-  		android:paddingLeft="10dip"
-  		android:paddingTop="5dip"
-  		android:textColor="#000000"
-  		android:layout_below="@id/item_comment_description"
-  		android:text="name">
-  	</TextView>
-  	
-  	<TextView
   		android:id="@+id/item_comment_book_name"
   		android:layout_width="fill_parent"
   		android:layout_height="wrap_content"
   		android:paddingLeft="10dip"
   		android:paddingTop="5dip"
   		android:textColor="#000000"
-  		android:layout_below="@id/item_comment_user_name"
+  		android:layout_below="@id/item_comment_description"
   		android:text="book_name">
   	</TextView>  	
   

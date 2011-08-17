@@ -1,31 +1,41 @@
 package com.library.android.services.impl;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Context;
 
 import com.library.android.config.ConfigurationManager;
-import com.library.android.mock.LibraryMocks;
-import com.library.android.repository.LibraryRepository;
+import com.library.android.domain.Book;
+import com.library.android.domain.Comment;
+import com.library.android.domain.User;
 import com.library.android.services.ConfigWS;
 import com.library.android.utils.Utils;
 
 public class UserServicesImpl{
 	
-	LibraryRepository repo;
+	private static UserServicesImpl instance;
+	private static Context ctx;
 	
+	public static UserServicesImpl getInstance(Context ctx){
+		if(instance == null){
+			instance = new UserServicesImpl(ctx);
+		}
+		return instance;
+	}
 	
+	private UserServicesImpl(Context ctx){
+		this.ctx = ctx;
+	}
 	
-	public static String login(String mail, String pass, Context ctx) throws IOException{
+	public String login(String mail, String pass) throws IOException{
 		 
 		String url = ConfigWS.LOGIN + "?name=" + mail + "&password=" + pass;
 		String id = null;
@@ -46,6 +56,45 @@ public class UserServicesImpl{
 			e.printStackTrace();
 		}
         return id;
+	}
+	
+	public List<Comment> getMyComments(){
+		List<Comment> comments = new ArrayList<Comment>();
+		User user = ConfigurationManager.getInstance(ctx).getCurrentUser();
+		String url = ConfigWS.MY_COMMENTS +"?id="+ user.getId() ;
+
+		try{
+			URL u = new URL(url);
+			HttpURLConnection con = (HttpURLConnection) u.openConnection ();
+			con.setDoInput(true);
+			con.connect();
+			String request = con.getResponseMessage();
+			if(request.equals("OK")){
+				JSONArray array = new JSONArray(Utils.parseLine(con.getInputStream()));
+				for(int i = 0; i < array.length(); i++){
+					JSONObject obj = array.getJSONObject(i);
+					Comment comment = new Comment();
+			    	comment.setDescription(obj.getString("description"));
+			    	comment.setScore(Float.valueOf(obj.getString("score")));
+//			    	User aUser = new User();
+//			    	aUser.setName(obj.getJSONObject("user").getString("name"));
+//			    	aUser.setId(obj.getJSONObject("user").getString("id"));
+			    	Book aBook = new Book();
+			    	aBook.setBookId(Long.valueOf(obj.getJSONObject("book").getString("id")));
+			    	aBook.setTitle(obj.getJSONObject("book").getString("name"));
+//			    	aBook.setDescription(obj.getJSONObject("book").getString("description"));
+
+			    	comment.setSources(user , aBook);
+			    	comments.add(comment);
+				}
+			}
+		}catch(IOException e){} 
+		catch (JSONException e) {
+			e.printStackTrace();
+		}
+        
+		
+		return comments;
 	}
 
 }

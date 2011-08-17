@@ -59,16 +59,10 @@ public class ToCommentBookActivity extends Activity {
 			
 			@Override
 			public void beforeTextChanged(CharSequence s, int start, int count,
-					int after) {
-				// TODO Auto-generated method stub
-				
-			}
+					int after) {}
 			
 			@Override
-			public void afterTextChanged(Editable s) {
-				// TODO Auto-generated method stub
-				
-			}
+			public void afterTextChanged(Editable s) {}
 		});
 		toCommentBookView.getCommentButton().setOnClickListener(new OnClickListener() {
 			

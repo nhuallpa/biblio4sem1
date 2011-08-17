@@ -50,42 +50,17 @@ public class BookDetailActivity extends Activity {
 		bookDetailView.setBookState(book.getState().toString());
 		bookState = book.getState().toString();
 		bookDetailView.setBookISBN(String.valueOf(book.getISBN()));
-//		try {
-//			bookDetailView.setBookPicture(BitmapFactory.decodeStream(getAssets().open(book.getPicture())));
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
+		bookDetailView.setBookPicture(BookServicesImpl.getInstance(ctx).getPicture(book.getTitle()));
 		bookDetailView.setBookDescription(book.getDescription());
 		bookName = book.getTitle();
 		
 	}
-	
-//	private void setExtras(){
-//		if(extras != null){
-//			bookDetailView.setBookTitle(extras.getString("titleBook"));
-//			bookDetailView.setBookAuthor(extras.getString("authorBook"));
-//			bookDetailView.setBookState(extras.getString("stateBook"));
-//			bookState = extras.getString("stateBook");
-//			bookDetailView.setBookISBN(extras.getString("isbnBook"));
-//			try {
-//				bookDetailView.setBookPicture(BitmapFactory.decodeStream(getAssets().open(extras.getString("picture"))));
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			}
-//		}
-//	}
 	
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data){
 		super.onActivityResult(requestCode, resultCode, data);
 	}
 	
-	
-//	private void fill(){
-//		//estaria bueno que traiga el book por el ISBN..
-//		CommentBookListView bookList = bookDetailView.getCommentList();
-//		bookList.setCommentList(LibraryMocks.getInstance().getTopBooks().get(2).getListOfComments());
-//	}
 	
 	public boolean onCreateOptionsMenu(Menu menu) {
 		ConfigurationManager config = ConfigurationManager.getInstance(this);
