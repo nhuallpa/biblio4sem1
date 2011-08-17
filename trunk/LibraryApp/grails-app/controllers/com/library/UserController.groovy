@@ -81,6 +81,26 @@ class UserController {
 		render jsonData as JSON
 	}
 	
+	def getMyComments = {
+		User user = User.get(params.id)
+		def listComments = new ArrayList()
+		for(commentFounded in user.commentsDone){
+			def jsonData = [
+				description: commentFounded.description,
+				date: commentFounded.date,
+				book: [
+					id:commentFounded.book.id,
+					name: commentFounded.book.name,
+					],
+				score: commentFounded.score
+			]
+			listComments.add jsonData
+		}
+		
+		render listComments as JSON
+		
+	}
+	
 	def login = {
 		
 		User user = User.findByNameAndPassword(params.userId, params.password)

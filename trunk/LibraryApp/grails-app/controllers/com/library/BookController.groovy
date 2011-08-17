@@ -2,6 +2,7 @@ package com.library
 
 import grails.converters.JSON
 
+import org.codehaus.groovy.grails.web.json.JSONObject
 import org.codehaus.groovy.grails.web.servlet.GrailsApplicationAttributes
 import org.springframework.context.ApplicationContext
 
@@ -71,6 +72,7 @@ class BookController {
 //		def comments = render (controller:'book', action:'getBookComments', bookId: bookFounded.id)
 		def jsonData = [
 			isbn: bookFounded.ISBN,
+			id: bookFounded.id,
 			state: bookFounded.state.state,
 			name: bookFounded.name,
 			description: bookFounded.description,
@@ -89,15 +91,12 @@ class BookController {
 		if(searchResults.total > 0){
 			for(obj in resultList){
 				def jsonData = [
-					bookId: obj.id,
-					name: obj.name,
+					id:obj.id,
+					isbn: obj.ISBN,
 					state: obj.state.state,
+					name: obj.name,
 					description: obj.description,
 					author: obj.author,
-					score: obj.rating,
-					comments: [
-							obj.comments
-						]
 				]
 				jsonList.add jsonData
 			}
@@ -108,6 +107,19 @@ class BookController {
 		render jsonList as JSON
 	}
 	
+	
+	def getPicture = {
+	
+		JSONObject jsonObject = request.JSON
+		def bookName = jsonObject.getString("name")
+		def location = new File("web-app/images/Book/" + bookName + "/cover.jpg")
+		response.setContentType("application/jpg")
+		response.setContentLength(location.size().toInteger())
+		OutputStream out = response.getOutputStream();
+		out.write(location.bytes);
+		out.close();
+	
+	}
 	
 	/************************************************************/
 	
