@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.library.android.config.ConfigurationManager;
 import com.library.android.config.Constants;
+import com.library.android.dialog.ShowDialog;
 import com.library.android.services.ConfigWS;
 import com.library.android.services.impl.UserServicesImpl;
 
@@ -59,13 +60,11 @@ public class LoginActivity extends Activity {
 				} else {
 										
 					try {
-//							//BORRAR
-//							fillData();
-							
+		
 							String userId = UserServicesImpl.getInstance(ctx).login(mail, pass);
 							if(userId != null){
 								saveConfig(userId);
-								
+								ShowDialog.progressDialog(ctx, 5);
 								if(goToActivity != null){
 									Class<?> classToGo = resolveClass(goToActivity);
 									Intent i = new Intent(LoginActivity.this, classToGo);
@@ -110,7 +109,6 @@ public class LoginActivity extends Activity {
 			}
 			
 			private void saveConfig(String userId){
-//				fillData();
 				appConfig.setUserName(mail);
 				appConfig.setPassword(pass);
 				config.setUser(mail);
@@ -118,13 +116,7 @@ public class LoginActivity extends Activity {
 				
 				appConfig.save();
 
-			}
-
-//			private void fillData() {
-//				mail = "gonza";
-//				pass = "gonza";
-//			}
-			
+			}		
 			
 		});
 		

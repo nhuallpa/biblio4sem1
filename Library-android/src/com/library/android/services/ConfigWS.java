@@ -4,7 +4,7 @@ package com.library.android.services;
 public class ConfigWS {
 	
 //	public static String APP = "http://biblioteca-web.appspot.com";
-	public static String URL_BASE = "http://172.17.193.113:8080/Library"; //DEVELOPMENT
+	public static String URL_BASE = "http://172.17.193.190:8080/Library"; //DEVELOPMENT
 //	public static String URL_BASE = "http://library-grails.cloudfoundry.com"; //PRODUCTION
 	
 	//controllers
@@ -25,7 +25,7 @@ public class ConfigWS {
 	public static String LOGIN = USER_CONTROLLER + "/loginUser";
 	public static String SEARCH_BOOK = BOOK_CONTROLLER + "/searchBook";
 	public static String MY_COMMENTS = USER_CONTROLLER + "/getMyComments";
-	public static String PICTURE_BOOK = BOOK_CONTROLLER + "/getPicture?name=";
+	public static String PICTURE_BOOK = BOOK_CONTROLLER + "/getPicture";
 	
 	private String user;
 	private static ConfigWS instance; 

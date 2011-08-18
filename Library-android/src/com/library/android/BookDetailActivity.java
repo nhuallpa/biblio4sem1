@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -14,6 +13,7 @@ import android.view.Window;
 
 import com.library.android.config.ConfigurationManager;
 import com.library.android.config.Constants;
+import com.library.android.dialog.ShowDialog;
 import com.library.android.domain.Book;
 import com.library.android.domain.States;
 import com.library.android.services.impl.BookServicesImpl;
@@ -24,23 +24,29 @@ public class BookDetailActivity extends Activity {
 	
 	private BookDetailView bookDetailView;
 	private String bookState;
-//	private Bundle extras;
 	private String bookId;
 	private String bookName;
 	
 	private Context ctx = BookDetailActivity.this;
-	
+
 	
 	public void onCreate(Bundle b){
 		super.onCreate(b);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.book_content_detail);
+		
+		ShowDialog.progressDialog(ctx, 5);
+
 		bookDetailView =(BookDetailView) findViewById(R.id.book_detail_content);
 		bookId = getIntent().getExtras().getString(Constants.BOOK_ID);
+
+		
+		
 		fillData();
 		
 	}
-	
+
+
 	private void fillData(){
 		Book book = BookServicesImpl.getInstance(this).getBookById(bookId);
 		CommentBookListView comments = bookDetailView.getCommentList();
@@ -131,21 +137,15 @@ public class BookDetailActivity extends Activity {
             	Intent i = new Intent(BookDetailActivity.this, UserProfileActivity.class);
             	startActivity(i);
             }break;
+            
+            case R.id.menu_search: {
+            	Intent i = new Intent(BookDetailActivity.this, SearchActivity.class);
+            	startActivity(i);
+            }break;
 
         }
         
         return true;
         }
-
-	@Override
-	public boolean onKeyDown(int keyCode, KeyEvent event)  {
-	    if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-		        Intent i = new Intent(BookDetailActivity.this, BookListActivity.class);
-		        startActivity(i);
-	        return true;
-	    }
-
-	    return super.onKeyDown(keyCode, event);
-	}
 
 }

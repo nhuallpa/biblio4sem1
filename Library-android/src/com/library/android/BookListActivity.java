@@ -10,6 +10,7 @@ import android.view.Window;
 
 import com.library.android.config.ConfigurationManager;
 import com.library.android.config.Constants;
+import com.library.android.dialog.ShowDialog;
 import com.library.android.services.impl.BookServicesImpl;
 import com.library.android.view.BookListView;
 import com.library.android.view.LibraryHeaderView;
@@ -24,6 +25,7 @@ public class BookListActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
+        ShowDialog.progressDialog(this, 5);
         setContentView(R.layout.book_list_view);
         bookListView = (BookListView)findViewById(R.id.book_list);
         header = (LibraryHeaderView) findViewById(R.id.header_library_app);
@@ -57,11 +59,6 @@ public class BookListActivity extends Activity {
 	        		startActivity(i);
 	        	}break;
 	        
-//	            case R.id.menu_location: {
-//	            	Intent i = new Intent(BookListActivity.this, ShowMapActivity.class);
-//	        		startActivity(i);
-//	            }break;
-
 	            case R.id.menu_login:{
 	            	Intent i = new Intent(BookListActivity.this, LoginActivity.class);
 	            	i.putExtra(Constants.GO_TO_ACTIVITY, Constants.BOOK_LIST);

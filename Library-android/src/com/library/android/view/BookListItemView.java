@@ -33,6 +33,7 @@ public class BookListItemView extends RelativeLayout {
 	private TextView bookStateTv;
 	private TextView bookScoreCount;
 	private TextView bookCommentsCount;
+	private RelativeLayout relativeDetails;
 	
 	private Book book;
 	private ConfigurationManager config;
@@ -52,23 +53,20 @@ public class BookListItemView extends RelativeLayout {
 		bookStateTv = (TextView) findViewById(R.id.item_state_book);
 		bookScoreCount =(TextView) findViewById(R.id.item_score_book);
 		bookCommentsCount = (TextView) findViewById(R.id.item_comments_book);
+		relativeDetails = (RelativeLayout) findViewById(R.id.relative_title_author_state);
 		config = ConfigurationManager.getInstance(context);
 		
-		moreDetailButton.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				Intent i = new Intent(context, BookDetailActivity.class);
-				i.putExtra("titleBook", book.getTitle());
-				i.putExtra("authorBook", book.getAuthor());
-				i.putExtra("stateBook", book.getState().toString());
-				i.putExtra("isbnBook", String.valueOf(book.getISBN()));
-//				i.putExtra("picture", book.getPicture());
-				i.putExtra(Constants.BOOK_ID, String.valueOf(book.getBookId()));
-				context.startActivity(i);
-				
-			}
-		});
+		
+//		bookTitleTv.setOnClickListener(myListener);
+//		bookStateTv.setOnClickListener(myListener);
+		
+		moreDetailButton.setOnClickListener(myListener);
+//		
+		relativeDetails.setOnClickListener(myListener);
+		
+//		bookStateTv.setBackgroundColor(R.color.button_state);
+//		bookTitleTv.setBackgroundColor(R.color.button_state);
+		
 		
 		scoreButton.setOnClickListener(new OnClickListener() {
 			
@@ -201,16 +199,27 @@ public class BookListItemView extends RelativeLayout {
 		}
 		
 		setBookPicture(BookServicesImpl.getInstance(ctx).getPicture(aBook.getTitle()));
-//		try {
-////			setBookPicture(BitmapFactory.decodeStream(getContext().getAssets().open(aBook.getPicture())));
-////			setBookPicture(aBook.getPicture());
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
+
 		
 		
 		
 	}
 
+	
+	private View.OnClickListener myListener = new OnClickListener() {
+		
+		@Override
+		public void onClick(View v) {
+			
+			Intent i = new Intent(getContext(), BookDetailActivity.class);
+			i.putExtra("titleBook", book.getTitle());
+			i.putExtra("authorBook", book.getAuthor());
+			i.putExtra("stateBook", book.getState().toString());
+			i.putExtra("isbnBook", String.valueOf(book.getISBN()));
+			i.putExtra(Constants.BOOK_ID, String.valueOf(book.getBookId()));
+			getContext().startActivity(i);
+			
+		}
+	};
 	
 }

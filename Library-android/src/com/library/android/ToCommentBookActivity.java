@@ -15,6 +15,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.library.android.config.Constants;
+import com.library.android.dialog.ShowDialog;
 import com.library.android.domain.Book;
 import com.library.android.domain.Comment;
 import com.library.android.services.impl.BookServicesImpl;
@@ -23,7 +24,6 @@ import com.library.android.view.ToCommentBookView;
 public class ToCommentBookActivity extends Activity {
 	
 	private ToCommentBookView toCommentBookView;
-//	private Book book;
 	private Context ctx = ToCommentBookActivity.this;
 	private Spinner mySpinner;
 	private static int MAX_CHAR = 100;
@@ -72,11 +72,12 @@ public class ToCommentBookActivity extends Activity {
 				if(!text.equals("")){
 					String scoreSelected = (String)mySpinner.getSelectedItem();
 //					Comment aComment = new Comment(text, Float.valueOf(scoreSelected));
+					ShowDialog.progressDialog(ctx, 5);
 					BookServicesImpl.getInstance(ctx).toComment(bookId, text, scoreSelected);
-						Toast.makeText(ToCommentBookActivity.this, "Send Comment..", Toast.LENGTH_SHORT).show();
-						Intent i = new Intent(ToCommentBookActivity.this, BookListActivity.class);
-						startActivity(i);
-					
+					Toast.makeText(ToCommentBookActivity.this, "Send Comment..", Toast.LENGTH_SHORT).show();
+					Intent i = new Intent(ToCommentBookActivity.this, MyCommentsActivity.class);
+					startActivity(i);
+
 					
 				} else {
 					Toast.makeText(ToCommentBookActivity.this, "Invalid input...", Toast.LENGTH_LONG).show();
