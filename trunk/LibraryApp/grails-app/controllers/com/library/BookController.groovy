@@ -101,9 +101,7 @@ class BookController {
 				jsonList.add jsonData
 			}
 		}
-		
-		
-		
+
 		render jsonList as JSON
 	}
 	
