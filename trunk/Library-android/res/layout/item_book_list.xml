@@ -5,92 +5,102 @@
   android:layout_height="fill_parent"
   android:background="#FFFFFF">
   
-  	<RelativeLayout
-  		android:id="@+id/relative_search_item"
-   		android:layout_width="wrap_content"
-   		android:layout_height="wrap_content"
-   		android:layout_alignParentTop="true"
-		android:layout_marginLeft="5dip"
-		android:layout_marginBottom="5dip"
-		>
+
 			<ImageButton
 				android:id="@+id/item_button_more_detail"
-				android:layout_width="wrap_content"
-   				android:layout_height="wrap_content"
+				android:layout_width="70dip"
+   				android:layout_height="100dip"
    				android:layout_marginRight="5dip"
    				android:layout_marginTop="3dip"
+   				android:scaleType="centerCrop"
    				android:padding="0px"
-   				android:background="@drawable/not_picture_book">
+   				android:src="@drawable/not_picture_book"
+   				android:background="@null">
 				
 			</ImageButton>
 			
-			<TextView
-				android:id="@+id/item_title_book_tv"
-				android:layout_width="wrap_content"
-   				android:layout_height="wrap_content"
-   				android:layout_toRightOf="@id/item_button_more_detail"
-   				android:layout_marginTop="3dip"
-   				android:text="@string/book_list_title_book"
-   				android:textColor="#000000">
-				
-			</TextView>			
-		
-			<TextView
-				android:id="@+id/item_title_book"
-				android:layout_width="fill_parent"
-   				android:layout_height="wrap_content"
-   				android:layout_toRightOf="@id/item_title_book_tv"
-   				android:layout_marginTop="3dip"
-   				android:text="Book Title"
-   				android:textStyle="bold"
-   				android:textColor="#000000">
-				
-			</TextView>
 			
-			<TextView
-				android:id="@+id/item_state_book_tv"
-				android:layout_width="wrap_content"
-   				android:layout_height="wrap_content"
-   				android:layout_toRightOf="@id/item_button_more_detail"
-   				android:layout_marginTop="3dip"
-   				android:layout_below="@id/item_title_book_tv"
-   				android:text="@string/book_list_state_book"
-   				android:textColor="#000000">
+			<RelativeLayout
+				android:id="@+id/relative_title_author_state"
+		   		android:layout_width="wrap_content"
+		   		android:layout_height="wrap_content"
+		   		android:layout_alignParentTop="true"
+		   		android:clickable="true"
+		   		android:background="@drawable/relative_state"
+		   		android:layout_toRightOf="@id/item_button_more_detail"
+				android:layout_marginBottom="5dip">
 				
-			</TextView>			
-			<TextView
-				android:id="@+id/item_state_book"
-				android:layout_width="fill_parent"
-   				android:layout_height="wrap_content"
-   				android:layout_toRightOf="@id/item_state_book_tv"
-   				android:text="Book State"
-   				android:layout_marginTop="3dip"
-   				android:layout_below="@id/item_title_book"
-   				android:textColor="#000000">
+					<TextView
+						android:id="@+id/item_title_book_tv"
+						android:layout_width="wrap_content"
+		   				android:layout_height="wrap_content"
+		   				android:layout_marginTop="3dip"
+		   				android:layout_marginLeft="5dip"
+		   				android:text="@string/book_list_title_book"
+		   				android:textColor="#000000">
+						
+					</TextView>			
 				
-			</TextView>	
+					<TextView
+						android:id="@+id/item_title_book"
+						android:layout_width="fill_parent"
+		   				android:layout_height="wrap_content"
+		   				android:layout_toRightOf="@id/item_title_book_tv"
+		   				android:layout_marginTop="3dip"
+		   				android:text="Book Title"
+		   				android:textStyle="bold"
+		   				android:textColor="#000000">
+						
+					</TextView>
+					
+					<TextView
+						android:id="@+id/item_state_book_tv"
+						android:layout_width="wrap_content"
+		   				android:layout_height="wrap_content"
+		   				android:layout_marginTop="3dip"
+		   				android:layout_marginLeft="5dip"
+		   				android:layout_below="@id/item_title_book_tv"
+		   				android:text="@string/book_list_state_book"
+		   				android:textColor="#000000">
+						
+					</TextView>			
+					<TextView
+						android:id="@+id/item_state_book"
+						android:layout_width="fill_parent"
+		   				android:layout_height="wrap_content"
+		   				android:layout_toRightOf="@id/item_state_book_tv"
+		   				android:text="Book State"
+		   				android:layout_marginTop="3dip"
+		   				android:layout_below="@id/item_title_book"
+		   				android:textColor="#000000">
+						
+					</TextView>	
+					
+					<TextView
+						android:id="@+id/item_author_book_tv"
+						android:layout_width="wrap_content"
+		   				android:layout_height="wrap_content"
+		   				android:layout_marginTop="3dip"
+		   				android:layout_marginLeft="5dip"
+		   				android:layout_below="@id/item_state_book_tv"
+		   				android:text="@string/book_list_author_book"
+		   				android:textColor="#000000">
+						
+					</TextView>						
+					<TextView
+						android:id="@+id/item_author_book"
+						android:layout_width="fill_parent"
+		   				android:layout_height="wrap_content"
+		   				android:layout_marginTop="3dip"
+		   				android:layout_below="@id/item_state_book"
+		   				android:layout_toRightOf="@id/item_author_book_tv"
+		   				android:text="Book Author"
+		   				android:textColor="#000000">
+					</TextView>
+				
+			</RelativeLayout>
 			
-			<TextView
-				android:id="@+id/item_author_book_tv"
-				android:layout_width="wrap_content"
-   				android:layout_height="wrap_content"
-   				android:layout_toRightOf="@id/item_button_more_detail"
-   				android:layout_marginTop="3dip"
-   				android:layout_below="@id/item_state_book_tv"
-   				android:text="@string/book_list_author_book"
-   				android:textColor="#000000">
-				
-			</TextView>						
-			<TextView
-				android:id="@+id/item_author_book"
-				android:layout_width="fill_parent"
-   				android:layout_height="wrap_content"
-   				android:layout_marginTop="3dip"
-   				android:layout_below="@id/item_state_book"
-   				android:layout_toRightOf="@id/item_author_book_tv"
-   				android:text="Book Author"
-   				android:textColor="#000000">
-			</TextView>
+			
 			<ImageButton
 				android:id="@+id/item_icon_score"
 				android:layout_width="wrap_content"
@@ -98,13 +108,13 @@
    				android:background="@drawable/star"
    				android:layout_marginTop="3dip"
    				android:layout_toRightOf="@id/item_button_more_detail"
-   				android:layout_below="@id/item_author_book">
+   				android:layout_below="@id/relative_title_author_state">
 			</ImageButton>
 			<TextView
 				android:id="@+id/item_score_book"
 				android:layout_width="wrap_content"
    				android:layout_height="wrap_content"
-   				android:layout_below="@id/item_author_book"
+   				android:layout_below="@id/relative_title_author_state"
    				android:layout_toRightOf="@id/item_icon_score"
    				android:layout_marginTop="10dip"
    				android:layout_marginLeft="5dip"
@@ -121,13 +131,13 @@
    				android:layout_marginTop="5dip"
    				android:layout_marginLeft="15dip"
    				android:layout_toRightOf="@id/item_score_book"
-   				android:layout_below="@id/item_author_book">
+   				android:layout_below="@id/relative_title_author_state">
 			</ImageButton>
 			<TextView
 				android:id="@+id/item_comments_book"
 				android:layout_width="wrap_content"
    				android:layout_height="wrap_content"
-   				android:layout_below="@id/item_author_book"
+   				android:layout_below="@id/relative_title_author_state"
    				android:layout_toRightOf="@id/item_icon_comment"
    				android:layout_marginTop="10dip"
    				android:layout_marginLeft="5dip"
@@ -141,4 +151,4 @@
   	
   	</RelativeLayout>
   	
-</RelativeLayout>
+

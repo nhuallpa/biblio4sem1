@@ -36,5 +36,6 @@
 	<string name="register_title">Registracion</string>
 	<string name="register_username">Nombre Usuario: </string>
 	
-	
+<!--  Search Book	-->	
+<string name="search_book_title">Buscar Libro</string>
 </resources>

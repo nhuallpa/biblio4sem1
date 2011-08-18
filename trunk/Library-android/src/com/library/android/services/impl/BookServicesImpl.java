@@ -66,8 +66,8 @@ public class BookServicesImpl implements BookService {
 			con.setDoInput(true);
 			con.setRequestMethod("GET");
 			con.connect();
-			String request = con.getResponseMessage();
-			if(request.equals("OK")){
+			String response = con.getResponseMessage();
+			if(response.equals("OK")){
 				
 			    JSONArray array = new JSONArray(Utils.parseLine(con.getInputStream()));
 			    
@@ -134,8 +134,8 @@ public class BookServicesImpl implements BookService {
 			con.setDoInput(true);
 			con.setRequestMethod("GET");
 			con.connect();
-			String request = con.getResponseMessage();
-			if(request.equals("OK")){
+			String response = con.getResponseMessage();
+			if(response.equals("OK")){
 				
 
 			    JSONArray array = new JSONArray(Utils.parseLine(con.getInputStream()));
@@ -184,8 +184,8 @@ public class BookServicesImpl implements BookService {
 			HttpURLConnection con = (HttpURLConnection) u.openConnection ();
 			con.setDoInput(true);
 			con.connect();
-			String request = con.getResponseMessage();
-			result = request.equals("OK"); 
+			String response = con.getResponseMessage();
+			result = response.equals("OK"); 
 
 			con.disconnect();
 			
@@ -204,41 +204,60 @@ public class BookServicesImpl implements BookService {
 	public List<Book> getTopBooks() {
 		List<Book> books = new ArrayList<Book>();
 		String url = ConfigWS.FIND_TOP_BOOKS;
-		try{
-			URL u = new URL(url);
-			HttpURLConnection con = (HttpURLConnection) u.openConnection ();
-			con.setDoInput(true);
-			con.setRequestMethod("GET");
-			con.connect();
-			String request = con.getResponseMessage();
-			if(request.equals("OK")){
-
-				JSONArray array = new JSONArray(Utils.parseLine(con.getInputStream()));
-			    
-			    for(int i = 0; i < array.length(); i++){
-			    	JSONObject obj = array.getJSONObject(i);
-			    	Book aBook = convertToBook(obj);
-  	
-			    	books.add(aBook);
-			    }
+		
+			try{
+//				if(checkConnection(url)){
+					URL u = new URL(url);
+					HttpURLConnection con = (HttpURLConnection) u.openConnection ();
 					
-				
+					con.setDoInput(true);
+					con.setRequestMethod("GET");
+					con.connect();
+					String response = con.getResponseMessage();
+					if(response.equals("OK")){
+	
+						JSONArray array = new JSONArray(Utils.parseLine(con.getInputStream()));
+					    
+					    for(int i = 0; i < array.length(); i++){
+					    	JSONObject obj = array.getJSONObject(i);
+					    	Book aBook = convertToBook(obj);
+		  	
+					    	books.add(aBook);
+					    }
+							
+						
+					}
+					con.disconnect();
+//				} 
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (JSONException e) {
+				e.printStackTrace();
 			}
-			con.disconnect();
-			
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
+		
+		
 		return books;
-		
-		
-//		return LibraryMocks.getInstance().getTopBooks();
 	}
 	
+//	private boolean checkConnection(String url) {
+//		
+//		boolean connection = false;
+//		try{
+//			URL u = new URL(url);
+//			HttpURLConnection con = (HttpURLConnection) u.openConnection ();
+//			con.connect();
+//			
+//			String response = con.getResponseMessage();
+//			connection = response.equals("OK");
+//			
+//		}catch (IOException e){
+//			Log.d("Check Connection", "Error connection: " + e.getMessage());
+//		}
+//		return connection;
+//	}
+
 	public Bitmap getPicture(String bookName){
 		Bitmap bitmap = null;
 		
@@ -258,7 +277,13 @@ public class BookServicesImpl implements BookService {
 			
             InputStream inputStream = httpResponse.getEntity().getContent();
             
-            bitmap = BitmapFactory.decodeStream(inputStream);
+            
+            	bitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeStream(inputStream), 50, 70, true);
+            	
+
+//            bitmap = BitmapFactory.decodeStream(inputStream);
+            
+           
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -279,8 +304,8 @@ public class BookServicesImpl implements BookService {
 			con.setDoInput(true);
 			con.setRequestMethod("GET");
 			con.connect();
-			String request = con.getResponseMessage();
-			if(request.equals("OK")){
+			String response = con.getResponseMessage();
+			if(response.equals("OK")){
 
 				JSONObject obj = new JSONObject(Utils.parseLine(con.getInputStream()));
 			    

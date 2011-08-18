@@ -30,5 +30,6 @@ public class Constants {
 	public static String GOOGLE_MAP_KEY = "06VodRsRvFxte97Zhz01LJle3sFuSYTO0MQqymQ";
 	
 	public static String COMMENT_EXTRA = "Sent from my Android with Library Application";
+	public final static int SPLASH_DISPLAY_LENGHT = 5000;
 
 }

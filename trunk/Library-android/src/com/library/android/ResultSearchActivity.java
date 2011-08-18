@@ -13,8 +13,7 @@ import com.library.android.view.BookListView;
 import com.library.android.view.LibraryHeaderView;
 
 public class ResultSearchActivity extends Activity {
-	
-	private static String TAG = "ResultSearchActivity";
+
 	
 	private BookListView bookListView;
 	private LibraryHeaderView header;
@@ -28,60 +27,12 @@ public class ResultSearchActivity extends Activity {
 		String q_search = getIntent().getExtras().getString("q_search");
 		
 		List<Book> booksFounded = BookServicesImpl.getInstance(this).findBooks(q_search);
-		bookListView.setBookList(booksFounded);
-		header.setInfo(booksFounded.size() + " results found for search: " + q_search);
+		if(booksFounded.size() == 0){
+			header.setInfo("No results for " + q_search);
+		} else {
+			bookListView.setBookList(booksFounded);
+			header.setInfo(booksFounded.size() + " results found for search: " + q_search);
+		}
+		
 	}
-	
-//	public void onStart(){
-//		super.onStart();
-//
-//		ResultAsyncTask d = new ResultAsyncTask();
-//		
-//		d.execute();
-//
-//	}
-//	
-//	private class ResultAsyncTask extends AsyncTask<Void, Context, List<Book>> {
-//
-//		
-//		@Override
-//		protected List<Book> doInBackground(Void... params) {
-//			
-//			Bundle extras = getIntent().getExtras();
-//
-//			String inputText = (String)extras.get("inputText");
-//			
-////			return BookServicesImpl.findBook(inputText);
-//			return null;
-//		}
-//		
-//		@Override
-//		protected void onPostExecute(List<Book> results){
-//				ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String,String>>();
-//				 
-//				
-//				if(results.size() > 0){
-//					for(Book aBook : results){
-//						HashMap<String,String> temp = new HashMap<String,String>();
-//						temp.put("title", aBook.getTitle());
-//						temp.put("author", aBook.getAuthor());
-////						temp.put("score", aBook.getScore().toString());
-//						list.add(temp);
-//					}
-//				
-//				
-////				SimpleAdapter simpleAdapter = new SimpleAdapter(ResultSearchActivity.this, list, R.layout.custom_list_view, new String[] { "title", "author", "score"},
-////				        new int[] { R.id.text1, R.id.text2, R.id.text3});
-////		        		setListAdapter(simpleAdapter);
-//				}
-////				ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(ListaAmigosActivity.this,
-////				        R.layout.amigos, R.id.text_item, myStrings);
-////
-////				setListAdapter(arrayAdapter);
-//
-//		
-//		}
-//
-//    }
-
 }
