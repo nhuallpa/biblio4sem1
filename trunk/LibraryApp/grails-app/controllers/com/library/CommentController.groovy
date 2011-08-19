@@ -91,9 +91,10 @@ class CommentController {
 			goToHome()
 		}
 		String aComment = (params.commentText)?params.commentText:"Without comment"
-		Integer rating = (params.rating)?params.rating:0;
-		
+		Integer rating = (params.bookRating)
 		rating -= 48
+		println (rating)
+		println("OK")
 		
 		Book aBook = Book.get(params.bookId)
 		if (!user.isAttached() && aBook){
