@@ -2,7 +2,24 @@
 	<head>
 		<meta name="layout" content="home" />
 		<title>Book View: ${book?.name}</title>
+
+		<g:javascript src="jquery-1.4.1.min.js"/>
+		<script type="text/javascript" >
+			$(document).ready(function(){
+       			// Detecto la estrella que es presionada
+    			$("li.star a").click(function(event){   
+            		// Recojo el valor de la estrella       
+        			valor_actual=$(this).attr("title");
+            		// Cambio el estilo para mostrar la estrella seleccionada
+        			$("li.current-rating").css("width", valor_actual*25);
+            		// Cambio el valor del campo hidden
+        			$("#bookRating").attr("value", valor_actual);
+    			});
+			});
+		</script>
+	
 	</head>
+	
 	<body>
 		<div id="detallesLibro">
                 <div id="resumen">
@@ -39,87 +56,101 @@
                             <td><b>Nombre de Libreria</b></td>
                             <td>Direccion Corrientes 485<span class="icon icon-marker"></span></td>
                             <td>46218091<span class="icon icon-cell"></span></td>
-                            <td>nombre@libreria.com.ar<span class="icon icon-mail"></td>
+                            <td>nombre@libreria.com.ar<span class="icon icon-mail"></span></td>
                         </tr>
                         <tr>
                             <td><b>Nombre de Libreria</b></td>
                             <td>Direccion Corrientes 485<span class="icon icon-marker"></span></td>
                             <td>46218091<span class="icon icon-cell"></span></td>
-                            <td>nombre@libreria.com.ar<span class="icon icon-mail"></td>
+                            <td>nombre@libreria.com.ar<span class="icon icon-mail"></span></td>
                         </tr>
                         <tr>
                             <td><b>Nombre de Libreria</b></td>
                             <td>Direccion Corrientes 485<span class="icon icon-marker"></span></td>
                             <td>46218091<span class="icon icon-cell"></span></td>
-                            <td>nombre@libreria.com.ar<span class="icon icon-mail"></td>
+                            <td>nombre@libreria.com.ar<span class="icon icon-mail"></span></td>
                         </tr>
                         <tr>
                             <td><b>Nombre de Libreria</b></td>
                             <td>Direccion Corrientes 485<span class="icon icon-marker"></span></td>
                             <td>46218091<span class="icon icon-cell"></span></td>
-                            <td>nombre@libreria.com.ar<span class="icon icon-mail"></td>
+                            <td>nombre@libreria.com.ar<span class="icon icon-mail"></span></td>
                         </tr>
                         <tr>
                             <td><b>Nombre de Libreria</b></td>
                             <td>Direccion Corrientes 485<span class="icon icon-marker"></span></td>
                             <td>46218091<span class="icon icon-cell"></span></td>
-                            <td>nombre@libreria.com.ar<span class="icon icon-mail"></td>
+                            <td>nombre@libreria.com.ar<span class="icon icon-mail"></span></td>
                         </tr>
                         <tr>
                             <td><b>Nombre de Libreria</b></td>
                             <td>Direccion Corrientes 485<span class="icon icon-marker"></span></td>
                             <td>46218091<span class="icon icon-cell"></span></td>
-                            <td>nombre@libreria.com.ar<span class="icon icon-mail"></td>
+                            <td>nombre@libreria.com.ar<span class="icon icon-mail"></span></td>
                         </tr>
                         <tr>
                             <td><b>Nombre de Libreria</b></td>
                             <td>Direccion Corrientes 485<span class="icon icon-marker"></span></td>
                             <td>46218091<span class="icon icon-cell"></span></td>
-                            <td>nombre@libreria.com.ar<span class="icon icon-mail"></td>
+                            <td>nombre@libreria.com.ar<span class="icon icon-mail"></span></td>
                         </tr>
                         <tr>
                             <td><b>Nombre de Libreria</b></td>
                             <td>Direccion Corrientes 485<span class="icon icon-marker"></span></td>
                             <td>46218091<span class="icon icon-cell"></span></td>
-                            <td>nombre@libreria.com.ar<span class="icon icon-mail"></td>
+                            <td>nombre@libreria.com.ar<span class="icon icon-mail"></span></td>
                         </tr>
                         <tr>
                             <td><b>Nombre de Libreria</b></td>
                             <td>Direccion Corrientes 485<span class="icon icon-marker"></span></td>
                             <td>46218091<span class="icon icon-cell"></span></td>
-                            <td>nombre@libreria.com.ar<span class="icon icon-mail"></td>
+                            <td>nombre@libreria.com.ar<span class="icon icon-mail"></span></td>
                         </tr>
                         <tr>
                             <td><b>Nombre de Libreria</b></td>
                             <td>Direccion Corrientes 485<span class="icon icon-marker"></span></td>
                             <td>46218091<span class="icon icon-cell"></span></td>
-                            <td>nombre@libreria.com.ar<span class="icon icon-mail"></td>
+                            <td>nombre@libreria.com.ar<span class="icon icon-mail"></span></td>
                         </tr>
                         <tr>
                             <td><b>Nombre de Libreria</b></td>
                             <td>Direccion Corrientes 485<span class="icon icon-marker"></span></td>
                             <td>46218091<span class="icon icon-cell"></span></td>
-                            <td>nombre@libreria.com.ar<span class="icon icon-mail"></td>
+                            <td>nombre@libreria.com.ar<span class="icon icon-mail"></span></td>
                         </tr>
                         <tr>
                             <td><b>Nombre de Libreria</b></td>
                             <td>Direccion Corrientes 485<span class="icon icon-marker"></span></td>
                             <td>46218091<span class="icon icon-cell"></span></td>
-                            <td>nombre@libreria.com.ar<span class="icon icon-mail"></td>
+                            <td>nombre@libreria.com.ar<span class="icon icon-mail"></span></td>
                         </tr>
                     </table>
                 </div>
                 <g:if test="${session.user}">
                 	<div class="barra">
 	                    <span id="comentar">Comentar</span>
+	                    
 	                </div>
-	                <div id="nuevo-comentario">
+	                <div id="nuevo-comentario">  
+	                
 	                    <g:form id="new-comment" controller="comment" action="addCommentToBook">
 	                        <p>Write here your comment</p>
 	                        <g:textArea name="commentText" id="commentText"></g:textArea>
 	                        <g:hiddenField name="bookId" value="${book.id}"/>
-	                        <g:submitButton name="enviar"></g:submitButton>
+ 
+	                        <ul class="star-rating">	                        
+	                        	<li class="current-rating" style="width:70%;"></li>
+								<li class="star"><a href="#" title='1' class="one-star" onclick=>1</a></li>
+								<li class="star"><a href="#" title='2' class="two-stars">2</a></li>
+								<li class="star"><a href="#" title='3' class="three-stars">3</a></li>
+								<li class="star"><a href="#" title='4' class="four-stars">4</a></li>
+								<li class="star"><a href="#" title='5' class="five-stars">5</a></li>
+							</ul>
+							<input type="hidden" name="bookRating" value="0" id="bookRating" />
+	                    
+	                     	<g:submitButton name="enviar"></g:submitButton>
 	                    </g:form>
+	                    
 	                </div>
                 </g:if>
                 <ul class="lista-de-comentarios">
