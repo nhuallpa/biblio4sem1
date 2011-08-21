@@ -192,7 +192,10 @@ class BookController {
 		if(aBook.comments.size() == 0){
 			flash.message = "${aBook.name} does not has comments!"
 		}
-		[book : aBook]
+		
+		def librarysAvailables = bookService.getLibraryAvailable(aBook)
+		
+		[book : aBook, librarys:librarysAvailables]
 		
 	}
 

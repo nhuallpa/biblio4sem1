@@ -13,7 +13,6 @@ class BookIntegrationTests extends GroovyTestCase {
 	String myname
 	long myISBN
 	Book book
-	Library libraryDefault;
 	
     protected void setUp() {
         super.setUp()
@@ -22,8 +21,6 @@ class BookIntegrationTests extends GroovyTestCase {
 		book = new Book(ISBN : myISBN, name : myname, state: States.AVAILABLE)
 		
 		
-		libraryDefault = new Library(libraryId:'BS_ATENEO', name:'Ateneo')
-		libraryDefault.save()
     }
 
     protected void tearDown() {
@@ -32,7 +29,6 @@ class BookIntegrationTests extends GroovyTestCase {
 
     void testNewBook() {
 		
-		libraryDefault.addToBooks(book)
 		assertTrue book.validate()
 		assertNotNull book.save()
 		assertNotNull book.id
@@ -45,25 +41,16 @@ class BookIntegrationTests extends GroovyTestCase {
 		
 		def five = 5;
 		
-		Book book1 = new Book(ISBN : 12341, name : 'book1', state: States.AVAILABLE)
-		Book book2 = new Book(ISBN : 12342, name : 'book2', state: States.AVAILABLE)
-		Book book3 = new Book(ISBN : 12343, name : 'book3', state: States.AVAILABLE)
-		Book book4 = new Book(ISBN : 12344, name : 'book4', state: States.AVAILABLE)
-		Book book5 = new Book(ISBN : 12345, name : 'book5', state: States.AVAILABLE)
-		Book book6 = new Book(ISBN : 12346, name : 'book6', state: States.AVAILABLE)
-		Book book7 = new Book(ISBN : 12347, name : 'book7', state: States.AVAILABLE)
-		Book book8 = new Book(ISBN : 12348, name : 'book8', state: States.AVAILABLE)
-		Book book9 = new Book(ISBN : 12349, name : 'book9', state: States.AVAILABLE)
+		Book book1 = new Book(ISBN : 12341, name : 'book1', state: States.AVAILABLE).save()
+		Book book2 = new Book(ISBN : 12342, name : 'book2', state: States.AVAILABLE).save()
+		Book book3 = new Book(ISBN : 12343, name : 'book3', state: States.AVAILABLE).save()
+		Book book4 = new Book(ISBN : 12344, name : 'book4', state: States.AVAILABLE).save()
+		Book book5 = new Book(ISBN : 12345, name : 'book5', state: States.AVAILABLE).save()
+		Book book6 = new Book(ISBN : 12346, name : 'book6', state: States.AVAILABLE).save()
+		Book book7 = new Book(ISBN : 12347, name : 'book7', state: States.AVAILABLE).save()
+		Book book8 = new Book(ISBN : 12348, name : 'book8', state: States.AVAILABLE).save()
+		Book book9 = new Book(ISBN : 12349, name : 'book9', state: States.AVAILABLE).save()
 		
-		libraryDefault.addToBooks(book1)
-		libraryDefault.addToBooks(book2)
-		libraryDefault.addToBooks(book3)
-		libraryDefault.addToBooks(book4)
-		libraryDefault.addToBooks(book5)
-		libraryDefault.addToBooks(book6)
-		libraryDefault.addToBooks(book7)
-		libraryDefault.addToBooks(book8)
-		libraryDefault.addToBooks(book9)
 		
 		
 		User user = new User()

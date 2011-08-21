@@ -36,16 +36,19 @@ class ReservationController {
 			goToHome()
 		}
 		def aMessage = null
+		
 		Book aBook = Book.get(params.bookId)
+		Library library = Library.get(params.libraryId)
 		if(!bookAvailable(aBook)){
 			aMessage = "${aBook.name} is not available"
 		} else if (!user.isAttached() && aBook) {
 					user.attach()
-					user.makeReservation(aBook)
+					user.makeReservation(aBook, library)
 					aMessage = "You have reserved ${aBook.name}!"
 				} 
 		flash.message = aMessage
-		redirect(action: 'viewMyReservation')
+
+		redirect(controller:'book', action: 'viewDetails', params:[bookId:aBook.id])
 	}
 	
 	
@@ -54,14 +57,16 @@ class ReservationController {
 		Book aBook = Book.get(params.bookId)
 		if (!user.isAttached()){
 			user.attach();
-			user.cancelReservation aBook  
+			def userFound = User.get(user.id)
+			userFound.cancelReservation aBook  
 			flash.message = "You have canceled the reservation ${aBook.name}"
-			redirect(controller:'user', action: 'viewProfile', params:[userId:user.id])
+			redirect(controller:'user', action: 'viewProfile', params:[userId:userFound.id])
 		}
 	}
 	
 	boolean bookAvailable(Book book){
-		return book.state.state == 'Available'
+//		return book.state == 'Available'
+		return true;
 	}
 	
 	void goToHome(){

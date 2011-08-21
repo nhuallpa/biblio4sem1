@@ -14,4 +14,18 @@ class BookService {
 		}
 		results
     }
+	
+	def getLibraryAvailable(Book aBook) {
+		
+		def l = Library.createCriteria()
+		def result = l.list {
+			projections {
+				distinct('id')
+			}
+			bookCopys{
+				eq("bookMaster",aBook)
+			}
+		}
+		return Library.getAll(result);
+	}
 }

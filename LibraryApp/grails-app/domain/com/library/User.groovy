@@ -49,16 +49,21 @@ class User {
 		return name
 	}
 	
-	void makeReservation(Book aBook) {
-		if (aBook.isReserved()) throw new BookAlreadyReservedException()
-		Reservation aReservation = new Reservation(aBook,this)
-		this.addReservation(aReservation,aBook)	
+	void makeReservation(Book aBook, Library aLibrary) {
+
+		if (this.isReserved(aBook)) throw new BookAlreadyReservedException()
+		
+		BookCopy aBookCopyAvailable = aLibrary.getBookCopyAvailable(aBook)
+		if (!aBookCopyAvailable) throw new NotExistBookCopyAvailable() 
+		
+		Reservation aReservation = new Reservation(aBookCopyAvailable, this)
+		this.addReservation(aReservation)
+		aLibrary.addToReservations(aReservation)
+		this.save()
 	}
-	
-	void makeReservation(BookCopy aBookCopy) {
-		if (aBook.isReserved()) throw new BookAlreadyReservedException()
-		Reservation aReservation = new Reservation(aBook,this)
-		this.addReservation(aReservation,aBook)
+
+	private Boolean isReserved(Book aBook) {
+		return reservations.any { it.getBookCopy().getBookMaster() == aBook};
 	}
 	
 	/* Alguien tiene que crearlo en la library */
@@ -119,64 +124,24 @@ class User {
 	}
 	
 	void cancelReservation(Book aBook){
-		
-		def reservationFound = null;
-		for (reservation in this.reservations) {
-			if (reservation.getBook().equals(aBook)) {
-				reservationFound = reservation
-				break
-			}
-		}
-		
+		def reservationFound = this.reservations.find{it.getBookCopy().bookMaster == aBook}
+
 		if (reservationFound) {
 			this.reservations.remove reservationFound
+			reservationFound.getBookCopy().cancelReservation()
 			reservationFound.delete()
-			aBook.cancelReservation()
 		} else {
 			throw new ReservationDoesNotExistException()
 		}
 	}
 	
 	void deleteMyComment(Comment aComment){
-//		def commentFound = null;
-//		for (comment in this.commentsDone) {
-//			if (comment.equals(aComment)) {
-//				commentFound = comment
-//				break
-//			}
-//		}
-//		
-//		if (commentFound != null) {
-//			this.commentsDone.remove(commentFound)
-//		} else {
-//			throw new CommentDoesNotExistException()
-//		}
-		
-		
 		if (!(this.commentsDone as ArrayList<Book>).contains(aComment)) {
 			throw new CommentDoesNotExistException()
 		} else {
 			this.commentsDone.remove aComment
 		}
 	}
-	
-//	void deleteMyComment(Comment aComment){
-//		def flag = 0
-////		for ( o in comments){
-//		for(int i = 0; i < commentsDone.size(); i++){
-//			Comment obj = commentsDone.get(i)
-////			if ( obj.equals(aComment) ){
-//			if(obj.id == aComment.id){
-////				comments?.remove obj
-//				this.commentsDone.remove obj
-//				flag = 1
-//			}
-//		}
-//		if (flag == 0) throw new CommentDoesNotExistException()
-////		else {
-////			aComment.sourceUser.deleteComment(aComment)
-////		}
-//	}
 	
 	void deleteComment(Comment aComment){
 		
@@ -209,12 +174,11 @@ class User {
 		aBook.retireMe()
 	}
 	
-	void addReservation(Reservation aReservation, Book aBook){
-		aBook.reserveMe()
+	void addReservation(Reservation aReservation){
 		Date date = new Date()
 		aReservation.reservationDate = date
 		this.reservations?.add aReservation
-
+		aReservation.save()
 	}
 	
 	List<Book> lookBooksOnCategory(String tag){

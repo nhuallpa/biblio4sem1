@@ -45,6 +45,9 @@
                         </div>
                     </div>
                 </div>
+                <g:if test="${flash.message}">
+		      		<div class="message">${flash.message}</div>
+		    	</g:if>
                 <div id="mapa">
                     <div id="map_canvas">
 
@@ -128,7 +131,8 @@
                 </div>
                 <g:if test="${session.user}">
                 	<div class="barra">
-	                    <span id="comentar">Comentar</span>
+                		<span id="reservar" class="operation-button">to Reserve</span>
+	                    <span id="comentar" class="operation-button">to Comment</span>
 	                    
 	                </div>
 	                <div id="nuevo-comentario">  
@@ -149,6 +153,16 @@
 							<input type="hidden" name="bookRating" value="0" id="bookRating" />
 	                    
 	                     	<g:submitButton name="enviar"></g:submitButton>
+	                    </g:form>
+	                    
+	                </div>
+	                <div id="nueva-reserva">  
+	                
+	                    <g:form id="new-reserve" controller="reservation" action="toReserve">
+	                        <p>Select library</p>
+	                        <input type="hidden" name="bookId" value="${book.id}" />
+	                        <g:select name="libraryId"  optionKey="id" optionValue="name" from="${librarys}" ></g:select>
+ 							<g:submitButton name="Reserve"></g:submitButton>
 	                    </g:form>
 	                    
 	                </div>

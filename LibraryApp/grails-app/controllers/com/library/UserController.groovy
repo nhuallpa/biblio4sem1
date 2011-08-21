@@ -195,15 +195,9 @@ class UserController {
 	
 	def viewProfile = {
 		User aUser = User.get(params.userId)
-//		User aUser = session.user
 		if(!aUser){
 			goToHome()
 		}
-//		if (!aUser.isAttached()) {
-//			aUser.attach()
-//		} else {
-//			goToHome()
-//		}
 		[userProfile:aUser]
 	}
 	

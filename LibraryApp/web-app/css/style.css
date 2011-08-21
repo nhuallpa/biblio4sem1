@@ -392,8 +392,8 @@ ul.detalles li.verDetalles a {
     padding: 0 0 5px 0;
 }
 
-.barra #comentar {
-    margin: 5px 0;
+.barra .operation-button{
+    margin: 5px 0 0px 5px;
     float: right;
 }
 
