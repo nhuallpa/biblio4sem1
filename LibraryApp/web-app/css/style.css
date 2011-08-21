@@ -397,12 +397,41 @@ ul.detalles li.verDetalles a {
     float: right;
 }
 
-#nuevo-comentario {
+#nuevo-comentario, #nueva-reserva {
     float: left;
     width: 100%;
     position: relative;
     min-height: 130px;
     display: none;
+    border-bottom: 1px dashed black;
+}
+
+#nueva-reserva {
+    float: left;
+    width: 100%;
+    position: relative;
+    height: 50px;
+    display: none;
+}
+
+#nueva-reserva #reservar {
+    padding: 10px 10px;
+    text-decoration: none;
+    color: white;
+    float: right;
+    background: black;
+    font-size: 14px;
+    position: relative;
+    bottom: 0;
+    right: 35px;
+}
+
+#nueva-reserva p {
+	padding: 5px 0;
+}
+
+#nueva-reserva form {
+	padding-left: 36px;
 }
 
 #nuevo-comentario p {
@@ -417,6 +446,12 @@ ul.detalles li.verDetalles a {
     margin: 0 auto;
     display: block;
 }
+
+#nueva-reserva select {
+	width: 40%;
+	margin: 0 auto;
+}
+
 
 #nuevo-comentario #enviar {
     padding: 10px 10px;

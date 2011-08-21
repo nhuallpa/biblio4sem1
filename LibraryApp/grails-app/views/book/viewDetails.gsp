@@ -45,9 +45,6 @@
                         </div>
                     </div>
                 </div>
-                <g:if test="${flash.message}">
-		      		<div class="message">${flash.message}</div>
-		    	</g:if>
                 <div id="mapa">
                     <div id="map_canvas">
 
@@ -55,78 +52,14 @@
                 </div>
                 <div id="lista-de-librerias">
                     <table>
-                        <tr>
-                            <td><b>Nombre de Libreria</b></td>
-                            <td>Direccion Corrientes 485<span class="icon icon-marker"></span></td>
-                            <td>46218091<span class="icon icon-cell"></span></td>
-                            <td>nombre@libreria.com.ar<span class="icon icon-mail"></span></td>
-                        </tr>
-                        <tr>
-                            <td><b>Nombre de Libreria</b></td>
-                            <td>Direccion Corrientes 485<span class="icon icon-marker"></span></td>
-                            <td>46218091<span class="icon icon-cell"></span></td>
-                            <td>nombre@libreria.com.ar<span class="icon icon-mail"></span></td>
-                        </tr>
-                        <tr>
-                            <td><b>Nombre de Libreria</b></td>
-                            <td>Direccion Corrientes 485<span class="icon icon-marker"></span></td>
-                            <td>46218091<span class="icon icon-cell"></span></td>
-                            <td>nombre@libreria.com.ar<span class="icon icon-mail"></span></td>
-                        </tr>
-                        <tr>
-                            <td><b>Nombre de Libreria</b></td>
-                            <td>Direccion Corrientes 485<span class="icon icon-marker"></span></td>
-                            <td>46218091<span class="icon icon-cell"></span></td>
-                            <td>nombre@libreria.com.ar<span class="icon icon-mail"></span></td>
-                        </tr>
-                        <tr>
-                            <td><b>Nombre de Libreria</b></td>
-                            <td>Direccion Corrientes 485<span class="icon icon-marker"></span></td>
-                            <td>46218091<span class="icon icon-cell"></span></td>
-                            <td>nombre@libreria.com.ar<span class="icon icon-mail"></span></td>
-                        </tr>
-                        <tr>
-                            <td><b>Nombre de Libreria</b></td>
-                            <td>Direccion Corrientes 485<span class="icon icon-marker"></span></td>
-                            <td>46218091<span class="icon icon-cell"></span></td>
-                            <td>nombre@libreria.com.ar<span class="icon icon-mail"></span></td>
-                        </tr>
-                        <tr>
-                            <td><b>Nombre de Libreria</b></td>
-                            <td>Direccion Corrientes 485<span class="icon icon-marker"></span></td>
-                            <td>46218091<span class="icon icon-cell"></span></td>
-                            <td>nombre@libreria.com.ar<span class="icon icon-mail"></span></td>
-                        </tr>
-                        <tr>
-                            <td><b>Nombre de Libreria</b></td>
-                            <td>Direccion Corrientes 485<span class="icon icon-marker"></span></td>
-                            <td>46218091<span class="icon icon-cell"></span></td>
-                            <td>nombre@libreria.com.ar<span class="icon icon-mail"></span></td>
-                        </tr>
-                        <tr>
-                            <td><b>Nombre de Libreria</b></td>
-                            <td>Direccion Corrientes 485<span class="icon icon-marker"></span></td>
-                            <td>46218091<span class="icon icon-cell"></span></td>
-                            <td>nombre@libreria.com.ar<span class="icon icon-mail"></span></td>
-                        </tr>
-                        <tr>
-                            <td><b>Nombre de Libreria</b></td>
-                            <td>Direccion Corrientes 485<span class="icon icon-marker"></span></td>
-                            <td>46218091<span class="icon icon-cell"></span></td>
-                            <td>nombre@libreria.com.ar<span class="icon icon-mail"></span></td>
-                        </tr>
-                        <tr>
-                            <td><b>Nombre de Libreria</b></td>
-                            <td>Direccion Corrientes 485<span class="icon icon-marker"></span></td>
-                            <td>46218091<span class="icon icon-cell"></span></td>
-                            <td>nombre@libreria.com.ar<span class="icon icon-mail"></span></td>
-                        </tr>
-                        <tr>
-                            <td><b>Nombre de Libreria</b></td>
-                            <td>Direccion Corrientes 485<span class="icon icon-marker"></span></td>
-                            <td>46218091<span class="icon icon-cell"></span></td>
-                            <td>nombre@libreria.com.ar<span class="icon icon-mail"></span></td>
-                        </tr>
+                    	<g:each var="library" in="${librarys}">
+                    		<tr>
+	                            <td><b>${library.name}</b></td>
+	                            <td>${library.location.street}<span class="icon icon-marker"></span></td>
+	                            <td>${library.phone}<span class="icon icon-cell"></span></td>
+	                            <td>${library.email}<span class="icon icon-mail"></span></td>
+	                        </tr>
+                    	</g:each>
                     </table>
                 </div>
                 <g:if test="${session.user}">
@@ -162,7 +95,7 @@
 	                        <p>Select library</p>
 	                        <input type="hidden" name="bookId" value="${book.id}" />
 	                        <g:select name="libraryId"  optionKey="id" optionValue="name" from="${librarys}" ></g:select>
- 							<g:submitButton name="Reserve"></g:submitButton>
+ 							<g:submitButton name="reservar"></g:submitButton>
 	                    </g:form>
 	                    
 	                </div>
@@ -181,43 +114,5 @@
 	                </g:each>
                 </ul>
             </div>
-		
-		<%--<h3 class="long-title">${book?.name}</h3>
-		
-		<div id="items" class="shadowed">
-			<div class="inner-boundary">
-				<div class="book-description">
-					<img  src="<g:createLinkTo dir="images/Book/${book.name}" file="cover.jpg" />"/>
-					<div class="details-more-info">
-					<span class="text">ISBN: ${book?.ISBN}</span><br/>
-					<span class="text">Subject: ${book?.subject }</span><br/>
-					<span class="text">Rating: ${book?.rating }</span><br/>
-					<span class="text">Total Votes: ${book?.totalVotes}</span><br/>
-					<span class="text">State: ${book.state}</span><br/>
-					</div>
-					<div class="list-operator-item">
-						<span class="link-item"><g:link controller="reservation" action="toReserve" params="[bookId:book.id]">to Reserve</g:link></span>
-						|
-					  	<span class="link-item"><g:link controller="comment" action="toComment" params="[bookId:book.id]">to Comment</g:link></span>
-					</div>
-				</div>
-				<div class="comment-list">
-					<h5>Comments</h5>
-						<g:if test="${flash.message}">
-      						<div class="message">${flash.message}</div>
-    					</g:if>
-					<ul class="item-list">
-						<g:each var="comment" in="${book?.comments}">
-							<li class="book">
-								<h4>"${comment.description}"</h4>
-								<span class="text"><g:link controller="user" action="viewProfile" params="[userId:comment.sourceUser.id]">User: ${comment.sourceUser.name} [${comment.sourceUser.rating}]</g:link></span>
-								<p>${comment.date}</p>
-								<p>Comment Score: ${comment.score}</p>
-						    </li>
-						</g:each>
-					</ul>
-				</div>
-			</div>
-		</div>
-	--%></body>
+		</body>
 </html>
