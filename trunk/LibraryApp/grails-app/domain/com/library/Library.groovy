@@ -14,7 +14,7 @@ class Library {
 	String phone	
 	Location location
 
-	static hasMany = [reservations : Reservation, books : Book, bookCopys:BookCopy]
+	static hasMany = [reservations : Reservation, bookCopys:BookCopy]
 
     static constraints = {
 		libraryId(size: 3..20, unique: true)
@@ -26,17 +26,22 @@ class Library {
 		location(nullable: true)
 		reservations(nullable:true)
 		bookCopys(nullable:true)
-		books(nullable:true)
     }
 	
 	static mapping = {
 		location lazy: false
 	}
 	
-	void comment(String comment, String User) {
-		
+	/**
+	 * Take a Book and create a Copy of this Book. The state of this copy
+	 * will be AVAILABLE
+	 * */
+	void addBookCopyOf(Book aBook) {
+		BookCopy aBookCopy = new BookCopy(state:States.AVAILABLE)
+		aBook.addToBookCopys(aBookCopy)
+		this.addToBookCopys(aBookCopy)
 	}
-	
+
 	Boolean isNearOf(Location location, Integer maxDistanceKm) {
 		return false;
 	}
@@ -45,4 +50,22 @@ class Library {
 		return this.name
 	}
 	
+	
+	BookCopy getBookCopyAvailable(Book aBook){
+		
+//		def bookCopysFiltered = BookCopy.findAllByLibraryAndBookMaster(this, aBook)
+		
+		def bookCopysFiltered = this.bookCopys.findAll{it.getBookMaster() == aBook}
+		
+		
+		BookCopy bookCopyAvailable = null;
+		for (BookCopy bookCopy : bookCopysFiltered) {
+			if (bookCopy.getState() == States.AVAILABLE) {
+				bookCopyAvailable = bookCopy
+				break;
+			}
+		}
+		
+		return bookCopyAvailable;
+	}
 }

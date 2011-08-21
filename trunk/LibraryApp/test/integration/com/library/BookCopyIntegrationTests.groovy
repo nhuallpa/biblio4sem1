@@ -21,10 +21,8 @@ class BookCopyIntegrationTests extends GroovyTestCase {
 		
 		aLibrary = new Library(libraryId:"CONG", name:nameLibrary)
 		assertNotNull aLibrary.save()
-		aBook = new Book(name:bookName, ISBN:bookISBN, state:States.AVAILABLE)
+		assertNotNull aBook = new Book(name:bookName, ISBN:bookISBN, state:States.AVAILABLE).save()
 		
-		// TODO: A BORRAR
-		aLibrary.addToBooks(aBook)
     }
 
     protected void tearDown() {
@@ -34,13 +32,11 @@ class BookCopyIntegrationTests extends GroovyTestCase {
     void testCreateBookCopyInOneLibrary() {				
 
 		def aBookFound = Book.findByName(bookName)
-		def aLibraryFound = Library.get(aLibrary.id)
+		Library aLibraryFound = Library.get(aLibrary.id)
 		assertNotNull aBookFound
 		assertNotNull aLibraryFound
 		
-		BookCopy aBookCopy = new BookCopy(state:States.AVAILABLE)
-		aBookFound.addToBookCopys(aBookCopy)
-		aLibraryFound.addToBookCopys(aBookCopy)
+		aLibraryFound.addBookCopyOf(aBookFound)
 		
 		assertNotNull aBookFound.bookCopys
 		assertNotNull aLibraryFound.bookCopys
@@ -55,14 +51,9 @@ class BookCopyIntegrationTests extends GroovyTestCase {
 	void testCreateBookCopyInTwoLibrary() {
 
 		def aBookFound = Book.findByName(bookName)
-				
-		BookCopy aBookCopy = new BookCopy(state:States.AVAILABLE)
-		aBookFound.addToBookCopys(aBookCopy)
-		aLibrary.addToBookCopys(aBookCopy)
 		
-		BookCopy aBookCopy2 = new BookCopy(state:States.AVAILABLE)
-		aBookFound.addToBookCopys(aBookCopy2)
-		aLibrary.addToBookCopys(aBookCopy2)
+		aLibrary.addBookCopyOf(aBook)
+		aLibrary.addBookCopyOf(aBook)
 		
 		def aBookRetrive = Book.get(aBookFound.id)
 		def aLibraryRetrive = Library.get(aLibrary.id)
@@ -79,10 +70,8 @@ class BookCopyIntegrationTests extends GroovyTestCase {
 	
 	void testUpdateStateBookCopy() {	
 		def aBookFound = Book.findByName(bookName)
-
-		BookCopy aBookCopy = new BookCopy(state:States.AVAILABLE)
-		aBookFound.addToBookCopys(aBookCopy)
-		aLibrary.addToBookCopys(aBookCopy)
+		
+		aLibrary.addBookCopyOf(aBookFound)
 		
 		Book bookRetrive = Book.findByName(bookName)
 		
@@ -94,7 +83,6 @@ class BookCopyIntegrationTests extends GroovyTestCase {
 		aBookCopyFound.setState(States.DELIVERED)
 		aBookCopyFound.save()
 		
-		def aBookCopyFoundModif = BookCopy.get(aBookCopy.id)
 		assertEquals States.DELIVERED, aBookCopyFound.getState()
 		
 	}

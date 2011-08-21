@@ -56,7 +56,11 @@ class BootStrap {
 			def theBook = new Book( ISBN: isbn, name: it, state: States.AVAILABLE)
 			theBook.setDescription(description);
 			theBook.setAuthor(author);
-			a.addToBooks(theBook)
+			assert theBook.save()
+			
+			a.addBookCopyOf(theBook)
+			a.addBookCopyOf(theBook)
+			a.save()
 			listOfBooks << theBook
 		}
 		
@@ -91,15 +95,15 @@ class BootStrap {
 		assert listOfBooks.size() == 9
 		
 		/*** RESERVATION ****/
-		(listOfUsers[0] as User).makeReservation(listOfBooks[0])
-		(listOfUsers[0] as User).makeReservation(listOfBooks[1])
-		(listOfUsers[1] as User).makeReservation(listOfBooks[2])
-		(listOfUsers[1] as User).makeReservation(listOfBooks[3])
-		(listOfUsers[2] as User).makeReservation(listOfBooks[4])
-		(listOfUsers[2] as User).makeReservation(listOfBooks[5])
-		(listOfUsers[3] as User).makeReservation(listOfBooks[6])
-		(listOfUsers[4] as User).makeReservation(listOfBooks[7])
-		(listOfUsers[4] as User).makeReservation(listOfBooks[8])
+		(listOfUsers[0] as User).makeReservation(listOfBooks[0], a)
+		(listOfUsers[0] as User).makeReservation(listOfBooks[1], a)
+		(listOfUsers[1] as User).makeReservation(listOfBooks[2], a)
+		(listOfUsers[1] as User).makeReservation(listOfBooks[3], a)
+		(listOfUsers[2] as User).makeReservation(listOfBooks[4], a)
+		(listOfUsers[2] as User).makeReservation(listOfBooks[5], a)
+		(listOfUsers[3] as User).makeReservation(listOfBooks[6], a)
+		(listOfUsers[4] as User).makeReservation(listOfBooks[7], a)
+		(listOfUsers[4] as User).makeReservation(listOfBooks[8], a)
 					
 	} 
 	
@@ -133,10 +137,13 @@ class BootStrap {
 		Random random = new Random()
 		bookNames.each { 
 			def isbn = random.nextInt(456789)
-			def abook = new Book(ISBN: isbn, name: it, library: libraryCongreso, state: States.AVAILABLE);
-			abook.setDescription(description)
-			abook.setAuthor(author)
-			libraryCongreso.addToBooks(abook) 	
+			def aBook = new Book(ISBN: isbn, name: it, library: libraryCongreso, state: States.AVAILABLE);
+			aBook.setDescription(description)
+			aBook.setAuthor(author)
+			aBook.save()
+			
+			libraryCongreso.addBookCopyOf(aBook)
+			libraryCongreso.addBookCopyOf(aBook)
 		}
 		
 	}
@@ -172,10 +179,13 @@ class BootStrap {
 		Random random = new Random()
 		bookNames.each {
 			def isbn = random.nextInt(456789)
-			def abook = new Book(ISBN: isbn, name: it, library: libraryFlores, state: States.AVAILABLE);
-			abook.setDescription(description)
-			abook.setAuthor(author)
-			libraryFlores.addToBooks(abook)
+			def aBook = new Book(ISBN: isbn, name: it, library: libraryFlores, state: States.AVAILABLE);
+			aBook.setDescription(description)
+			aBook.setAuthor(author)
+			aBook.save()
+			
+			libraryFlores.addBookCopyOf(aBook)
+			libraryFlores.addBookCopyOf(aBook)
 		}
 	}
 	
@@ -203,10 +213,12 @@ class BootStrap {
 		Random random = new Random()
 		bookNames.each {
 			def isbn = random.nextInt(456789)
-			def abook = new Book(ISBN: isbn, name: it, library: libraryLiniers, state: States.AVAILABLE);
-			abook.setDescription(description)
-			abook.setAuthor(author)
-			libraryLiniers.addToBooks(abook)
+			def aBook = new Book(ISBN: isbn, name: it, library: libraryLiniers, state: States.AVAILABLE);
+			aBook.setDescription(description)
+			aBook.setAuthor(author)
+			aBook.save()
+			libraryLiniers.addBookCopyOf(aBook)
+			libraryLiniers.addBookCopyOf(aBook)
 		}
 		
 	}

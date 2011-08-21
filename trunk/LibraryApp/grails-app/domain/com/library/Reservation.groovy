@@ -7,7 +7,7 @@ class Reservation {
 	
 	static searchable = true
 	
-	Book book
+	BookCopy bookCopy
 	User user
 	Date reservationDate
 	States state
@@ -21,15 +21,15 @@ class Reservation {
 	
 	static belongsTo = [user:User, library:Library]
 	Reservation(){
-		book = new Book()
+		bookCopy = new BookCopy()
 		user = new User()
 	}
 	
-	Reservation(Book aBook, User aUser){
-		this.setBook(aBook)
+	Reservation(BookCopy aBookCopy, User aUser){
+		this.setBookCopy(aBookCopy)
 		this.user = aUser
 		this.state = States.RESERVED
-		aBook.reserveMe()
+		aBookCopy.reserveMe()
 		// this.library = aBook?.library
 	}
 	
@@ -41,4 +41,19 @@ class Reservation {
 		return ( state == States.DELIVERED)
     }
 	
+	String nameOfBook() {
+		String name
+		if (bookCopy) {
+			name = bookCopy.bookMaster.name 
+		}
+		return name
+	}
+	
+	States stateOfBook() {
+		States state
+		if (bookCopy) {
+			state = bookCopy.state
+		}
+		return state
+	}
 }

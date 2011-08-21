@@ -13,3 +13,6 @@ class ReservationDoesNotExistException extends Exception{
 
 }
 
+class NotExistBookCopyAvailable extends Exception {
+	
+}

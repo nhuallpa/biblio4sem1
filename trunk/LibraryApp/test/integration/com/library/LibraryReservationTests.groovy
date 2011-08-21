@@ -17,10 +17,16 @@ class LibraryReservationTests extends GroovyTestCase {
 		book	= new Book(ISBN:'0000000', name:'Dummys', state:States.AVAILABLE)
 		bookTwo = new Book(ISBN:'0000001', name:'Grails', state:States.AVAILABLE);
 		
+		assertNotNull book.save()
+		assertNotNull bookTwo.save()
+		
 		assertNotNull user.save()
 		assertNotNull library.save()
-		library.addToBooks(book)		// implicitamente grails hace un save() del libro
-		library.addToBooks(bookTwo)
+		library.addBookCopyOf(book)
+		library.addBookCopyOf(book)
+		library.addBookCopyOf(bookTwo)
+		library.addBookCopyOf(bookTwo)
+		
     }
 
     protected void tearDown() {
@@ -28,43 +34,34 @@ class LibraryReservationTests extends GroovyTestCase {
     }
 
     void testAddReservationSizeGood() {
-		Reservation reservation = new Reservation(book, user)
-		library.addToReservations(reservation)
-		
+		user.makeReservation(book, library)
 		assertEquals 1, Library.get(library.id).reservations.size()
     }
 	
 	void testAddReservationMultipleSizeGood() {
-		Reservation reservation = new Reservation(book, user)
-		library.addToReservations(reservation)
-		
-		Reservation reservationTwo = new Reservation(bookTwo, user)
-		library.addToReservations(reservationTwo)
+		user.makeReservation(book, library)
+		user.makeReservation(bookTwo, library)
 		
 		assertEquals 2, Library.get(library.id).reservations.size()
 	}	
 	
 	void testAddReservationAndAccessing() {
-		Reservation reservation = new Reservation(book, user)
-		library.addToReservations(reservation)
+		user.makeReservation(book, library)
 		
-		def bookReservationsFound = Library.get(library.id).reservations.collect {it.book}
+		def bookReservationsFound = Library.get(library.id).reservations.collect {it.bookCopy}
 		assertEquals 1, bookReservationsFound.size()
-		assertEquals book.ISBN, bookReservationsFound.get(0).ISBN
+		assertEquals book.ISBN, bookReservationsFound.get(0).getBookMaster().ISBN
 	}
 	
 	void testAddReservationMultipleAndAccessing() {
-		Reservation reservation = new Reservation(book, user)
-		library.addToReservations(reservation)
+		user.makeReservation(book, library)
+		user.makeReservation(bookTwo, library)
 		
-		Reservation reservationTwo = new Reservation(bookTwo, user)
-		library.addToReservations(reservationTwo)
-		
-		def bookReservationsFound = Library.get(library.id).reservations.collect {it.book}
+		def bookReservationsFound = Library.get(library.id).reservations.collect {it.getBookCopy()}
 		
 		assertEquals 2, bookReservationsFound.size()
 		
-		def ISBN_list = [bookReservationsFound.get(0).ISBN, bookReservationsFound.get(1).ISBN]
+		def ISBN_list = [bookReservationsFound.get(0).getBookMaster().ISBN, bookReservationsFound.get(1).getBookMaster().ISBN]
 		assertTrue(ISBN_list.contains(book.ISBN))
 		assertTrue(ISBN_list.contains(bookTwo.ISBN))
 	}

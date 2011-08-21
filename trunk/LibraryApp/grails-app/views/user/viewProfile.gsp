@@ -29,13 +29,13 @@
 		<ul class="item-list">
 			<g:each var="reservation" in="${userProfile?.reservations}">
 				<li class="book">
-				  <g:link controller="book" action="viewDetails" params="[bookId:reservation.book.id]">
-				  	<img  src="<g:createLinkTo dir="images/Book/${reservation.book.name}" file="cover.jpg" />"/>
+				  <g:link controller="book" action="viewDetails" params="[bookId:reservation.bookCopy.bookMaster.id]">
+				  	<img  src="<g:createLinkTo dir="images/Book/${reservation.nameOfBook()}" file="cover.jpg" />"/>
 				  </g:link>
-					<span class="text"><g:link controller="book" action="viewDetails" params="[bookId:reservation.book.id]">${reservation.book.name}</g:link></span>
+					<span class="text"><g:link controller="book" action="viewDetails" params="[bookId:reservation.bookCopy.bookMaster.id]">${reservation.nameOfBook()}</g:link></span>
 					|
 					<span class="text">${reservation.reservationDate}</span>
-					<span class="link-item"><g:link controller="reservation" action="cancelReserve" params="[bookId:reservation.book.id]">Cancel</g:link></span>
+					<span class="link-item"><g:link controller="reservation" action="cancelReserve" params="[bookId:reservation.bookCopy.bookMaster.id]">Cancel</g:link></span>
 			    </li>
 			</g:each>
 		</ul>

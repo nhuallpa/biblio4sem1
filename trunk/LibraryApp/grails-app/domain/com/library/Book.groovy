@@ -17,7 +17,6 @@ class Book implements Taggable{
 
 	List<Comment> comments = new ArrayList<Comment>()
 	List<BookCopy> bookCopys = new ArrayList<BookCopy>()
-	Library library
 
 	static constraints = {
 		ISBN(blank : false)
@@ -31,10 +30,9 @@ class Book implements Taggable{
 
 	static hasMany = [comments : Comment, bookCopys:BookCopy]
 
-	static belongsTo = [library:Library]
 	
 	static mapping = {
-		library lazy: false
+
 	}
 	
 	public String toString() {
@@ -46,9 +44,6 @@ class Book implements Taggable{
 		return books
 		
 	}
-	void reserveMe(){
-		this.state = States.RESERVED
-	}
 
 	void addComment(Comment aComment){
 		this.addToComments(aComment)
@@ -58,21 +53,6 @@ class Book implements Taggable{
 	}
 	
 	void deleteComment(Comment aComment){
-//		def commentFound = null;
-//		for (comment in this.comments) {
-//			if (comment.equals(aComment)) {
-//				commentFound = comment
-//				break
-//			}
-//		}
-//		
-//		if (commentFound) {
-//			this.comments.remove commentFound
-//		} else {
-//			throw new CommentDoesNotExistException()
-//		}
-		
-		
 		if (!(this.comments as ArrayList<Book>).contains(aComment)) {
 			throw new CommentDoesNotExistException()
 		} else {
@@ -80,28 +60,12 @@ class Book implements Taggable{
 		}
 	}
 	
-	void returnMe(){
-		this.state = States.AVAILABLE
-	}
-	
-	void cancelReservation(){
-		this.state = States.AVAILABLE
-	}
-	
 	void categorizeMe(String aCategory){
 		this.addTag(aCategory)
 	}
 	
-	void retireMe(){
-		this.state = States.DELIVERED
+	boolean equals(Object aBook) {
+		return (this.ISBN == aBook.ISBN)
 	}
-	
-	Boolean isReserved(){
-		return (state == States.RESERVED)
-	}
-	
-//	boolean equals(Object aBook) {
-//		return (this.id == aBook.id)
-//	}
 		
 }
