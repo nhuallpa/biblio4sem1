@@ -74,6 +74,17 @@ $(function() {
 		$('#nuevo-comentario').css('display', 'block');
 	});
 
+	
+	
+	/**
+	 * Abrir a Reservar
+	 */
+
+	$('#reservar').live('click', function(){
+		$('#nueva-reserva').css('display', 'block');
+	});
+	
+	
 	/**
 	 * Enviar comentario
 	 */
