@@ -30,6 +30,7 @@ import com.library.android.config.ConfigurationManager;
 import com.library.android.config.Constants;
 import com.library.android.domain.Book;
 import com.library.android.domain.Comment;
+import com.library.android.domain.Library;
 import com.library.android.domain.States;
 import com.library.android.domain.User;
 import com.library.android.services.BookService;
@@ -335,10 +336,17 @@ public class BookServicesImpl implements BookService {
 								obj.getString("description"));
 			aBook.setBookId(Long.valueOf(obj.getString("id")));
 			aBook.setListOfComments(findCommentsByBook(obj.getString("id")));
-			
+
 			if(obj.getString("state").equals(States.RESERVED.toString())){
 				aBook.reserveMe();
 			}
+			
+//			JSONArray librarysJSON = obj.getJSONArray("librarys");
+//			for(int i = 0; i < librarysJSON.length(); i++){
+//				JSONObject aLibrary = librarysJSON.getJSONObject(i);
+//				Library library = new Library(aLibrary.getString("id"), aLibrary.getString("name"));
+//				aBook.addLibrary(library);
+//			}
 		}catch(JSONException e){
 			Log.e("Convert to Book", e.getMessage());
 		}

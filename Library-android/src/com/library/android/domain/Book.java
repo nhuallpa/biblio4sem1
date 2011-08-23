@@ -13,15 +13,14 @@ public class Book implements Comparable<Book>{
 	private String subject;
 	private Long ISBN;
 	private List<Comment> listOfComments;
-//	private List<String> tags;
-	private Library library;
+	private List<Library> librarys;
 	private Bitmap picture;
 	private String description;
 	private States state;
 	
-	public Book(Long ISBN, String title, Library lib){
+	public Book(Long ISBN, String title){
 		this.ISBN = ISBN;
-		this.library = lib;
+		
 		this.title = title;
 		init();
 	}
@@ -43,12 +42,20 @@ public class Book implements Comparable<Book>{
 		init();
 	}
 	
-	public Book(Long ISBN, String title, Library lib, Bitmap picture){
+	public Book(Long ISBN, String title, Bitmap picture){
 		this.ISBN = ISBN;
-		this.library = lib;
+//		this.library = lib;
 		this.title = title;
 		this.picture = picture;
 		init();
+	}
+	
+	public List<Library> getLibrarys(){
+		return this.librarys;
+	}
+	
+	public void addLibrary(Library lib){
+		this.librarys.add(lib);
 	}
 	
 	public States getState(){
@@ -82,6 +89,7 @@ public class Book implements Comparable<Book>{
 	private void init(){
 		this.listOfComments = new ArrayList<Comment>();
 //		this.tags = new ArrayList<String>();
+		this.librarys = new ArrayList<Library>();
 		this.state = States.AVAILABLE;
 	}
 	
@@ -125,10 +133,10 @@ public class Book implements Comparable<Book>{
 	
 	public void reserveMe(User user){
 		
-		Reservation reserved = new Reservation(user, this, library);
-		if(library != null){
-			library.addReservation(reserved);
-		}
+//		Reservation reserved = new Reservation(user, this, library);
+//		if(library != null){
+//			library.addReservation(reserved);
+//		}
 		reserveMe();
 	}
 	
@@ -164,13 +172,6 @@ public class Book implements Comparable<Book>{
 //		this.tags = tags;
 //	}
 
-	public Library getLibrary() {
-		return library;
-	}
-
-	public void setLibrary(Library library) {
-		this.library = library;
-	}
 
 	public Long getISBN() {
 		return ISBN;

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  android:background="#FFFFFF">
+  
+  <RelativeLayout
+  	  android:id="@+id/item_library_relative_layout"
+  	  android:layout_width="wrap_content"
+  	  android:layout_height="wrap_content">
+  	
+  	<TextView
+  		android:id="@+id/item_library_name"
+  		android:layout_width="fill_parent"
+  		android:layout_height="wrap_content"
+  		android:layout_marginLeft="10dip"
+  		android:layout_marginTop="5dip"
+  		android:text="name">
+  	</TextView>
+
+  	
+  	<TextView
+  		android:id="@+id/item_library_phone"
+  		android:layout_width="wrap_content"
+  		android:layout_height="wrap_content"
+  		android:layout_marginLeft="20dip"
+  		android:layout_marginTop="5dip"
+  		android:layout_below="@id/item_library_name"
+  		android:text="phone">
+  	</TextView>
+  	
+	<TextView
+  		android:id="@+id/item_library_mail"
+  		android:layout_width="wrap_content"
+  		android:layout_height="wrap_content"
+  		android:layout_marginLeft="20dip"
+  		android:layout_marginTop="5dip"
+  		android:layout_toRightOf="@id/item_library_phone"
+  		android:layout_below="@id/item_library_name"
+  		android:text="mail">
+  	</TextView>  	
+  	
+  </RelativeLayout>
+  	
+  
+</RelativeLayout>

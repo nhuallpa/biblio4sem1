@@ -1,78 +1,70 @@
 package com.library.android.domain;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class Library {
 	
-	private List<Book> books;
-	private Location location;
-	private List<Reservation> listOfReservations;
-	private List<Comment> listOfComments;
+	private String libraryId;
 	private String name;
+//	byte[] photo
+	private String homepage;
+	private String email;
+	private String phone;	
+	private Location location;
 	
-	public Library(String name, Location location){
+	public Library(String libraryId, String name){
+		this.libraryId = libraryId;
 		this.name = name;
-		this.location = location;
-		this.listOfComments = new ArrayList<Comment>();
-		this.listOfReservations = new ArrayList<Reservation>();
-	}
-	
-	public String getName(){
-		return this.name;
-	}
-	
-	public void isSitueted(Location location){
-		
-	}
-			
-	public void addBook(Book aBook){
-		this.books.add(aBook);
-	}
-	
-	public void deleteBook(Book aBook){
-		this.books.remove(aBook);
-	}
-	
-	public void getScore(){
-		
-	}
-	
-	public void addComment(Comment comment){
-		this.listOfComments.add(comment);
-	}
-	
-	public void addReservation(Reservation reservation){
-		this.listOfReservations.add(reservation);
-	}
-	
-	public List<Book> getBooks() {
-		return books;
 	}
 
-	public void setBooks(List<Book> books) {
-		this.books = books;
+	public String getLibraryId() {
+		return libraryId;
 	}
 
-	public List<Reservation> getListOfReservations() {
-		return listOfReservations;
+	public void setLibraryId(String libraryId) {
+		this.libraryId = libraryId;
 	}
 
-	public void setListOfReservations(List<Reservation> listOfReservations) {
-		this.listOfReservations = listOfReservations;
+	public String getName() {
+		return name;
 	}
 
-	public List<Comment> getListOfComments() {
-		return listOfComments;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public void setListOfComments(List<Comment> listOfComments) {
-		this.listOfComments = listOfComments;
+	public String getHomepage() {
+		return homepage;
+	}
+
+	public void setHomepage(String homepage) {
+		this.homepage = homepage;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	public Location getLocation() {
 		return location;
 	}
+
+	public void setLocation(Location location) {
+		this.location = location;
+	}
+	
+	
 	
 	
 

@@ -59,9 +59,9 @@ public class LibraryMocks {
 	
 	
 	private LibraryMocks(){
-		floridaLibrary = new Library("Florida Library",new Location("Florida 600", -34.60107, -58.37535));
-		floresLibrary = new Library("Flores Library", new Location("Av Rivadavia 6800", -34.62845, -58.46118));
-		liniersLibrary = new Library("Liniers Library", new Location("Av Rivadavia 11684", -34.63936, -58.52867));
+//		floridaLibrary = new Library("Florida Library",new Location("Florida 600", -34.60107, -58.37535));
+//		floresLibrary = new Library("Flores Library", new Location("Av Rivadavia 6800", -34.62845, -58.46118));
+//		liniersLibrary = new Library("Liniers Library", new Location("Av Rivadavia 11684", -34.63936, -58.52867));
 		
 		description1 = textDesc;
 		description2 = textDesc;

@@ -24,9 +24,9 @@ public class Reservation {
 	public boolean isReserved(long reservaId){
 		boolean encontrado = false;
 		
-		for(int i = 0; i < library.getListOfReservations().size() && !encontrado; i++){
-			encontrado = library.getListOfReservations().get(i).equals(this);
-		}
+//		for(int i = 0; i < library.getListOfReservations().size() && !encontrado; i++){
+//			encontrado = library.getListOfReservations().get(i).equals(this);
+//		}
 		
 		return encontrado;
 	}

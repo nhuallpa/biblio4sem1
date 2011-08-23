@@ -98,31 +98,39 @@ public class BookDetailActivity extends Activity {
         		i.putExtra(Constants.BOOK_NAME, bookName);
         		startActivity(i);
         	}break;
+        	
+        	case R.id.menu_librarys: {
+        		Intent i = new Intent(BookDetailActivity.this, LibraryListActivity.class);
+        		i.putExtra(Constants.BOOK_ID, bookId);
+        		startActivity(i);
+        	}break;
             
             case R.id.menu_book_detail_reserve: {
-            	final Book book = BookServicesImpl.getInstance(this).getBookById(bookId);
-            	
-            	final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-            	alertDialog.setTitle(getString(R.string.reserve_title) + " " +book.getTitle());
-            	alertDialog.setMessage(getString(R.string.are_you_sure));
-            	alertDialog.setButton(getString(R.string.reserve_button), new DialogInterface.OnClickListener() {
-            	   public void onClick(DialogInterface dialog, int which) {
-            		  BookServicesImpl.getInstance(ctx).toReserveBook(String.valueOf(book.getBookId())); 
-            		  Intent i = new Intent(BookDetailActivity.this, BookListActivity.class);
-              		  startActivity(i);
-            	   }
-            	});
-            	alertDialog.setButton2("No", new DialogInterface.OnClickListener() {
-             	   public void onClick(DialogInterface dialog, int which) {
-
-             		   alertDialog.closeOptionsMenu();
-             		  
-             	   }
-             	});
-            	
-            	alertDialog.setIcon(R.drawable.logo_library);
-            	alertDialog.show();
-            	
+//            	final Book book = BookServicesImpl.getInstance(this).getBookById(bookId);
+//            	
+//            	final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+//            	alertDialog.setTitle(getString(R.string.reserve_title) + " " +book.getTitle());
+//            	alertDialog.setMessage(getString(R.string.are_you_sure));
+//            	alertDialog.setButton(getString(R.string.reserve_button), new DialogInterface.OnClickListener() {
+//            	   public void onClick(DialogInterface dialog, int which) {
+//            		  BookServicesImpl.getInstance(ctx).toReserveBook(String.valueOf(book.getBookId())); 
+//            		  Intent i = new Intent(BookDetailActivity.this, BookListActivity.class);
+//              		  startActivity(i);
+//            	   }
+//            	});
+//            	alertDialog.setButton2("No", new DialogInterface.OnClickListener() {
+//             	   public void onClick(DialogInterface dialog, int which) {
+//
+//             		   alertDialog.closeOptionsMenu();
+//             		  
+//             	   }
+//             	});
+//            	
+//            	alertDialog.setIcon(R.drawable.logo_library);
+//            	alertDialog.show();
+            	Intent i = new Intent(BookDetailActivity.this, ToReserveBookActivity.class);
+            	i.putExtra(Constants.BOOK_ID, bookId);
+            	startActivity(i);
             	
             }break;
             
