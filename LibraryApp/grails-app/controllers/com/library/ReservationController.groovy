@@ -18,9 +18,8 @@ class ReservationController {
 		User user = User.get(params.userId)
 		Book book = Book.get(params.bookId)
 		Library library = Library.get(params.libraryId)
-//		user.makeReservation(book)
 		user.makeReservation(book, library)
-		response.writer.println("OK")
+		response.writer.println("Reservation: " + book.name + " by " + user.name)
 	}
 	
     def index = { 
