@@ -3,6 +3,8 @@ package com.library.android.domain;
 public class Location {
 	
 	private String address;
+	private String city;
+	private String country;
 	private double x;
 	private double y;
 	
@@ -16,6 +18,22 @@ public class Location {
 		this.address = address;
 		this.x = latitude;
 		this.y = longitude;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
 	}
 
 	public String getAddress() {
