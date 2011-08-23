@@ -16,8 +16,25 @@ class BookController {
 	
 	/** MOBILE **/
 	
+	def getLibrarys = {
+		Book aBook = Book.get(params.bookId)
+		def librarysData = bookService.getLibraryAvailable(aBook)
+		def librarys = new ArrayList()
+		for(obj in librarysData){
+			def library = [
+					id: obj.id,
+					libraryId: obj.libraryId,
+					name:obj.name,
+					phone: obj.phone,
+					email: obj.email
+				]
+			librarys.add library
+		}
+		render librarys as JSON
+	}
+	
 	def getTopBooks = {
-		def books = Book.list()
+		def books = bookService.getInTop()
 		def result = new ArrayList()
 		for(int i = 0; i < TOP_BOOKS; i++){
 			Book obj = books.get(i)
@@ -31,7 +48,7 @@ class BookController {
 				author: obj.author,
 				comments: [
 						obj.comments
-					]
+					],
 				]
 			
 			result.add jsonBook
@@ -69,7 +86,7 @@ class BookController {
 	def getBook = {
 		
 		def bookFounded = Book.get(params.bookId)
-//		def comments = render (controller:'book', action:'getBookComments', bookId: bookFounded.id)
+//		def librarys = getLibrarys(bookFounded)
 		def jsonData = [
 			isbn: bookFounded.ISBN,
 			id: bookFounded.id,
@@ -77,10 +94,28 @@ class BookController {
 			name: bookFounded.name,
 			description: bookFounded.description,
 			author: bookFounded.author,
-//			comments: comments,
-			] as JSON
+//			librarys: librarys ,
+			] 
 		
-		render jsonData
+		render jsonData as JSON
+	}
+	
+	/**
+	 * Devuelve en JSON las librerias donde se encuentra el libro
+	 * @param aBook
+	 * @return list of librarys
+	 */
+	List<Library> getLibrarys(Book aBook){
+		def librarysData = bookService.getLibraryAvailable(aBook)
+		def librarys = new ArrayList()
+		for(obj in librarysData){
+			def library = [
+					id: obj.libraryId,
+					name:obj.name
+				]
+			librarys.add library
+		}
+		librarys
 	}
 	
 	def searchBook = {
@@ -88,8 +123,10 @@ class BookController {
 		def searchResults = Book.search(param_q, params)
 		List<Book> resultList = searchResults.results
 		def jsonList = new ArrayList()
+		
 		if(searchResults.total > 0){
 			for(obj in resultList){
+				def librarys = getLibrarys(obj)
 				def jsonData = [
 					id:obj.id,
 					isbn: obj.ISBN,
@@ -97,6 +134,7 @@ class BookController {
 					name: obj.name,
 					description: obj.description,
 					author: obj.author,
+					librarys: librarys ,
 				]
 				jsonList.add jsonData
 			}

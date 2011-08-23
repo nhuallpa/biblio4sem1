@@ -17,7 +17,9 @@ class ReservationController {
 	def reserveBook = {
 		User user = User.get(params.userId)
 		Book book = Book.get(params.bookId)
-		user.makeReservation(book)
+		Library library = Library.get(params.libraryId)
+//		user.makeReservation(book)
+		user.makeReservation(book, library)
 		response.writer.println("OK")
 	}
 	
