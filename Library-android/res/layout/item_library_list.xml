@@ -9,35 +9,69 @@
   	  android:id="@+id/item_library_relative_layout"
   	  android:layout_width="wrap_content"
   	  android:layout_height="wrap_content">
+  	  
+  	<ImageView
+  		android:id="@+id/item_library_icon_location"
+  		android:layout_width="wrap_content"
+  	  	android:layout_height="wrap_content"
+  	  	android:layout_marginTop="5dip"
+  	  	android:layout_marginLeft="10dip"
+  	  	android:background="@drawable/icon_location">
+  	</ImageView>
   	
   	<TextView
   		android:id="@+id/item_library_name"
   		android:layout_width="fill_parent"
   		android:layout_height="wrap_content"
-  		android:layout_marginLeft="10dip"
+  		android:layout_marginLeft="5dip"
   		android:layout_marginTop="5dip"
+  		android:textColor="#000000"
+  		android:textStyle="bold"
+  		android:layout_toRightOf="@id/item_library_icon_location"
   		android:text="name">
   	</TextView>
 
-  	
+  	<ImageView
+  		android:id="@+id/item_library_icon_cell"
+  		android:layout_width="wrap_content"
+  	  	android:layout_height="wrap_content"
+  	  	android:layout_marginTop="5dip"
+  	  	android:layout_marginLeft="20dip"
+  	  	android:layout_below="@id/item_library_name"
+  	  	android:background="@drawable/icon_cell">
+  	</ImageView>
+  	  	
   	<TextView
   		android:id="@+id/item_library_phone"
   		android:layout_width="wrap_content"
   		android:layout_height="wrap_content"
-  		android:layout_marginLeft="20dip"
+  		android:layout_marginLeft="5dip"
   		android:layout_marginTop="5dip"
+  		android:textColor="#000000"
+  		android:layout_toRightOf="@id/item_library_icon_cell"
   		android:layout_below="@id/item_library_name"
   		android:text="phone">
   	</TextView>
   	
+  	<ImageView
+  		android:id="@+id/item_library_icon_mail"
+  		android:layout_width="wrap_content"
+  	  	android:layout_height="wrap_content"
+  	  	android:layout_marginTop="5dip"
+  	  	android:layout_marginLeft="20dip"
+  	  	android:layout_toRightOf="@id/item_library_phone"
+  	  	android:layout_below="@id/item_library_name"
+  	  	android:background="@drawable/icon_mail">
+  	</ImageView>  	
 	<TextView
   		android:id="@+id/item_library_mail"
   		android:layout_width="wrap_content"
   		android:layout_height="wrap_content"
-  		android:layout_marginLeft="20dip"
+  		android:layout_marginLeft="5dip"
   		android:layout_marginTop="5dip"
-  		android:layout_toRightOf="@id/item_library_phone"
+  		android:layout_toRightOf="@id/item_library_icon_mail"
   		android:layout_below="@id/item_library_name"
+  		android:textColor="#000000"
   		android:text="mail">
   	</TextView>  	
   	
