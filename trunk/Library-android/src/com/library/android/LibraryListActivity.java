@@ -22,6 +22,8 @@ public class LibraryListActivity extends Activity{
         librarysListView = (LibrarysListView) findViewById(R.id.librarys_list);
         header = (LibraryHeaderView) findViewById(R.id.header_library_app3);
         bookId = getIntent().getExtras().getString(Constants.BOOK_ID);
+        String bookName = getIntent().getExtras().getString(Constants.BOOK_NAME);
+        header.setInfo("Librarys for " + bookName);
         init();
 	}
 

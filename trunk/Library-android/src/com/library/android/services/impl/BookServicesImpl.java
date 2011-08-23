@@ -175,10 +175,10 @@ public class BookServicesImpl implements BookService {
 		return comments;
 	}
 
-	public void toReserveBook(String bookId){
+	public void toReserveBook(String bookId, String libraryId){
 //		book.reserveMe();
 		User user = ConfigurationManager.getInstance(context).getCurrentUser();
-		String url = ConfigWS.TO_RESERVE_BOOK + "?bookId=" + bookId + "&userId=" + user.getId();
+		String url = ConfigWS.TO_RESERVE_BOOK + "?bookId=" + bookId + "&userId=" + user.getId() + "&libraryId=" + libraryId;
 		boolean result = false;
 		try{
 			URL u = new URL(url);

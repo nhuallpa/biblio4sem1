@@ -36,6 +36,7 @@ public class BookListActivity extends Activity {
     
     private void init(){
     	bookListView.setBookList(BookServicesImpl.getInstance(this).getTopBooks());
+    	header.setInfo("Top Books");
     }
     
 	 public boolean onCreateOptionsMenu(Menu menu) {

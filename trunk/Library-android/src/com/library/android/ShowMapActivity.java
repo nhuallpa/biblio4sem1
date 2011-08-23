@@ -34,11 +34,10 @@ public class ShowMapActivity extends MapActivity {
 	    super.onCreate(bundle);
 	    setContentView(R.layout.library_map); // bind the layout to the activity
 	    mapView = (MapView) findViewById(R.id.map_view);
-	    String libraryId = getIntent().getExtras().getString("libraryId");
-	    if(libraryId == null){
+	    if(getIntent().getExtras().getString("libraryId") == null){
 	    	fillLocations();
 	    } else {
-	    	fillLibrary(libraryId);
+	    	fillLibrary(getIntent().getExtras().getString("libraryId"));
 	    }
 	    
 	}

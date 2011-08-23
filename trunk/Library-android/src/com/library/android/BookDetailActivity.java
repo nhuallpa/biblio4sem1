@@ -1,7 +1,10 @@
 package com.library.android;
 
+import java.util.List;
+
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,8 +18,10 @@ import com.library.android.config.ConfigurationManager;
 import com.library.android.config.Constants;
 import com.library.android.dialog.ShowDialog;
 import com.library.android.domain.Book;
+import com.library.android.domain.Library;
 import com.library.android.domain.States;
 import com.library.android.services.impl.BookServicesImpl;
+import com.library.android.services.impl.LibraryServicesImpl;
 import com.library.android.view.BookDetailView;
 import com.library.android.view.CommentBookListView;
 
@@ -26,6 +31,7 @@ public class BookDetailActivity extends Activity {
 	private String bookState;
 	private String bookId;
 	private String bookName;
+//	private List<Library> librarysList;
 	
 	private Context ctx = BookDetailActivity.this;
 
@@ -39,8 +45,6 @@ public class BookDetailActivity extends Activity {
 
 		bookDetailView =(BookDetailView) findViewById(R.id.book_detail_content);
 		bookId = getIntent().getExtras().getString(Constants.BOOK_ID);
-
-		
 		
 		fillData();
 		
@@ -89,7 +93,6 @@ public class BookDetailActivity extends Activity {
     }
 	
     public boolean onOptionsItemSelected (MenuItem item){
-
         switch (item.getItemId()){
 
         	case R.id.menu_book_detail_comment: {
@@ -102,17 +105,37 @@ public class BookDetailActivity extends Activity {
         	case R.id.menu_librarys: {
         		Intent i = new Intent(BookDetailActivity.this, LibraryListActivity.class);
         		i.putExtra(Constants.BOOK_ID, bookId);
+        		i.putExtra(Constants.BOOK_NAME, bookName);
         		startActivity(i);
         	}break;
             
             case R.id.menu_book_detail_reserve: {
-//            	final Book book = BookServicesImpl.getInstance(this).getBookById(bookId);
-//            	
+            	 final List<Library>  librarysList = LibraryServicesImpl.getInstance().getLibrarys(bookId);
+            	 final AlertDialog.Builder builder = new Builder(ctx);
+            	 String[] names = new String[librarysList.size()];
+            	 for(int i = 0; i < librarysList.size(); i++){
+            		 names[i] = librarysList.get(i).getName();
+            	 }
+            	 builder.setTitle("Librarys availables");
+            	 builder.setItems(names, new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.dismiss();
+						BookServicesImpl.getInstance(ctx).toReserveBook(bookId, librarysList.get(which).getLibraryId());
+					}
+				});
+            	 builder.show();
+
 //            	final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
 //            	alertDialog.setTitle(getString(R.string.reserve_title) + " " +book.getTitle());
 //            	alertDialog.setMessage(getString(R.string.are_you_sure));
 //            	alertDialog.setButton(getString(R.string.reserve_button), new DialogInterface.OnClickListener() {
 //            	   public void onClick(DialogInterface dialog, int which) {
+//            		   
+//	                 final AlertDialog.Builder builder = new Builder(ctx);
+//            		   
+//            		   
 //            		  BookServicesImpl.getInstance(ctx).toReserveBook(String.valueOf(book.getBookId())); 
 //            		  Intent i = new Intent(BookDetailActivity.this, BookListActivity.class);
 //              		  startActivity(i);
@@ -125,12 +148,13 @@ public class BookDetailActivity extends Activity {
 //             		  
 //             	   }
 //             	});
+//
 //            	
 //            	alertDialog.setIcon(R.drawable.logo_library);
 //            	alertDialog.show();
-            	Intent i = new Intent(BookDetailActivity.this, ToReserveBookActivity.class);
-            	i.putExtra(Constants.BOOK_ID, bookId);
-            	startActivity(i);
+////            	Intent i = new Intent(BookDetailActivity.this, ToReserveBookActivity.class);
+////            	i.putExtra(Constants.BOOK_ID, bookId);
+////            	startActivity(i);
             	
             }break;
             
@@ -156,4 +180,19 @@ public class BookDetailActivity extends Activity {
         return true;
         }
 
+//	private View.OnClickListener libraryListenner = new OnClickListener() {
+//		
+//		@Override
+//		public void onClick(View v) {
+//			
+//			Intent i = new Intent(getContext(), BookDetailActivity.class);
+//			i.putExtra("titleBook", book.getTitle());
+//			i.putExtra("authorBook", book.getAuthor());
+//			i.putExtra("stateBook", book.getState().toString());
+//			i.putExtra("isbnBook", String.valueOf(book.getISBN()));
+//			i.putExtra(Constants.BOOK_ID, String.valueOf(book.getBookId()));
+//			getContext().startActivity(i);
+//			
+//		}
+//	};
 }
