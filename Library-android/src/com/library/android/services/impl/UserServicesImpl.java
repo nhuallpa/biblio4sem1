@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -76,9 +77,7 @@ public class UserServicesImpl{
 					comment.setId(obj.getString("id"));
 			    	comment.setDescription(obj.getString("description"));
 			    	comment.setScore(Float.valueOf(obj.getString("score")));
-//			    	User aUser = new User();
-//			    	aUser.setName(obj.getJSONObject("user").getString("name"));
-//			    	aUser.setId(obj.getJSONObject("user").getString("id"));
+			    	comment.setDate(obj.getString("date"));
 			    	Book aBook = new Book();
 			    	aBook.setBookId(Long.valueOf(obj.getJSONObject("book").getString("id")));
 			    	aBook.setTitle(obj.getJSONObject("book").getString("name"));

@@ -8,7 +8,7 @@ public class Comment {
 	
 	private String description;
 	private User user;
-	private Date date;
+	private String date;
 	private float score;
 	private Book bookSource;
 	private String id;
@@ -18,22 +18,26 @@ public class Comment {
 	public Comment(String desc, Book book){
 		this.bookSource = book;
 		this.description = desc;
-		this.date = new Date(DateFormat.YEAR, DateFormat.MONTH, DateFormat.DAY);
+//		this.date = new Date(DateFormat.YEAR, DateFormat.MONTH, DateFormat.DAY);
 	}
 	
 	public Comment(String desc, Book book, float score){
 		this.bookSource = book;
 		this.description = desc;
-		this.date = new Date(DateFormat.YEAR, DateFormat.MONTH, DateFormat.DAY);
+//		this.date = new Date(DateFormat.YEAR, DateFormat.MONTH, DateFormat.DAY);
 		this.score = score;
 	}
 	
 	public Comment(String desc, float score){
 		this.score = score;
 		this.description = desc;
-		this.date = new Date(DateFormat.YEAR, DateFormat.MONTH, DateFormat.DAY);
+//		this.date = new Date(DateFormat.YEAR, DateFormat.MONTH, DateFormat.DAY);
 	}
 
+	public void setDate(String date){
+		this.date = date;
+	}
+	
 	public String getId() {
 		return id;
 	}
@@ -66,7 +70,7 @@ public class Comment {
 		this.score = score;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 	
