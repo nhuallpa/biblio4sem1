@@ -4,8 +4,7 @@
   android:layout_width="fill_parent"
   android:layout_height="fill_parent"
   android:background="#FFFFFF">
-  
-  
+
   		<com.library.android.view.LibraryHeaderView
 		android:id="@+id/header_library_app3" android:layout_width="fill_parent"
 		android:layout_height="wrap_content" />

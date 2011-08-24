@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
   xmlns:android="http://schemas.android.com/apk/res/android"
-  android:layout_width="fill_parent"
+  android:layout_width="wrap_content"
   android:layout_height="fill_parent"
   android:background="#FFFFFF">
   
   		<com.library.android.view.LibraryHeaderView
-		android:id="@+id/header_library_app2" android:layout_width="wrap_content"
+		android:id="@+id/header_library_app2" android:layout_width="fill_parent"
 		android:layout_height="wrap_content" />
 		
 		<com.library.android.view.BookDetailView

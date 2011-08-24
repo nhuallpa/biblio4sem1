@@ -11,7 +11,7 @@ import android.os.Bundle;
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapView;
 import com.google.android.maps.Overlay;
-import com.library.android.domain.Library;
+import com.library.android.dto.Library;
 import com.library.android.map.MapLocation;
 import com.library.android.map.MapLocationOverlay;
 import com.library.android.mock.LibraryMocks;

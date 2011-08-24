@@ -20,7 +20,7 @@ public class LibraryHeaderView extends RelativeLayout {
 	
 	private ImageButton homeButton;
 	private Button librarysButton;
-	private Button bookStoreButton;
+//	private Button bookStoreButton;
 	private TextView textInfo;
 	
 	public LibraryHeaderView(Context context) {
@@ -60,7 +60,7 @@ public class LibraryHeaderView extends RelativeLayout {
 		this.addView(inflated);
 		homeButton = (ImageButton) findViewById(R.id.header_button_home);
 		librarysButton = (Button) findViewById(R.id.header_librarys_button);
-		bookStoreButton = (Button) findViewById(R.id.header_book_store_button);
+//		bookStoreButton = (Button) findViewById(R.id.header_book_store_button);
 		textInfo = (TextView) findViewById(R.id.header_text);
 		
 		homeButton.setOnClickListener(new OnClickListener() {
@@ -82,14 +82,14 @@ public class LibraryHeaderView extends RelativeLayout {
 			}
 		});
 		
-		bookStoreButton.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				Toast.makeText(context, "Show Book Store", Toast.LENGTH_SHORT).show();
-
-			}
-		});
+//		bookStoreButton.setOnClickListener(new OnClickListener() {
+//			
+//			@Override
+//			public void onClick(View v) {
+//				Toast.makeText(context, "Show Book Store", Toast.LENGTH_SHORT).show();
+//				//show book store
+//			}
+//		});
 
 	}
 	

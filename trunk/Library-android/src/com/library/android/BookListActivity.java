@@ -29,14 +29,15 @@ public class BookListActivity extends Activity {
         setContentView(R.layout.book_list_view);
         bookListView = (BookListView)findViewById(R.id.book_list);
         header = (LibraryHeaderView) findViewById(R.id.header_library_app);
+
         init();
         
         config = ConfigurationManager.getInstance(this);
     }
     
     private void init(){
-    	bookListView.setBookList(BookServicesImpl.getInstance(this).getTopBooks());
-    	header.setInfo("Top Books");
+    		bookListView.setBookList(BookServicesImpl.getInstance(this).getTopBooks());
+        	header.setInfo("Top Books");
     }
     
 	 public boolean onCreateOptionsMenu(Menu menu) {

@@ -11,8 +11,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.library.android.domain.Library;
-import com.library.android.domain.Location;
+import com.library.android.dto.Library;
+import com.library.android.dto.Location;
 import com.library.android.services.ConfigWS;
 import com.library.android.utils.Utils;
 

@@ -9,7 +9,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.library.android.R;
-import com.library.android.domain.States;
+import com.library.android.dto.States;
 
 public class BookDetailView extends RelativeLayout {
 	

@@ -29,6 +29,7 @@ public class ConfigWS {
 	public static String PICTURE_BOOK = BOOK_CONTROLLER + "/getPicture";
 	public static String GET_LIBRARYS = BOOK_CONTROLLER + "/getLibrarys";
 	public static String GET_LIBRARY = LIBRARY_CONTROLLER + "/getLibrary";
+	public static String DELETE_COMMENT = COMMENT_CONTROLLER + "/delComment";
 	
 	private String user;
 	private static ConfigWS instance; 

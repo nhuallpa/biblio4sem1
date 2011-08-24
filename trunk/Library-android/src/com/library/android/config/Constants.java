@@ -15,7 +15,8 @@ public class Constants {
 	public static String GO_TO_ACTIVITY = "goToActivity";
 	public static String ISBN_BOOK = "isbnBook";
 	public static String BOOK_ID = "bookId";
-	public static String BOOK_NAME = "boonName";
+	public static String BOOK_NAME = "bookName";
+	public static String SOURCE = "source";
 	
 	
 	/* Class */

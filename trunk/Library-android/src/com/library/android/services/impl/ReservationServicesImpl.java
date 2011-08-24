@@ -1,6 +1,6 @@
 package com.library.android.services.impl;
 
-import com.library.android.domain.Book;
+import com.library.android.dto.Book;
 import com.library.android.services.ConfigWS;
 
 public class ReservationServicesImpl {//implements LibraryWebServices{

@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 
-import com.library.android.domain.Book;
+import com.library.android.dto.Book;
 
 public class BookListView extends ListView {
 	
