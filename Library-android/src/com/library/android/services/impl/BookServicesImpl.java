@@ -28,11 +28,10 @@ import android.util.Log;
 
 import com.library.android.config.ConfigurationManager;
 import com.library.android.config.Constants;
-import com.library.android.domain.Book;
-import com.library.android.domain.Comment;
-import com.library.android.domain.Library;
-import com.library.android.domain.States;
-import com.library.android.domain.User;
+import com.library.android.dto.Book;
+import com.library.android.dto.Comment;
+import com.library.android.dto.States;
+import com.library.android.dto.User;
 import com.library.android.services.BookService;
 import com.library.android.services.ConfigWS;
 import com.library.android.utils.Utils;
@@ -175,7 +174,7 @@ public class BookServicesImpl implements BookService {
 		return comments;
 	}
 
-	public void toReserveBook(String bookId, String libraryId){
+	public boolean toReserveBook(String bookId, String libraryId){
 //		book.reserveMe();
 		User user = ConfigurationManager.getInstance(context).getCurrentUser();
 		String url = ConfigWS.TO_RESERVE_BOOK + "?bookId=" + bookId + "&userId=" + user.getId() + "&libraryId=" + libraryId;
@@ -192,13 +191,11 @@ public class BookServicesImpl implements BookService {
 			
 			
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
-		
+		return result;
 	}
 
 	@Override
@@ -325,7 +322,30 @@ public class BookServicesImpl implements BookService {
 		return aBook;
 	}
 
+	public boolean deleteMyComment(String commentId, String bookId){
+		User user = ConfigurationManager.getInstance(context).getCurrentUser();
+		String url = ConfigWS.DELETE_COMMENT + "?userId=" + user.getId() + "&commentId=" + commentId + "&bookId=" + bookId;
+		boolean result = false;
+		try{
+			URL u = new URL(url);
+			HttpURLConnection con = (HttpURLConnection) u.openConnection ();
+			con.setDoInput(true);
+			con.connect();
+			String response = con.getResponseMessage();
+			result = response.equals("OK"); 
 
+			con.disconnect();
+			
+			
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 
+		
+		return result;
+	}
+	
 	private Book convertToBook(JSONObject obj){
 		Book aBook = null;
 		try{

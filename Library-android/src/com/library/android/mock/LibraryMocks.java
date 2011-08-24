@@ -3,11 +3,10 @@ package com.library.android.mock;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.library.android.domain.Book;
-import com.library.android.domain.Comment;
-import com.library.android.domain.Library;
-import com.library.android.domain.Location;
-import com.library.android.domain.User;
+import com.library.android.dto.Book;
+import com.library.android.dto.Comment;
+import com.library.android.dto.Library;
+import com.library.android.dto.User;
 
 public class LibraryMocks {
 	

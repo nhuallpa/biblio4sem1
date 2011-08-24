@@ -16,8 +16,6 @@ import android.widget.Toast;
 
 import com.library.android.config.Constants;
 import com.library.android.dialog.ShowDialog;
-import com.library.android.domain.Book;
-import com.library.android.domain.Comment;
 import com.library.android.services.impl.BookServicesImpl;
 import com.library.android.view.ToCommentBookView;
 

@@ -3,7 +3,7 @@ package com.library.android.config;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.library.android.domain.User;
+import com.library.android.dto.User;
 
 public class ConfigurationManager {
 		

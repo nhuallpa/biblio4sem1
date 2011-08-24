@@ -13,9 +13,9 @@ import org.json.JSONObject;
 import android.content.Context;
 
 import com.library.android.config.ConfigurationManager;
-import com.library.android.domain.Book;
-import com.library.android.domain.Comment;
-import com.library.android.domain.User;
+import com.library.android.dto.Book;
+import com.library.android.dto.Comment;
+import com.library.android.dto.User;
 import com.library.android.services.ConfigWS;
 import com.library.android.utils.Utils;
 
@@ -62,7 +62,6 @@ public class UserServicesImpl{
 		List<Comment> comments = new ArrayList<Comment>();
 		User user = ConfigurationManager.getInstance(ctx).getCurrentUser();
 		String url = ConfigWS.MY_COMMENTS +"?id="+ user.getId() ;
-
 		try{
 			URL u = new URL(url);
 			HttpURLConnection con = (HttpURLConnection) u.openConnection ();
@@ -74,6 +73,7 @@ public class UserServicesImpl{
 				for(int i = 0; i < array.length(); i++){
 					JSONObject obj = array.getJSONObject(i);
 					Comment comment = new Comment();
+					comment.setId(obj.getString("id"));
 			    	comment.setDescription(obj.getString("description"));
 			    	comment.setScore(Float.valueOf(obj.getString("score")));
 //			    	User aUser = new User();

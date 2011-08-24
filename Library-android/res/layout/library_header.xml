@@ -21,28 +21,15 @@
 				android:layout_width="80dip"
    				android:layout_height="30dip"
    				android:text="Librarys"
-   				android:layout_marginTop="5dip"
+   				android:layout_marginTop="10dip"
+   				android:layout_marginRight="10dip"
    				android:textColor="#FFFFFF"
    				android:background="#000000"
    				android:padding="5dip"
-   				android:layout_toRightOf="@id/header_button_home"
-   				android:layout_marginLeft="10dip"
-   				android:layout_marginRight="10dip">
+   				android:layout_alignParentRight="true">
 			</Button>	
 
-  			<Button
-				android:id="@+id/header_book_store_button"
-				android:layout_width="80dip"
-   				android:layout_height="30dip"
-   				android:text="Book Store"
-   				android:layout_marginTop="5dip"
-   				android:textColor="#FFFFFF"
-   				android:background="#000000"
-   				android:padding="5dip"
-   				android:layout_toRightOf="@id/header_librarys_button"
-   				android:layout_marginLeft="10dip">
-			</Button>		
-			
+		
 			<TextView
 				android:id="@+id/header_text"
 				android:layout_width="wrap_content"
@@ -50,7 +37,7 @@
 				android:text="text"
 				android:visibility="invisible"
 				android:textColor="#FF0000"
-				android:layout_toRightOf="@id/header_button_home"
+				android:layout_centerHorizontal="true"
 				android:layout_below="@id/header_librarys_button"
 				android:layout_marginLeft="10dip"
 				android:layout_marginBottom="5dip"

@@ -8,7 +8,8 @@
   <RelativeLayout
   	  android:id="@+id/item_library_relative_layout"
   	  android:layout_width="wrap_content"
-  	  android:layout_height="wrap_content">
+  	  android:layout_height="wrap_content"
+  	  android:background="@drawable/relative_state">
   	  
   	<ImageView
   		android:id="@+id/item_library_icon_location"

@@ -9,8 +9,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 
-import com.library.android.domain.Book;
-import com.library.android.domain.Library;
+import com.library.android.dto.Library;
 
 public class LibrarysListView extends ListView {
 

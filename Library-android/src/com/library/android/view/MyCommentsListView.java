@@ -11,9 +11,9 @@ import android.widget.ListView;
 
 import com.library.android.dto.Comment;
 
-public class CommentBookListView extends ListView {
-
-	public CommentBookListView(Context context, AttributeSet attrs) {
+public class MyCommentsListView extends ListView {
+	
+	public MyCommentsListView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 
 		init(context);
@@ -70,14 +70,14 @@ public class CommentBookListView extends ListView {
 		public View getView(int position, View convertView, ViewGroup parent) {
 			
 			Object obj = getItem(position);
-			CommentBookListItemView v = null;
+			MyCommentListItemView v = null;
 			if(obj != null && obj instanceof Comment){
 				Comment aComment = (Comment)obj;
 				
 				if(convertView instanceof BookListItemView){
-					v = (CommentBookListItemView)convertView;
+					v = (MyCommentListItemView)convertView;
 				}else{
-					v =  new CommentBookListItemView(getContext());
+					v =  new MyCommentListItemView(getContext());
 				}
 				v.setCommentItem(aComment);
 			}
@@ -85,4 +85,5 @@ public class CommentBookListView extends ListView {
 		}
 	}
 	
+
 }

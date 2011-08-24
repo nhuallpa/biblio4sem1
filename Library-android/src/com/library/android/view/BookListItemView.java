@@ -18,8 +18,8 @@ import com.library.android.R;
 import com.library.android.ToCommentBookActivity;
 import com.library.android.config.ConfigurationManager;
 import com.library.android.config.Constants;
-import com.library.android.domain.Book;
-import com.library.android.domain.States;
+import com.library.android.dto.Book;
+import com.library.android.dto.States;
 import com.library.android.services.impl.BookServicesImpl;
 
 public class BookListItemView extends RelativeLayout {

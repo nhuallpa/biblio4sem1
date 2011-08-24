@@ -3,14 +3,12 @@ package com.library.android.view;
 import java.text.DecimalFormat;
 
 import android.content.Context;
-import android.widget.ArrayAdapter;
 import android.widget.RelativeLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.library.android.R;
-import com.library.android.domain.Comment;
-import com.library.android.domain.User;
+import com.library.android.dto.Comment;
+import com.library.android.dto.User;
 
 public class CommentBookListItemView extends RelativeLayout {
 	

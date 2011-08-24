@@ -2,7 +2,7 @@ package com.library.android.services;
 
 import java.util.List;
 
-import com.library.android.domain.Book;
+import com.library.android.dto.Book;
 
 public interface BookService {
 	

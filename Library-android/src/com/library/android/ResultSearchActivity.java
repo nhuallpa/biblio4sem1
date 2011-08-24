@@ -4,10 +4,9 @@ import java.util.List;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Window;
 
-import com.library.android.domain.Book;
+import com.library.android.dto.Book;
 import com.library.android.services.impl.BookServicesImpl;
 import com.library.android.view.BookListView;
 import com.library.android.view.LibraryHeaderView;
@@ -31,7 +30,7 @@ public class ResultSearchActivity extends Activity {
 			header.setInfo("No results for " + q_search);
 		} else {
 			bookListView.setBookList(booksFounded);
-			header.setInfo(booksFounded.size() + " results found for search: " + q_search);
+			header.setInfo(booksFounded.size() + " results for " + q_search);
 		}
 		
 	}

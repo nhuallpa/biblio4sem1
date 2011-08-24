@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.library.android.R;
 import com.library.android.ShowMapActivity;
-import com.library.android.domain.Library;
+import com.library.android.dto.Library;
 
 public class LibraryListItemView extends RelativeLayout {
 	
