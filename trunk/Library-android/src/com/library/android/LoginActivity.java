@@ -71,9 +71,11 @@ public class LoginActivity extends Activity {
 									i.putExtra(Constants.BOOK_ID, bookId);
 									i.putExtra(Constants.BOOK_NAME, bookName);
 									startActivity(i);
+									finish();
 								} else {
 									Intent i = new Intent(LoginActivity.this, BookListActivity.class);
 									startActivity(i);
+									finish();
 								}
 								Toast.makeText(LoginActivity.this, "You are logged successful!", Toast.LENGTH_SHORT).show();
 							} else {

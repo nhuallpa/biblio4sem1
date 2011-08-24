@@ -17,6 +17,7 @@ public class MyCommentListItemView extends RelativeLayout {
 	
 	private TextView bookName;
 	private TextView description;
+	private TextView dateComment;
 	private RelativeLayout relative;
 	private Comment comment;
 
@@ -25,6 +26,7 @@ public class MyCommentListItemView extends RelativeLayout {
 		inflate(context, R.layout.my_comments_item, this);
 		bookName = (TextView) findViewById(R.id.item_my_comment_book_name);
 		description = (TextView) findViewById(R.id.item_my_comment_description);
+		dateComment = (TextView) findViewById(R.id.item_my_comment_date);
 		relative = (RelativeLayout) findViewById(R.id.item_my_comment_relative_layout);
 		
 		relative.setOnLongClickListener(new OnLongClickListener() {
@@ -34,7 +36,7 @@ public class MyCommentListItemView extends RelativeLayout {
 				
            	 final AlertDialog.Builder builder = new Builder(context);
         	 String[] names = {"Delete","Other"};
-        	 builder.setTitle("Librarys availables");
+        	 builder.setTitle(comment.getBookSource().getTitle());
         	 builder.setItems(names, new DialogInterface.OnClickListener() {
 				
 				@Override
@@ -63,6 +65,7 @@ public class MyCommentListItemView extends RelativeLayout {
 		comment = aComment;
 		this.bookName.setText(aComment.getBookSource().getTitle());
 		this.description.setText(aComment.getDescription());
+		this.dateComment.setText(aComment.getDate());
 	}
 
 }
