@@ -18,3 +18,7 @@ Taggable Plugin
 
 Vistas para tags
 - http://blog.armbruster-it.de/2011/04/a-perfect-team-grails-taggable-plugin-and-jquery-tagit/
+
+Cloud Foundry Plugin:
+-http://www.grails.org/plugin/cloud-foundry
+-http://grails-plugins.github.com/grails-cloud-foundry/docs/manual/index.html
