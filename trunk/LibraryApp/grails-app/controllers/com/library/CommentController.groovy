@@ -42,31 +42,6 @@ class CommentController {
 	
 	}
 	
-//	def toCommentBook = {
-//		User user = session.user
-//		if (!user){
-//			goToHome()
-//		}
-//		String aComment = (params.newComment)?params.newComment:"Without comment"
-//		Integer rating = (params.rating)?params.rating:0;
-//		
-//		rating -= 48
-//		
-//		Book aBook = Book.get(params.bookId)
-//		if (!user.isAttached() && aBook){
-//			def userFound = User.get(user.id)
-//			assert userFound
-//			Comment comment = new Comment(description:aComment,book:aBook).save()
-//			userFound.addBookComment aBook, aComment, rating
-//			session.user = null
-//			session.user = userFound
-//			flash.message = "You are commented on ${aBook.name}!!"
-//			redirect(action: 'viewMyComments')
-//		} else {
-//			redirect(action: 'toComment')
-//		}				
-//	}
-	
 	//params: userId,bookId
 	//request: text,rating,extra
 	def toCommentBook = {
@@ -76,14 +51,26 @@ class CommentController {
 		JSONObject jsonObject = request.JSON 
 		String aComment = jsonObject.getString("text")
 		Integer rating = jsonObject.getString("rating")
-
-
-
 		rating -= 48
 		user.addBookComment aBook, aComment, rating
-
-
 	}
+	
+	def delComment = {
+		User user = User.get(params.userId)
+		Comment aComment = Comment.get(params.commentId)
+		Book aBook = Book.get(params.bookId)
+		try {
+			aBook.deleteComment aComment
+			user.deleteMyComment aComment
+			user.save()
+			aBook.save()
+			aComment.delete()
+		} catch (CommentDoesNotExistException e){
+			response.writer.println("Error: " + e)
+		}
+		response.writer.println("Comment deleted")
+	}
+	/**************************************************************/
 	
 	def addCommentToBook = {
 		User user = session.user
