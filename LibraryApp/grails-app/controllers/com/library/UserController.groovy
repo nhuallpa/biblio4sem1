@@ -86,6 +86,7 @@ class UserController {
 		def listComments = new ArrayList()
 		for(commentFounded in user.commentsDone){
 			def jsonData = [
+				id: commentFounded.id,
 				description: commentFounded.description,
 				date: commentFounded.date,
 				book: [
