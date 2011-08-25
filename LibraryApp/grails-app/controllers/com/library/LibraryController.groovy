@@ -18,6 +18,8 @@ class LibraryController {
 		[libraryList : Library.list()]
 	}
 	
+	/** MOBILE **/
+	
 	def getLibrary = {
 		Library library = Library.get(params.libId)
 		def jsonData = [
@@ -29,8 +31,6 @@ class LibraryController {
 						street: library.location.street,
 						city: library.location.city,
 						country: library.location.country,
-//						latitude: library.location.latitude,
-//						longitude: library.location.longitude
 					],
 			]	
 		

@@ -9,96 +9,12 @@ class UserController {
 	
 	def geocoderService
 	def scaffold = true
-	
-	def getUser = {
-		def user = User.get(params.userId)
-		def reservationList = new ArrayList()
-		def commentsList = new ArrayList()
-		
-		for (obj in user.reservations){
-			def jsonReservation = [
-				book: [
-					 id: obj.book.id,
-					 name: obj.book.name
-					],
-				reservationDate: obj.reservationDate,
-				state: obj.state.state,
-				
-			]
-			reservationList.add jsonReservation
-		}
-		
-		for(obj in user.commentsDone){
-			def jsonComment = [
-					description:obj.description,
-					date: obj.date,
-					book: [
-							id: obj.book.id,
-							name: obj.book.name
-						],
-					score: obj.score,
-				]
-			commentsList.add jsonComment
-		}
-		
-		def jsonData = [
-				name: user.name,
-				homepage: user.homepage,
-				email: user.email,
-				phone: user.phone,
-				rating: user.rating,
-				reservations:  reservationList,	
-				comments: commentsList,
-			]
-		render jsonData as JSON
-	}
-	
-    def index = { 
+
+	def index = {
 		redirect(action: 'create')
 	}
 	
 	def create = {
-		
-	}
-	
-	//mobile
-	def loginUser = {
-		User user = User.findByNameAndPassword(params.name, params.password)
-		def jsonData = null;
-		if(user){
-			session.user = user
-			jsonData = [
-					userId: user.id,
-					state:"OK"
-				]
-			
-		} else {
-			session.user = null
-			jsonData = [
-				state:"Error params"
-			]
-		}
-		render jsonData as JSON
-	}
-	
-	def getMyComments = {
-		User user = User.get(params.id)
-		def listComments = new ArrayList()
-		for(commentFounded in user.commentsDone){
-			def jsonData = [
-				id: commentFounded.id,
-				description: commentFounded.description,
-				date: commentFounded.date,
-				book: [
-					id:commentFounded.book.id,
-					name: commentFounded.book.name,
-					],
-				score: commentFounded.score
-			]
-			listComments.add jsonData
-		}
-		
-		render listComments as JSON
 		
 	}
 	
@@ -234,4 +150,115 @@ class UserController {
 	boolean isUser(User user){
 		User.list().contains(user) 
 	}
+	
+	/** MOBILE **/
+	
+	def getUser = {
+		def user = User.get(params.userId)
+		def reservationList = new ArrayList()
+		def commentsList = new ArrayList()
+		
+		for (obj in user.reservations){
+			def jsonReservation = [
+				book: [
+					 id: obj.book.id,
+					 name: obj.book.name
+					],
+				reservationDate: obj.reservationDate,
+				state: obj.state.state,
+				
+			]
+			reservationList.add jsonReservation
+		}
+		
+		for(obj in user.commentsDone){
+			def jsonComment = [
+					description:obj.description,
+					date: obj.date,
+					book: [
+							id: obj.book.id,
+							name: obj.book.name
+						],
+					score: obj.score,
+				]
+			commentsList.add jsonComment
+		}
+		
+		def jsonData = [
+				name: user.name,
+				homepage: user.homepage,
+				email: user.email,
+				phone: user.phone,
+				rating: user.rating,
+				reservations:  reservationList,
+				comments: commentsList,
+			]
+		render jsonData as JSON
+	}
+	
+
+	
+	def loginUser = {
+		User user = User.findByNameAndPassword(params.name, params.password)
+		def jsonData = null;
+		if(user){
+			session.user = user
+			jsonData = [
+					userId: user.id,
+					state:"OK"
+				]
+			
+		} else {
+			session.user = null
+			jsonData = [
+				state:"Error params"
+			]
+		}
+		render jsonData as JSON
+	}
+	
+	def getMyComments = {
+		User user = User.get(params.id)
+		def listComments = new ArrayList()
+		for(commentFounded in user.commentsDone){
+			def jsonData = [
+				id: commentFounded.id,
+				description: commentFounded.description,
+				date: commentFounded.date,
+				book: [
+					id:commentFounded.book.id,
+					name: commentFounded.book.name,
+					],
+				score: commentFounded.score
+			]
+			listComments.add jsonData
+		}
+		
+		render listComments as JSON
+		
+	}
+	
+	def getMyReservations = {
+		User user = User.get(params.userId)
+		def reservationsList = new ArrayList()
+		for(reservFounded in user.reservations){
+			def jsonData = [
+					id: reservFounded.id,
+					date: reservFounded.reservationDate,
+					library: [
+							id: reservFounded.library.id,
+							libraryName: reservFounded.library.name
+						],
+					book: [
+							id: reservFounded.bookCopy.bookMaster.id,
+							name: reservFounded.nameOfBook()
+						],
+				]
+			reservationsList.add jsonData
+		}
+		
+		render reservationsList as JSON
+	}
+	
+	
 }
