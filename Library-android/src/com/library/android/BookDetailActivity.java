@@ -32,7 +32,6 @@ public class BookDetailActivity extends Activity {
 	private String bookState;
 	private String bookId;
 	private String bookName;
-//	private List<Library> librarysList;
 	
 	private Context ctx = BookDetailActivity.this;
 
@@ -117,7 +116,7 @@ public class BookDetailActivity extends Activity {
             	 for(int i = 0; i < librarysList.size(); i++){
             		 names[i] = librarysList.get(i).getName();
             	 }
-            	 builder.setTitle("Librarys availables");
+            	 builder.setTitle("Select library - " + bookName);
             	 builder.setItems(names, new DialogInterface.OnClickListener() {
 					
 					@Override
@@ -155,20 +154,4 @@ public class BookDetailActivity extends Activity {
         
         return true;
         }
-
-//	private View.OnClickListener libraryListenner = new OnClickListener() {
-//		
-//		@Override
-//		public void onClick(View v) {
-//			
-//			Intent i = new Intent(getContext(), BookDetailActivity.class);
-//			i.putExtra("titleBook", book.getTitle());
-//			i.putExtra("authorBook", book.getAuthor());
-//			i.putExtra("stateBook", book.getState().toString());
-//			i.putExtra("isbnBook", String.valueOf(book.getISBN()));
-//			i.putExtra(Constants.BOOK_ID, String.valueOf(book.getBookId()));
-//			getContext().startActivity(i);
-//			
-//		}
-//	};
 }

@@ -74,7 +74,7 @@ public class CommentBookListView extends ListView {
 			if(obj != null && obj instanceof Comment){
 				Comment aComment = (Comment)obj;
 				
-				if(convertView instanceof BookListItemView){
+				if(convertView instanceof CommentBookListItemView){
 					v = (CommentBookListItemView)convertView;
 				}else{
 					v =  new CommentBookListItemView(getContext());

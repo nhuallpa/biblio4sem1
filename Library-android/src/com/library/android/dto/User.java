@@ -37,10 +37,10 @@ public class User {
 		this.id = id;
 	}
 	
-	public void makeReservation(Book aBook){
-		this.listOfReservations.add(new Reservation(this, aBook));
-		aBook.reserveMe(this);
-	}
+//	public void makeReservation(Book aBook){
+//		this.listOfReservations.add(new Reservation(this, aBook));
+//		aBook.reserveMe(this);
+//	}
 	
 	public void addComment(Book aBook, Comment aComment){
 //		aComment.setUser(this);

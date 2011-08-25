@@ -69,11 +69,11 @@ public class ToCommentBookActivity extends Activity {
 				String text = toCommentBookView.getTextFromInput();
 				if(!text.equals("")){
 					String scoreSelected = (String)mySpinner.getSelectedItem();
-					ShowDialog.progressDialog(ctx, 5);
 					BookServicesImpl.getInstance(ctx).toComment(bookId, text, scoreSelected);
 					Toast.makeText(ToCommentBookActivity.this, "Send Comment..", Toast.LENGTH_SHORT).show();
 					Intent i = new Intent(ToCommentBookActivity.this, MyCommentsActivity.class);
 					startActivity(i);
+					finish();//finish activity
 				} else {
 					Toast.makeText(ToCommentBookActivity.this, "Invalid input...", Toast.LENGTH_LONG).show();
 				}	
@@ -86,6 +86,7 @@ public class ToCommentBookActivity extends Activity {
 	    if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
 		        Intent i = new Intent(ToCommentBookActivity.this, BookListActivity.class);
 		        startActivity(i);
+				finish();//finish activity
 	        return true;
 	    }
 

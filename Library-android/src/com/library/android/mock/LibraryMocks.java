@@ -131,8 +131,8 @@ public class LibraryMocks {
 		gonza.addComment(book5, comment4);
 		gonza.addComment(book5, comment2);
 		
-		gonza.makeReservation(book2);
-		gonza.makeReservation(book5);
+//		gonza.makeReservation(book2);
+//		gonza.makeReservation(book5);
 		
 		
 		//nestor
@@ -150,10 +150,10 @@ public class LibraryMocks {
 		nestor.addComment(book6, comment2);
 		nestor.addComment(book5, comment3);
 		nestor.addComment(book9, comment8);
-		
-		nestor.makeReservation(book10);
-		nestor.makeReservation(book3);
-		nestor.makeReservation(book6);
+//		
+//		nestor.makeReservation(book10);
+//		nestor.makeReservation(book3);
+//		nestor.makeReservation(book6);
 		
 		
 		//ariel
@@ -171,9 +171,9 @@ public class LibraryMocks {
 		ariel.addComment(book2, comment3);
 		ariel.addComment(book7, comment1);
 		
-		ariel.makeReservation(book7);
-		ariel.makeReservation(book9);
-		
+//		ariel.makeReservation(book7);
+//		ariel.makeReservation(book9);
+//		
 		//topBooks
 		topBooks.add(book11);
 		topBooks.add(book2);

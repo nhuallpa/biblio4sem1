@@ -64,7 +64,6 @@ public class LoginActivity extends Activity {
 							String userId = UserServicesImpl.getInstance(ctx).login(mail, pass);
 							if(userId != null){
 								saveConfig(userId);
-								ShowDialog.progressDialog(ctx, 5);
 								if(goToActivity != null){
 									Class<?> classToGo = resolveClass(goToActivity);
 									Intent i = new Intent(LoginActivity.this, classToGo);
@@ -123,10 +122,6 @@ public class LoginActivity extends Activity {
 		});
 		
 	}
-	
-	
-
-	 
 	
 	private boolean isWrong(){
 		

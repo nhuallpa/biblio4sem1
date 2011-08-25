@@ -1,42 +1,42 @@
 package com.library.android.dto;
 
-import java.util.Date;
 
 public class Reservation {
 	
 	private User user;
-	private Date dateReservation;
-	private Book book;
+	private String dateReservation;
+	private String book;
+	private String bookId;
 	private String state;
 	private Library library;
 	
-	public Reservation(User user, Book book, Library library){
-		this.user = user;
-		this.book = book;
-		this.library = library;
+	public Reservation(){}
+	
+//	public Reservation(User user, Book book, Library library){
+//		this.user = user;
+//		this.book = book;
+//		this.library = library;
+//	}
+	
+//	public Reservation(User user, Book book){
+//		this.user = user;
+//		this.book = book;
+//	}
+	
+//	public boolean isDelivered(long reservaId){
+//		return false;
+//	}
+//	
+//	public void cancel(){
+//		
+//	}
+	
+	public void setBookId(String bookId){
+		this.bookId = bookId;
 	}
 	
-	public Reservation(User user, Book book){
-		this.user = user;
-		this.book = book;
-	}
-	
-	public boolean isReserved(long reservaId){
-		boolean encontrado = false;
-		
-//		for(int i = 0; i < library.getListOfReservations().size() && !encontrado; i++){
-//			encontrado = library.getListOfReservations().get(i).equals(this);
-//		}
-		
-		return encontrado;
-	}
-	
-	public boolean isDelivered(long reservaId){
-		return false;
-	}
-	
-	public void cancel(){
-		
+	public String getBookId(){
+		return this.bookId;
 	}
 
 	public User getUser() {
@@ -47,19 +47,19 @@ public class Reservation {
 		this.user = user;
 	}
 
-	public Date getDateReservation() {
+	public String getDateReservation() {
 		return dateReservation;
 	}
 
-	public void setDateReservation(Date dateReservation) {
+	public void setDateReservation(String dateReservation) {
 		this.dateReservation = dateReservation;
 	}
 
-	public Book getBook() {
+	public String getBook() {
 		return book;
 	}
 
-	public void setBook(Book book) {
+	public void setBook(String book) {
 		this.book = book;
 	}
 

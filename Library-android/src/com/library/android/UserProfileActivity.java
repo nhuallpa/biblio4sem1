@@ -68,17 +68,6 @@ public class UserProfileActivity extends Activity {
 		tv_longitude.setText(String.valueOf(latitude));
 	}
 
-//	private void initLocation() {
-//
-//		LocationManager mlocManager =
-//
-//			(LocationManager)getSystemService(Context.LOCATION_SERVICE);
-//
-//			LocationListener mlocListener = new MyLocationListener(this);
-//
-//			mlocManager.requestLocationUpdates( LocationManager.GPS_PROVIDER, 0, 0, mlocListener);
-//
-//	}
 	
 	public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -97,7 +86,8 @@ public class UserProfileActivity extends Activity {
         	}break;
         	
         	case R.id.menu_my_reservations: {
-
+        		Intent i = new Intent(UserProfileActivity.this, MyReservationsActivity.class);
+        		startActivity(i);
         	}break;
 
         }
