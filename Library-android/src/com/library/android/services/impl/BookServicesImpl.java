@@ -42,9 +42,7 @@ public class BookServicesImpl implements BookService {
 	private static BookServicesImpl instance;
 	private static Context context;
 	
-	private BookServicesImpl(){
-
-	}
+	private BookServicesImpl(){}
 	
 	public static BookServicesImpl getInstance(Context ctx){
 		if(instance == null){
@@ -58,28 +56,29 @@ public class BookServicesImpl implements BookService {
 	public List<Book> findBooks(String text){
 		
 		List<Book> booksFounded = new ArrayList<Book>();
-		String url = ConfigWS.SEARCH_BOOK + "?q=" + text;
+		String url = ConfigWS.SEARCH_BOOK;
 
 		try{
-			URL u = new URL(url);
-			HttpURLConnection con = (HttpURLConnection) u.openConnection ();
-			con.setDoInput(true);
-			con.setRequestMethod("GET");
-			con.connect();
-			String response = con.getResponseMessage();
-			if(response.equals("OK")){
-				
-			    JSONArray array = new JSONArray(Utils.parseLine(con.getInputStream()));
-			    
-			    for(int i = 0; i < array.length(); i++){
-			    	JSONObject obj = array.getJSONObject(i);
-			    	Book book = convertToBook(obj);
-			    	booksFounded.add(book);
-			    }
-					
-			}
-
-			con.disconnect();
+			
+			JSONObject json = new JSONObject();
+			HttpPost request = new HttpPost(url);
+			HttpClient client = new DefaultHttpClient();
+			json.put("q", text);
+	        	        
+            StringEntity se = new StringEntity(json.toString());  
+            se.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
+            request.setEntity(se);
+           
+            HttpResponse httpResponse = client.execute(request);
+            
+            JSONArray array = new JSONArray(Utils.parseLine(httpResponse.getEntity().getContent()));
+            
+		    for(int i = 0; i < array.length(); i++){
+		    	JSONObject obj = array.getJSONObject(i);
+		    	Book book = convertToBook(obj);
+		    	booksFounded.add(book);
+		    }
+            
 			
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
@@ -110,8 +109,6 @@ public class BookServicesImpl implements BookService {
             request.setEntity(se);
             
             client.execute(request);
-            
-            
 
 		}catch (JSONException e){} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
@@ -123,22 +120,16 @@ public class BookServicesImpl implements BookService {
 	
 	}
 	
-
 	private List<Comment> findCommentsByBook(String bookId) {
 		List<Comment> comments = new ArrayList<Comment>();
 		
 		String url = ConfigWS.FIND_BOOK_COMMENTS + bookId;
-		try{
-			URL u = new URL(url);
-			HttpURLConnection con = (HttpURLConnection) u.openConnection ();
-			con.setDoInput(true);
-			con.setRequestMethod("GET");
-			con.connect();
-			String response = con.getResponseMessage();
-			if(response.equals("OK")){
+		try {
+			DoGetEntity connection = new DoGetEntity(url);
+			if(connection.getResponse().equals("OK")){
 				
 
-			    JSONArray array = new JSONArray(Utils.parseLine(con.getInputStream()));
+			    JSONArray array = new JSONArray(connection.parseInputStream());
 			    
 			    for(int i = 0; i < array.length(); i++){
 			    	JSONObject obj = array.getJSONObject(i);
@@ -153,15 +144,13 @@ public class BookServicesImpl implements BookService {
 			    	aBook.setTitle(obj.getJSONObject("book").getString("name"));
 			    	aBook.setDescription(obj.getJSONObject("book").getString("description"));
 			    	
-			    	
 			    	comment.setSources(aUser , aBook);
 			    	comments.add(comment);
 			    }
 					
 				Log.d("Find comments by Book: ", "size: " + comments.size());
 			}
-			//array = new JSONArray(request);
-			con.disconnect();
+			connection.disconnect();
 			
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
@@ -179,15 +168,8 @@ public class BookServicesImpl implements BookService {
 		String url = ConfigWS.TO_RESERVE_BOOK + "?bookId=" + bookId + "&userId=" + user.getId() + "&libraryId=" + libraryId;
 		boolean result = false;
 		try{
-			URL u = new URL(url);
-			HttpURLConnection con = (HttpURLConnection) u.openConnection ();
-			con.setDoInput(true);
-			con.connect();
-			String response = con.getResponseMessage();
-			result = response.equals("OK"); 
 
-			con.disconnect();
-			
+			result = doPost(url);
 			
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
@@ -202,18 +184,11 @@ public class BookServicesImpl implements BookService {
 		List<Book> books = new ArrayList<Book>();
 		String url = ConfigWS.FIND_TOP_BOOKS;
 		
-			try{
-//				if(checkConnection(url)){
-					URL u = new URL(url);
-					HttpURLConnection con = (HttpURLConnection) u.openConnection ();
-					
-					con.setDoInput(true);
-					con.setRequestMethod("GET");
-					con.connect();
-					String response = con.getResponseMessage();
-					if(response.equals("OK")){
+			try {
+					DoGetEntity connection = new DoGetEntity(url);
+					if(connection.getResponse().equals("OK")){
 	
-						JSONArray array = new JSONArray(Utils.parseLine(con.getInputStream()));
+						JSONArray array = new JSONArray(connection.parseInputStream());
 					    
 					    for(int i = 0; i < array.length(); i++){
 					    	JSONObject obj = array.getJSONObject(i);
@@ -224,8 +199,7 @@ public class BookServicesImpl implements BookService {
 							
 						
 					}
-					con.disconnect();
-//				} 
+					connection.disconnect();
 			} catch (MalformedURLException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
@@ -233,8 +207,7 @@ public class BookServicesImpl implements BookService {
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
-		
-		
+
 		return books;
 	}
 	
@@ -258,11 +231,7 @@ public class BookServicesImpl implements BookService {
 			
             InputStream inputStream = httpResponse.getEntity().getContent();
             
-            
-            	bitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeStream(inputStream), 50, 70, true);
-            	
-
-//            bitmap = BitmapFactory.decodeStream(inputStream);
+            bitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeStream(inputStream), 50, 70, true);
             
            
 		} catch (MalformedURLException e) {
@@ -279,20 +248,25 @@ public class BookServicesImpl implements BookService {
 	public Book getBookById(String bookId){
 		Book aBook = null;
 		String url = ConfigWS.FIND_BOOK + bookId;
-		try{
-			URL u = new URL(url);
-			HttpURLConnection con = (HttpURLConnection) u.openConnection ();
-			con.setDoInput(true);
-			con.setRequestMethod("GET");
-			con.connect();
-			String response = con.getResponseMessage();
-			if(response.equals("OK")){
+		try {
+			DoGetEntity connection = new DoGetEntity(url);
+			if(connection.getResponse().equals("OK")){
 
-				JSONObject obj = new JSONObject(Utils.parseLine(con.getInputStream()));
-			    
-				aBook = convertToBook(obj);		
+				JSONObject obj = new JSONObject(connection.parseInputStream());
+				aBook = new Book(Long.valueOf(obj.getString("isbn")),
+						obj.getString("name"),
+						obj.getString("author"),
+						null,
+						obj.getString("description"));
+				aBook.setBookId(Long.valueOf(obj.getString("id")));
+				aBook.setListOfComments(findCommentsByBook(obj.getString("id")));
+
+				if(obj.getString("state").equals(States.RESERVED.toString())){
+					aBook.reserveMe();
+				}
+				
 			}
-			con.disconnect();
+			connection.disconnect();
 			
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
@@ -310,15 +284,8 @@ public class BookServicesImpl implements BookService {
 		User user = ConfigurationManager.getInstance(context).getCurrentUser();
 		String url = ConfigWS.CANCEL_RESERVE + "?userId=" + user.getId() + "&bookId=" + bookId;
 		try{
-			URL u = new URL(url);
-			HttpURLConnection con = (HttpURLConnection) u.openConnection ();
-			con.setDoInput(true);
-			con.connect();
-			String response = con.getResponseMessage();
-			result = response.equals("OK"); 
-
-			con.disconnect();
 			
+			result = doPost(url);
 			
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
@@ -334,15 +301,8 @@ public class BookServicesImpl implements BookService {
 		String url = ConfigWS.DELETE_COMMENT + "?userId=" + user.getId() + "&commentId=" + commentId + "&bookId=" + bookId;
 		boolean result = false;
 		try{
-			URL u = new URL(url);
-			HttpURLConnection con = (HttpURLConnection) u.openConnection ();
-			con.setDoInput(true);
-			con.connect();
-			String response = con.getResponseMessage();
-			result = response.equals("OK"); 
-
-			con.disconnect();
 			
+			result = doPost(url);
 			
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
@@ -367,17 +327,59 @@ public class BookServicesImpl implements BookService {
 			if(obj.getString("state").equals(States.RESERVED.toString())){
 				aBook.reserveMe();
 			}
-			
-//			JSONArray librarysJSON = obj.getJSONArray("librarys");
-//			for(int i = 0; i < librarysJSON.length(); i++){
-//				JSONObject aLibrary = librarysJSON.getJSONObject(i);
-//				Library library = new Library(aLibrary.getString("id"), aLibrary.getString("name"));
-//				aBook.addLibrary(library);
-//			}
+
 		}catch(JSONException e){
 			Log.e("Convert to Book", e.getMessage());
 		}
 		
 		return aBook;
+	}
+	
+	private boolean doPost(String url) throws IOException{
+		boolean result = false;
+		URL u = new URL(url);
+		HttpURLConnection con = (HttpURLConnection) u.openConnection ();
+		con.setDoInput(true);
+		con.connect();
+		String response = con.getResponseMessage();
+		result = response.equals("OK"); 
+
+		con.disconnect();
+		
+		return result;
+	}
+	
+	/**
+	 * HTTP connection handler
+	 * @author gonzalo.martin
+	 *
+	 */
+	private class DoGetEntity {
+		
+		HttpURLConnection con;
+		String response;
+		InputStream inputStream;
+		
+		public DoGetEntity(String url) throws IOException{
+			URL u = new URL(url);
+			con = (HttpURLConnection) u.openConnection ();
+			con.setDoInput(true);
+			con.connect();
+			inputStream = con.getInputStream();
+			response = con.getResponseMessage();
+		}
+		
+		public String getResponse(){
+			return this.response;
+		}
+		
+		public String parseInputStream(){
+			return Utils.parseLine(inputStream);
+		}
+		
+		public void disconnect(){
+			this.con.disconnect();
+		}
+		
 	}
 }

@@ -187,22 +187,21 @@ public class BookListItemView extends RelativeLayout {
 		DecimalFormat decimalFormat = new DecimalFormat("#");
 		book = aBook;
 		int commentsSize = aBook.getListOfComments().size();
+//		String commentsSize = aBook.getCommentsSize();
 		setBookTitle(aBook.getTitle());
 		setBookState(String.valueOf(aBook.getState()));
 		setBookAuthor(aBook.getAuthor());
 	
 		setBookCommentsCount(String.valueOf(commentsSize));
 		if(commentsSize == 0){
+//		if(commentsSize.equals("0")){
 			setBookScoreCount("0");
 		} else {
 			setBookScoreCount(decimalFormat.format(aBook.getScore()));
 		}
+//		setBookCommentsCount(commentsSize);
 		
 		setBookPicture(BookServicesImpl.getInstance(ctx).getPicture(aBook.getTitle()));
-
-		
-		
-		
 	}
 
 	
