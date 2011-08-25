@@ -22,6 +22,16 @@ class ReservationController {
 		response.writer.println("Reservation: " + book.name + " by " + user.name)
 	}
 	
+	def MOBcancelReserve = {
+		User user = User.get(params.userId)
+		Book aBook = Book.get(params.bookId)
+		def userFound = User.get(user.id)
+		userFound.cancelReservation aBook
+		response.writer.println("Reservation canceled")
+	}
+	
+	/***************************************************/
+	
     def index = { 
 		redirect(action: 'create')
 	}

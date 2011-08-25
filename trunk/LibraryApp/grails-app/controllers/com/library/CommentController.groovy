@@ -8,69 +8,11 @@ class CommentController {
 	
 	def scaffold = true
 	
-	def getComment = {
-		def commentFounded = Comment.get(params.commentId)
-//		render commentFounded as JSON
-		def jsonData = [
-				description: commentFounded.description,
-				date: commentFounded.date,
-				user: [
-					id: commentFounded.sourceUser.id,
-					name: commentFounded.sourceUser.name,
-					
-					],
-				book: [
-					id:commentFounded.book.id,
-					name: commentFounded.book.name,
-					]
-			]
-		render jsonData
-	}
-	
-	
 	def index = {
 		redirect(action: 'create')
 	}
 	
-	def toComment = {
-		def user = session.user
-		if (!user){
-			goToHome()
-		}
-		Book aBook = Book.get(params.bookId)
-		[book : aBook]
-	
-	}
-	
-	//params: userId,bookId
-	//request: text,rating,extra
-	def toCommentBook = {
-		User user = User.get(params.userId)
-		Book aBook = Book.get(params.bookId)
-		
-		JSONObject jsonObject = request.JSON 
-		String aComment = jsonObject.getString("text")
-		Integer rating = jsonObject.getString("rating")
-		rating -= 48
-		user.addBookComment aBook, aComment, rating
-	}
-	
-	def delComment = {
-		User user = User.get(params.userId)
-		Comment aComment = Comment.get(params.commentId)
-		Book aBook = Book.get(params.bookId)
-		try {
-			aBook.deleteComment aComment
-			user.deleteMyComment aComment
-			user.save()
-			aBook.save()
-			aComment.delete()
-		} catch (CommentDoesNotExistException e){
-			response.writer.println("Error: " + e)
-		}
-		response.writer.println("Comment deleted")
-	}
-	/**************************************************************/
+
 	
 	def addCommentToBook = {
 		User user = session.user
@@ -124,4 +66,64 @@ class CommentController {
 		
 	}
 	
+	def getComment = {
+		def commentFounded = Comment.get(params.commentId)
+//		render commentFounded as JSON
+		def jsonData = [
+				description: commentFounded.description,
+				date: commentFounded.date,
+				user: [
+					id: commentFounded.sourceUser.id,
+					name: commentFounded.sourceUser.name,
+					
+					],
+				book: [
+					id:commentFounded.book.id,
+					name: commentFounded.book.name,
+					]
+			]
+		render jsonData
+	}
+	
+	/** MOBILE **/
+	
+	def toComment = {
+		def user = session.user
+		if (!user){
+			goToHome()
+		}
+		Book aBook = Book.get(params.bookId)
+		[book : aBook]
+	
+	}
+	
+	//params: userId,bookId
+	//request: text,rating,extra
+	def toCommentBook = {
+		User user = User.get(params.userId)
+		Book aBook = Book.get(params.bookId)
+		
+		JSONObject jsonObject = request.JSON
+		String aComment = jsonObject.getString("text")
+		Integer rating = jsonObject.getString("rating")
+		rating -= 48
+		user.addBookComment aBook, aComment, rating
+	}
+	
+	def delComment = {
+		User user = User.get(params.userId)
+		Comment aComment = Comment.get(params.commentId)
+		Book aBook = Book.get(params.bookId)
+		try {
+			aBook.deleteComment aComment
+			user.deleteMyComment aComment
+			user.save()
+			aBook.save()
+			aComment.delete()
+		} catch (CommentDoesNotExistException e){
+			response.writer.println("Error: " + e)
+		}
+		response.writer.println("Comment deleted")
+	}
+
 }
