@@ -15,7 +15,6 @@
 			android:padding="5dip">
 		  </ImageButton>
 		  
-		    
   			<Button
 				android:id="@+id/header_librarys_button"
 				android:layout_width="80dip"

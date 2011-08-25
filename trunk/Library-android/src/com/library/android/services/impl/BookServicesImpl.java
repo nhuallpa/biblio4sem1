@@ -175,7 +175,6 @@ public class BookServicesImpl implements BookService {
 	}
 
 	public boolean toReserveBook(String bookId, String libraryId){
-//		book.reserveMe();
 		User user = ConfigurationManager.getInstance(context).getCurrentUser();
 		String url = ConfigWS.TO_RESERVE_BOOK + "?bookId=" + bookId + "&userId=" + user.getId() + "&libraryId=" + libraryId;
 		boolean result = false;
@@ -239,22 +238,6 @@ public class BookServicesImpl implements BookService {
 		return books;
 	}
 	
-//	private boolean checkConnection(String url) {
-//		
-//		boolean connection = false;
-//		try{
-//			URL u = new URL(url);
-//			HttpURLConnection con = (HttpURLConnection) u.openConnection ();
-//			con.connect();
-//			
-//			String response = con.getResponseMessage();
-//			connection = response.equals("OK");
-//			
-//		}catch (IOException e){
-//			Log.d("Check Connection", "Error connection: " + e.getMessage());
-//		}
-//		return connection;
-//	}
 
 	public Bitmap getPicture(String bookName){
 		Bitmap bitmap = null;
@@ -320,6 +303,30 @@ public class BookServicesImpl implements BookService {
 		}
 		
 		return aBook;
+	}
+	
+	public boolean cancelReserve(String bookId){
+		boolean result = false;
+		User user = ConfigurationManager.getInstance(context).getCurrentUser();
+		String url = ConfigWS.CANCEL_RESERVE + "?userId=" + user.getId() + "&bookId=" + bookId;
+		try{
+			URL u = new URL(url);
+			HttpURLConnection con = (HttpURLConnection) u.openConnection ();
+			con.setDoInput(true);
+			con.connect();
+			String response = con.getResponseMessage();
+			result = response.equals("OK"); 
+
+			con.disconnect();
+			
+			
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 
+		
+		return result;
 	}
 
 	public boolean deleteMyComment(String commentId, String bookId){

@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -16,6 +15,8 @@ import android.content.Context;
 import com.library.android.config.ConfigurationManager;
 import com.library.android.dto.Book;
 import com.library.android.dto.Comment;
+import com.library.android.dto.Library;
+import com.library.android.dto.Reservation;
 import com.library.android.dto.User;
 import com.library.android.services.ConfigWS;
 import com.library.android.utils.Utils;
@@ -96,5 +97,39 @@ public class UserServicesImpl{
 		return comments;
 	}
 
+	public List<Reservation> getMyReservations(){
+		List<Reservation> reservations = new ArrayList<Reservation>();
+		User user = ConfigurationManager.getInstance(ctx).getCurrentUser();
+		String url = ConfigWS.MY_RESERVATIONS +"?userId="+ user.getId();
+		try{
+			URL u = new URL(url);
+			HttpURLConnection con = (HttpURLConnection) u.openConnection ();
+			con.setDoInput(true);
+			con.connect();
+			String request = con.getResponseMessage();
+			if(request.equals("OK")){
+				JSONArray array = new JSONArray(Utils.parseLine(con.getInputStream()));
+				for(int i = 0; i < array.length(); i++){
+					JSONObject obj = array.getJSONObject(i);
+					Reservation aReservation = new Reservation();
+					aReservation.setBook(obj.getJSONObject("book").getString("name"));
+					aReservation.setDateReservation(obj.getString("date"));
+					aReservation.setLibrary(new Library(
+											obj.getJSONObject("library").getString("id"),
+											obj.getJSONObject("library").getString("libraryName")));
+					aReservation.setBookId(obj.getJSONObject("book").getString("id"));
+					reservations.add(aReservation);
+				}
+			}
+		}catch(IOException e){} 
+		catch (JSONException e) {
+			e.printStackTrace();
+		}
+        
+		
+		
+		return reservations;
+		
+	}
 }
 

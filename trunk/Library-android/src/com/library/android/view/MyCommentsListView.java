@@ -20,8 +20,8 @@ public class MyCommentsListView extends ListView {
 	}
 	
 	private void init(Context context) {		
-		NewsAdapter newsAdapter = new NewsAdapter();
-		setAdapter(newsAdapter);
+		CommentsAdapter commentsAdapter = new CommentsAdapter();
+		setAdapter(commentsAdapter);
 		
 	}
 	
@@ -30,13 +30,13 @@ public class MyCommentsListView extends ListView {
 	 * @param commentList
 	 */
 	public void setCommentList(List<Comment> commentList){
-		NewsAdapter newsAdapter = (NewsAdapter)getAdapter();
-		newsAdapter.setComments(commentList);
+		CommentsAdapter commentsAdapter = (CommentsAdapter)getAdapter();
+		commentsAdapter.setComments(commentList);
 		
 	}
 	
 	
-	private class NewsAdapter extends BaseAdapter{
+	private class CommentsAdapter extends BaseAdapter{
 		private List<Comment> commentList;
 
 		@Override
@@ -74,7 +74,7 @@ public class MyCommentsListView extends ListView {
 			if(obj != null && obj instanceof Comment){
 				Comment aComment = (Comment)obj;
 				
-				if(convertView instanceof BookListItemView){
+				if(convertView instanceof MyCommentListItemView){
 					v = (MyCommentListItemView)convertView;
 				}else{
 					v =  new MyCommentListItemView(getContext());
