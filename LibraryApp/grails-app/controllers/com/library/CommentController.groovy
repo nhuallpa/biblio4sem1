@@ -12,7 +12,16 @@ class CommentController {
 		redirect(action: 'create')
 	}
 	
-
+	
+	def toComment = {
+		def user = session.user
+		if (!user){
+			goToHome()
+		}
+		Book aBook = Book.get(params.bookId)
+		[book : aBook]
+	
+	}
 	
 	def addCommentToBook = {
 		User user = session.user
@@ -66,6 +75,9 @@ class CommentController {
 		
 	}
 	
+	
+	/** MOBILE **/
+	
 	def getComment = {
 		def commentFounded = Comment.get(params.commentId)
 //		render commentFounded as JSON
@@ -84,18 +96,8 @@ class CommentController {
 			]
 		render jsonData
 	}
-	
-	/** MOBILE **/
-	
-	def toComment = {
-		def user = session.user
-		if (!user){
-			goToHome()
-		}
-		Book aBook = Book.get(params.bookId)
-		[book : aBook]
-	
-	}
+
+
 	
 	//params: userId,bookId
 	//request: text,rating,extra

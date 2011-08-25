@@ -163,9 +163,9 @@ class BookController {
 				name: obj.name,
 				description: obj.description,
 				author: obj.author,
-				comments: [
-						obj.comments
-					],
+//				comments: [
+//						obj.comments
+//					],
 				]
 			
 			result.add jsonBook
@@ -234,8 +234,12 @@ class BookController {
 	}
 	
 	def searchBook = {
-		def param_q = params.q
+		
+		JSONObject jsonObject = request.JSON
+		
+		def param_q = jsonObject.getString("q")
 		def searchResults = Book.search(param_q, params)
+		
 		List<Book> resultList = searchResults.results
 		def jsonList = new ArrayList()
 		
@@ -250,6 +254,7 @@ class BookController {
 					description: obj.description,
 					author: obj.author,
 					librarys: librarys ,
+					commentsSize: obj.comments.size()
 				]
 				jsonList.add jsonData
 			}
