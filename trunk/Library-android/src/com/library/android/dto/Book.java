@@ -94,11 +94,14 @@ public class Book implements Comparable<Book>{
 	}
 	
 	public double getScore(){
-		double score = new Float(0);
-		for(Comment aComment : listOfComments){
-			score = score + aComment.getScore();
-		}
-		score = score / listOfComments.size();
+
+	  double score = new Float(0);
+			for(Comment aComment : listOfComments){
+				score = score + aComment.getScore();
+			}
+			score = score / listOfComments.size();
+
+
 		return score;
 	}
 	
