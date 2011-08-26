@@ -50,16 +50,16 @@ class ReservationController {
 		
 		Book aBook = Book.get(params.bookId)
 		Library library = Library.get(params.libraryId)
+		User userFound = User.get(user.id)
 		if(!bookAvailable(aBook)){
 			aMessage = "${aBook.name} is not available"
-		} else if (!user.isAttached() && aBook) {
-					user.attach()
-					user.makeReservation(aBook, library)
-					aMessage = "You have reserved ${aBook.name}!"
-				} 
+		} else {
+			userFound.makeReservation(aBook, library)
+			aMessage = "You have reserved ${aBook.name}!"
+		} 
 		flash.message = aMessage
 
-		redirect(controller:'book', action: 'viewDetails', params:[bookId:aBook.id])
+		redirect(controller:'user', action: 'viewProfile', params:[userId:userFound.id])
 	}
 	
 	
@@ -67,7 +67,6 @@ class ReservationController {
 		User user = session.user
 		Book aBook = Book.get(params.bookId)
 		if (!user.isAttached()){
-			user.attach();
 			def userFound = User.get(user.id)
 			userFound.cancelReservation aBook  
 			flash.message = "You have canceled the reservation ${aBook.name}"

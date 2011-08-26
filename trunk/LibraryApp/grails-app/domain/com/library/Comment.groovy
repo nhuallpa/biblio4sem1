@@ -11,7 +11,7 @@ class Comment {
 
 	static constraints = {
 		description (blank : false, nullable: true)
-		book(blank: false)
+		book(blank: false, lazy:false)
 		date(nullable:true)
 		score(nullable:true)
 	}

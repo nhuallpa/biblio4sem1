@@ -53,12 +53,12 @@ class CommentController {
 		}
 		Comment aComment = Comment.get(params.commentId)
 		Book aBook = Book.get(params.bookId)
-
+		User userFound = User.get(user.id)
 		try {
 			aBook.deleteComment aComment
-			user.deleteMyComment aComment
+			userFound.deleteMyComment aComment
 			flash.message = "You have deleted a comment about ${aComment.book.name}"
-			user.save()
+			userFound.save()
 			aBook.save()
 			aComment.delete()
 		} catch (CommentDoesNotExistException e){

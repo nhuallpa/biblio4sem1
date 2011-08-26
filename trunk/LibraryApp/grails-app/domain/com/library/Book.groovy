@@ -53,7 +53,7 @@ class Book implements Taggable{
 	}
 	
 	void deleteComment(Comment aComment){
-		if (!(this.comments as ArrayList<Book>).contains(aComment)) {
+		if (!(this.comments as ArrayList<Comment>).contains(aComment)) {
 			throw new CommentDoesNotExistException()
 		} else {
 			this.comments.remove aComment
