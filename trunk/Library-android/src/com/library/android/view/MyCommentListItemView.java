@@ -4,12 +4,14 @@ import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.library.android.R;
+import com.library.android.UserProfileActivity;
 import com.library.android.dto.Comment;
 import com.library.android.services.impl.BookServicesImpl;
 
@@ -44,9 +46,10 @@ public class MyCommentListItemView extends RelativeLayout {
 					dialog.dismiss();
 					switch (which) {
 					case 0:{
-						if(!BookServicesImpl.getInstance(context).deleteMyComment(comment.getId(),String.valueOf(comment.getBookSource().getBookId()))){
-							Toast.makeText(context, "Error...", Toast.LENGTH_SHORT).show();
-						}
+						BookServicesImpl.getInstance(context).deleteMyComment(comment.getId(),String.valueOf(comment.getBookSource().getBookId()));
+						Toast.makeText(context, "Comment Deleted successfull", Toast.LENGTH_SHORT).show();
+						Intent i = new Intent(context, UserProfileActivity.class);
+						context.startActivity(i);
 					}break;
 
 					case 1:{

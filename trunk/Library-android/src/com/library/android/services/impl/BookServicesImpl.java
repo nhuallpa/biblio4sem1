@@ -282,14 +282,26 @@ public class BookServicesImpl implements BookService {
 	public boolean cancelReserve(String bookId){
 		boolean result = false;
 		User user = ConfigurationManager.getInstance(context).getCurrentUser();
-		String url = ConfigWS.CANCEL_RESERVE + "?userId=" + user.getId() + "&bookId=" + bookId;
+		String url = ConfigWS.CANCEL_RESERVE;
 		try{
 			
-			result = doPost(url);
+			JSONObject json = new JSONObject();
+			HttpPost request = new HttpPost(url);
+			HttpClient client = new DefaultHttpClient();
+			json.put("userId", user.getId());
+			json.put("bookId", bookId);
+	        	        
+            StringEntity se = new StringEntity(json.toString());  
+            se.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
+            request.setEntity(se);
+           
+            client.execute(request);
 			
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (JSONException e) {
 			e.printStackTrace();
 		} 
 		
@@ -298,15 +310,29 @@ public class BookServicesImpl implements BookService {
 
 	public boolean deleteMyComment(String commentId, String bookId){
 		User user = ConfigurationManager.getInstance(context).getCurrentUser();
-		String url = ConfigWS.DELETE_COMMENT + "?userId=" + user.getId() + "&commentId=" + commentId + "&bookId=" + bookId;
+		String url = ConfigWS.DELETE_COMMENT;
 		boolean result = false;
 		try{
 			
-			result = doPost(url);
+			JSONObject json = new JSONObject();
+			HttpPost request = new HttpPost(url);
+			HttpClient client = new DefaultHttpClient();
+			json.put("userId", user.getId());
+			json.put("commentId", commentId);
+			json.put("bookId", bookId);
+	        	        
+            StringEntity se = new StringEntity(json.toString());  
+            se.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
+            request.setEntity(se);
+           
+            client.execute(request);
 			
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
 		
