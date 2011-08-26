@@ -12,7 +12,9 @@ class BookController {
 	
 	static TOP_BOOKS = 6;
 	def bookService
+	def geocoderService
 	def scaffold = true
+	def nearBook
 	
 
 	
@@ -31,11 +33,63 @@ class BookController {
 		def itemPerPage = 9
 		def param_q = params.q
 		params.max = itemPerPage
+		println params
+		
 		if(param_q != ""){
+
 			def searchResults = Book.search(param_q, params)
+			
+			if(params.categorias == "Nearly"){
+				
+				println searchResults
+				def someList = new ArrayList()
+
+				User user = session.user
+				
+				searchResults.results.each{
+					def index = it
+					def librarysAvailables = bookService.getLibraryAvailable(it)
+					librarysAvailables.each {
+						// Solo muestra los libos cercanos en la busqueda, entiendase cercanos
+						// como menor distancia a HugeVal
+						def hugeVal = 999
+						
+						def latLng = geocoderService.geocodeLocation(it)
+						def lat1 = latLng.result.geometry.location.lat
+						def lng1 = latLng.result.geometry.location.lng 
+						def lat = lat1.toDouble()
+						def lng = lng1.toDouble()
+						
+						def userLocation = geocoderService.geocodeLocation(user)
+						def latUser1= userLocation.result.geometry.location.lat 
+						def lngUser1 = userLocation.result.geometry.location.lng
+						def latUser = latUser1.toDouble()
+						def lngUser = lngUser1.toDouble()
+						
+						double latDef = lat
+						latDef = latDef - latUser
+						latDef = latDef * latDef
+						double lngDef = lng
+						lngDef =  lngDef - lngUser
+						lngDef = lngDef * lngDef
+						double distance = Math.sqrt(lngDef + latDef)
+						println distance
+						if ( distance < hugeVal){
+							nearBook = index
+							hugeVal = distance
+						}								
+					}	
+					someList << nearBook
+				}
+							
+				return [searchResults:someList, resultCount:someList.size]
+				
+			}
+			
 			flash.message = "${searchResults.total} results found for search: ${param_q}"
 			flash.q = param_q
 			return [searchResults:searchResults.results, resultCount:searchResults.total]
+
 		} else {
 			redirect(uri:'/')
 		}
