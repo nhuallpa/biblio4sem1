@@ -70,6 +70,9 @@ class BootStrap {
 			def aUser = new User(name: it, password: it)
 			aUser.typesFav.add tagFiction
 			aUser.typesFav.add tagAction
+			def aLoc = new Location(country:"Argentina", city:"Buenos Aires", street:"Florida 200")
+			aUser.setLocation aLoc
+			aLoc.save()
 			aUser.save()
 			assert aUser
 			listOfUsers << aUser 
