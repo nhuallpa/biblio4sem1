@@ -1,5 +1,7 @@
 package com.library
 
+import org.codehaus.groovy.grails.web.json.JSONObject;
+
 import grails.converters.JSON
 
 class ReservationController {
@@ -23,8 +25,9 @@ class ReservationController {
 	}
 	
 	def MOBcancelReserve = {
-		User user = User.get(params.userId)
-		Book aBook = Book.get(params.bookId)
+		JSONObject json = request.JSON
+		User user = User.get(json.getString("userId"))
+		Book aBook = Book.get(json.getString("bookId"))
 		def userFound = User.get(user.id)
 		userFound.cancelReservation aBook
 		response.writer.println("Reservation canceled")
