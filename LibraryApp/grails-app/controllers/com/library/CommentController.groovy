@@ -1,5 +1,7 @@
 package com.library
 
+import grails.converters.JSON
+
 import org.codehaus.groovy.grails.web.json.JSONObject
 
 import com.library.exceptions.CommentDoesNotExistException
@@ -113,9 +115,15 @@ class CommentController {
 	}
 	
 	def delComment = {
-		User user = User.get(params.userId)
-		Comment aComment = Comment.get(params.commentId)
-		Book aBook = Book.get(params.bookId)
+//		User user = User.get(params.userId)
+//		Comment aComment = Comment.get(params.commentId)
+//		Book aBook = Book.get(params.bookId)
+		
+		JSONObject jsonObject = request.JSON
+		User user = User.get(jsonObject.getString("userId"))
+		Comment aComment = Comment.get(jsonObject.getString("commentId"))
+		Book aBook = Book.get(jsonObject.getString("bookId"))
+		
 		try {
 			aBook.deleteComment aComment
 			user.deleteMyComment aComment
@@ -125,7 +133,8 @@ class CommentController {
 		} catch (CommentDoesNotExistException e){
 			response.writer.println("Error: " + e)
 		}
-		response.writer.println("Comment deleted")
+		
+//		render "Comment deleted"
 	}
 
 }
