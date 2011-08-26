@@ -136,7 +136,7 @@ class User {
 	}
 	
 	void deleteMyComment(Comment aComment){
-		if (!(this.commentsDone as ArrayList<Book>).contains(aComment)) {
+		if (!(this.commentsDone as ArrayList<Comment>).contains(aComment)) {
 			throw new CommentDoesNotExistException()
 		} else {
 			this.commentsDone.remove aComment

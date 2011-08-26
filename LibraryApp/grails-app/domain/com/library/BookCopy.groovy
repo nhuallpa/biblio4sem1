@@ -7,6 +7,7 @@ class BookCopy {
 	
 	
     static constraints = {
+		bookMaster(nullable:false)
 		state(inList: States.list())
 		reservation(nullable:true)
     }
