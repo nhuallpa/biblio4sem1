@@ -18,23 +18,20 @@ import com.library.android.mock.LibraryMocks;
 import com.library.android.services.impl.LibraryServicesImpl;
 
 	
-/**api key: 06VodRsRvFxte97Zhz01LJle3sFuSYTO0MQqymQ **/
+/**api map key: 06VodRsRvFxte97Zhz01LJle3sFuSYTO0MQqymQ -  GL**/
+
+/**api map key: 06VodRsRvFxu5-1Rzm-h8QWjfa3U96phJvU26cw -  Notebook**/
 
 public class ShowMapActivity extends MapActivity {
 	
-//	private double minLat;
-//	private double maxLat;
-//	private double maxLong;
-//	private double minLong;
-	
 	private MapView mapView;
-//	private GeoLocation _gActual = new GeoLocation();
 	
 	public void onCreate(Bundle bundle) {
 	    super.onCreate(bundle);
 	    setContentView(R.layout.library_map); // bind the layout to the activity
 	    mapView = (MapView) findViewById(R.id.map_view);
-	    if(getIntent().getExtras().getString("libraryId") == null){
+	    String libraryId = getIntent().getExtras().getString("libraryId"); 
+	    if(libraryId.equals("0")){
 	    	fillLocations();
 	    } else {
 	    	fillLibrary(getIntent().getExtras().getString("libraryId"));
@@ -92,7 +89,7 @@ public class ShowMapActivity extends MapActivity {
 		mapView.setTraffic(true);
 		
 		//Load Map Librarys
-		List<Library> libraries = LibraryMocks.getInstance().getLibraries();
+		List<Library> libraries = LibraryServicesImpl.getInstance().getLibrarys();
 		for(Library item : libraries){
 			MapLocationOverlay itemizedoverlay = new MapLocationOverlay(drawable, this);
 			MapLocation mapLocation = new MapLocation(item.getLocation().getX(), item.getLocation().getY());

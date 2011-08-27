@@ -103,4 +103,45 @@ public class LibraryServicesImpl {
 	
 		return librarys;
 	}
+	
+	public List<Library> getLibrarys(){
+		List<Library> librarys = new ArrayList<Library>();
+		String url = ConfigWS.GET_ALL_LIBRARYS;
+		try{
+				URL u = new URL(url);
+				HttpURLConnection con = (HttpURLConnection) u.openConnection ();
+				
+				con.setDoInput(true);
+				con.setRequestMethod("GET");
+				con.connect();
+				String response = con.getResponseMessage();
+				if(response.equals("OK")){
+
+					JSONArray array = new JSONArray(Utils.parseLine(con.getInputStream()));
+				    
+				    for(int i = 0; i < array.length(); i++){
+				    	JSONObject aLibrary = array.getJSONObject(i);
+				    	Library library = new Library(aLibrary.getString("id"), aLibrary.getString("name"));
+				    	Location aLocation = new Location(aLibrary.getJSONObject("location").getString("street"));
+						aLocation.setCity(aLibrary.getJSONObject("location").getString("city"));
+						aLocation.setCountry(aLibrary.getJSONObject("location").getString("country"));
+						library.setLocation(aLocation);
+						
+						
+				    	librarys.add(library);
+				    }
+						
+					
+				}
+				con.disconnect();
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+	
+		return librarys;
+	}
 }
