@@ -20,7 +20,6 @@ public class LibraryHeaderView extends RelativeLayout {
 	
 	private ImageButton homeButton;
 	private Button librarysButton;
-//	private Button bookStoreButton;
 	private TextView textInfo;
 	
 	public LibraryHeaderView(Context context) {
@@ -78,6 +77,7 @@ public class LibraryHeaderView extends RelativeLayout {
 			public void onClick(View v) {
 				Toast.makeText(context, "Show Library Map", Toast.LENGTH_SHORT).show();
 				Intent i = new Intent(context, ShowMapActivity.class);
+				i.putExtra("libraryId", "0");
 				context.startActivity(i);
 			}
 		});
