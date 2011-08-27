@@ -37,6 +37,26 @@ class LibraryController {
 		render jsonData as JSON
 		
 	}
+	
+	def getAllLibrarys = {
+		def librarys = Library.list()
+		def libraryList = new ArrayList()
+		for(obj in librarys){
+			def jsonData = [
+					id: obj.id,
+					name: obj.name,
+					location: [
+						street: obj.location.street,
+						city: obj.location.city,
+						country: obj.location.country,
+					]
+				]
+			libraryList.add jsonData
+		}
+		
+		render libraryList as JSON
+		
+	}
 
 	
 }
