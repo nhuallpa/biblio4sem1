@@ -37,8 +37,15 @@
                             <span class="isbn">${book?.ISBN}</span>
                         </div>
                         <p class="descripcion">${book.description}</p>
+                        <br/>			
+						<h4>Genre:</h4>
+						<ul class="tag-list">
+							<g:each var="tag" in="${book?.tags}">
+								<li><span>${tag}</span></li>
+							</g:each>
+						</ul>
                         <div class="barra">
-                            <a href="#" id="votar" class="boton">Votar</a>
+<%--                            <a href="#" id="votar" class="boton">Votar</a>--%>
                             <a href="#" id="buscar-librerias" class="boton">Buscar Librerias</a>
                             <a href="#" id="buscar-listado" class="boton">Ver Listado</a>
                             <a href="#" id="buscar-mapa" class="boton">Ver Mapa</a>

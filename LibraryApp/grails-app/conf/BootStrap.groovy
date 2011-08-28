@@ -39,11 +39,6 @@ class BootStrap {
 		def author = "Nulla vehicula"
 		def bookNames = ["It","Thinking in Java","Learning C","Asp.net for Dummies","Codigo da Vinci","Taken","Harry Potter","Flex","HTML 5"]
 		def userNames = ["gonza", "nestor", "ariel", "user", "admin"]
-		
-//		def tagAction = new Tag(name: Constants.TYPE_ACTION).save()
-//		def tagFiction = new Tag(name: Constants.TYPE_FICTION).save()
-//		def tagDrama = new Tag(name: Constants.TYPE_DRAMA).save()
-
 		Random random = new Random()
 		bookNames.each { 
 			def isbn = random.nextInt(456789)
@@ -51,21 +46,20 @@ class BootStrap {
 			theBook.setDescription(description);
 			theBook.setAuthor(author);
 			assert theBook.save()
-			
+			theBook.categorizeMe("web")
+			theBook.categorizeMe("developer")
 			deliveryCopys(theBook)
 			listOfBooks << theBook
 		}
 		
 		userNames.each {
 			User aUser = new User(name: it, password: it, phone:"222-2222", email:"zaraza@gmail.com")
-//			aUser.typesFav.add tagFiction
-//			aUser.typesFav.add tagAction
 			def aLoc = new Location(country:"Argentina", city:"Buenos Aires", street:"Florida 200")
 			aUser.setLocation aLoc
 			aLoc.save()
 			aUser.save()
 			assert aUser
-			aUser.addMyPreferencesTags("accion, it, comedia, terror, java")
+			aUser.addMyPreferencesTags("accion, development, comedia, terror, java")
 			listOfUsers << aUser 
 		}
 		
@@ -128,6 +122,9 @@ class BootStrap {
 			aBook.setAuthor(author)
 			aBook.save()
 			
+			aBook.categorizeMe("fontend")
+			aBook.categorizeMe("gorm")
+			
 			deliveryCopys(aBook)
 		}
 		
@@ -159,6 +156,9 @@ class BootStrap {
 			aBook.setAuthor(author)
 			aBook.save()
 			
+			aBook.categorizeMe("development")
+			aBook.categorizeMe("mobile")
+			
 			deliveryCopys(aBook)
 		}
 	}
@@ -181,6 +181,8 @@ class BootStrap {
 			aBook.setDescription(description)
 			aBook.setAuthor(author)
 			aBook.save()
+			aBook.categorizeMe("development")
+			aBook.categorizeMe("accion")
 			deliveryCopys(aBook)
 		}
 		

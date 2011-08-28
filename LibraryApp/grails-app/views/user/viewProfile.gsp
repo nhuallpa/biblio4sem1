@@ -17,7 +17,7 @@
 			</div>	
 			<br/>			
 			<h4>Favourite Genres</h4>
-			<ul>
+			<ul class="tag-list">
 				<g:each var="tag" in="${userProfile?.tags}">
 					<li><span>${tag}</span></li>
 				</g:each>
@@ -36,7 +36,6 @@
 	
 		<richui:tabContents> 
 			<richui:tabContent> 
-				<h4 class="title-section">Comments Done</h4>
 				<ul class="item-list">
 					<g:each var="commentDone" in="${userProfile?.commentsDone}">
 						<li class="book">
@@ -54,8 +53,6 @@
 				</ul>
 			</richui:tabContent>
 			<richui:tabContent> 
-
-				<h4 class="title-section" >Reservations</h4>
 				<ul class="item-list">
 					<g:each var="reservation" in="${userProfile?.reservations}">
 						<li class="book">
@@ -72,8 +69,20 @@
 				</ul>
 			</richui:tabContent>
 			<richui:tabContent> 
-				This is tab 3. 
-				<g:link action="list">A link</g:link> 
+				<ul id="resultados-recommendation-list" class="columns">
+			  		<g:each in="${booksRecommended}" status="i" var="book">
+			  			<li class="libro">
+						    <div class="imagen"><img  src="<g:createLinkTo dir="images/Book/${book.name}" file="cover.jpg"  />" alt="images/Book/${book.name}" title="images/Book/${book.name}" width="122px" height="180px"/></div>
+						    <ul class="detalles">
+						        <li class="titulo">Titulo ${book.name}</li>
+						        <li class="autor">Autor: ${book.author}</li>
+						        <li class="votos"><span class="icon icon-votos"></span>${book.rating}</li>
+						        <li class="comentarios"><span class="icon icon-comments"></span>${book.totalVotes}</li>
+						        <li class="verDetalles"><a href="${createLink(controller:'book', action:'viewDetails', params:[bookId:book.id])}">ver detalles</a></li>
+						    </ul>                
+						</li>
+			  		</g:each>
+				 </ul>
 			</richui:tabContent> 
 		</richui:tabContents> 
 	</richui:tabView>
