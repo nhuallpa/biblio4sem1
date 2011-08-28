@@ -14,7 +14,6 @@ import com.google.android.maps.Overlay;
 import com.library.android.dto.Library;
 import com.library.android.map.MapLocation;
 import com.library.android.map.MapLocationOverlay;
-import com.library.android.mock.LibraryMocks;
 import com.library.android.services.impl.LibraryServicesImpl;
 
 	
@@ -50,7 +49,17 @@ public class ShowMapActivity extends MapActivity {
 		mapView.setBuiltInZoomControls(true);
 		mapView.setTraffic(true);
 		
-		Library library = LibraryServicesImpl.getInstance().getLibrary(libraryId);
+		Library library = setLocation(LibraryServicesImpl.getInstance().getLibrary(libraryId));
+			
+			MapLocationOverlay itemizedoverlay = new MapLocationOverlay(drawable, this);
+			MapLocation mapLocation = new MapLocation(library.getLocation().getX(), library.getLocation().getY());
+			mapLocation.setDataOverlay(library.getName(), library.getLocation().getAddress());
+			itemizedoverlay.addOverlay(mapLocation.getOverlayItem());
+			mapOverlays.add(itemizedoverlay);
+		
+	}
+	
+	private Library setLocation(Library library){
 		Geocoder coder = new Geocoder(this);
 		List<Address> addressList = null;
 		try {
@@ -65,18 +74,8 @@ public class ShowMapActivity extends MapActivity {
 		if(address.hasLatitude() && address.hasLongitude()){
 			library.getLocation().setX(address.getLatitude());
 			library.getLocation().setY(address.getLongitude());
-			
-			
-			MapLocationOverlay itemizedoverlay = new MapLocationOverlay(drawable, this);
-			MapLocation mapLocation = new MapLocation(library.getLocation().getX(), library.getLocation().getY());
-			mapLocation.setDataOverlay(library.getName(), library.getLocation().getAddress());
-			itemizedoverlay.addOverlay(mapLocation.getOverlayItem());
-			mapOverlays.add(itemizedoverlay);
-			
 		}
-
-		
-		
+		return library;
 	}
 	
 //	-73.58168,-55.04528,-53.65028,-21.78751,Argentina
@@ -91,23 +90,15 @@ public class ShowMapActivity extends MapActivity {
 		//Load Map Librarys
 		List<Library> libraries = LibraryServicesImpl.getInstance().getLibrarys();
 		for(Library item : libraries){
+			
+			Library libraryFinal = setLocation(item);
+			
 			MapLocationOverlay itemizedoverlay = new MapLocationOverlay(drawable, this);
-			MapLocation mapLocation = new MapLocation(item.getLocation().getX(), item.getLocation().getY());
-			mapLocation.setDataOverlay(item.getName(), item.getLocation().getAddress());
+			MapLocation mapLocation = new MapLocation(libraryFinal.getLocation().getX(), libraryFinal.getLocation().getY());
+			mapLocation.setDataOverlay(libraryFinal.getName(), libraryFinal.getLocation().getAddress());
 			itemizedoverlay.addOverlay(mapLocation.getOverlayItem());
 			mapOverlays.add(itemizedoverlay);
 		}
-		
-	    
-	   
-	    
-	    
-//	    GeoPoint point = new GeoPoint((int)(-34.60375*1e6),(int)(-58.38152*1e6));
-//	    MapLocation mapLocation = new MapLocation(-34.60375, -58.38152);
-//	    OverlayItem overlayitem = new OverlayItem(point, "Hola, Mundo!", "Obelisco!!");
-//	    mapLocation.setDataOverlay("Hola, Mundo!", "Obelisco!!");
-//	    itemizedoverlay.addOverlay(mapLocation.getOverlayItem());
-//	    
 	   
 	}
 

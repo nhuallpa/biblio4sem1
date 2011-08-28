@@ -28,11 +28,12 @@
   	
   	<EditText
   		android:id="@+id/edit_buscar"
-  		android:layout_width="wrap_content"
+  		android:layout_width="fill_parent"
   		android:layout_height="wrap_content"
   		android:hint="Search Book, Title, Author"
   		android:layout_marginTop="30dip"
   		android:layout_marginLeft="5dip"
+  		android:layout_marginRight="5dip"
   		android:layout_below="@id/search_book_logo">
   	
   	</EditText>
@@ -41,11 +42,12 @@
   		android:id="@+id/search_button"
   		android:layout_width="wrap_content"
   		android:layout_height="wrap_content"
-		android:layout_marginTop="30dip"
+		android:layout_marginTop="5dip"
 		android:layout_marginLeft="5dip"
+		android:layout_marginRight="5dip"
+		android:layout_alignParentRight="true"
   		android:background="@drawable/search_button_state"
-  		android:layout_below="@id/search_book_logo"
-  		android:layout_toRightOf="@id/edit_buscar">
+  		android:layout_below="@id/edit_buscar">
   	
   	</ImageButton>
   	
