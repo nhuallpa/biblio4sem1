@@ -1,10 +1,9 @@
 package com.library
 
-import org.grails.taggable.Tag
-
+import org.grails.taggable.*
 import com.library.exceptions.*
 
-class User {
+class User implements Taggable{
 	
 	String name
 	String password
@@ -17,7 +16,7 @@ class User {
 	List<Reservation> reservations = new ArrayList<Reservation>()
 	List<Comment> commentsRcvd = new ArrayList<Comment>()
 	List<Comment> commentsDone = new ArrayList<Comment>()
-	List<Tag> typesFav = new ArrayList<Tag>();
+//	List<Tag> typesFav = new ArrayList<Tag>();
 	
 	Location location
 
@@ -32,7 +31,7 @@ class User {
 		reservations(nullable: true)
 		commentsRcvd(nullable: true)
 		commentsDone(nullable: true)
-		typesFav(nullable: true)
+//		typesFav(nullable: true)
     }
 	
 	static mapping = {
@@ -40,10 +39,10 @@ class User {
 		reservations lazy: false
 		commentsRcvd lazy: false
 		commentsDone lazy: false
-		typesFav lazy : false
 	}
 	
-	static hasMany = [typesFav : Tag, commentsDone : Comment, reservations : Reservation]
+//	static hasMany = [typesFav : Tag, commentsDone : Comment, reservations : Reservation]
+	static hasMany = [commentsDone : Comment, reservations : Reservation]
 	
 	public String toString(){
 		return name
@@ -181,11 +180,11 @@ class User {
 		aReservation.save()
 	}
 	
-	List<Book> lookBooksOnCategory(String tag){
-		def books = new ArrayList<Book>()
-		books = Book.findAllByTag(tag)
-		return books
-	}
+//	List<Book> lookBooksOnCategory(String tag){
+//		def books = new ArrayList<Book>()
+//		books = Book.findAllByTag(tag)
+//		return books
+//	}
 	
 	void addUserLocation(String country, String city, String address){
 		Location aLocation = new Location(country: country, city: city, street: address)
@@ -220,6 +219,11 @@ class User {
 		return false;
 	}
 
-	
+	/**
+	 * Apply save before use it method
+	 * */
+	void addMyPreferencesTags(String tags) {
+		this.parseTags(tags)
+	}
 	
 }
