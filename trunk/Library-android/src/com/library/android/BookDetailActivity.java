@@ -122,11 +122,14 @@ public class BookDetailActivity extends Activity {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						dialog.dismiss();
-						if(!BookServicesImpl.getInstance(ctx).toReserveBook(bookId, librarysList.get(which).getLibraryId())){
-							Toast.makeText(ctx, "Error Server", Toast.LENGTH_SHORT).show();
-						} else {
-							Toast.makeText(ctx, "You has reserved " + bookName, Toast.LENGTH_SHORT).show();
-						}
+//						if(!BookServicesImpl.getInstance(ctx).toReserveBook(bookId, librarysList.get(which).getLibraryId())){
+//							Toast.makeText(ctx, "Error Server", Toast.LENGTH_SHORT).show();
+//						} else {
+//							Toast.makeText(ctx, "You has reserved " + bookName, Toast.LENGTH_SHORT).show();
+//						}
+						
+						BookServicesImpl.getInstance(ctx).toReserveBook(bookId, librarysList.get(which).getLibraryId());
+						Toast.makeText(ctx, "You has reserved " + bookName, Toast.LENGTH_SHORT).show();
 					}
 				});
             	 builder.show();
