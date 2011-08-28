@@ -40,9 +40,9 @@ class BootStrap {
 		def bookNames = ["It","Thinking in Java","Learning C","Asp.net for Dummies","Codigo da Vinci","Taken","Harry Potter","Flex","HTML 5"]
 		def userNames = ["gonza", "nestor", "ariel", "user", "admin"]
 		
-		def tagAction = new Tag(name: Constants.TYPE_ACTION).save()
-		def tagFiction = new Tag(name: Constants.TYPE_FICTION).save()
-		def tagDrama = new Tag(name: Constants.TYPE_DRAMA).save()
+//		def tagAction = new Tag(name: Constants.TYPE_ACTION).save()
+//		def tagFiction = new Tag(name: Constants.TYPE_FICTION).save()
+//		def tagDrama = new Tag(name: Constants.TYPE_DRAMA).save()
 
 		Random random = new Random()
 		bookNames.each { 
@@ -57,14 +57,15 @@ class BootStrap {
 		}
 		
 		userNames.each {
-			def aUser = new User(name: it, password: it, phone:"222-2222", email:"zaraza@gmail.com")
-			aUser.typesFav.add tagFiction
-			aUser.typesFav.add tagAction
+			User aUser = new User(name: it, password: it, phone:"222-2222", email:"zaraza@gmail.com")
+//			aUser.typesFav.add tagFiction
+//			aUser.typesFav.add tagAction
 			def aLoc = new Location(country:"Argentina", city:"Buenos Aires", street:"Florida 200")
 			aUser.setLocation aLoc
 			aLoc.save()
 			aUser.save()
 			assert aUser
+			aUser.addMyPreferencesTags("accion, it, comedia, terror, java")
 			listOfUsers << aUser 
 		}
 		

@@ -47,26 +47,32 @@ class UserController {
 		} else {
 			User user = new User(name : params.user_name, password : pass1)
 			if(!isUser(user)){
-				if(params.type_accion){
-					Tag tagAction = new Tag(name: Constants.TYPE_ACTION).save() 
-					user.typesFav.add tagAction
-				}
-				if(params.type_drama){
-					Tag tagDrama = new Tag(name: Constants.TYPE_DRAMA).save()
-					user.typesFav.add tagDrama
-				}
-				if(params.type_ficcion){
-					Tag tagFiction = new Tag(name: Constants.TYPE_FICTION).save()
-					user.typesFav.add tagFiction
-				}
-				if(params.type_novela){
-					Tag tagNovelas = new Tag(name: Constants.TYPE_NOVELAS).save()
-					user.typesFav.add tagNovelas
-				}
-				if(params.type_adventures){
-					Tag tagLiteratura = new Tag(name: Constants.TYPE_ADVENTURES).save()
-					user.typesFav.add tagLiteratura
-				}
+//				if(params.type_accion){
+//					Tag tagAction = new Tag(name: Constants.TYPE_ACTION).save() 
+//					user.typesFav.add tagAction
+//				}
+//				if(params.type_drama){
+//					Tag tagDrama = new Tag(name: Constants.TYPE_DRAMA).save()
+//					user.typesFav.add tagDrama
+//				}
+//				if(params.type_ficcion){
+//					Tag tagFiction = new Tag(name: Constants.TYPE_FICTION).save()
+//					user.typesFav.add tagFiction
+//				}
+//				if(params.type_novela){
+//					Tag tagNovelas = new Tag(name: Constants.TYPE_NOVELAS).save()
+//					user.typesFav.add tagNovelas
+//				}
+//				if(params.type_adventures){
+//					Tag tagLiteratura = new Tag(name: Constants.TYPE_ADVENTURES).save()
+//					user.typesFav.add tagLiteratura
+//				}
+				
+				
+				
+				
+				
+				
 				user.setEmail params.email
 				user.setPhone params.phone
 				
