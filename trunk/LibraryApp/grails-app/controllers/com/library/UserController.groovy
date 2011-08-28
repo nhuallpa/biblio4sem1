@@ -9,7 +9,8 @@ class UserController {
 	
 	def geocoderService
 	def scaffold = true
-
+	def bookService
+	
 	def index = {
 		redirect(action: 'create')
 	}
@@ -121,7 +122,9 @@ class UserController {
 		if(!aUser){
 			goToHome()
 		}
-		[userProfile:aUser]
+		List tags = aUser.tags.collect {it}
+		def booksRecommended = bookService.getRecommendation(tags)
+		[userProfile:aUser, booksRecommended:booksRecommended]
 	}
 	
 	def viewImage = {
