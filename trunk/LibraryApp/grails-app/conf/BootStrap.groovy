@@ -18,7 +18,7 @@ class BootStrap {
 //		}
 		
 		if(Environment.current == Environment.DEVELOPMENT){
-			initLibraryEntyties()
+			initLibraryEntities()
 			initOneLibray()
 			initOtherLibrary()
 			initThirdLibrary()
@@ -27,16 +27,6 @@ class BootStrap {
     }
 	
 	private def initOneLibray(){
-//		def l = new Location(country:"Argentina", city:"Buenos Aires", street:"Florida 600")
-//		l.save()
-//		def a = new Library(libraryId:'BM_ATENEO', name:'Ateneo', location: l)
-//		if  (!a.save()){
-//			a.errors.each {
-//				println it
-//			}
-//			assert a
-//		}
-//		
 		
 		def listOfBooks = []
 		def listOfUsers = []
@@ -67,7 +57,7 @@ class BootStrap {
 		}
 		
 		userNames.each {
-			def aUser = new User(name: it, password: it)
+			def aUser = new User(name: it, password: it, phone:"222-2222", email:"zaraza@gmail.com")
 			aUser.typesFav.add tagFiction
 			aUser.typesFav.add tagAction
 			def aLoc = new Location(country:"Argentina", city:"Buenos Aires", street:"Florida 200")
@@ -117,16 +107,6 @@ class BootStrap {
 		def description = "Donec vitae augue ut quam tempor molestie a sed nulla. Donec feugiat ligula vitae tortor adipiscing dignissim."
 		def author = "Maecenas at felis"
 		
-//		def l = new Location(country:"Argentina", city:"Buenos Aires", street:"Av de Mayo 1400")
-//		l.save()
-//		def libraryCongreso = new Library(libraryId:'BM_Congreso', name:'Congreso', location: l)
-//		if  (!libraryCongreso.save()){
-//			libraryCongreso.errors.each {
-//				println it
-//			}
-//			assert libraryCongreso
-//		}
-		
 		def bookNames = ["Borges and His Fiction",
 						 "Building Java Programs",
 						 "Flex Solutions",
@@ -155,16 +135,6 @@ class BootStrap {
 	private void initThirdLibrary(){
 		def description = "Donec vitae augue ut quam tempor molestie a sed nulla. Donec feugiat ligula vitae tortor adipiscing dignissim."
 		def author = "Maecenas at felis"
-		
-//		def l = new Location(country:"Argentina", city:"Buenos Aires", street:"Av Rivadavia 6800")
-//		l.save()
-//		def libraryFlores = new Library(libraryId:'BM_Flores', name:'Flores', location: l)
-//		if  (!libraryFlores.save()){
-//			libraryFlores.errors.each {
-//				println it
-//			}
-//			assert libraryFlores
-//		}
 		
 		def bookNames = ["iPad 2",
 						 "My iPad",
@@ -196,16 +166,6 @@ class BootStrap {
 		def description = "Donec vitae augue ut quam tempor molestie a sed nulla. Donec feugiat ligula vitae tortor adipiscing dignissim."
 		def author = "Maecenas at felis"
 		
-//		def l = new Location(country:"Argentina", city:"Buenos Aires", street:"Av Rivadavia 11684")
-//		l.save()
-//		def libraryLiniers = new Library(libraryId:'BM_Liniers', name:'Liniers', location: l)
-//		if  (!libraryLiniers.save()){
-//			libraryLiniers.errors.each {
-//				println it
-//			}
-//			assert libraryLiniers
-//		}
-		
 		def bookNames = ["Beginning Ruby",
 						 "Ruby on Rails 3",
 						 "Grails in Action",
@@ -231,7 +191,7 @@ class BootStrap {
 		return comments[random.nextInt(comments.size())]
 	}
 	
-	private void initLibraryEntyties() {
+	private void initLibraryEntities() {
 		
 		
 		

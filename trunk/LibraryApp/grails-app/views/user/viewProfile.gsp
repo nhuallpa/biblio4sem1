@@ -34,7 +34,8 @@
 				  </g:link>
 					<span class="text"><g:link controller="book" action="viewDetails" params="[bookId:reservation.bookCopy.bookMaster.id]">${reservation.nameOfBook()}</g:link></span>
 					|
-					<span class="text">${reservation.reservationDate}</span>
+					<span class="text">${reservation.reservationDate}</span><br/>
+					<span class="text">State: ${reservation.state}</span><br/><br/>
 					<span class="link-item"><g:link controller="reservation" action="cancelReserve" params="[bookId:reservation.bookCopy.bookMaster.id]">Cancel</g:link></span>
 			    </li>
 			</g:each>
