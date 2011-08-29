@@ -68,17 +68,12 @@ class UserController {
 //					Tag tagLiteratura = new Tag(name: Constants.TYPE_ADVENTURES).save()
 //					user.typesFav.add tagLiteratura
 //				}
-				
-				
-				
-				
-				
-				
 				user.setEmail params.email
 				user.setPhone params.phone
-				
 				user.save()
-				redirect(action: "login",userId:user.name, password:user.password)
+				user.addMyPreferencesTags(params.tags)
+				
+				redirect(action: "viewProfile",params:[userId:user.id])
 			} else {
 				flash.message = "${user.name} is existing!! Try again..."
 				redirect(action: "registration")
