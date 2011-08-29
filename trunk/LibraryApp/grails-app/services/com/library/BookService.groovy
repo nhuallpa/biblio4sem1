@@ -31,13 +31,17 @@ class BookService {
 	
 	def getRecommendation(List tags) {
 	
-		String findByTagHQL = """
-		SELECT DISTINCT book
-		FROM Book book, TagLink tagLink
-		WHERE book.id = tagLink.tagRef
-		AND tagLink.tag.name IN (:tags)
-		"""
-		
-		Book.executeQuery(findByTagHQL, [tags:tags], [max:6] )
+		def books
+		if (tags) {
+			String findByTagHQL = """
+			SELECT DISTINCT book
+			FROM Book book, TagLink tagLink
+			WHERE book.id = tagLink.tagRef
+			AND tagLink.tag.name IN (:tags)
+			"""
+			
+			books = Book.executeQuery(findByTagHQL, [tags:tags], [max:6] )
+		}
+		return books
 	}
 }
