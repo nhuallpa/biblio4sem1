@@ -59,10 +59,10 @@
 					<label for="email">Email</label>
 					<g:textField name="email"></g:textField>
 				</fieldset>
-				<fieldset>
-					<label for="email">Photo</label>
-					<g:textField name="photo"></g:textField>
-				</fieldset>			
+<%--				<fieldset>--%>
+<%--					<label for="email">Photo</label>--%>
+<%--					<g:textField name="photo"></g:textField>--%>
+<%--				</fieldset>			--%>
 				<fieldset>
 					<label for="email">Phone</label>
 					<g:textField name="phone"></g:textField>
