@@ -68,7 +68,7 @@
 					<g:textField name="phone"></g:textField>
 				</fieldset>		
 				<fieldset>
-					<g:submitButton id="login" name="Register" />
+					<g:submitButton name="Register" />
 				</fieldset>																				
 			</fieldset>
 		</g:form>	
