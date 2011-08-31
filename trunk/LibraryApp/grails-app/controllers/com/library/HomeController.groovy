@@ -5,4 +5,6 @@ class HomeController {
     def index = { }
 	
 	def administration = {}
+	
+	def notification = {}
 }

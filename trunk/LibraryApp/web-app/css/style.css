@@ -684,6 +684,10 @@ a[title="Next Page"] {
     background: transparent url(../images/icons/icon-arrow-right.png) 0 0 no-repeat; 
 }
 
+.book img {
+	float: left;
+}
+
 
 /*------------------------------------------------	BEGIN  	TOP OF BOOK-------------------------------------		*/
 
@@ -764,7 +768,8 @@ a[title="Next Page"] {
 /*------------------------------------------------	BEGIN  	REGISTRATION-------------------------------------		*/
 
 .registerForm {	
-	 width:600px; 
+	width:600px;
+	height: 400px; 
     border:1px solid #899caa;
     border-radius:3px 0 3px 3px;
     -moz-border-radius:3px 0 3px 3px;
@@ -774,7 +779,7 @@ a[title="Next Page"] {
     margin: 0 auto;
 }
 
-.registerForm fieldset {
+.registerForm fieldset ,.checksForm fieldset{
     margin:0 0 12px 0;
     display:block;
     border:0;
@@ -811,7 +816,6 @@ a[title="Next Page"] {
 
 .checksForm {
 	width:350px; 
-    border:1px solid #899caa;
     border-radius:3px 0 3px 3px;
     -moz-border-radius:3px 0 3px 3px;
     margin-top:-1px;
@@ -857,7 +861,7 @@ a[title="Next Page"] {
 	float: left;
 }
 
-.resumen-derecho {
+.book .resumen-derecho {
 	float: left;
 }
 
@@ -1016,4 +1020,9 @@ version: 2.8.0r4
 	float: left; 
 	padding-right: 5px;
 	color: #5A5A5A;
+}
+
+.require {
+	color: red;
+	font-weight: bold;	
 }

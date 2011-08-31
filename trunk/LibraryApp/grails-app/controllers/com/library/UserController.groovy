@@ -23,22 +23,25 @@ class UserController {
 		
 		User user = User.findByNameAndPassword(params.userId, params.password)
 		if (user) {
+			flash.message = "your login was successful"
 			session.user = user
 		} else {
+			flash.message = "I am sorry but your user or password was incorrected. try again..."
 			session.user = null
+			redirect(controller:"home", action:"notification")
 		}
-		redirect(uri:'/')
+		goToHome()
 	}
 	
 	def logout = {
 		log.info "User agent: " + request.getHeader("User-Agent")
 		session.invalidate()
-		redirect(action:"login")
+		goToHome()
 	}
 	
 	def registration = {
-		
 	}
+	
 	
 	def toRegister = {
 		String pass1 = params.password1
@@ -48,32 +51,16 @@ class UserController {
 		} else {
 			User user = new User(name : params.user_name, password : pass1)
 			if(!isUser(user)){
-//				if(params.type_accion){
-//					Tag tagAction = new Tag(name: Constants.TYPE_ACTION).save() 
-//					user.typesFav.add tagAction
-//				}
-//				if(params.type_drama){
-//					Tag tagDrama = new Tag(name: Constants.TYPE_DRAMA).save()
-//					user.typesFav.add tagDrama
-//				}
-//				if(params.type_ficcion){
-//					Tag tagFiction = new Tag(name: Constants.TYPE_FICTION).save()
-//					user.typesFav.add tagFiction
-//				}
-//				if(params.type_novela){
-//					Tag tagNovelas = new Tag(name: Constants.TYPE_NOVELAS).save()
-//					user.typesFav.add tagNovelas
-//				}
-//				if(params.type_adventures){
-//					Tag tagLiteratura = new Tag(name: Constants.TYPE_ADVENTURES).save()
-//					user.typesFav.add tagLiteratura
-//				}
 				user.setEmail params.email
 				user.setPhone params.phone
-				user.save()
-				user.addMyPreferencesTags(params.tags)
 				
-				redirect(action: "viewProfile",params:[userId:user.id])
+				Location location = new Location(country:params.country, city:params.city, street:params.street).save()
+				user.setLocation(location)
+				if (user.save()) {
+					flash.message = "your resgistration was successful"
+					user.addMyPreferencesTags(params.tags)
+					redirect(controller:"home", action:"notification")
+				}
 			} else {
 				flash.message = "${user.name} is existing!! Try again..."
 				redirect(action: "registration")
