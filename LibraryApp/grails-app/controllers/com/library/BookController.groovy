@@ -46,6 +46,8 @@ class BookController {
 
 				User user = session.user
 				
+				
+				
 				searchResults.results.each{
 					def index = it
 					def librarysAvailables = bookService.getLibraryAvailable(it)
