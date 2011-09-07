@@ -16,12 +16,13 @@
 				|
 			</div>	
 			<br/>			
-			<h4>Favourite Genres</h4>
+			<h4>Favourite Genres</h4><a id="edit-tags-profile-button" href="#">edit</a>
 			<ul class="tag-list">
 				<g:each var="tag" in="${userProfile?.tags}">
 					<li><span>${tag}</span></li>
 				</g:each>
 			</ul>
+			
 		</div>
 	</div>
 	<g:if test="${flash.message}">
@@ -86,5 +87,6 @@
 			</richui:tabContent> 
 		</richui:tabContents> 
 	</richui:tabView>
+	
 </body>
 </html>

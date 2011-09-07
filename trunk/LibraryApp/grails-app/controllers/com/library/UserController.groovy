@@ -251,5 +251,7 @@ class UserController {
 		render reservationsList as JSON
 	}
 	
-	
+	def updateTags = {
+		goToHome()
+	}
 }

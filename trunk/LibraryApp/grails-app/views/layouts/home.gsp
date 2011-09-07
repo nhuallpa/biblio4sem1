@@ -129,5 +129,32 @@
                 </form>
             </div>
         </div>
+        <div id="edit-tags-profile" class="popup">
+			<div class="head">
+		        <span class="icon icon-login"></span><span>Edit tags</span>
+		        <a href="#" id="boton-cerrar" class="icon icon-close boton-cerrar"></a>
+		    </div>
+			<div class="body">
+			    <g:form controller="user" action="updateTags">
+					<g:textArea name="tags-area"></g:textArea>
+					<g:hiddenField name="idUser" value="${session?.user?.id}"/>
+					<g:submitButton value="update" name="submit-tags"/>
+				</g:form>
+			</div>
+		</div>
+		<div id="edit-tags-book" class="popup">
+			<div class="head">
+		        <span class="icon icon-login"></span><span>Edit tags</span>
+		        <a href="#" id="boton-cerrar" class="icon icon-close boton-cerrar"></a>
+		    </div>
+			<div class="body">
+			    <g:form controller="book" action="updateTags">
+					<g:textArea name="tags-area"></g:textArea>
+					<g:hiddenField name="idBook" value="${book?.id}"/>
+					<g:submitButton value="update" name="submit-tags"/>
+				</g:form>
+			</div>
+		</div>
 	</body>
+	
 </html>
