@@ -44,6 +44,7 @@
 								<li><span>${tag}</span></li>
 							</g:each>
 						</ul>
+						<a id="edit-tags-book-button" href="#">edit</a>
                         <div class="barra">
 <%--                            <a href="#" id="votar" class="boton">Votar</a>--%>
                             <a href="#" id="buscar-librerias" class="boton">Buscar Librerias</a>

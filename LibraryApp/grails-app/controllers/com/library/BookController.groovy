@@ -333,4 +333,11 @@ class BookController {
 	
 	}
 	
+	def updateTags = {
+		goToHome()
+	}
+	
+	void goToHome(){
+		redirect(uri: '/')
+	}
 }
