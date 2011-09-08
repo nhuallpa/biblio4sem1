@@ -39,10 +39,10 @@ class Book implements Taggable{
 		return name
 	}
 	
+	@Deprecated
 	List<Book> similarsToMe(){
 		def books = Book.findAllByTag(this.tags.get(0))
 		return books
-		
 	}
 
 	void addComment(Comment aComment){
