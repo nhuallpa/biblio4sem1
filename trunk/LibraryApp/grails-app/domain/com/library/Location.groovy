@@ -23,7 +23,6 @@ class Location {
 		def addr = []
 		String address
 		addr << this.street << this.city << this.country
-		//println("addressline=" + address.join(','))
 		address = addr.join(',')
 		return address
 	}

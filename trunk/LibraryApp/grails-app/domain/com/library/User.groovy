@@ -16,7 +16,6 @@ class User implements Taggable{
 	List<Reservation> reservations = new ArrayList<Reservation>()
 	List<Comment> commentsRcvd = new ArrayList<Comment>()
 	List<Comment> commentsDone = new ArrayList<Comment>()
-//	List<Tag> typesFav = new ArrayList<Tag>();
 	
 	Location location
 
@@ -31,7 +30,6 @@ class User implements Taggable{
 		reservations(nullable: true)
 		commentsRcvd(nullable: true)
 		commentsDone(nullable: true)
-//		typesFav(nullable: true)
     }
 	
 	static mapping = {
@@ -41,7 +39,6 @@ class User implements Taggable{
 		commentsDone lazy: false
 	}
 	
-//	static hasMany = [typesFav : Tag, commentsDone : Comment, reservations : Reservation]
 	static hasMany = [commentsDone : Comment, reservations : Reservation]
 	
 	public String toString(){
@@ -66,6 +63,7 @@ class User implements Taggable{
 	}
 	
 	/* Alguien tiene que crearlo en la library */
+	@Deprecated
 	void returnBook (Book aBook){
 		
 		def flag = 0
@@ -80,9 +78,6 @@ class User implements Taggable{
 		aBook.returnMe()
 	}
 		
-	
-	
-	
 	void addBookComment(Book aBook, String aString, Integer score ){
 		
 		def aComment = new Comment(description: aString,
@@ -94,7 +89,7 @@ class User implements Taggable{
 		this.commentsDone.add aComment
 		
 	}
-	
+	@Deprecated
 	void comment(User sourceUser, String aString, Integer score){
 		Comment aComment = new Comment(description:aString, sourceUser:sourceUser, score: score)
 		this.commentsRcvd?.add(aComment)
@@ -102,14 +97,14 @@ class User implements Taggable{
 		this.rating = average
 		this.totalVotes += 1
 	}
-	
+	@Deprecated
 	void addUserComment(User aUser, String aString, Integer score ){
 		if ( this.equals(aUser)) throw new UserCannotCommentItselfException()
 		def comment = new Comment(sourceUser: this, description:aString, score: score)
 		this.commentsDone.add(comment)
 		aUser.comment(this, aString, score)		
     }
-	
+	@Deprecated
 	List<Book> lookSimilars(Book aBook){
 		return aBook.similarsToMe()
 	}
@@ -141,7 +136,7 @@ class User implements Taggable{
 			this.commentsDone.remove aComment
 		}
 	}
-	
+	@Deprecated
 	void deleteComment(Comment aComment){
 		
 		def flag = 0
@@ -151,14 +146,9 @@ class User implements Taggable{
 				flag = 1
 			}
 		}
-		if (flag == 0) throw new CommentDoesNotExistException()
-//		else {
-//				aComment.sourceUser.deleteComment(aComment)
-//			}
-		
-		
+		if (flag == 0) throw new CommentDoesNotExistException()		
 	}
-	
+	@Deprecated
 	void pullOutBook(Book aBook){
 		
 		def flag = 0
@@ -173,29 +163,20 @@ class User implements Taggable{
 		aBook.retireMe()
 	}
 	
-	void addReservation(Reservation aReservation){
+	private void addReservation(Reservation aReservation){
 		Date date = new Date()
 		aReservation.reservationDate = date
 		this.reservations?.add aReservation
 		aReservation.save()
 	}
 	
-//	List<Book> lookBooksOnCategory(String tag){
-//		def books = new ArrayList<Book>()
-//		books = Book.findAllByTag(tag)
-//		return books
-//	}
-	
+	@Deprecated
 	void addUserLocation(String country, String city, String address){
 		Location aLocation = new Location(country: country, city: city, street: address)
 		this.location = aLocation
 	}
 	
-	//  Leaved for further updates, first the basics.
-	//	void addLibraryComment(Library aLibrary, String aString, Integer score ){
-	//		aLibrary.comment(this, aString, score)
-	//   }
-	
+	@Deprecated
 	String seeAddress(){
 		if (this.location == null) return "Buenos Aires, Paseo Colon 850"
 		return this.location.address()
