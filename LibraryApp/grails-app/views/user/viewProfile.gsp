@@ -15,6 +15,9 @@
 				<span class="text">Phone: ${userProfile?.phone }</span>
 				|
 			</div>	
+			<br/>
+			Points acumulates: 40 <a href="#">EXCHANGE!!!</a>
+			<br/>
 			<br/>			
 			<h4>Favourite Genres</h4><a id="edit-tags-profile-button" href="#">edit</a>
 			<ul class="tag-list">
@@ -65,6 +68,8 @@
 							<span class="text">${reservation.reservationDate}</span><br/>
 							<span class="text">State: ${reservation.state}</span><br/><br/>
 							<span class="link-item"><g:link controller="reservation" action="cancelReserve" params="[bookId:reservation.bookCopy.bookMaster.id]">Cancel</g:link></span>
+							<span class="link-item"><a href="#">Retire</a></span>
+							<span class="link-item"><a href="#">Return</a></span>
 					    </li>
 					</g:each>
 				</ul>
