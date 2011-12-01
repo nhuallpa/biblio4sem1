@@ -13,6 +13,7 @@ class User implements Taggable{
 	String phone
 	long rating
 	long totalVotes
+	int score
 	List<Reservation> reservations = new ArrayList<Reservation>()
 	List<Comment> commentsRcvd = new ArrayList<Comment>()
 	List<Comment> commentsDone = new ArrayList<Comment>()
@@ -30,6 +31,7 @@ class User implements Taggable{
 		reservations(nullable: true)
 		commentsRcvd(nullable: true)
 		commentsDone(nullable: true)
+		score(nullable: true)
     }
 	
 	static mapping = {
@@ -43,6 +45,14 @@ class User implements Taggable{
 	
 	public String toString(){
 		return name
+	}
+	
+	void addScore(int score){
+		this.score = this.score + score
+	}
+	
+	void clearScore(){
+		this.score = 0
 	}
 	
 	void makeReservation(Book aBook, Library aLibrary) {
