@@ -43,8 +43,17 @@ class User implements Taggable{
 	
 	static hasMany = [commentsDone : Comment, reservations : Reservation]
 	
+	static int SCORE_RESERVE = 20
+	static int SCORE_COMMENT = 5
+	
 	public String toString(){
 		return name
+	}
+	
+	void substractScore(int score){
+		if(score <= this.score){
+			this.score = this.score - score;
+		}
 	}
 	
 	void addScore(int score){
@@ -66,6 +75,7 @@ class User implements Taggable{
 		this.addReservation(aReservation)
 		aLibrary.addToReservations(aReservation)
 		this.save()
+		addScore(SCORE_RESERVE)//Score por reservar
 	}
 
 	private Boolean isReserved(Book aBook) {
@@ -97,7 +107,7 @@ class User implements Taggable{
 		
 		aBook.addComment(aComment)
 		this.commentsDone.add aComment
-		
+		addScore(SCORE_COMMENT)
 	}
 	@Deprecated
 	void comment(User sourceUser, String aString, Integer score){
@@ -134,6 +144,7 @@ class User implements Taggable{
 			this.reservations.remove reservationFound
 			reservationFound.getBookCopy().cancelReservation()
 			reservationFound.delete()
+			substractScore(SCORE_RESERVE)
 		} else {
 			throw new ReservationDoesNotExistException()
 		}
@@ -144,6 +155,7 @@ class User implements Taggable{
 			throw new CommentDoesNotExistException()
 		} else {
 			this.commentsDone.remove aComment
+			substractScore(SCORE_COMMENT)
 		}
 	}
 	@Deprecated
