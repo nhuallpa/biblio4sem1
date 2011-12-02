@@ -57,8 +57,5 @@ class LibraryController {
 		render libraryList as JSON
 		
 	}
-
-	def awards = {
-		[awards : Award.list()]
-	}
+	
 }

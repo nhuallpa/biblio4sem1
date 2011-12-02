@@ -59,7 +59,7 @@ class BootStrap {
 			User aUser = new User(name: it, password: it, phone:"222-2222", email:"zaraza@gmail.com")
 			def aLoc = new Location(country:"Argentina", city:"Buenos Aires", street:"Florida 200")
 			aUser.setLocation aLoc
-			aUser.setScore(20)
+			aUser.setScore(5)
 			aLoc.save()
 			aUser.save()
 			assert aUser
@@ -90,12 +90,18 @@ class BootStrap {
 		
 		/*** RESERVATION ****/
 		(listOfUsers[0] as User).makeReservation(listOfBooks[0], librarys[0])
+		(listOfUsers[0] as User).addScore(20)
 		(listOfUsers[0] as User).makeReservation(listOfBooks[1], librarys[0])
+		(listOfUsers[0] as User).addScore(20)
+		
 		(listOfUsers[1] as User).makeReservation(listOfBooks[2], librarys[0])
 		(listOfUsers[1] as User).makeReservation(listOfBooks[3], librarys[0])
+		
 		(listOfUsers[2] as User).makeReservation(listOfBooks[4], librarys[0])
 		(listOfUsers[2] as User).makeReservation(listOfBooks[5], librarys[0])
+		
 		(listOfUsers[3] as User).makeReservation(listOfBooks[6], librarys[0])
+		
 		(listOfUsers[4] as User).makeReservation(listOfBooks[7], librarys[0])
 		(listOfUsers[4] as User).makeReservation(listOfBooks[8], librarys[0])
 					
@@ -254,21 +260,41 @@ class BootStrap {
 	}
 	
 	private void initAwards(){
-		def a1 = new Award(score : 10, detail : 'Prestamo gratis 1 semana')
+		def a1 = new Award(score : 100, detail : 'Prestamo gratis 1 semana')
 		assert a1.save()
 		awards.add(a1)
 		
-		def a2 = new Award(score : 20, detail : 'Prestamo gratis 2 semanas')
+		def a2 = new Award(score : 200, detail : 'Prestamo gratis 2 semanas')
 		assert a2.save()
 		awards.add(a2)
 		
-		def a3 = new Award(score : 30, detail : 'Prestamo gratis 3 semanas')
+		def a3 = new Award(score : 300, detail : 'Prestamo gratis 3 semanas')
 		assert a3.save()
 		awards.add(a3)
 		
-		def a4 = new Award(score : 40, detail : 'Libro Gratis')
+		def a4 = new Award(score : 400, detail : 'Libro Gratis')
 		assert a4.save()
 		awards.add(a4)
+		
+		def a5 = new Award(score : 450, detail : '2 Libros Gratis')
+		assert a5.save()
+		awards.add(a5)
+		
+		def a6 = new Award(score : 500, detail : '1 Entrada Cine')
+		assert a6.save()
+		awards.add(a6)
+		
+		def a7 = new Award(score : 600, detail : '2 Entradas Cine')
+		assert a7.save()
+		awards.add(a7)
+		
+		def a8 = new Award(score : 650, detail : '1 Comida')
+		assert a8.save()
+		awards.add(a8)
+		
+		def a9 = new Award(score : 800, detail : 'Comida x 2')
+		assert a9.save()
+		awards.add(a9)
 	}
 	
     def destroy = {
