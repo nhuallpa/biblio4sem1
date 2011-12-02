@@ -16,7 +16,10 @@
 				|
 			</div>	
 			<br/>
-			Points acumulates: 40 <a href="#">EXCHANGE!!!</a>
+<%--			Points acumulates: 40 <a href="#">EXCHANGE!!!</a>--%>
+			<g:link controller="library" action="awards">Awards</g:link>
+			<br/>
+				Your score: ${userProfile?.score }
 			<br/>
 			<br/>			
 			<h4>Favourite Genres</h4><a id="edit-tags-profile-button" href="#">edit</a>

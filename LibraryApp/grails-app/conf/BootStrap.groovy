@@ -8,6 +8,8 @@ import com.library.*
 class BootStrap {
 	
 	private List<Library> librarys = new ArrayList<Library>() 
+	
+	private List<Award> awards = new ArrayList<Award>()
 
     def init = { servletContext ->
 //		if (Environment.current == Environment.PRODUCTION){
@@ -23,6 +25,7 @@ class BootStrap {
 			initOtherLibrary()
 			initThirdLibrary()
 			initFourthLibrary()
+			initAwards()
 		}
     }
 	
@@ -56,6 +59,7 @@ class BootStrap {
 			User aUser = new User(name: it, password: it, phone:"222-2222", email:"zaraza@gmail.com")
 			def aLoc = new Location(country:"Argentina", city:"Buenos Aires", street:"Florida 200")
 			aUser.setLocation aLoc
+			aUser.setScore(20)
 			aLoc.save()
 			aUser.save()
 			assert aUser
@@ -247,6 +251,24 @@ class BootStrap {
 	private Integer randomScore() {
 		Random random = new Random()
 		return random.nextInt(5)
+	}
+	
+	private void initAwards(){
+		def a1 = new Award(score : 10, detail : 'Prestamo gratis 1 semana')
+		assert a1.save()
+		awards.add(a1)
+		
+		def a2 = new Award(score : 20, detail : 'Prestamo gratis 2 semanas')
+		assert a2.save()
+		awards.add(a2)
+		
+		def a3 = new Award(score : 30, detail : 'Prestamo gratis 3 semanas')
+		assert a3.save()
+		awards.add(a3)
+		
+		def a4 = new Award(score : 40, detail : 'Libro Gratis')
+		assert a4.save()
+		awards.add(a4)
 	}
 	
     def destroy = {
