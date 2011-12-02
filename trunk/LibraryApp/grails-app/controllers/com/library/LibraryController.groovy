@@ -39,7 +39,7 @@ class LibraryController {
 	}
 	
 	def getAllLibrarys = {
-		def librarys = Library.list()
+		List<Library> librarys = Library.list()
 		def libraryList = new ArrayList()
 		for(obj in librarys){
 			def jsonData = [
@@ -58,5 +58,7 @@ class LibraryController {
 		
 	}
 
-	
+	def awards = {
+		[awards : Award.list()]
+	}
 }
