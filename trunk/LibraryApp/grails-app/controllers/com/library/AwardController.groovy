@@ -19,7 +19,7 @@ class AwardController {
 		if(type.equals('default')){
 			defaultAwards = Award.list()
 		} else {
-			int score = Integer.valueOf(params.score)
+			int score = userFound.score
 			defaultAwards = getMyAwardList(score)
 		}
 		[awards : defaultAwards, myScore : userFound.score]

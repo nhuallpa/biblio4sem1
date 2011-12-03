@@ -17,13 +17,16 @@
 					<div class="botones_header">
 						<a id="book_store" href="${createLink(controller:'book', action:'index')}">Books store</a>
                 		<a id="librarys" href="${createLink(controller:'library', action:'gmaps')}">Librarys</a>
+                		<g:if test="${session.user }">
+                			<a id="awards-button" href="${createLink(controller:'award', action:'awards', params:[type:'default'])}">Awards</a>
+                		</g:if>
 					</div>
 
                     <div id="usuario">
                     		
                     	<g:if test="${session.user}">
                     		<a id="logout-button" href="${createLink(controller:'user', action:'logout')}">Logout<span class="icon icon-login"></span></a>
-                    		<a id="name-to-profile" href="${createLink(controller:'user', action:'viewProfile', params:[userId:session.user.id])}">${session.user.name}</a>
+                    		<a id="name-to-profile" href="${createLink(controller:'user', action:'viewProfile', params:[userId:session.user.id])}">${session.user.name}</a>                    		
                     	</g:if>
                     	<g:else>
                     		<a id="login-button" href="#">Login<span class="icon icon-login"></span></a>

@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
 <meta name="layout" content="home"/>
-    <title>Books Store</title>
+    <title>Awards</title>
     <g:javascript src="jquery/components/paginator.js"/>
     <g:javascript >
     	    $(document).ready(function(){
@@ -12,10 +12,11 @@
     </g:javascript>
 </head>
 <body>
-	Premios
+	Awards
 	<ul id="resultados" class="columns">
 		<g:each in="${awards}" var="award">
 			<li class="libro">
+			<div class="imagen"><img src="<g:createLinkTo dir="images/award/${award.category}" file="award.jpg"  />" title="Image" width="122px" height="180px"/></div>
 				<ul class="detalles">
 					<li class="titulo">${award.detail}</li>
 					<li class="autor">Puntos: ${award.score}</li>

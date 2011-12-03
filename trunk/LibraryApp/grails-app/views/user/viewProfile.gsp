@@ -13,19 +13,19 @@
 				<span class="text">email: ${userProfile?.email }</span>
 				|
 				<span class="text">Phone: ${userProfile?.phone }</span>
-				|
+				
+				<br/><br/>	
 				<span class="text">Your score: ${userProfile?.score }</span>
 				| 
 				<g:if test="${userProfile?.score >= 100}">
-     				<g:link controller="award" action="awards" params="[type:'user', score:userProfile?.score]">Exchange!</g:link>
+     				<g:link controller="award" action="awards" params="[type:'user']">Exchange!</g:link>
    				</g:if>
 				
 			</div>	
 			<br/>
 <%--			Points acumulates: 40 <a href="#">EXCHANGE!!!</a>--%>
-			<g:link controller="award" action="awards" params="[type:'default']">Awards</g:link>
-			<br/>
-				
+			
+			<br/>		
 			<br/>			
 			<h4>Favourite Genres</h4><a id="edit-tags-profile-button" href="#">edit</a>
 			<ul class="tag-list">
