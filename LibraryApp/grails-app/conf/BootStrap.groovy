@@ -260,39 +260,39 @@ class BootStrap {
 	}
 	
 	private void initAwards(){
-		def a1 = new Award(score : 100, detail : 'Prestamo gratis 1 semana')
+		def a1 = new Award(score : 100, detail : 'Prestamo gratis 1 semana', category : 'prestamo')
 		assert a1.save()
 		awards.add(a1)
 		
-		def a2 = new Award(score : 200, detail : 'Prestamo gratis 2 semanas')
+		def a2 = new Award(score : 200, detail : 'Prestamo gratis 2 semanas', category : 'prestamo')
 		assert a2.save()
 		awards.add(a2)
 		
-		def a3 = new Award(score : 300, detail : 'Prestamo gratis 3 semanas')
+		def a3 = new Award(score : 300, detail : 'Prestamo gratis 3 semanas' , category : 'prestamo')
 		assert a3.save()
 		awards.add(a3)
 		
-		def a4 = new Award(score : 400, detail : 'Libro Gratis')
+		def a4 = new Award(score : 400, detail : 'Libro Gratis', category : 'libro')
 		assert a4.save()
 		awards.add(a4)
 		
-		def a5 = new Award(score : 450, detail : '2 Libros Gratis')
+		def a5 = new Award(score : 450, detail : '2 Libros Gratis', category : 'libro')
 		assert a5.save()
 		awards.add(a5)
 		
-		def a6 = new Award(score : 500, detail : '1 Entrada Cine')
+		def a6 = new Award(score : 500, detail : 'Cine x 1', category : 'cine')
 		assert a6.save()
 		awards.add(a6)
 		
-		def a7 = new Award(score : 600, detail : '2 Entradas Cine')
+		def a7 = new Award(score : 600, detail : 'Cine x 2', category : 'cine')
 		assert a7.save()
 		awards.add(a7)
 		
-		def a8 = new Award(score : 650, detail : '1 Comida')
+		def a8 = new Award(score : 650, detail : 'Comida x 1' , category : 'comida')
 		assert a8.save()
 		awards.add(a8)
 		
-		def a9 = new Award(score : 800, detail : 'Comida x 2')
+		def a9 = new Award(score : 800, detail : 'Comida x 2', category : 'comida')
 		assert a9.save()
 		awards.add(a9)
 	}
