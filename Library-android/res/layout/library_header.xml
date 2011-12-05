@@ -28,14 +28,24 @@
    				android:layout_alignParentRight="true">
 			</Button>	
 
-		
+			<Button
+				android:id="@+id/header_awards_button"
+				android:layout_width="80dip"
+   				android:layout_height="30dip"
+   				android:text="Awards"
+   				android:layout_marginTop="10dip"
+   				android:layout_marginRight="10dip"
+   				android:textColor="#FFFFFF"
+   				android:background="#000000"
+   				android:padding="5dip"
+   				android:layout_centerHorizontal="true">
+			</Button>
 			<TextView
 				android:id="@+id/header_text"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:text="text"
 				android:visibility="invisible"
-				android:textColor="#FF0000"
 				android:layout_centerHorizontal="true"
 				android:layout_below="@id/header_librarys_button"
 				android:layout_marginLeft="10dip"

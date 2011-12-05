@@ -27,6 +27,7 @@ public class Constants {
 	public final static int TO_COMMENT = 4;
 	public final static int MY_COMMENTS = 5;
 	public final static int TO_RESERVE = 6;
+	public final static int AWARDS = 7;
 	
 	public static String GOOGLE_MAP_KEY = "06VodRsRvFxte97Zhz01LJle3sFuSYTO0MQqymQ";
 	

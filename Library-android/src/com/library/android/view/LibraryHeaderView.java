@@ -2,6 +2,7 @@ package com.library.android.view;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.library.android.AwardsActivity;
 import com.library.android.BookListActivity;
 import com.library.android.R;
 import com.library.android.ShowMapActivity;
@@ -20,6 +22,7 @@ public class LibraryHeaderView extends RelativeLayout {
 	
 	private ImageButton homeButton;
 	private Button librarysButton;
+	private Button awardsButton;
 	private TextView textInfo;
 	
 	public LibraryHeaderView(Context context) {
@@ -59,7 +62,7 @@ public class LibraryHeaderView extends RelativeLayout {
 		this.addView(inflated);
 		homeButton = (ImageButton) findViewById(R.id.header_button_home);
 		librarysButton = (Button) findViewById(R.id.header_librarys_button);
-//		bookStoreButton = (Button) findViewById(R.id.header_book_store_button);
+		awardsButton = (Button) findViewById(R.id.header_awards_button);
 		textInfo = (TextView) findViewById(R.id.header_text);
 		
 		homeButton.setOnClickListener(new OnClickListener() {
@@ -81,22 +84,22 @@ public class LibraryHeaderView extends RelativeLayout {
 				context.startActivity(i);
 			}
 		});
-		
-//		bookStoreButton.setOnClickListener(new OnClickListener() {
-//			
-//			@Override
-//			public void onClick(View v) {
-//				Toast.makeText(context, "Show Book Store", Toast.LENGTH_SHORT).show();
-//				//show book store
-//			}
-//		});
-
+		awardsButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Toast.makeText(context, "Show Awards!!", Toast.LENGTH_SHORT).show();
+				Intent i = new Intent(context, AwardsActivity.class);
+				context.startActivity(i);
+			}
+		});
 	}
 	
 	
 	public void setInfo(String text){
 		this.textInfo.setText(text);
 		this.textInfo.setVisibility(VISIBLE);
+		this.textInfo.setTextColor(Color.BLACK);
 	}
 	
 	public Button getLibraryButton(){

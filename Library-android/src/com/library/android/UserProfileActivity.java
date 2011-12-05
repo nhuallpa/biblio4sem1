@@ -34,38 +34,6 @@ public class UserProfileActivity extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.profile);
 		
-		
-		tv_latitude = (TextView) findViewById(R.id.text_latitud);
-		tv_longitude = (TextView) findViewById(R.id.text_longitud);
-		showMapButton = (Button) findViewById(R.id.show_map_button);
-		
-		setValues();
-		
-		showMapButton.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				String lat = String.valueOf(latitude);
-				String lon = String.valueOf(longitude);
-//				Uri name = Uri.parse("geo:lat,lon?q=name");
-				String name = "now!";
-//				initLocation();
-				setValues();
-				Intent intent = new Intent(android.content.Intent.ACTION_VIEW, 
-						Uri.parse("geo:" + lat + "," + lon + "?q=" + name));
-//						Uri.parse("geo:0,0?q=" + lat + "," + lon + " (" + name + ")"));
-						startActivity(intent);
-
-			}
-		});
-		
-		
-		
-	}
-	
-	private void setValues(){
-		tv_latitude.setText(String.valueOf(longitude));
-		tv_longitude.setText(String.valueOf(latitude));
 	}
 
 	

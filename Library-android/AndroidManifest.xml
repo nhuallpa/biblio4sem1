@@ -75,8 +75,11 @@
         <activity android:name=".ShowMapActivity"
         			android:theme="@android:style/Theme.NoTitleBar"
                   android:label="@string/app_name">            
-        </activity>                
-		
+        </activity>       
+                 
+		<activity android:name=".AwardsActivity"
+                  android:label="@string/app_name">            
+        </activity>       
 
 		
     </application>

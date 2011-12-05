@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF" >
+    
+    <RelativeLayout 
+        android:id="@+id/award_item_relative"
+        android:layout_width="fill_parent"
+    	android:layout_height="fill_parent"
+    	android:layout_margin="5dip"
+    	android:background="@drawable/relative_state">
+    	
+        <ImageView 
+            android:id="@+id/award_item_picture"
+            android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:src="@drawable/icon"/>
+        
+	    <TextView 
+	        android:id="@+id/award_item_detail"
+	        android:layout_width="fill_parent"
+	    	android:layout_height="wrap_content"
+	    	android:text="detail"
+	    	android:layout_marginLeft="3dip"
+	    	android:layout_toRightOf="@id/award_item_picture"
+	    	android:textColor="#000000"/>
+	    
+	    <TextView 
+	        android:id="@+id/award_item_score"
+	        android:layout_width="fill_parent"
+	    	android:layout_height="wrap_content"
+	    	android:text="score"
+	    	android:layout_below="@id/award_item_detail"
+	    	android:gravity="center"
+	    	android:textColor="#000000"/>
+        
+    </RelativeLayout>
+
+    
+</LinearLayout>
