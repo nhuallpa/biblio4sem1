@@ -1,5 +1,9 @@
 package com.library
 
+import grails.converters.JSON
+
+import org.codehaus.groovy.grails.web.json.JSONObject
+
 class AwardController {
 
 	def scaffold = true
@@ -15,14 +19,14 @@ class AwardController {
 		}
 		User userFound = User.get(user.id)
 		def type = params.type
-		def defaultAwards = null
+		def awardsList = null
 		if(type.equals('default')){
-			defaultAwards = Award.list()
+			awardsList = Award.list()
 		} else {
 			int score = userFound.score
-			defaultAwards = getMyAwardList(score)
+			awardsList = getMyAwardList(score)
 		}
-		[awards : defaultAwards, myScore : userFound.score]
+		[awards : awardsList, myScore : userFound.score]
 	}
 	
 	def exchange = {
@@ -51,5 +55,46 @@ class AwardController {
 	
 	void goToHome(){
 		redirect(uri: '/')
+	}
+	
+	/** MOBILE **/
+	
+	def awardsList = {
+		def awardsList = new ArrayList()
+		def awardsFounded = Award.list()
+		
+		for(obj in awardsFounded){
+			def jsonAward = [
+				detail : obj.detail,
+				score : obj.score,
+				category : obj.category
+			]
+			awardsList.add(jsonAward)
+		}
+		
+		def jsonData = [
+				awards : awardsList
+			]
+		render jsonData as JSON
+		
+	}
+	
+	def picture = {
+		JSONObject jsonObject = request.JSON
+		def awardName = jsonObject.getString("category")
+		def location = new File("web-app/images/award/" + awardName + "/award.jpg")
+		response.setContentType("application/jpg")
+		response.setContentLength(location.size().toInteger())
+		OutputStream out = response.getOutputStream();
+		out.write(location.bytes);
+		out.close();
+	}
+	
+	def toExchange = {
+		JSONObject jsonObject = request.JSON
+		def userId = jsonObject.getString("userId")
+		def subScore = jsonObject.getString("score")
+		User userFounded = User.get(Long.valueOf(userId))
+		userFounded.substractScore(Integer.valueOf(subScore))
 	}
 }
