@@ -20,6 +20,7 @@
 				<ul class="detalles">
 					<li class="titulo">${award.detail}</li>
 					<li class="autor">Puntos: ${award.score}</li>
+					<li class="info"><a href="${createLink(controller:'award', action:'info', params:[userId:session.user.id, award_id: award.id])}">Info</a></li>					
 					<g:if test="${myScore >= award.score}">
 						<li class="verDetalles"><a href="${createLink(controller:'award', action:'exchange', params:[userId:session.user.id, subScore: award.score])}">Adquirir</a></li>
 					</g:if>
