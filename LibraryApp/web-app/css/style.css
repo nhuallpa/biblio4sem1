@@ -230,11 +230,37 @@ ul.detalles li.verDetalles {
     font-size: 14px;
 }
 
+ul.detalles li.info {
+    position: absolute;
+    bottom: 0;
+    background: black;
+    font-size: 14px;
+    margin-bottom: 36px;
+}
+
+
 ul.detalles li.verDetalles a {
     padding: 3px 16px;
     text-decoration: none;
     color: white;
     float: left;
+}
+
+ul.detalles li.info a {
+    padding: 3px 16px;
+    text-decoration: none;
+    color: white;
+    float: left;
+}
+
+#award-picture {
+	width: 122px;
+	height: 180px;	
+}
+
+#award-detail {
+	font-weight: bold;
+	border-bottom: 1px black dashed;
 }
 
 /* ======================= */

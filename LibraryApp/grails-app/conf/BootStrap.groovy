@@ -260,39 +260,45 @@ class BootStrap {
 	}
 	
 	private void initAwards(){
-		def a1 = new Award(score : 100, detail : 'Prestamo gratis 1 semana', category : 'prestamo')
+		
+		def awardsInfo = ["At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.",
+							"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+							"The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from de Finibus Bonorum et Malorum by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.",
+							"It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)."]
+		
+		def a1 = new Award(score : 100, detail : 'Cine x 1', category : 'cine', info : awardsInfo[0])
 		assert a1.save()
 		awards.add(a1)
 		
-		def a2 = new Award(score : 200, detail : 'Prestamo gratis 2 semanas', category : 'prestamo')
+		def a2 = new Award(score : 300, detail : 'Cine x 2', category : 'cine', info : awardsInfo[0])
 		assert a2.save()
 		awards.add(a2)
 		
-		def a3 = new Award(score : 300, detail : 'Prestamo gratis 3 semanas' , category : 'prestamo')
+		def a3 = new Award(score : 350, detail : 'Comida x 1' , category : 'comida', info : awardsInfo[1])
 		assert a3.save()
 		awards.add(a3)
 		
-		def a4 = new Award(score : 400, detail : 'Libro Gratis', category : 'libro')
+		def a4 = new Award(score : 400, detail : 'Comida x 2', category : 'comida', info : awardsInfo[1])
 		assert a4.save()
 		awards.add(a4)
 		
-		def a5 = new Award(score : 450, detail : '2 Libros Gratis', category : 'libro')
+		def a5 = new Award(score : 450, detail : 'Entrada recital', category : 'recital', info : awardsInfo[2])
 		assert a5.save()
 		awards.add(a5)
 		
-		def a6 = new Award(score : 500, detail : 'Cine x 1', category : 'cine')
+		def a6 = new Award(score : 550, detail : 'Entrada recital x 2', category : 'recital', info : awardsInfo[2])
 		assert a6.save()
 		awards.add(a6)
 		
-		def a7 = new Award(score : 600, detail : 'Cine x 2', category : 'cine')
+		def a7 = new Award(score : 1000, detail : '1 Pasaje a Colonia - Uruguay', category : 'viaje', info : awardsInfo[3])
 		assert a7.save()
 		awards.add(a7)
 		
-		def a8 = new Award(score : 650, detail : 'Comida x 1' , category : 'comida')
+		def a8 = new Award(score : 1500, detail : '1 Pasaje a Cataratas' , category : 'viaje', info : awardsInfo[3])
 		assert a8.save()
 		awards.add(a8)
 		
-		def a9 = new Award(score : 800, detail : 'Comida x 2', category : 'comida')
+		def a9 = new Award(score : 2000, detail : '1 Pasaje a Brasil', category : 'viaje', info : awardsInfo[3])
 		assert a9.save()
 		awards.add(a9)
 	}

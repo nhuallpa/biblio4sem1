@@ -29,6 +29,17 @@ class AwardController {
 		[awards : awardsList, myScore : userFound.score]
 	}
 	
+	def info = {
+		User user = session.user
+		if (!user){
+			goToHome()
+		}
+		def awardId = params.award_id
+		Award awardFounded = Award.get(Long.valueOf(awardId))
+		User userFound = User.get(user.id)
+		[award : awardFounded, myScore : userFound.score]
+	}
+	
 	def exchange = {
 		User user = User.get(Long.valueOf(params.userId))
 		user.substractScore(Integer.valueOf(params.subScore))
