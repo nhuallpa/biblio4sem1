@@ -16,7 +16,6 @@ import android.widget.Toast;
 
 import com.library.android.config.ConfigurationManager;
 import com.library.android.config.Constants;
-import com.library.android.dialog.ShowDialog;
 import com.library.android.services.ConfigWS;
 import com.library.android.services.impl.UserServicesImpl;
 
@@ -103,7 +102,11 @@ public class LoginActivity extends Activity {
 					
 					case Constants.TO_COMMENT:{
 						classToGo = ToCommentBookActivity.class;
-					}
+					}break;
+					
+					case Constants.AWARDS:{
+						classToGo = AwardsActivity.class;
+					}break;
 				}
 				
 				return classToGo;
