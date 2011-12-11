@@ -43,6 +43,7 @@
 		<richui:tabLabels> 
 			<richui:tabLabel selected="true" title="Comments" /> 
 			<richui:tabLabel title="Reservation" /> 
+			<richui:tabLabel title="Delivered" />
 			<richui:tabLabel title="Recommendation" /> 
 		</richui:tabLabels>
 	
@@ -67,18 +68,37 @@
 			<richui:tabContent> 
 				<ul class="item-list">
 					<g:each var="reservation" in="${userProfile?.reservations}">
-						<li class="book">
-						  <g:link controller="book" action="viewDetails" params="[bookId:reservation.bookCopy.bookMaster.id]">
-						  	<img  src="<g:createLinkTo dir="images/Book/${reservation.nameOfBook()}" file="cover.jpg" />"/>
-						  </g:link>
-							<span class="text"><g:link controller="book" action="viewDetails" params="[bookId:reservation.bookCopy.bookMaster.id]">${reservation.nameOfBook()}</g:link></span>
-							|
-							<span class="text">${reservation.reservationDate}</span><br/>
-							<span class="text">State: ${reservation.state}</span><br/><br/>
-							<span class="link-item"><g:link controller="reservation" action="cancelReserve" params="[bookId:reservation.bookCopy.bookMaster.id]">Cancel</g:link></span>
-							<span class="link-item"><a href="#">Retire</a></span>
-							<span class="link-item"><a href="#">Return</a></span>
-					    </li>
+						<g:if test="${reservation.isReserved()}">
+							<li class="book">
+							  <g:link controller="book" action="viewDetails" params="[bookId:reservation.bookCopy.bookMaster.id]">
+							  	<img  src="<g:createLinkTo dir="images/Book/${reservation.nameOfBook()}" file="cover.jpg" />"/>
+							  </g:link>
+								<span class="text"><g:link controller="book" action="viewDetails" params="[bookId:reservation.bookCopy.bookMaster.id]">${reservation.nameOfBook()}</g:link></span>
+								|
+								<span class="text">${reservation.reservationDate}</span><br/>
+								<span class="text">State: ${reservation.stateOfBook()}</span><br/><br/>
+								<span class="link-item"><g:link controller="reservation" action="cancelReserve" params="[bookId:reservation.bookCopy.bookMaster.id]">Cancel</g:link></span>
+								<span class="link-item"><g:link controller="reservation" action="deliverBook" params="[reservationId:reservation.id]">Deliver</g:link></span>
+						    </li>
+						</g:if>
+					</g:each>
+				</ul>
+			</richui:tabContent>
+			<richui:tabContent> 
+				<ul class="item-list">
+					<g:each var="reservation" in="${userProfile?.reservations}">
+						<g:if test="${reservation.isDelivered()}">
+							<li class="book">
+							  <g:link controller="book" action="viewDetails" params="[bookId:reservation.bookCopy.bookMaster.id]">
+							  	<img  src="<g:createLinkTo dir="images/Book/${reservation.nameOfBook()}" file="cover.jpg" />"/>
+							  </g:link>
+								<span class="text"><g:link controller="book" action="viewDetails" params="[bookId:reservation.bookCopy.bookMaster.id]">${reservation.nameOfBook()}</g:link></span>
+								|
+								<span class="text">${reservation.reservationDate}</span><br/>
+								<span class="text">State: ${reservation.stateOfBook()}</span><br/><br/>
+								<span class="link-item"><a href="#">Return</a></span>
+						    </li>
+						</g:if>
 					</g:each>
 				</ul>
 			</richui:tabContent>

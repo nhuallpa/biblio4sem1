@@ -20,7 +20,7 @@ class BookCopy {
 		this.state = States.AVAILABLE
 	}
 	
-	void retireMe(){
+	void deliver(){
 		this.state = States.DELIVERED
 	}
 	
@@ -30,5 +30,9 @@ class BookCopy {
 	
 	Boolean isReserved(){
 		return (state == States.RESERVED)
+	}
+	
+	Boolean isDelivered(){
+		return (state == States.DELIVERED)
 	}
 }

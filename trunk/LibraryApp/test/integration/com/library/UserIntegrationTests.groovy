@@ -31,16 +31,14 @@ class UserIntegrationTests extends GroovyTestCase {
 		userTwo = new User(name: "Nestor", location: locationTwo)
 		assertTrue userTwo.validate()
 		assertNotNull userTwo.save()
-		
-		
-		
-		
+
     }
 
     protected void tearDown() {
         super.tearDown()
     }
 
+	///** Nestor: por el momento no estamos comentando a otros usuarios*//
 	// Tests the retrieve of a user with comments attached.
     void testNewUserWithAll() {
 		userTwo.addUserComment(user, "Buen usuario", 5)

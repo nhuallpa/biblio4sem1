@@ -30,16 +30,17 @@ class Reservation {
 		this.user = aUser
 		this.state = States.RESERVED
 		aBookCopy.reserveMe()
-		// this.library = aBook?.library
 	}
 	
 	Boolean isReserved() {
-		return (state == States.RESERVED)
+		return bookCopy.isReserved()
 	}
 	
-	Boolean isDelivereded() {
-		return ( state == States.DELIVERED)
+	Boolean isDelivered() {
+		return bookCopy.isDelivered()
     }
+	
+	
 	
 	String nameOfBook() {
 		String name
@@ -55,5 +56,11 @@ class Reservation {
 			state = bookCopy.state
 		}
 		return state
+	}
+	/**
+	 * After a reservation, a user has to take away the book reserved
+	 * */
+	void deliverBook() {
+		bookCopy?.deliver();
 	}
 }

@@ -1,25 +1,177 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuites>
-  <testsuite errors="0" failures="0" hostname="nh-d005b94446fa" id="0" name="UserIntegrationTests" package="com.library" tests="9" time="5.109" timestamp="2011-08-28T19:59:38">
+  <testsuite errors="0" failures="0" hostname="nh-d005b94446fa" id="0" name="BookCopyIntegrationTests" package="com.library" tests="3" time="11.906" timestamp="2011-12-10T22:36:02">
       <properties />
 
-      <testcase classname="com.library.UserIntegrationTests" name="testNewUserWithAll" time="1.016" />
+      <testcase classname="com.library.BookCopyIntegrationTests" name="testCreateBookCopyInOneLibrary" time="11.14" />
 
-      <testcase classname="com.library.UserIntegrationTests" name="testScoreOnUsers" time="0.078" />
+      <testcase classname="com.library.BookCopyIntegrationTests" name="testCreateBookCopyInTwoLibrary" time="0.219" />
 
-      <testcase classname="com.library.UserIntegrationTests" name="testUserTryToCommentItself" time="0.078" />
+      <testcase classname="com.library.BookCopyIntegrationTests" name="testUpdateStateBookCopy" time="0.484" />
 
-      <testcase classname="com.library.UserIntegrationTests" name="testUserCommentABook" time="0.313" />
+      <system-out><![CDATA[--Output from testCreateBookCopyInOneLibrary--
+--Output from testCreateBookCopyInTwoLibrary--
+--Output from testUpdateStateBookCopy--
+]]></system-out>
 
-      <testcase classname="com.library.UserIntegrationTests" name="testUserCategorizeABook" time="0.406" />
+      <system-err><![CDATA[--Output from testCreateBookCopyInOneLibrary--
+--Output from testCreateBookCopyInTwoLibrary--
+--Output from testUpdateStateBookCopy--
+]]></system-err>
 
-      <testcase classname="com.library.UserIntegrationTests" name="testUserTryToFindSimilars" time="0.844" />
+  </testsuite>
+  <testsuite errors="0" failures="0" hostname="nh-d005b94446fa" id="1" name="BookIntegrationTests" package="com.library" tests="2" time="4.047" timestamp="2011-12-10T22:36:14">
+      <properties />
 
-      <testcase classname="com.library.UserIntegrationTests" name="testOwnTags" time="0.297" />
+      <testcase classname="com.library.BookIntegrationTests" name="testNewBook" time="0.141" />
 
-      <testcase classname="com.library.UserIntegrationTests" name="testFindBookByMyOwnInterested" time="1.015" />
+      <testcase classname="com.library.BookIntegrationTests" name="testTopFive" time="3.89" />
 
-      <testcase classname="com.library.UserIntegrationTests" name="testFindBookByMyOwnInterestedTwo" time="1.047" />
+      <system-out><![CDATA[--Output from testNewBook--
+--Output from testTopFive--
+]]></system-out>
+
+      <system-err><![CDATA[--Output from testNewBook--
+--Output from testTopFive--
+]]></system-err>
+
+  </testsuite>
+  <testsuite errors="0" failures="0" hostname="nh-d005b94446fa" id="2" name="LibraryIntegrationTests" package="com.library" tests="5" time="0.375" timestamp="2011-12-10T22:36:18">
+      <properties />
+
+      <testcase classname="com.library.LibraryIntegrationTests" name="testNewLibrary" time="0.016" />
+
+      <testcase classname="com.library.LibraryIntegrationTests" name="testModifLibrary" time="0.015" />
+
+      <testcase classname="com.library.LibraryIntegrationTests" name="testDeleteLibrary" time="0.078" />
+
+      <testcase classname="com.library.LibraryIntegrationTests" name="testEvilSave" time="0.219" />
+
+      <testcase classname="com.library.LibraryIntegrationTests" name="testHealSave" time="0.047" />
+
+      <system-out><![CDATA[--Output from testNewLibrary--
+--Output from testModifLibrary--
+--Output from testDeleteLibrary--
+--Output from testEvilSave--
+--Output from testHealSave--
+]]></system-out>
+
+      <system-err><![CDATA[--Output from testNewLibrary--
+--Output from testModifLibrary--
+--Output from testDeleteLibrary--
+--Output from testEvilSave--
+--Output from testHealSave--
+]]></system-err>
+
+  </testsuite>
+  <testsuite errors="0" failures="0" hostname="nh-d005b94446fa" id="3" name="LibraryLocationIntegrationTests" package="com.library" tests="3" time="0.109" timestamp="2011-12-10T22:36:18">
+      <properties />
+
+      <testcase classname="com.library.LibraryLocationIntegrationTests" name="testNewLibraryWithLocation" time="0.015" />
+
+      <testcase classname="com.library.LibraryLocationIntegrationTests" name="testModifLibraryWithLocation" time="0.016" />
+
+      <testcase classname="com.library.LibraryLocationIntegrationTests" name="testDeleteLibraryWithLocationByCascade" time="0.062" />
+
+      <system-out><![CDATA[--Output from testNewLibraryWithLocation--
+--Output from testModifLibraryWithLocation--
+--Output from testDeleteLibraryWithLocationByCascade--
+]]></system-out>
+
+      <system-err><![CDATA[--Output from testNewLibraryWithLocation--
+--Output from testModifLibraryWithLocation--
+--Output from testDeleteLibraryWithLocationByCascade--
+]]></system-err>
+
+  </testsuite>
+  <testsuite errors="0" failures="0" hostname="nh-d005b94446fa" id="4" name="LibraryReservationTests" package="com.library" tests="5" time="1.937" timestamp="2011-12-10T22:36:18">
+      <properties />
+
+      <testcase classname="com.library.LibraryReservationTests" name="testAddReservationSizeGood" time="0.594" />
+
+      <testcase classname="com.library.LibraryReservationTests" name="testAddReservationMultipleSizeGood" time="0.453" />
+
+      <testcase classname="com.library.LibraryReservationTests" name="testAddReservationAndAccessing" time="0.312" />
+
+      <testcase classname="com.library.LibraryReservationTests" name="testAddReservationMultipleAndAccessing" time="0.407" />
+
+      <testcase classname="com.library.LibraryReservationTests" name="testReservationsEmpty" time="0.171" />
+
+      <system-out><![CDATA[--Output from testAddReservationSizeGood--
+--Output from testAddReservationMultipleSizeGood--
+--Output from testAddReservationAndAccessing--
+--Output from testAddReservationMultipleAndAccessing--
+--Output from testReservationsEmpty--
+]]></system-out>
+
+      <system-err><![CDATA[--Output from testAddReservationSizeGood--
+--Output from testAddReservationMultipleSizeGood--
+--Output from testAddReservationAndAccessing--
+--Output from testAddReservationMultipleAndAccessing--
+--Output from testReservationsEmpty--
+]]></system-err>
+
+  </testsuite>
+  <testsuite errors="0" failures="0" hostname="nh-d005b94446fa" id="5" name="LocationIntegrationTests" package="com.library" tests="1" time="0.016" timestamp="2011-12-10T22:36:20">
+      <properties />
+
+      <testcase classname="com.library.LocationIntegrationTests" name="testSomething" time="0.016" />
+
+      <system-out><![CDATA[--Output from testSomething--
+]]></system-out>
+
+      <system-err><![CDATA[--Output from testSomething--
+]]></system-err>
+
+  </testsuite>
+  <testsuite errors="0" failures="0" hostname="nh-d005b94446fa" id="6" name="ReservationIntegrationTests" package="com.library" tests="5" time="2.359" timestamp="2011-12-10T22:36:20">
+      <properties />
+
+      <testcase classname="com.library.ReservationIntegrationTests" name="testUserMakeReservationABookCopy" time="0.562" />
+
+      <testcase classname="com.library.ReservationIntegrationTests" name="testUserRegisterMoreThanOneBook" time="0.453" />
+
+      <testcase classname="com.library.ReservationIntegrationTests" name="testUserCancelAReservation" time="0.641" />
+
+      <testcase classname="com.library.ReservationIntegrationTests" name="testDeliverBookToUser" time="0.312" />
+
+      <testcase classname="com.library.ReservationIntegrationTests" name="testUserTryToReservateAnAlreadyReservedBook" time="0.391" />
+
+      <system-out><![CDATA[--Output from testUserMakeReservationABookCopy--
+--Output from testUserRegisterMoreThanOneBook--
+--Output from testUserCancelAReservation--
+--Output from testDeliverBookToUser--
+--Output from testUserTryToReservateAnAlreadyReservedBook--
+]]></system-out>
+
+      <system-err><![CDATA[--Output from testUserMakeReservationABookCopy--
+--Output from testUserRegisterMoreThanOneBook--
+--Output from testUserCancelAReservation--
+--Output from testDeliverBookToUser--
+--Output from testUserTryToReservateAnAlreadyReservedBook--
+]]></system-err>
+
+  </testsuite>
+  <testsuite errors="0" failures="0" hostname="nh-d005b94446fa" id="7" name="UserIntegrationTests" package="com.library" tests="9" time="4.297" timestamp="2011-12-10T22:36:23">
+      <properties />
+
+      <testcase classname="com.library.UserIntegrationTests" name="testNewUserWithAll" time="0.047" />
+
+      <testcase classname="com.library.UserIntegrationTests" name="testScoreOnUsers" time="0.046" />
+
+      <testcase classname="com.library.UserIntegrationTests" name="testUserTryToCommentItself" time="0.047" />
+
+      <testcase classname="com.library.UserIntegrationTests" name="testUserCommentABook" time="0.235" />
+
+      <testcase classname="com.library.UserIntegrationTests" name="testUserCategorizeABook" time="0.468" />
+
+      <testcase classname="com.library.UserIntegrationTests" name="testUserTryToFindSimilars" time="1.016" />
+
+      <testcase classname="com.library.UserIntegrationTests" name="testOwnTags" time="0.313" />
+
+      <testcase classname="com.library.UserIntegrationTests" name="testFindBookByMyOwnInterested" time="1.171" />
+
+      <testcase classname="com.library.UserIntegrationTests" name="testFindBookByMyOwnInterestedTwo" time="0.954" />
 
       <system-out><![CDATA[--Output from testNewUserWithAll--
 --Output from testScoreOnUsers--
