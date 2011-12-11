@@ -3,7 +3,9 @@ package com.library
 class BookCopy {
 
 	States state
-	static belongsTo = [library:Library, bookMaster:Book, reservation:Reservation]
+	Reservation reservation
+	// No agrego [reservation:Reservation] para  q al  eliminar una reservacion, no elimine en cascada
+	static belongsTo = [library:Library, bookMaster:Book ]
 	
 	
     static constraints = {
@@ -14,6 +16,7 @@ class BookCopy {
 	
 	void returnMe(){
 		this.state = States.AVAILABLE
+		//reservation = null;
 	}
 	
 	void cancelReservation(){

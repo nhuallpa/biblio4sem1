@@ -64,6 +64,17 @@ class User implements Taggable{
 		this.score = 0
 	}
 	
+	
+	/**
+	 * No se pertmite reservar varios ejemplares del mismo libro
+	 * 
+	 * @param aBook Libro que desee reservar
+	 * @param aLibrary Libreria donde se quiere pasar a buscar el ejemplar
+	 * 
+	 * @throws BookAlreadyReservedException Un ejemplar del libro ya fue reservado
+	 * @throws NotExistBookCopyAvailable No hay un ejemplar disponible en la libreria seleccionada
+	 * 
+	 * */
 	void makeReservation(Book aBook, Library aLibrary) {
 
 		if (this.isReserved(aBook)) throw new BookAlreadyReservedException()
@@ -75,7 +86,12 @@ class User implements Taggable{
 		this.addReservation(aReservation)
 		aLibrary.addToReservations(aReservation)
 		this.save()
+		
+		log.debug "se creo una reservación con id: " + aReservation.id
+		
 		addScore(SCORE_RESERVE)//Score por reservar
+		
+		
 	}
 
 	private Boolean isReserved(Book aBook) {
@@ -84,10 +100,8 @@ class User implements Taggable{
 			
 	void addBookComment(Book aBook, String aString, Integer score ){
 		
-		def aComment = new Comment(description: aString,
-									sourceUser: this,
-									score: score,
-									date:new Date())
+		def aComment = new Comment(description: aString, sourceUser: this,
+									score: score, date:new Date())
 		
 		aBook.addComment(aComment)
 		this.commentsDone.add aComment
@@ -95,27 +109,7 @@ class User implements Taggable{
 	}
 	
 	
-	///** Nestor: por el momento no estamos comentando a otros usuarios*//
-	
-	@Deprecated
-	void comment(User sourceUser, String aString, Integer score){
-		Comment aComment = new Comment(description:aString, sourceUser:sourceUser, score: score)
-		this.commentsRcvd?.add(aComment)
-		def average = (score + this.rating*this.totalVotes)/ (this.totalVotes + 1)
-		this.rating = average
-		this.totalVotes += 1
-	}
-	@Deprecated
-	void addUserComment(User aUser, String aString, Integer score ){
-		if ( this.equals(aUser)) throw new UserCannotCommentItselfException()
-		def comment = new Comment(sourceUser: this, description:aString, score: score)
-		this.commentsDone.add(comment)
-		aUser.comment(this, aString, score)		
-    }
-	@Deprecated
-	List<Book> lookSimilars(Book aBook){
-		return aBook.similarsToMe()
-	}
+
 	
 	void categorizeBook(Book aBook, String tag){
 		aBook.categorizeMe(tag)
@@ -146,32 +140,7 @@ class User implements Taggable{
 			substractScore(SCORE_COMMENT)
 		}
 	}
-	@Deprecated
-	void deleteComment(Comment aComment){
-		
-		def flag = 0
-		for ( o in this.commentsRcvd){
-			if ( o == aComment ){
-				this.commentsRcvd.remove o
-				flag = 1
-			}
-		}
-		if (flag == 0) throw new CommentDoesNotExistException()		
-	}
-	@Deprecated
-	void pullOutBook(Book aBook){
-		
-		def flag = 0
-		for ( o in this.reservations){
-			if ( o?.getBook() == aBook ){
-				this.reservations.remove o
-				flag = 1
-			}
-		}
-		if (flag == 0) throw new ReservationDoesNotExistException()
-		
-		aBook.retireMe()
-	}
+	
 	
 	private void addReservation(Reservation aReservation){
 		Date date = new Date()
@@ -180,17 +149,7 @@ class User implements Taggable{
 		aReservation.save()
 	}
 	
-	@Deprecated
-	void addUserLocation(String country, String city, String address){
-		Location aLocation = new Location(country: country, city: city, street: address)
-		this.location = aLocation
-	}
 	
-	@Deprecated
-	String seeAddress(){
-		if (this.location == null) return "Buenos Aires, Paseo Colon 850"
-		return this.location.address()
-	}
 
 	@Override
 	public int hashCode() {
@@ -217,4 +176,84 @@ class User implements Taggable{
 		this.parseTags(tags)
 	}
 	
+	
+	Boolean existReservation(Reservation reservation) {
+		return reservations.contains(reservation)
+	}
+	
+	void returnBook(BookCopy aBookCopy) {
+		Reservation reservationFound = this.reservations.find{it.getBookCopy() == aBookCopy}
+		
+		if (reservationFound) {
+			reservationFound.getBookCopy().returnMe()
+			
+			this.reservations.remove reservationFound
+			reservationFound.delete()
+		} else {
+			throw new ReservationDoesNotExistException()
+		}
+	}
+
+	
+	///** Nestor: por el momento no estamos comentando a otros usuarios*//
+	
+//	@Deprecated
+//	void comment(User sourceUser, String aString, Integer score){
+//		Comment aComment = new Comment(description:aString, sourceUser:sourceUser, score: score)
+//		this.commentsRcvd?.add(aComment)
+//		def average = (score + this.rating*this.totalVotes)/ (this.totalVotes + 1)
+//		this.rating = average
+//		this.totalVotes += 1
+//	}
+//	@Deprecated
+//	void addUserComment(User aUser, String aString, Integer score ){
+//		if ( this.equals(aUser)) throw new UserCannotCommentItselfException()
+//		def comment = new Comment(sourceUser: this, description:aString, score: score)
+//		this.commentsDone.add(comment)
+//		aUser.comment(this, aString, score)
+//	}
+//	@Deprecated
+//	List<Book> lookSimilars(Book aBook){
+//		return aBook.similarsToMe()
+//	}
+//	
+//	
+//	@Deprecated
+//	void deleteComment(Comment aComment){
+//		
+//		def flag = 0
+//		for ( o in this.commentsRcvd){
+//			if ( o == aComment ){
+//				this.commentsRcvd.remove o
+//				flag = 1
+//			}
+//		}
+//		if (flag == 0) throw new CommentDoesNotExistException()
+//	}
+//	@Deprecated
+//	void pullOutBook(Book aBook){
+//		
+//		def flag = 0
+//		for ( o in this.reservations){
+//			if ( o?.getBook() == aBook ){
+//				this.reservations.remove o
+//				flag = 1
+//			}
+//		}
+//		if (flag == 0) throw new ReservationDoesNotExistException()
+//		
+//		aBook.retireMe()
+//	}
+//	
+	@Deprecated
+	void addUserLocation(String country, String city, String address){
+		Location aLocation = new Location(country: country, city: city, street: address)
+		this.location = aLocation
+	}
+	
+	@Deprecated
+	String seeAddress(){
+		if (this.location == null) return "Buenos Aires, Paseo Colon 850"
+		return this.location.address()
+	}
 }

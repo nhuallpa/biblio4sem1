@@ -96,7 +96,7 @@
 								|
 								<span class="text">${reservation.reservationDate}</span><br/>
 								<span class="text">State: ${reservation.stateOfBook()}</span><br/><br/>
-								<span class="link-item"><a href="#">Return</a></span>
+								<span class="link-item"><g:link controller="reservation" action="returnBook" params="[bookCopyId:reservation.bookCopy.id]">Return</g:link></span>
 						    </li>
 						</g:if>
 					</g:each>
