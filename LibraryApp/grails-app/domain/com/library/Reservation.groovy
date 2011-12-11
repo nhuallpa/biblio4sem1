@@ -2,7 +2,9 @@ package com.library
 
 import grails.converters.JSON
 
-
+/**
+ * Si se elimina un reservation, el ejemplar debe volver a estar disponible en la libreria
+ * */
 class Reservation {
 	
 	static searchable = true
@@ -16,10 +18,15 @@ class Reservation {
 		state(inList:States.list())
 		reservationDate(nullable:true)
 		library(nullable:true)
-		
     }
 	
+	static mapping = {
+		bookCopy cascade:"save-update"
+	}
+	
 	static belongsTo = [user:User, library:Library]
+	
+
 	Reservation(){
 		bookCopy = new BookCopy()
 		user = new User()

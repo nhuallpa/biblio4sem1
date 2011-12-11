@@ -38,12 +38,6 @@ class Book implements Taggable{
 	public String toString() {
 		return name
 	}
-	
-	@Deprecated
-	List<Book> similarsToMe(){
-		def books = Book.findAllByTag(this.tags.get(0))
-		return books
-	}
 
 	void addComment(Comment aComment){
 		this.addToComments(aComment)

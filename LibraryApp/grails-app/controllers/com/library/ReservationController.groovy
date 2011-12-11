@@ -86,10 +86,22 @@ class ReservationController {
 		redirect(controller:'user', action: 'viewProfile', params:[userId:user.id])
 	}
 	
-	boolean bookAvailable(Book book){
-//		return book.state == 'Available'
-		return true;
+	def returnBook = {
+		User user = session.user
+		BookCopy aBookCopy = BookCopy.get(params.bookCopyId)
+		if (aBookCopy.isDelivered())  {
+			def userFound = User.get(user.id)
+			userFound.returnBook aBookCopy
+		}
+		redirect(controller:'user', action: 'viewProfile', params:[userId:user.id])
 	}
+
+	
+//  TODO: a borrar
+//	boolean bookAvailable(Book book){
+//		return book.state == 'Available'
+//		return true;
+//	}
 	
 	void goToHome(){
 		redirect(uri: '/')

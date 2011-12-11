@@ -40,34 +40,34 @@ class UserIntegrationTests extends GroovyTestCase {
 
 	///** Nestor: por el momento no estamos comentando a otros usuarios*//
 	// Tests the retrieve of a user with comments attached.
-    void testNewUserWithAll() {
-		userTwo.addUserComment(user, "Buen usuario", 5)
-		User userFound = User.get(user.id)
-		assertEquals "Ariel", userFound.getName()
-		assertEquals "countryTest", userFound.getLocation().getCountry()
-		assertEquals 1,userFound.commentsRcvd?.size()
-		assertEquals "Buen usuario",userFound.commentsRcvd?.get(0).description
-		assertEquals 5,userFound.commentsRcvd?.get(0).score
-		assertEquals 1,userTwo.commentsDone?.size()
-		assertEquals "Buen usuario",userTwo.commentsDone?.get(0).description
-    }
+//    void testNewUserWithAll() {
+//		userTwo.addUserComment(user, "Buen usuario", 5)
+//		User userFound = User.get(user.id)
+//		assertEquals "Ariel", userFound.getName()
+//		assertEquals "countryTest", userFound.getLocation().getCountry()
+//		assertEquals 1,userFound.commentsRcvd?.size()
+//		assertEquals "Buen usuario",userFound.commentsRcvd?.get(0).description
+//		assertEquals 5,userFound.commentsRcvd?.get(0).score
+//		assertEquals 1,userTwo.commentsDone?.size()
+//		assertEquals "Buen usuario",userTwo.commentsDone?.get(0).description
+//    }
 	
-	void testScoreOnUsers(){
-		userTwo.addUserComment(user, "Buen usuario", 5)
+//	void testScoreOnUsers(){
+//		userTwo.addUserComment(user, "Buen usuario", 5)
+//		
+//		userThree = new User(name: "Gonzalo", location: locationThree)
+//		userThree.addUserComment(user, "Pesimo", 1)
+//		assertNotNull user.save()
+//		User userFound = User.get(user.id)
+//		assertEquals 3,userFound.getRating()
+//		
+//	}
 		
-		userThree = new User(name: "Gonzalo", location: locationThree)
-		userThree.addUserComment(user, "Pesimo", 1)
-		assertNotNull user.save()
-		User userFound = User.get(user.id)
-		assertEquals 3,userFound.getRating()
-		
-	}
-		
-	void testUserTryToCommentItself(){
-		shouldFail(UserCannotCommentItselfException){
-			user.addUserComment user, "Soy el mejor", 10
-		}
-	}
+//	void testUserTryToCommentItself(){
+//		shouldFail(UserCannotCommentItselfException){
+//			user.addUserComment user, "Soy el mejor", 10
+//		}
+//	}
 	
 	void testUserCommentABook() {
 		
@@ -101,33 +101,33 @@ class UserIntegrationTests extends GroovyTestCase {
 		
 	}
 	
-	void testUserTryToFindSimilars(){
-		Book a = new Book(name:"A",ISBN:"1",state:States.AVAILABLE)
-		Book b = new Book(name:"B",ISBN:"1",state:States.AVAILABLE)
-		Book c = new Book(name:"C",ISBN:"1",state:States.AVAILABLE)
-		Book d = new Book(name:"D",ISBN:"1",state:States.AVAILABLE)
-		
-		assertNotNull a.save()
-		assertNotNull b.save()
-		assertNotNull c.save()
-		assertNotNull d.save()
-		
-		user.categorizeBook(a, "terror")
-		user.categorizeBook(a, "comedia")
-		user.categorizeBook(b, "drama")
-		user.categorizeBook(b, "comedia")
-		user.categorizeBook(c, "thriller")
-		user.categorizeBook(c, "suspenso")
-		user.categorizeBook(d, "terror")
-		user.categorizeBook(d, "comedia")
-		
-		def books = new ArrayList<Book>()
-		
-		books = user.lookSimilars(a)
-		
-		assert books.contains(d)
-		
-	}
+//	void testUserTryToFindSimilars(){
+//		Book a = new Book(name:"A",ISBN:"1",state:States.AVAILABLE)
+//		Book b = new Book(name:"B",ISBN:"1",state:States.AVAILABLE)
+//		Book c = new Book(name:"C",ISBN:"1",state:States.AVAILABLE)
+//		Book d = new Book(name:"D",ISBN:"1",state:States.AVAILABLE)
+//		
+//		assertNotNull a.save()
+//		assertNotNull b.save()
+//		assertNotNull c.save()
+//		assertNotNull d.save()
+//		
+//		user.categorizeBook(a, "terror")
+//		user.categorizeBook(a, "comedia")
+//		user.categorizeBook(b, "drama")
+//		user.categorizeBook(b, "comedia")
+//		user.categorizeBook(c, "thriller")
+//		user.categorizeBook(c, "suspenso")
+//		user.categorizeBook(d, "terror")
+//		user.categorizeBook(d, "comedia")
+//		
+//		def books = new ArrayList<Book>()
+//		
+//		books = user.lookSimilars(a)
+//		
+//		assert books.contains(d)
+//		
+//	}
 	void testOwnTags(){
 		def tags = "red, sporty, expensive"
 		User userFound = User.get(user.id)

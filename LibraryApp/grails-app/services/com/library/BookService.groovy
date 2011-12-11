@@ -15,6 +15,10 @@ class BookService {
 		results
     }
 	
+	
+	/*
+	 * Devuelve las librerias que tengan ejemplares disponibles de aBook
+	 * */
 	def getLibraryAvailable(Book aBook) {
 		
 		def l = Library.createCriteria()
@@ -29,6 +33,9 @@ class BookService {
 		return Library.getAll(result);
 	}
 	
+	/**
+	 * Devuelve recomendaciones de libros basandose en las etiquetas. No rankea por el momento.
+	 * */
 	def getRecommendation(List tags) {
 	
 		def books

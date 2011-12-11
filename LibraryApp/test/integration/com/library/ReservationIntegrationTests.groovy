@@ -64,24 +64,7 @@ class ReservationIntegrationTests extends GroovyTestCase {
 		assertEquals States.RESERVED, user.reservations.get(0).stateOfBook()
 	}
 	
-//	void testReturnABook(){
-//		aBook = new Book(name:"C",ISBN:"1",state:States.AVAILABLE,library:aLibrary)
-//		def aBookTwo = new Book(name:"M",ISBN:"2",state:States.AVAILABLE,library:aLibrary)
-//		user.makeReservation(aBook)
-//		user.makeReservation(aBookTwo)
-//		user.returnBook(aBook)
-//		assertEquals 1,user.reservations?.size()
-//		assertEquals States.AVAILABLE,aBook.getState()
-//		assertEquals "M",user.reservations?.get(0).book.name
-//		
-//	}
-//    void testUserTryToReturnBookNotReservedByHim(){
-//		aBook = new Book(name:"C",ISBN:"1",state:States.RESERVED,library:aLibrary)
-//		shouldFail(ReservationDoesNotExistException){
-//			user.returnBook(aBook)
-//		}
-//	}
-//	
+
 	void testUserRegisterMoreThanOneBook(){
 		
 		user.makeReservation(aBook1, libraryAteno)
@@ -122,12 +105,35 @@ class ReservationIntegrationTests extends GroovyTestCase {
 		reservation.deliverBook()
 		
 		User userFoundAgain = User.get(user.id)
-
 		Reservation reservationCanged = user.reservations.get(0)
 		
 		assertEquals aBook1.name, reservationCanged.nameOfBook()
-		assertEquals States.DELIVERED, user.reservations.get(0).stateOfBook()
+		assertEquals States.DELIVERED, reservationCanged.stateOfBook()
 		
+	}
+	
+	
+	void testReturnABook(){
+		user.makeReservation(aBook1, libraryAteno)
+		User userFound = User.get(user.id)
+		Reservation reservation = userFound.reservations.get(0)
+		reservation.deliverBook()
+		assertEquals States.DELIVERED, reservation.stateOfBook()
+		
+		def bookCopy = reservation.getBookCopy()
+		int bookCopyId = bookCopy.id	
+		
+		assertTrue userFound.existReservation(reservation)
+		
+		// El usuario regresa el libro
+		User userRetrived = User.get(user.id)
+		assertEquals States.DELIVERED, BookCopy.get(bookCopyId).getState()
+		
+		userRetrived.returnBook(bookCopy)
+		
+		// Chequeo la consistencia
+		assertFalse userRetrived.existReservation(reservation)
+		assertEquals States.AVAILABLE, BookCopy.get(bookCopyId).getState()
 	}
 	
 	void testUserTryToReservateAnAlreadyReservedBook(){
