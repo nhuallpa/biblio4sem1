@@ -77,6 +77,15 @@ class ReservationController {
 		}
 	}
 	
+	def deliverBook = {
+		User user = session.user
+		Reservation reservation = Reservation.get(params.reservationId)
+		if (reservation.isReserved())  {
+			reservation.deliverBook();
+		}
+		redirect(controller:'user', action: 'viewProfile', params:[userId:user.id])
+	}
+	
 	boolean bookAvailable(Book book){
 //		return book.state == 'Available'
 		return true;

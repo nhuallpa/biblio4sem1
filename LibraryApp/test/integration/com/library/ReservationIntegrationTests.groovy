@@ -109,6 +109,27 @@ class ReservationIntegrationTests extends GroovyTestCase {
 		assertEquals 0,userFoundReservationCero.getReservations().size()
 	}
 	
+	
+	void testDeliverBookToUser(){
+		
+		user.makeReservation(aBook1, libraryAteno)
+		User userFound = User.get(user.id)
+
+		assertEquals 1, userFound.getReservations().size()
+		
+		Reservation reservation = userFound.reservations.get(0)
+		
+		reservation.deliverBook()
+		
+		User userFoundAgain = User.get(user.id)
+
+		Reservation reservationCanged = user.reservations.get(0)
+		
+		assertEquals aBook1.name, reservationCanged.nameOfBook()
+		assertEquals States.DELIVERED, user.reservations.get(0).stateOfBook()
+		
+	}
+	
 	void testUserTryToReservateAnAlreadyReservedBook(){
 		user.makeReservation(aBook1, libraryAteno)
 		shouldFail(BookAlreadyReservedException){
@@ -117,3 +138,4 @@ class ReservationIntegrationTests extends GroovyTestCase {
 	}
 
 }
+
