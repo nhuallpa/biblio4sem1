@@ -194,57 +194,6 @@ class User implements Taggable{
 		}
 	}
 
-	
-	///** Nestor: por el momento no estamos comentando a otros usuarios*//
-	
-//	@Deprecated
-//	void comment(User sourceUser, String aString, Integer score){
-//		Comment aComment = new Comment(description:aString, sourceUser:sourceUser, score: score)
-//		this.commentsRcvd?.add(aComment)
-//		def average = (score + this.rating*this.totalVotes)/ (this.totalVotes + 1)
-//		this.rating = average
-//		this.totalVotes += 1
-//	}
-//	@Deprecated
-//	void addUserComment(User aUser, String aString, Integer score ){
-//		if ( this.equals(aUser)) throw new UserCannotCommentItselfException()
-//		def comment = new Comment(sourceUser: this, description:aString, score: score)
-//		this.commentsDone.add(comment)
-//		aUser.comment(this, aString, score)
-//	}
-//	@Deprecated
-//	List<Book> lookSimilars(Book aBook){
-//		return aBook.similarsToMe()
-//	}
-//	
-//	
-//	@Deprecated
-//	void deleteComment(Comment aComment){
-//		
-//		def flag = 0
-//		for ( o in this.commentsRcvd){
-//			if ( o == aComment ){
-//				this.commentsRcvd.remove o
-//				flag = 1
-//			}
-//		}
-//		if (flag == 0) throw new CommentDoesNotExistException()
-//	}
-//	@Deprecated
-//	void pullOutBook(Book aBook){
-//		
-//		def flag = 0
-//		for ( o in this.reservations){
-//			if ( o?.getBook() == aBook ){
-//				this.reservations.remove o
-//				flag = 1
-//			}
-//		}
-//		if (flag == 0) throw new ReservationDoesNotExistException()
-//		
-//		aBook.retireMe()
-//	}
-//	
 	@Deprecated
 	void addUserLocation(String country, String city, String address){
 		Location aLocation = new Location(country: country, city: city, street: address)
