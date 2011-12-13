@@ -113,4 +113,20 @@ class AwardController {
 		userFounded.exchangeAward(award)
 //		userFounded.substractScore(Integer.valueOf(subScore))
 	}
+	
+	def getAward = {
+		
+		def awardId = params.awardId
+		Award award = Award.get(Long.valueOf(awardId))
+		def jsonData = [
+				score : award.score,
+				info : award.info,
+				category : award.category,
+				detail : award.detail
+			]
+		
+		render jsonData as JSON
+			
+		
+	}
 }
