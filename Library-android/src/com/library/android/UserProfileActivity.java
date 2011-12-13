@@ -1,17 +1,21 @@
 package com.library.android;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
+import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.Window;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.library.android.config.ConfigurationManager;
+import com.library.android.dto.User;
+import com.library.android.services.impl.UserServicesImpl;
 
 
 /**
@@ -56,6 +60,22 @@ public class UserProfileActivity extends Activity {
         	case R.id.menu_my_reservations: {
         		Intent i = new Intent(UserProfileActivity.this, MyReservationsActivity.class);
         		startActivity(i);
+        	}break;
+        	
+        	case R.id.menu_my_score: {
+        		User user = ConfigurationManager.getInstance(getApplicationContext()).getCurrentUser();
+        		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        		builder.setTitle("Mi Puntaje");
+        		int myScore = UserServicesImpl.getInstance(getApplicationContext()).getMyScore(user.getId());
+        		builder.setMessage("Puntaje: " + myScore);
+        		builder.setNeutralButton("Ok", new OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.dismiss();
+					}
+				});
+        		builder.show();
         	}break;
 
         }

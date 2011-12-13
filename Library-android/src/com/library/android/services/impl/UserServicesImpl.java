@@ -131,9 +131,26 @@ public class UserServicesImpl{
 		return reservations;
 		
 	}
-	
 
-	
+	public int getMyScore(String userId){
+		int myScore = -1;
+		String url = ConfigWS.MY_SCORE +"?userId="+ userId;
+		try{
+			URL u = new URL(url);
+			HttpURLConnection con = (HttpURLConnection) u.openConnection ();
+			con.setDoInput(true);
+			con.connect();
+			String request = con.getResponseMessage();
+			if(request.equals("OK")){
+				JSONObject json = new JSONObject(Utils.parseLine(con.getInputStream()));
+				myScore = Integer.valueOf(json.getString("score"));
+			}
+		}catch(IOException e){} 
+		catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return myScore;
+	}
 	
 }
 

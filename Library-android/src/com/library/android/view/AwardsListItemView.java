@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.library.android.AwardDetailActivity;
 import com.library.android.AwardsActivity;
 import com.library.android.BookListActivity;
 import com.library.android.LoginActivity;
@@ -19,6 +20,7 @@ import com.library.android.R;
 import com.library.android.config.ConfigurationManager;
 import com.library.android.config.Constants;
 import com.library.android.dto.Award;
+import com.library.android.dto.User;
 
 public class AwardsListItemView extends LinearLayout {
 	
@@ -49,6 +51,7 @@ public class AwardsListItemView extends LinearLayout {
 			
 			@Override
 			public void onClick(View v) {
+				final User user = ConfigurationManager.getInstance(context).getCurrentUser();
 				final AwardsActivity activity = (AwardsActivity) context;
 				if(!ConfigurationManager.getInstance(context).isLogged()){
 					Toast.makeText(context, "Necesita loguearse!", Toast.LENGTH_SHORT).show();
@@ -60,19 +63,25 @@ public class AwardsListItemView extends LinearLayout {
 					
 				} else {
 					AlertDialog.Builder builder = new AlertDialog.Builder(context);
-					String[] items = new String[]{"Adquirir", "Otro"};
+					String[] items = new String[]{"Adquirir", "Info"};
 					builder.setItems(items, new DialogInterface.OnClickListener() {
 					    public void onClick(DialogInterface dialog, int item) {
 					    	switch (item) {
 								case 0:{
-									if(activity.exchangeScore(awardItem.getScore())){
-										Intent i = new Intent(context, BookListActivity.class);
-										context.startActivity(i);
+									if(user.getScore() < awardItem.getScore()){
+										Toast.makeText(context, "No hay puntaje suficiente!", Toast.LENGTH_SHORT).show();
+									} else {
+										if(activity.exchangeScore(awardItem)){
+											Intent i = new Intent(context, BookListActivity.class);
+											context.startActivity(i);
+										}
 									}
 									dialog.cancel();
 								}break;
 								case 1:{
-									Toast.makeText(context, "Otro!!", Toast.LENGTH_SHORT).show();
+									Intent i = new Intent(context, AwardDetailActivity.class);
+									i.putExtra("awardId", awardItem.getId());
+									context.startActivity(i);
 								}break;
 					    	}
 					    }
