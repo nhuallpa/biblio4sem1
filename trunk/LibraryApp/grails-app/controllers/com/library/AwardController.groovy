@@ -42,7 +42,9 @@ class AwardController {
 	
 	def exchange = {
 		User user = User.get(Long.valueOf(params.userId))
-		user.substractScore(Integer.valueOf(params.subScore))
+		Award award = Award.get(Long.valueOf(params.awardId))
+//		user.substractScore(Integer.valueOf(params.subScore))
+		user.exchangeAward(award)
 		
 		redirect(controller:'user', action: 'viewProfile', params:[userId:user.id])
 	}
@@ -76,6 +78,7 @@ class AwardController {
 		
 		for(obj in awardsFounded){
 			def jsonAward = [
+				awardId : obj.id,
 				detail : obj.detail,
 				score : obj.score,
 				category : obj.category
@@ -104,8 +107,10 @@ class AwardController {
 	def toExchange = {
 		JSONObject jsonObject = request.JSON
 		def userId = jsonObject.getString("userId")
-		def subScore = jsonObject.getString("score")
+		def awardId = jsonObject.getString("awardId")
 		User userFounded = User.get(Long.valueOf(userId))
-		userFounded.substractScore(Integer.valueOf(subScore))
+		Award award = Award.get(Long.valueOf(awardId))
+		userFounded.exchangeAward(award)
+//		userFounded.substractScore(Integer.valueOf(subScore))
 	}
 }
