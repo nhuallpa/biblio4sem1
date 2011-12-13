@@ -20,7 +20,9 @@ class ReservationController {
 		User user = User.get(params.userId)
 		Book book = Book.get(params.bookId)
 		Library library = Library.get(params.libraryId)
-		user.makeReservation(book, library)
+		if(bookAvailable(book, library)){
+			user.makeReservation(book, library)
+		}
 		response.writer.println("Reservation: " + book.name + " by " + user.name)
 	}
 	
@@ -54,7 +56,7 @@ class ReservationController {
 		Book aBook = Book.get(params.bookId)
 		Library library = Library.get(params.libraryId)
 		User userFound = User.get(user.id)
-		if(!bookAvailable(aBook)){
+		if(!bookAvailable(aBook, library)){
 			aMessage = "${aBook.name} is not available"
 		} else {
 			userFound.makeReservation(aBook, library)
@@ -98,10 +100,10 @@ class ReservationController {
 
 	
 //  TODO: a borrar
-//	boolean bookAvailable(Book book){
-//		return book.state == 'Available'
-//		return true;
-//	}
+	boolean bookAvailable(Book book, Library library){
+		BookCopy aBookCopyAvailable = library.getBookCopyAvailable(book)
+		return aBookCopyAvailable.state == States.AVAILABLE
+	}
 	
 	void goToHome(){
 		redirect(uri: '/')

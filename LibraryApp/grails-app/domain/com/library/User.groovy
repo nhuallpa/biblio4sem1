@@ -78,13 +78,12 @@ class User implements Taggable{
 	 * @throws NotExistBookCopyAvailable No hay un ejemplar disponible en la libreria seleccionada
 	 * 
 	 * */
-	void makeReservation(Book aBook, Library aLibrary) {
+	void makeReservation(Book aBook, Library aLibrary){
 
 		if (this.isReserved(aBook)) throw new BookAlreadyReservedException()
 		
 		BookCopy aBookCopyAvailable = aLibrary.getBookCopyAvailable(aBook)
 		if (!aBookCopyAvailable) throw new NotExistBookCopyAvailable() 
-		
 		Reservation aReservation = new Reservation(aBookCopyAvailable, this)
 		this.addReservation(aReservation)
 		aLibrary.addToReservations(aReservation)
