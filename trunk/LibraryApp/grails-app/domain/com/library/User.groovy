@@ -103,9 +103,7 @@ class User implements Taggable{
 			
 	void exchangeAward(Award award){
 		substractScore(award.score)
-//		award.save()
 		this.myAwards.add(award)
-//		this.save()
 	}
 	
 	void addBookComment(Book aBook, String aString, Integer score ){

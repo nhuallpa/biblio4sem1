@@ -251,6 +251,14 @@ class UserController {
 		render reservationsList as JSON
 	}
 	
+	def myScore = {
+		User user = User.get(params.userId)
+		def jsonData = [
+				score : user.score
+			]
+		render jsonData as JSON
+	}
+	
 	def updateTags = {
 		goToHome()
 	}
