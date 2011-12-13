@@ -14,6 +14,7 @@ class User implements Taggable{
 	long rating
 	long totalVotes
 	int score
+	List<Award> myAwards = new ArrayList<Award>()
 	List<Reservation> reservations = new ArrayList<Reservation>()
 	List<Comment> commentsRcvd = new ArrayList<Comment>()
 	List<Comment> commentsDone = new ArrayList<Comment>()
@@ -31,7 +32,8 @@ class User implements Taggable{
 		reservations(nullable: true)
 		commentsRcvd(nullable: true)
 		commentsDone(nullable: true)
-		score(nullable: true)
+		score(nullable:true)
+		myAwards(nullable: true)
     }
 	
 	static mapping = {
@@ -39,9 +41,10 @@ class User implements Taggable{
 		reservations lazy: false
 		commentsRcvd lazy: false
 		commentsDone lazy: false
+		myAwards lazy : false
 	}
 	
-	static hasMany = [commentsDone : Comment, reservations : Reservation]
+	static hasMany = [commentsDone : Comment, reservations : Reservation, myAwards : Award]
 	
 	static int SCORE_RESERVE = 20
 	static int SCORE_COMMENT = 5
@@ -87,7 +90,7 @@ class User implements Taggable{
 		aLibrary.addToReservations(aReservation)
 		this.save()
 		
-		log.debug "se creo una reservación con id: " + aReservation.id
+		log.debug "se creo una reservaciï¿½n con id: " + aReservation.id
 		
 		addScore(SCORE_RESERVE)//Score por reservar
 		
@@ -98,6 +101,13 @@ class User implements Taggable{
 		return reservations.any { it.getBookCopy().getBookMaster() == aBook};
 	}
 			
+	void exchangeAward(Award award){
+		substractScore(award.score)
+//		award.save()
+		this.myAwards.add(award)
+//		this.save()
+	}
+	
 	void addBookComment(Book aBook, String aString, Integer score ){
 		
 		def aComment = new Comment(description: aString, sourceUser: this,

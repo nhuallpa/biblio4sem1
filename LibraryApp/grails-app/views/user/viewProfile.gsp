@@ -23,7 +23,6 @@
 				
 			</div>	
 			<br/>
-<%--			Points acumulates: 40 <a href="#">EXCHANGE!!!</a>--%>
 			
 			<br/>		
 			<br/>			
@@ -45,6 +44,7 @@
 			<richui:tabLabel title="Reservation" /> 
 			<richui:tabLabel title="Delivered" />
 			<richui:tabLabel title="Recommendation" /> 
+			<richui:tabLabel title="My Awards" /> 
 		</richui:tabLabels>
 	
 		<richui:tabContents> 
@@ -118,6 +118,23 @@
 			  		</g:each>
 				 </ul>
 			</richui:tabContent> 
+			<richui:tabContent> 
+				<ul id="item-list">
+			  		<g:each in="${userProfile?.myAwards}" status="i" var="award">
+			  			<li class="libro">
+						    <div class="imagen"><img  src="<g:createLinkTo dir="images/award/${award.category}" file="award.jpg"  />" title="Image" width="122px" height="180px"/></div>
+						    <ul class="detalles">
+						        <li class="titulo">${award.detail}</li>
+								<li class="autor">Puntos: ${award.score}</li>
+								<li class="info"><a href="${createLink(controller:'award', action:'info', params:[userId:userProfile?.id, award_id: award.id])}">Info</a></li>
+<%--						        <li class="votos"><span class="icon icon-votos"></span>${book.rating}</li>--%>
+<%--						        <li class="comentarios"><span class="icon icon-comments"></span>${book.totalVotes}</li>--%>
+<%--						        <li class="verDetalles"><a href="${createLink(controller:'book', action:'viewDetails', params:[bookId:book.id])}">ver detalles</a></li>--%>
+						    </ul>                
+						</li>
+			  		</g:each>
+				 </ul>
+			</richui:tabContent>			
 		</richui:tabContents> 
 	</richui:tabView>
 	

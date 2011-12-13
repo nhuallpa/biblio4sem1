@@ -14,4 +14,8 @@ class Award {
 		info(nullable:true)
 	}
 	
+	
+	void apply(int score){
+		this.score = score
+	}
 }
