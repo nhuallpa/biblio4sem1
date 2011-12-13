@@ -3,6 +3,7 @@ package com.library.android.services.impl;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +52,7 @@ public class AwardServicesImpl {
 				for(int i = 0; i < array.length(); i++){
 					JSONObject obj = array.getJSONObject(i);
 					Award aAward = new Award();
+					aAward.setId(obj.getString("awardId"));
 					aAward.setDetail(obj.getString("detail"));
 					aAward.setCategory(obj.getString("category"));
 					aAward.setScore(Integer.valueOf(obj.getString("score")));
@@ -66,6 +68,37 @@ public class AwardServicesImpl {
 		}
 		
 		return awardList;
+	}
+	
+	public Award getAward(String awardId){
+		Award award = new Award();
+		String url = ConfigWS.GET_AWARD + "?awardId=" + awardId;
+		try {
+			URL u = new URL(url);
+
+			HttpURLConnection con = (HttpURLConnection) u.openConnection ();
+			con.setDoInput(true);
+			con.connect();
+			String request = con.getResponseMessage();
+			if(request.equals("OK")){
+				JSONObject json = new JSONObject(Utils.parseLine(con.getInputStream()));
+				award.setCategory(json.getString("category"));
+				award.setDetail(json.getString("detail"));
+				award.setInfo(json.getString("info"));
+				award.setScore(Integer.valueOf(json.getString("score")));
+				award.setBitmap(getAwardPicture(json.getString("category")));
+			}
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return award;
 	}
 	
 	private Bitmap getAwardPicture(String category){
@@ -93,14 +126,14 @@ public class AwardServicesImpl {
 		return bitmap;
 	}
 	
-	public boolean exchangeScore(int score, String userId){
+	public boolean exchangeScore(String awardId, String userId){
 		String url = ConfigWS.EXCHANGE_SCORE;
 		boolean result = false;
 		try{
 			JSONObject json = new JSONObject();
 			HttpPost request = new HttpPost(url);
 			HttpClient client = new DefaultHttpClient();
-			json.put("score", score);
+			json.put("awardId", awardId);
 			json.put("userId", userId);
 	        	        
             StringEntity se = new StringEntity(json.toString());  
@@ -108,7 +141,8 @@ public class AwardServicesImpl {
             request.setEntity(se);
            
             HttpResponse httpResponse = client.execute(request);
-            result = httpResponse.getStatusLine().getStatusCode() == HttpURLConnection.HTTP_OK; 
+            result = true;
+//            result = httpResponse.getStatusLine().getStatusCode() == HttpURLConnection.HTTP_OK; 
 
 		}catch (Exception e){
 			

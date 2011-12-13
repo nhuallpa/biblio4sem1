@@ -4,7 +4,7 @@ package com.library.android.services;
 public class ConfigWS {
 	
 //	public static String APP = "http://biblioteca-web.appspot.com";
-	public static String URL_BASE = "http://192.168.56.1:8080/Library"; //DEVELOPMENT
+	public static String URL_BASE = "http://172.17.193.133:8080/Library"; //DEVELOPMENT
 //	public static String URL_BASE = "http://library-grails.cloudfoundry.com"; //PRODUCTION
 	
 	//controllers
@@ -37,6 +37,8 @@ public class ConfigWS {
 	public static String GET_AWARDS = AWARD_CONTROLLER + "/awardsList";
 	public static String PICTURE_AWARD = AWARD_CONTROLLER + "/picture";
 	public static String EXCHANGE_SCORE = AWARD_CONTROLLER + "/toExchange";
+	public static String MY_SCORE = USER_CONTROLLER + "/myScore";
+	public static String GET_AWARD = AWARD_CONTROLLER + "/getAward";
 	
 	private String user;
 	private static ConfigWS instance; 

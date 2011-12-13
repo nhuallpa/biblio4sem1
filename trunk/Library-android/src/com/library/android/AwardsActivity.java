@@ -35,10 +35,10 @@ public class AwardsActivity extends Activity {
 		
 	}
 	
-	public boolean exchangeScore(int score){
+	public boolean exchangeScore(Award award){
 		boolean result = false;
 		User user = ConfigurationManager.getInstance(this).getCurrentUser();
-		result = AwardServicesImpl.getInstance().exchangeScore(score, user.getId()); 
+		result = AwardServicesImpl.getInstance().exchangeScore(award.getId(), user.getId()); 
 		if(result){
 			Toast.makeText(this, "Premio adquirido!!", Toast.LENGTH_SHORT).show();
 		} else {
@@ -64,7 +64,6 @@ public class AwardsActivity extends Activity {
 				Log.i(TAG, "AWARDS LIST SETTED");
 			}
 		});
-		
 		
 	}
 

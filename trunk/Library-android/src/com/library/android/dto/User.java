@@ -11,6 +11,7 @@ public class User {
 	private List<Comment> listOfComments;
 	private List<Reservation> listOfReservations;
 	private String id;
+	private int score;
 		
 	public User(){
 		init();
@@ -37,11 +38,6 @@ public class User {
 		this.id = id;
 	}
 	
-//	public void makeReservation(Book aBook){
-//		this.listOfReservations.add(new Reservation(this, aBook));
-//		aBook.reserveMe(this);
-//	}
-	
 	public void addComment(Book aBook, Comment aComment){
 //		aComment.setUser(this);
 		aComment.setSources(this,aBook);
@@ -66,10 +62,6 @@ public class User {
 	}
 	
 	public void lookSimilars(){
-		
-	}
-	
-	public void getScore(){
 		
 	}
 	
@@ -127,6 +119,14 @@ public class User {
 
 	public void setListOfReservations(List<Reservation> listOfReservations) {
 		this.listOfReservations = listOfReservations;
+	}
+
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
 	}
 	
 	
