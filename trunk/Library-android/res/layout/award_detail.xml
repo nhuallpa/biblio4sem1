@@ -2,7 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="#FFFFFF" >
+    
+    <com.library.android.view.LibraryHeaderView
+			android:id="@+id/header_library_app2" android:layout_width="fill_parent"
+			android:layout_height="wrap_content" />
 
     <ImageView 
         android:id="@+id/award_detail_picture"
@@ -11,9 +16,11 @@
     	android:src="@drawable/icon"/>
     
     <TextView 
-        android:id="@+id/award_detail_title"
+        android:id="@+id/award_detail_info"
         android:layout_width="fill_parent"
     	android:layout_height="fill_parent"
-    	android:text="text"/>
+    	android:layout_margin="5dip"
+    	android:textColor="#000000"
+    	android:text="info"/>
 
 </LinearLayout>

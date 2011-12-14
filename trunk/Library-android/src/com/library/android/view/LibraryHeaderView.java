@@ -78,7 +78,7 @@ public class LibraryHeaderView extends RelativeLayout {
 			
 			@Override
 			public void onClick(View v) {
-				Toast.makeText(context, "Show Library Map", Toast.LENGTH_SHORT).show();
+//				Toast.makeText(context, "Show Library Map", Toast.LENGTH_SHORT).show();
 				Intent i = new Intent(context, ShowMapActivity.class);
 				i.putExtra("libraryId", "0");
 				context.startActivity(i);
@@ -88,7 +88,7 @@ public class LibraryHeaderView extends RelativeLayout {
 			
 			@Override
 			public void onClick(View v) {
-				Toast.makeText(context, "Show Awards!!", Toast.LENGTH_SHORT).show();
+//				Toast.makeText(context, "Show Awards!!", Toast.LENGTH_SHORT).show();
 				Intent i = new Intent(context, AwardsActivity.class);
 				context.startActivity(i);
 			}
