@@ -21,6 +21,7 @@ import com.library.android.config.ConfigurationManager;
 import com.library.android.config.Constants;
 import com.library.android.dto.Award;
 import com.library.android.dto.User;
+import com.library.android.services.impl.UserServicesImpl;
 
 public class AwardsListItemView extends LinearLayout {
 	
@@ -68,7 +69,8 @@ public class AwardsListItemView extends LinearLayout {
 					    public void onClick(DialogInterface dialog, int item) {
 					    	switch (item) {
 								case 0:{
-									if(user.getScore() < awardItem.getScore()){
+									int myScore = UserServicesImpl.getInstance(context).getMyScore(user.getId());
+									if(myScore < awardItem.getScore()){
 										Toast.makeText(context, "No hay puntaje suficiente!", Toast.LENGTH_SHORT).show();
 									} else {
 										if(activity.exchangeScore(awardItem)){

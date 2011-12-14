@@ -8,18 +8,21 @@ import android.widget.Toast;
 
 import com.library.android.dto.Award;
 import com.library.android.services.impl.AwardServicesImpl;
+import com.library.android.view.LibraryHeaderView;
 
 public class AwardDetailActivity extends Activity {
 	
-	private TextView title;
+	private TextView info;
 	private ImageView picture;
+	private LibraryHeaderView headerView;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.award_detail);
-		title = (TextView) findViewById(R.id.award_detail_title);
+		info = (TextView) findViewById(R.id.award_detail_info);
 		picture = (ImageView) findViewById(R.id.award_detail_picture);
+		headerView = (LibraryHeaderView) findViewById(R.id.header_library_app2);
 		String awardId = getIntent().getExtras().getString("awardId");
 		showAwardDetail(awardId);
 	}
@@ -27,7 +30,8 @@ public class AwardDetailActivity extends Activity {
 	private void showAwardDetail(String awardId) {
 		Award award = AwardServicesImpl.getInstance().getAward(awardId);
 		if(award.getDetail() != null){
-			title.setText(award.getDetail());
+			headerView.setInfo(award.getDetail());
+			info.setText(award.getInfo());
 			picture.setImageBitmap(award.getBitmap());
 			//TODO: implementar el layout
 		} else {
