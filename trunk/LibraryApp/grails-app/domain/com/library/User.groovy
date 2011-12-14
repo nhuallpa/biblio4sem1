@@ -70,15 +70,18 @@ class User implements Taggable{
 	 * */
 	void makeReservation(Book aBook, Library aLibrary){
 
-		if (this.isReserved(aBook)) throw new BookAlreadyReservedException()
+		if (this.isReserved(aBook)){
+			 throw new BookAlreadyReservedException()
+		} else {
+			BookCopy aBookCopyAvailable = aLibrary.getBookCopyAvailable(aBook)
+			if (!aBookCopyAvailable) throw new NotExistBookCopyAvailable()
+			Reservation aReservation = new Reservation(aBookCopyAvailable, this)
+			this.addReservation(aReservation)
+			aLibrary.addToReservations(aReservation)
+			this.save()
+			log.debug "se creo una reservaci�n con id: " + aReservation.id
+		}
 		
-		BookCopy aBookCopyAvailable = aLibrary.getBookCopyAvailable(aBook)
-		if (!aBookCopyAvailable) throw new NotExistBookCopyAvailable() 
-		Reservation aReservation = new Reservation(aBookCopyAvailable, this)
-		this.addReservation(aReservation)
-		aLibrary.addToReservations(aReservation)
-		this.save()
-		log.debug "se creo una reservaci�n con id: " + aReservation.id
 	}
 
 	private Boolean isReserved(Book aBook) {

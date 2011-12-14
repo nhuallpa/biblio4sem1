@@ -59,8 +59,13 @@ class ReservationController {
 		if(!bookAvailable(aBook, library)){
 			aMessage = "${aBook.name} is not available"
 		} else {
-			userFound.makeReservation(aBook, library)
-			aMessage = "You have reserved '${aBook.name}'"
+			try{
+				userFound.makeReservation(aBook, library)
+				aMessage = "You have reserved '${aBook.name}'"
+			}catch (Exception e){
+				aMessage = "'${aBook.name}' is already reserved!!"
+			}
+			
 		} 
 		flash.message = aMessage
 
