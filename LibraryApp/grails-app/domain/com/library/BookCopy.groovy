@@ -16,7 +16,6 @@ class BookCopy {
 	
 	void returnMe(){
 		this.state = States.AVAILABLE
-		//reservation = null;
 	}
 	
 	void cancelReservation(){
