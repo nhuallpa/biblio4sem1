@@ -105,6 +105,12 @@ class User implements Taggable{
 		this.myAwards.add(award)
 	}
 	
+	/**
+	* Agrega comentario a un libro con score
+	* @param aBook <b>Book</b> Un libro
+	* @param aComment <b>String</b> Un comentario
+	* @param Score <b>Integer</b> un puntaje
+	* */
 	void addBookComment(Book aBook, String aString, Integer score ){
 		
 		def aComment = new Comment(description: aString, sourceUser: this,

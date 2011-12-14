@@ -12,6 +12,10 @@ class Reservation {
 	BookCopy bookCopy
 	User user
 	Date reservationDate
+	Date reservationExpirationDate
+	Date deliverDate
+	Date deliverExpirationDate
+	
 	States state
 	Library library
     static constraints = {
