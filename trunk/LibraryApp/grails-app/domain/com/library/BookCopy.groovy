@@ -37,4 +37,8 @@ class BookCopy {
 	Boolean isDelivered(){
 		return (state == States.DELIVERED)
 	}
+	
+	String nameOfBook(){
+		this.bookMaster.name
+	}
 }

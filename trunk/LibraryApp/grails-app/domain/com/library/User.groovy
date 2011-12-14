@@ -46,22 +46,12 @@ class User implements Taggable{
 	
 	static hasMany = [commentsDone : Comment, reservations : Reservation, myAwards : Award]
 	
-	static int SCORE_RESERVE = 20
-	static int SCORE_COMMENT = 5
 	
 	public String toString(){
 		return name
 	}
 	
-	void substractScore(int score){
-		if(score <= this.score){
-			this.score = this.score - score;
-		}
-	}
 	
-	void addScore(int score){
-		this.score = this.score + score
-	}
 	
 	void clearScore(){
 		this.score = 0
@@ -88,12 +78,7 @@ class User implements Taggable{
 		this.addReservation(aReservation)
 		aLibrary.addToReservations(aReservation)
 		this.save()
-		
 		log.debug "se creo una reservaci�n con id: " + aReservation.id
-		
-		addScore(SCORE_RESERVE)//Score por reservar
-		
-		
 	}
 
 	private Boolean isReserved(Book aBook) {
@@ -118,7 +103,7 @@ class User implements Taggable{
 		
 		aBook.addComment(aComment)
 		this.commentsDone.add aComment
-		addScore(SCORE_COMMENT)
+		addScore(Constants.SCORE_COMMENT)
 	}
 	
 	
@@ -133,13 +118,13 @@ class User implements Taggable{
 	}
 	
 	void cancelReservation(Book aBook){
-		def reservationFound = this.reservations.find{it.getBookCopy().bookMaster == aBook}
+		Reservation reservationFound = this.reservations.find{it.getBookCopy().bookMaster == aBook}
 
 		if (reservationFound) {
 			this.reservations.remove reservationFound
 			reservationFound.getBookCopy().cancelReservation()
 			reservationFound.delete()
-			substractScore(SCORE_RESERVE)
+			substractScore(Constants.SCORE_RESERVE)
 		} else {
 			throw new ReservationDoesNotExistException()
 		}
@@ -150,7 +135,7 @@ class User implements Taggable{
 			throw new CommentDoesNotExistException()
 		} else {
 			this.commentsDone.remove aComment
-			substractScore(SCORE_COMMENT)
+			substractScore(Constants.SCORE_COMMENT)
 		}
 	}
 	
@@ -183,10 +168,10 @@ class User implements Taggable{
 	}
 
 	/**
-	 * Apply save before use it method
+	 * Apply save before you use this method
 	 * */
 	void addMyPreferencesTags(String tags) {
-		this.parseTags(tags)
+		this.parseTags(tags) // is taggable plugin's method
 	}
 	
 	
@@ -198,13 +183,31 @@ class User implements Taggable{
 		Reservation reservationFound = this.reservations.find{it.getBookCopy() == aBookCopy}
 		
 		if (reservationFound) {
-			reservationFound.getBookCopy().returnMe()
-			
+			reservationFound.returnBook()
+			this.recalculateScore(reservationFound);
 			this.reservations.remove reservationFound
 			reservationFound.delete()
 		} else {
 			throw new ReservationDoesNotExistException()
 		}
+	}
+	
+	void recalculateScore(Reservation reservation) {
+		if (reservation.good()) {
+			addScore(Constants.SCORE_RESERVE)//Score por reservar
+		} else {
+			substractScore(Constants.SCORE_PENALIZATION)
+		}
+	}
+	
+	private void substractScore(int score){
+		if(score <= this.score){
+			this.score = this.score - score;
+		}
+	}
+	
+	private void addScore(int score){
+		this.score = this.score + score
 	}
 
 	@Deprecated

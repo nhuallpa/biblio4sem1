@@ -43,9 +43,8 @@ class AwardController {
 	def exchange = {
 		User user = User.get(Long.valueOf(params.userId))
 		Award award = Award.get(Long.valueOf(params.awardId))
-//		user.substractScore(Integer.valueOf(params.subScore))
 		user.exchangeAward(award)
-		
+		flash.message = "'${award.detail}' acquired"
 		redirect(controller:'user', action: 'viewProfile', params:[userId:user.id])
 	}
 	
@@ -111,7 +110,6 @@ class AwardController {
 		User userFounded = User.get(Long.valueOf(userId))
 		Award award = Award.get(Long.valueOf(awardId))
 		userFounded.exchangeAward(award)
-//		userFounded.substractScore(Integer.valueOf(subScore))
 	}
 	
 	def getAward = {
