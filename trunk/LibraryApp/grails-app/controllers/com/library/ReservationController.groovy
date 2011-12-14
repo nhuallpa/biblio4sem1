@@ -98,8 +98,7 @@ class ReservationController {
 		redirect(controller:'user', action: 'viewProfile', params:[userId:user.id])
 	}
 
-	
-//  TODO: a borrar
+
 	boolean bookAvailable(Book book, Library library){
 		BookCopy aBookCopyAvailable = library.getBookCopyAvailable(book)
 		return aBookCopyAvailable.state == States.AVAILABLE
