@@ -74,9 +74,9 @@
 							  	<img  src="<g:createLinkTo dir="images/Book/${reservation.nameOfBook()}" file="cover.jpg" />"/>
 							  </g:link>
 								<span class="text"><g:link controller="book" action="viewDetails" params="[bookId:reservation.bookCopy.bookMaster.id]">${reservation.nameOfBook()}</g:link></span>
-								|
-								<span class="text">${reservation.reservationDate}</span><br/>
-								<span class="text">State: ${reservation.stateOfBook()}</span><br/><br/>
+								<p><span class="text">Reservation Date : ${reservation.reservationDate.format('dd/MM/yyyy')}</span></p>
+								<p><span class="text">Expiration Date : ${reservation.reservationExpirationDate.format('dd/MM/yyyy')}</span></p>
+								<p><span class="text">State: ${reservation.stateOfBook()}</span></p>
 								<span class="link-item"><g:link controller="reservation" action="cancelReserve" params="[bookId:reservation.bookCopy.bookMaster.id]">Cancel</g:link></span>
 								<span class="link-item"><g:link controller="reservation" action="deliverBook" params="[reservationId:reservation.id]">Deliver</g:link></span>
 						    </li>
@@ -93,8 +93,8 @@
 							  	<img  src="<g:createLinkTo dir="images/Book/${reservation.nameOfBook()}" file="cover.jpg" />"/>
 							  </g:link>
 								<span class="text"><g:link controller="book" action="viewDetails" params="[bookId:reservation.bookCopy.bookMaster.id]">${reservation.nameOfBook()}</g:link></span>
-								|
-								<span class="text">${reservation.reservationDate}</span><br/>
+								<p><span class="text">Delivered Date : ${reservation.deliverDate.format('dd/MM/yyyy')}</span></p>
+								<p><span class="text">Expiration Date : ${reservation.deliverExpirationDate.format('dd/MM/yyyy')}</span></p>
 								<span class="text">State: ${reservation.stateOfBook()}</span><br/><br/>
 								<span class="link-item"><g:link controller="reservation" action="returnBook" params="[bookCopyId:reservation.bookCopy.id]">Return</g:link></span>
 						    </li>

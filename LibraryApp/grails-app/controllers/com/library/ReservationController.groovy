@@ -60,7 +60,7 @@ class ReservationController {
 			aMessage = "${aBook.name} is not available"
 		} else {
 			userFound.makeReservation(aBook, library)
-			aMessage = "You have reserved ${aBook.name}!"
+			aMessage = "You have reserved '${aBook.name}'"
 		} 
 		flash.message = aMessage
 
@@ -74,7 +74,7 @@ class ReservationController {
 		if (!user.isAttached()){
 			def userFound = User.get(user.id)
 			userFound.cancelReservation aBook  
-			flash.message = "You have canceled the reservation ${aBook.name}"
+			flash.message = "You have canceled the reservation of '${aBook.name}'"
 			redirect(controller:'user', action: 'viewProfile', params:[userId:userFound.id])
 		}
 	}
@@ -84,6 +84,8 @@ class ReservationController {
 		Reservation reservation = Reservation.get(params.reservationId)
 		if (reservation.isReserved())  {
 			reservation.deliverBook();
+			String bookName = reservation.nameOfBook()
+			flash.message = "'${bookName}' delivered"
 		}
 		redirect(controller:'user', action: 'viewProfile', params:[userId:user.id])
 	}
@@ -93,6 +95,8 @@ class ReservationController {
 		BookCopy aBookCopy = BookCopy.get(params.bookCopyId)
 		if (aBookCopy.isDelivered())  {
 			def userFound = User.get(user.id)
+			String bookName = aBookCopy.nameOfBook()
+			flash.message = "'${bookName}' returned"
 			userFound.returnBook aBookCopy
 		}
 		redirect(controller:'user', action: 'viewProfile', params:[userId:user.id])
