@@ -44,7 +44,7 @@ class AwardController {
 		User user = User.get(Long.valueOf(params.userId))
 		Award award = Award.get(Long.valueOf(params.awardId))
 		user.exchangeAward(award)
-		flash.message = "'${award.detail}' acquired"
+		flash.message = "'${award.detail}' adquired"
 		redirect(controller:'user', action: 'viewProfile', params:[userId:user.id])
 	}
 	

@@ -17,6 +17,7 @@ class BootStrap {
 //			initOtherLibrary()
 //			initThirdLibrary()
 //			initFourthLibrary()
+//			initAwards()
 //		}
 		
 		if(Environment.current == Environment.DEVELOPMENT){
@@ -274,7 +275,7 @@ class BootStrap {
 		
 		
 		
-		def a1 = new Award(score : 100, detail : 'Cine x 1', category : 'cine', info : awardsInfo[0])
+		def a1 = new Award(score : 50, detail : 'Cine x 1', category : 'cine', info : awardsInfo[0])
 		assert a1.save()
 		awards.add(a1)
 		
