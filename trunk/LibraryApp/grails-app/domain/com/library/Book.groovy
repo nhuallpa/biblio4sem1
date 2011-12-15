@@ -54,6 +54,10 @@ class Book implements Taggable{
 		}
 	}
 	
+	void updateTags(String tags) {
+		this.parseTags(tags)
+	}
+	
 	void categorizeMe(String aCategory){
 		this.addTag(aCategory)
 	}

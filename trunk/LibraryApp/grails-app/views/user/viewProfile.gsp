@@ -3,6 +3,22 @@
 	<meta name="layout" content="home" />
 	<title>Profile: ${userProfile?.name}</title>
 	<resource:tabView skin="custom" />
+	<script type="text/javascript">
+		$('#edit-tags-profile-button').live('click', function(){
+			$('#fondo-popup').css('display', 'block');
+			$('#edit-tags-profile').css('display','block');
+			var tags = "";
+			$('.tag-list li span').each(function(){
+				if (tags == "") {
+					tags = $(this).html();
+				} else {
+					tags = tags + ", " + $(this).html();	
+				}
+			});
+			$('#user-tags-area').html(tags);
+		});
+	
+	</script>
 </head>
 <body>
 	<div id="profile-details">
@@ -16,7 +32,6 @@
 				
 				<br/><br/>	
 				<span class="text">Your score: ${userProfile?.score }</span>
-				| 
 				<g:if test="${userProfile?.score >= 100}">
      				<g:link controller="award" action="awards" params="[type:'user']">Exchange!</g:link>
    				</g:if>
