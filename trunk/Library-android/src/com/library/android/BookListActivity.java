@@ -7,7 +7,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -98,14 +97,9 @@ public class BookListActivity extends Activity {
 			@Override
 			protected void onPostExecute(List<Book> result) {
 				bookListView.setBookList(result);
+				header.setInfo("Top Books");
 				dialog.dismiss();
 				super.onPostExecute(result);
 			}
 	    }
-
-//	    @Override
-//	    public void onRestart(){
-//	    	super.onRestart();
-//	    	init();
-//	    }
 }

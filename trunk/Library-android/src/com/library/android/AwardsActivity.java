@@ -4,6 +4,7 @@ import java.util.List;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -20,7 +21,7 @@ public class AwardsActivity extends Activity {
 	
 	private LibraryHeaderView header;
 	private AwardsListView listView;
-	private List<Award> list;
+	private ProgressDialog dialog;
 	
 	private static String TAG = "AwardsActivity";
 	
@@ -31,8 +32,17 @@ public class AwardsActivity extends Activity {
 		header = (LibraryHeaderView) findViewById(R.id.header_library_app2);
 		listView = (AwardsListView) findViewById(R.id.awards_list);
 		header.setInfo("Awards");
-		setAwardList();
+		dialog = new ProgressDialog(AwardsActivity.this);
+		dialog.setMessage("Please Wait!");
+		dialog.show();
+		init();
+//		setAwardList();
 		
+	}
+	
+	private void init(){
+		AwardTask task = new AwardTask();
+		task.execute();
 	}
 	
 	public boolean exchangeScore(Award award){
@@ -46,24 +56,22 @@ public class AwardsActivity extends Activity {
 		}
 		return result;
 	}
+	
+	private class AwardTask extends AsyncTask<Void, Void, List<Award>>{
 
-	private void setAwardList() {
-		final ProgressDialog dialog = new ProgressDialog(AwardsActivity.this);
-		dialog.setMessage("Loading...");
-		dialog.show();
-		new Handler().post(new Runnable() {
-			
-			@Override
-			public void run() {
-				Log.i(TAG, "INIT AWARDS LIST");
-				
-				list = AwardServicesImpl.getInstance().getAwardsList();
-				
-				listView.setAwardList(list);
-				dialog.cancel();
-				Log.i(TAG, "AWARDS LIST SETTED");
-			}
-		});
+		@Override
+		protected List<Award> doInBackground(Void... arg0) {
+			Log.i(TAG, "INIT AWARDS LIST");
+			List<Award> list = AwardServicesImpl.getInstance().getAwardsList();
+			return list;
+		}
+		
+		@Override
+		protected void onPostExecute(List<Award> result) {
+			listView.setAwardList(result);
+			Log.i(TAG, "AWARDS LIST SETTED");
+			dialog.cancel();
+		}
 		
 	}
 
