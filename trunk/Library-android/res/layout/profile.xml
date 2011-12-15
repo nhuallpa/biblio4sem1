@@ -20,61 +20,49 @@
   		android:layout_marginTop="10dip">
   	</TextView>
   	
-  	<TextView
-  		android:id="@+id/title_latitud"
-  		android:layout_width="wrap_content"
+  	<ImageView 
+  	    android:id="@+id/profile_picture"
+  	    android:layout_width="fill_parent"
   		android:layout_height="wrap_content"
+  		android:layout_margin="5dip"
   		android:layout_below="@id/title_profile"
-  		android:layout_marginTop="10dip"
-  		android:layout_marginLeft="5dip"
-  		android:textColor="#000000"
-  		android:text="Latitud: ">
-  	</TextView>
+  		android:src="@drawable/icon"/>
   	
-  	<TextView
-  		android:id="@+id/text_latitud"
-  		android:layout_width="wrap_content"
+	<TextView 
+	    android:id="@+id/profile_username"
+	    android:layout_width="fill_parent"
   		android:layout_height="wrap_content"
-  		android:layout_below="@id/title_profile"
-  		android:layout_marginTop="10dip"
-  		android:textColor="#000000"
-  		android:layout_toRightOf="@id/title_latitud"
-  		android:text="LATITUD">
-  	</TextView>
-  	
-   	<TextView
-  		android:id="@+id/title_longitud"
-  		android:layout_width="wrap_content"
+  		android:layout_below="@id/profile_picture"
+  		android:layout_margin="5dip"
+  		android:text="username"
+  		android:textColor="#000000"/>
+	
+	<TextView 
+	    android:id="@+id/profile_lastname"
+	    android:layout_width="fill_parent"
   		android:layout_height="wrap_content"
-  		android:layout_below="@id/title_latitud"
-  		android:layout_marginTop="10dip"
-  		android:textColor="#000000"
-  		android:layout_marginLeft="5dip"
-  		android:text="Longitud: ">
-  	</TextView>
-  	
-  	<TextView
-  		android:id="@+id/text_longitud"
-  		android:layout_width="wrap_content"
-  		android:layout_height="wrap_content"
-  		android:layout_below="@id/text_latitud"
-  		android:layout_marginTop="10dip"
-  		android:textColor="#000000"
-  		android:layout_toRightOf="@id/title_longitud"
-  		android:text="LONGITUD">
-  	</TextView>
-  	
-  	<Button
-  		android:id="@+id/show_map_button"
-  		android:layout_width="wrap_content"
-  		android:layout_height="wrap_content"
-  		android:layout_marginTop="10dip"
-  		android:layout_below="@id/title_longitud"
-  		android:text="Show map">
-  	</Button>
-  	
+  		android:layout_below="@id/profile_username"
+  		android:layout_margin="5dip"
+  		android:text="lastname"
+  		android:textColor="#000000"/>
 
-
+	<TextView 
+	    android:id="@+id/profile_phone"
+	    android:layout_width="fill_parent"
+  		android:layout_height="wrap_content"
+  		android:layout_below="@id/profile_lastname"
+  		android:layout_margin="5dip"
+  		android:text="phone"
+  		android:textColor="#000000"/>
+	
+	<TextView 
+	    android:id="@+id/profile_email"
+	    android:layout_width="fill_parent"
+  		android:layout_height="wrap_content"
+  		android:layout_below="@id/profile_phone"
+  		android:layout_margin="5dip"
+  		android:text="email"
+  		android:textColor="#000000"/>
 
 
   	

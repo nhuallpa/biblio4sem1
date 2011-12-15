@@ -10,7 +10,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.library.android.config.ConfigurationManager;
@@ -27,20 +26,31 @@ import com.library.android.services.impl.UserServicesImpl;
 
 public class UserProfileActivity extends Activity {
 	
-	private double longitude;
-	private double latitude;
-	private Button showMapButton;
-	private TextView tv_latitude;
-	private TextView tv_longitude;
+	private TextView username;
+	private TextView phone;
+	private TextView email;
 	
 	public void onCreate(Bundle b){
 		super.onCreate(b);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.profile);
+		username = (TextView) findViewById(R.id.profile_username);
+
+		phone = (TextView) findViewById(R.id.profile_phone);
+		email = (TextView) findViewById(R.id.profile_email);
 		
+		init();
 	}
 
 	
+	private void init() {
+		User user = ConfigurationManager.getInstance(getApplicationContext()).getCurrentUser();
+		username.setText(user.getName());
+		email.setText(user.getEmail());
+		
+	}
+
+
 	public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
 
