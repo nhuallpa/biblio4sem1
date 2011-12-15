@@ -122,15 +122,18 @@ class User implements Taggable{
 	
 	void cancelReservation(Book aBook){
 		Reservation reservationFound = this.reservations.find{it.getBookCopy().bookMaster == aBook}
-
-		if (reservationFound) {
-			this.reservations.remove reservationFound
-			reservationFound.getBookCopy().cancelReservation()
-			reservationFound.delete()
-			substractScore(Constants.SCORE_RESERVE)
-		} else {
-			throw new ReservationDoesNotExistException()
-		}
+		
+				if (reservationFound) {
+					reservationFound.cancel()
+//					this.recalculateScore(reservationFound)
+					if(!reservationFound.good()){
+						substractScore(Constants.SCORE_PENALIZATION)
+					}
+					this.reservations.remove reservationFound
+					reservationFound.delete()
+				} else {
+					throw new ReservationDoesNotExistException()
+				}
 	}
 	
 	void deleteMyComment(Comment aComment){
