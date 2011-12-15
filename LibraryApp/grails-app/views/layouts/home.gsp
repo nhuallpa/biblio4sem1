@@ -11,7 +11,7 @@
 	<body>
 		<div id="encabezado">
             <div class="centrar">
-                <h1 id="logo">The Map Of Books</h1>
+                <a id="logo" href="${createLink(controller:'home', action:'index')}">The Map Of Books</a>
                 <div id="bloque-derecho">
 					<div class="botones_header">
 						<a id="book_store" href="${createLink(controller:'book', action:'index')}">Books store</a>
@@ -29,7 +29,7 @@
                     	</g:if>
                     	<g:else>
                     		<a id="login-button" href="#">Login<span class="icon icon-login"></span></a>
-                    		<a id="registrarse-button" href="${createLink(controller:'user', action:'registration')}">Registrarse</a>
+                    		<a id="registrarse-button" href="${createLink(controller:'user', action:'registration')}">Register</a>
                     	</g:else>
                     </div>
                     <div id="filtros">
@@ -39,7 +39,7 @@
 			          			method="get">
 			    				<richui:autoComplete id="buscar" class="icon-buscar" name="q" value="${params.q}" action="${createLinkTo('dir': 'book/searchAJAX')}" />
 			    				<select id="categorias" name="categorias">
-		                            <option name="todos">Todos</option>
+		                            <option name="todos">All</option>
 		                            <option name="2">Books</option>
 		                            <option name="3">Librarys</option>
 		                            <option name="4">Nearly</option>

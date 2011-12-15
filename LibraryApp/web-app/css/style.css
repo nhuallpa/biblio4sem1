@@ -680,6 +680,9 @@ ul.detalles li.info a {
 .icon-close {
     background: transparent url(../images/icons/icon-close.png) 0 0 no-repeat;    
 }
+.icon-tilde {
+    background: transparent url(../images/icons/icon-marker.png) 0 0 no-repeat;    
+}
 
 
 /********* [PAGINAR] *********/
