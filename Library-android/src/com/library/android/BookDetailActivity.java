@@ -4,10 +4,12 @@ import java.util.List;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -17,7 +19,6 @@ import android.widget.Toast;
 
 import com.library.android.config.ConfigurationManager;
 import com.library.android.config.Constants;
-import com.library.android.dialog.ShowDialog;
 import com.library.android.dto.Book;
 import com.library.android.dto.Library;
 import com.library.android.dto.States;
@@ -32,6 +33,7 @@ public class BookDetailActivity extends Activity {
 	private String bookState;
 	private String bookId;
 	private String bookName;
+	private ProgressDialog dialog;
 	
 	private Context ctx = BookDetailActivity.this;
 
@@ -40,31 +42,36 @@ public class BookDetailActivity extends Activity {
 		super.onCreate(b);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.book_content_detail);
-		
-		ShowDialog.progressDialog(ctx, 5);
 
 		bookDetailView =(BookDetailView) findViewById(R.id.book_detail_content);
 		bookId = getIntent().getExtras().getString(Constants.BOOK_ID);
-		
-		fillData();
-		
+	
+		dialog = new ProgressDialog(this);
+		dialog.setMessage("Please Wait!");
+		dialog.show();
+//		fillData();
+		init();
+	}
+	
+	private void init(){
+		BookDetailTask task = new BookDetailTask();
+		task.execute();
 	}
 
-
-	private void fillData(){
-		Book book = BookServicesImpl.getInstance(this).getBookById(bookId);
-		CommentBookListView comments = bookDetailView.getCommentList();
-		comments.setCommentList(book.getListOfComments());
-		bookDetailView.setBookTitle(book.getTitle());
-		bookDetailView.setBookAuthor(book.getAuthor());
-		bookDetailView.setBookState(book.getState().toString());
-		bookState = book.getState().toString();
-		bookDetailView.setBookISBN(String.valueOf(book.getISBN()));
-		bookDetailView.setBookPicture(BookServicesImpl.getInstance(ctx).getPicture(book.getTitle()));
-		bookDetailView.setBookDescription(book.getDescription());
-		bookName = book.getTitle();
-		
-	}
+//	private void fillData(){
+//		Book book = BookServicesImpl.getInstance(this).getBookById(bookId);
+//		CommentBookListView comments = bookDetailView.getCommentList();
+//		comments.setCommentList(book.getListOfComments());
+//		bookDetailView.setBookTitle(book.getTitle());
+//		bookDetailView.setBookAuthor(book.getAuthor());
+//		bookDetailView.setBookState(book.getState().toString());
+//		bookState = book.getState().toString();
+//		bookDetailView.setBookISBN(String.valueOf(book.getISBN()));
+//		bookDetailView.setBookPicture(BookServicesImpl.getInstance(ctx).getPicture(book.getTitle()));
+//		bookDetailView.setBookDescription(book.getDescription());
+//		bookName = book.getTitle();
+//		
+//	}
 	
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data){
@@ -151,4 +158,28 @@ public class BookDetailActivity extends Activity {
         
         return true;
         }
+    
+    private class BookDetailTask extends AsyncTask<Void, Void, Book>{
+
+		@Override
+		protected Book doInBackground(Void... arg0) {
+			Book book = BookServicesImpl.getInstance(getApplicationContext()).getBookById(bookId);
+			return book;
+		}
+    	
+		@Override
+		protected void onPostExecute(Book book) {
+			CommentBookListView comments = bookDetailView.getCommentList();
+			comments.setCommentList(book.getListOfComments());
+			bookDetailView.setBookTitle(book.getTitle());
+			bookDetailView.setBookAuthor(book.getAuthor());
+			bookDetailView.setBookState(book.getState().toString());
+			bookState = book.getState().toString();
+			bookDetailView.setBookISBN(String.valueOf(book.getISBN()));
+			bookDetailView.setBookPicture(BookServicesImpl.getInstance(ctx).getPicture(book.getTitle()));
+			bookDetailView.setBookDescription(book.getDescription());
+			bookName = book.getTitle();
+			dialog.dismiss();
+		}
+    }
 }

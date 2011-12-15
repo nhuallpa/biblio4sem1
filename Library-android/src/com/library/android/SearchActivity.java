@@ -57,7 +57,7 @@ public class SearchActivity extends Activity {
 					Intent i = new Intent(SearchActivity.this, ResultSearchActivity.class);
 					i.putExtra("q_search", editText.getText().toString());
 					startActivity(i);
-					ShowDialog.progressDialog(CTX, 5);
+//					ShowDialog.progressDialog(CTX, 5);
 				}
 				
 			}
