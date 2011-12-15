@@ -91,9 +91,16 @@ class Reservation {
 	
 	Boolean good() { 
 		Boolean finishedProperly = true
-		if (returnDate > deliverExpirationDate) {
+		def nowDate = new Date()
+		if (nowDate > reservationExpirationDate) {
+			finishedProperly = false
+		} else if (returnDate > deliverExpirationDate) {
 			finishedProperly = false
 		}
 		finishedProperly
+	}
+	
+	void cancel() {
+		bookCopy.cancelReservation()
 	}
 }
