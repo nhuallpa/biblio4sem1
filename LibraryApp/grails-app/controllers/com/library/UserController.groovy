@@ -273,5 +273,20 @@ class UserController {
 		render jsonData as JSON
 	}
 	
+	def myAwards = {
+		User user = User.get(params.userId)
+		def myAwardsList = new ArrayList()
+		for(award in user.myAwards){
+			def jsonData = [
+					score : award.score,
+					info : award.info,
+					category : award.category,
+					detail : award.detail
+				]
+			myAwardsList.add jsonData
+		}
+		render myAwardsList as JSON
+	}
+	
 	
 }
