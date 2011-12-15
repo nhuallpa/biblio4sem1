@@ -5,4 +5,5 @@
   <item android:id="@+id/menu_my_comments" android:title="My Comments"></item>
   <item android:id="@+id/menu_my_reservations" android:title="My Reservations"></item>
   <item android:id="@+id/menu_my_score" android:title="My Score"></item>
+  <item android:id="@+id/menu_my_awards" android:title="My Awards"></item>
 </menu>

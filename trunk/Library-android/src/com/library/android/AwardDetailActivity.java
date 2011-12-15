@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.library.android.config.ConfigurationManager;
 import com.library.android.dto.Award;
 import com.library.android.services.impl.AwardServicesImpl;
 import com.library.android.view.LibraryHeaderView;
@@ -33,9 +34,15 @@ public class AwardDetailActivity extends Activity {
 	}
 
 	private void initTask(String awardId){
-		AwardListTask task = new AwardListTask();
-		dialog.show();
-		task.execute(awardId);
+		ConfigurationManager config = ConfigurationManager.getInstance(getApplicationContext());
+		if(!config.checkNetwork().equals("OK")){
+			config.showErrorNetwork();
+		} else {
+			AwardListTask task = new AwardListTask();
+			dialog.show();
+			task.execute(awardId);
+		}
+		
 	}
 	
 //	private void showAwardDetail(String awardId) {

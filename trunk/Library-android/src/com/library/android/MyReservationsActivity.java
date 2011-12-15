@@ -8,6 +8,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Window;
 
+import com.library.android.config.ConfigurationManager;
 import com.library.android.dto.Reservation;
 import com.library.android.services.impl.UserServicesImpl;
 import com.library.android.view.LibraryHeaderView;
@@ -35,8 +36,14 @@ public class MyReservationsActivity extends Activity {
 	}
 	
 	private void init(){
-		ReservationsTask task = new ReservationsTask();
-		task.execute();
+		ConfigurationManager config = ConfigurationManager.getInstance(getApplicationContext());
+		if(!config.checkNetwork().equals("OK")){
+			config.showErrorNetwork();
+		} else {
+			ReservationsTask task = new ReservationsTask();
+			task.execute();
+		}
+		
 	}
 	
 	private class ReservationsTask extends AsyncTask<Void, Void, List<Reservation>>{

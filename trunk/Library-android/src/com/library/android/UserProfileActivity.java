@@ -63,19 +63,30 @@ public class UserProfileActivity extends Activity {
         	}break;
         	
         	case R.id.menu_my_score: {
-        		User user = ConfigurationManager.getInstance(getApplicationContext()).getCurrentUser();
-        		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        		builder.setTitle("Mi Puntaje");
-        		int myScore = UserServicesImpl.getInstance(getApplicationContext()).getMyScore(user.getId());
-        		builder.setMessage("Puntaje: " + myScore);
-        		builder.setNeutralButton("Ok", new OnClickListener() {
-					
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						dialog.dismiss();
-					}
-				});
-        		builder.show();
+        		ConfigurationManager config = ConfigurationManager.getInstance(getApplicationContext());
+        		if(!config.checkNetwork().equals("OK")){
+        			config.showErrorNetwork();
+        		} else {
+        			User user = ConfigurationManager.getInstance(getApplicationContext()).getCurrentUser();
+            		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            		builder.setTitle("Mi Puntaje");
+            		int myScore = UserServicesImpl.getInstance(getApplicationContext()).getMyScore(user.getId());
+            		builder.setMessage("Puntaje: " + myScore);
+            		builder.setNeutralButton("Ok", new OnClickListener() {
+    					
+    					@Override
+    					public void onClick(DialogInterface dialog, int which) {
+    						dialog.dismiss();
+    					}
+    				});
+            		builder.show();
+        		}
+        		
+        	}break;
+        	
+        	case R.id.menu_my_awards: {
+        		Intent i = new Intent(UserProfileActivity.this, MyAwardsActivity.class);
+        		startActivity(i);
         	}break;
 
         }

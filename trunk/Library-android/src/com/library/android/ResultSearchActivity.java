@@ -8,6 +8,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Window;
 
+import com.library.android.config.ConfigurationManager;
 import com.library.android.dto.Book;
 import com.library.android.services.impl.BookServicesImpl;
 import com.library.android.view.BookListView;
@@ -45,8 +46,14 @@ public class ResultSearchActivity extends Activity {
 	}
 
 	private void init() {
-		ResultTask task = new ResultTask();
-		task.execute();
+		ConfigurationManager config = ConfigurationManager.getInstance(getApplicationContext());
+		if(!config.checkNetwork().equals("OK")){
+			config.showErrorNetwork();
+		} else {
+			ResultTask task = new ResultTask();
+			task.execute();
+		}
+		
 	}
 	
 	private class ResultTask extends AsyncTask<Void, Void, List<Book>>{
