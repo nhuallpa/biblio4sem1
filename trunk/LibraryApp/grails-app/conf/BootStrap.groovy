@@ -13,6 +13,7 @@ class BootStrap {
 
     def init = { servletContext ->
 //		if (Environment.current == Environment.PRODUCTION){
+//			initLibraryEntities()
 //			initOneLibray()
 //			initOtherLibrary()
 //			initThirdLibrary()
