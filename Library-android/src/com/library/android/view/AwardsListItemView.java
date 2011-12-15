@@ -60,7 +60,7 @@ public class AwardsListItemView extends LinearLayout {
 					intent.putExtra(Constants.BOOK_ID, "");
 					intent.putExtra(Constants.BOOK_NAME, "");
 					intent.putExtra(Constants.GO_TO_ACTIVITY, Constants.AWARDS);
-					activity.startActivity(intent);
+					context.startActivity(intent);
 					
 				} else {
 					AlertDialog.Builder builder = new AlertDialog.Builder(context);

@@ -9,6 +9,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Window;
 
+import com.library.android.config.ConfigurationManager;
 import com.library.android.dto.Comment;
 import com.library.android.services.impl.UserServicesImpl;
 import com.library.android.view.LibraryHeaderView;
@@ -37,8 +38,14 @@ import com.library.android.view.MyCommentsListView;
 		}
 		
 		private void init(){
-			CommentsTask task = new CommentsTask();
-			task.execute();
+			ConfigurationManager config = ConfigurationManager.getInstance(getApplicationContext());
+			if(!config.checkNetwork().equals("OK")){
+				config.showErrorNetwork();
+			} else {
+				CommentsTask task = new CommentsTask();
+				task.execute();
+			}
+			
 		}
 		
 		private class CommentsTask extends AsyncTask<Void, Void, List<Comment>>{

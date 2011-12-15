@@ -3,7 +3,7 @@ package com.library.android.services;
 
 public class ConfigWS {
 	
-//	public static String URL_BASE = "http://172.17.193.133:8080/Library"; //DEVELOPMENT
+//	public static String URL_BASE = "http://172.17.193.200:8080/Library"; //DEVELOPMENT
 	public static String URL_BASE = "http://library-grails.cloudfoundry.com"; //PRODUCTION
 	
 	//controllers
@@ -38,6 +38,7 @@ public class ConfigWS {
 	public static String EXCHANGE_SCORE = AWARD_CONTROLLER + "/toExchange";
 	public static String MY_SCORE = USER_CONTROLLER + "/myScore";
 	public static String GET_AWARD = AWARD_CONTROLLER + "/getAward";
+	public static String MY_AWARDS = USER_CONTROLLER + "/myAwards";
 	
 	private String user;
 	private static ConfigWS instance; 

@@ -54,8 +54,14 @@ public class BookDetailActivity extends Activity {
 	}
 	
 	private void init(){
-		BookDetailTask task = new BookDetailTask();
-		task.execute();
+		ConfigurationManager config = ConfigurationManager.getInstance(getApplicationContext());
+		if(!config.checkNetwork().equals("OK")){
+			config.showErrorNetwork();
+		} else {
+			BookDetailTask task = new BookDetailTask();
+			task.execute();
+		}
+		
 	}
 
 //	private void fillData(){

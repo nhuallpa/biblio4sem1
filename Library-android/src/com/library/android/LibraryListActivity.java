@@ -8,6 +8,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Window;
 
+import com.library.android.config.ConfigurationManager;
 import com.library.android.config.Constants;
 import com.library.android.dto.Library;
 import com.library.android.services.impl.LibraryServicesImpl;
@@ -37,10 +38,13 @@ public class LibraryListActivity extends Activity{
 	}
 
 	private void init() {
-//		librarysListView.setLibrarysList(LibraryServicesImpl.getInstance().getLibrarys(bookId));
-		LibraryListTask task = new LibraryListTask();
-		task.execute();
-		
+		ConfigurationManager config = ConfigurationManager.getInstance(getApplicationContext());
+		if(!config.checkNetwork().equals("OK")){
+			config.showErrorNetwork();
+		} else {
+			LibraryListTask task = new LibraryListTask();
+			task.execute();
+		}
 	}
 	
 	private class LibraryListTask extends AsyncTask<Void, Void, List<Library>>{

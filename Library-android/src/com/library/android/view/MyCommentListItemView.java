@@ -10,6 +10,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.library.android.MyCommentsActivity;
 import com.library.android.R;
 import com.library.android.UserProfileActivity;
 import com.library.android.dto.Comment;
@@ -48,7 +49,7 @@ public class MyCommentListItemView extends RelativeLayout {
 					case 0:{
 						BookServicesImpl.getInstance(context).deleteMyComment(comment.getId(),String.valueOf(comment.getBookSource().getBookId()));
 						Toast.makeText(context, "Comment Deleted successfull", Toast.LENGTH_SHORT).show();
-						Intent i = new Intent(context, UserProfileActivity.class);
+						Intent i = new Intent(context, MyCommentsActivity.class);
 						context.startActivity(i);
 					}break;
 

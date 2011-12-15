@@ -37,11 +37,19 @@ public class BookListActivity extends Activity {
         dialog = new ProgressDialog(this);
         dialog.setMessage("Please wait!");
        
-//        init();
-        BookListTask task = new BookListTask();
-        dialog.show();
-        task.execute();
-        config = ConfigurationManager.getInstance(this);
+        init();
+        
+    }
+    
+    private void init(){
+    	config = ConfigurationManager.getInstance(this);
+    	if(!config.checkNetwork().equals("OK")){
+    		config.showErrorNetwork();
+    	} else {
+    		BookListTask task = new BookListTask();
+            dialog.show();
+            task.execute();
+    	}
     }
     
 	 public boolean onCreateOptionsMenu(Menu menu) {
@@ -78,7 +86,7 @@ public class BookListActivity extends Activity {
 	            }break;
 	            
 	            case R.id.menu_refresh: {
-//	            	onRestart();
+	            	init();
 	            }
 	        }
 	        

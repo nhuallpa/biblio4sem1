@@ -6,7 +6,6 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -41,8 +40,14 @@ public class AwardsActivity extends Activity {
 	}
 	
 	private void init(){
-		AwardTask task = new AwardTask();
-		task.execute();
+		ConfigurationManager config = ConfigurationManager.getInstance(getApplicationContext());
+		if(!config.checkNetwork().equals("OK")){
+			config.showErrorNetwork();
+		} else {
+			AwardTask task = new AwardTask();
+			task.execute();
+		}
+		
 	}
 	
 	public boolean exchangeScore(Award award){

@@ -83,7 +83,11 @@
 
 		<activity android:name=".AwardDetailActivity"
                   android:label="@string/app_name">            
-        </activity> 
+        </activity>
+         
+		<activity android:name=".MyAwardsActivity"
+                  android:label="@string/app_name">            
+        </activity>        
 		
     </application>
 </manifest>

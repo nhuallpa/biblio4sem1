@@ -1,7 +1,12 @@
 package com.library.android.config;
 
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 
 import com.library.android.dto.User;
 
@@ -92,6 +97,34 @@ public class ConfigurationManager {
 		return authKey;
 	}
 	
+	public String checkNetwork(){
+		String result = null;
+	    try {
+	        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+	        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+	        if (netInfo != null && netInfo.isConnected()) {
+	        	result = "OK";
+	        } else {
+	        	result = "No connection";
+	        }
+	    } catch (Exception e) {
+	    	result = "Exception: " + e.getLocalizedMessage();
+	    }
+	    return result;
+	}
 	
+	public void showErrorNetwork() {
+		final AlertDialog.Builder builder = new Builder(context);
+		 builder.setTitle("Warning");
+		 builder.setMessage("Network  dissable");
+		 builder.setPositiveButton("Close", new DialogInterface.OnClickListener() {
+
+			 @Override
+			 public void onClick(DialogInterface dialog, int which) {
+				 dialog.dismiss();
+			 }
+		 });
+		 builder.show();
+	}
 
 }

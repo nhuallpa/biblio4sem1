@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.Window;
 
+import com.library.android.config.ConfigurationManager;
 import com.library.android.config.Constants;
 
 public class SplashActivity extends Activity {
@@ -19,10 +20,12 @@ public class SplashActivity extends Activity {
         new Handler().postDelayed(new Runnable(){
             @Override
             public void run() {
-            	            	 
-              Intent i = new Intent(SplashActivity.this, BookListActivity.class);
-              startActivity(i);
-              finish();
+              ConfigurationManager config = ConfigurationManager.getInstance(getApplicationContext());
+              if(config.checkNetwork().equals("OK")){
+            	  Intent i = new Intent(SplashActivity.this, BookListActivity.class);
+                  startActivity(i);
+              } 
+              finish();              
             }
         }, Constants.SPLASH_DISPLAY_LENGHT);
 	}
