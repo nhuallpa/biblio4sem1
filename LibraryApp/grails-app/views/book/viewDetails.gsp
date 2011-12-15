@@ -116,9 +116,9 @@
 						<a id="edit-tags-book-button" href="#">edit</a>
                         <div class="barra">
 <%--                            <a href="#" id="votar" class="boton">Votar</a>--%>
-                            <a href="#" id="buscar-librerias" class="boton">Buscar Librerias</a>
-                            <a href="#" id="buscar-listado" class="boton">Ver Listado</a>
-                            <a href="#" id="buscar-mapa" class="boton">Ver Mapa</a>
+                            <a href="#" id="buscar-librerias" class="boton">Search libraries</a>
+                            <a href="#" id="buscar-listado" class="boton">See List</a>
+                            <a href="#" id="buscar-mapa" class="boton">See Map</a>
                         </div>
                     </div>
                 </div>
