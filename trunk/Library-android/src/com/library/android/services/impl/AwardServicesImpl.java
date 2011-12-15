@@ -22,6 +22,7 @@ import org.json.JSONObject;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import com.library.android.R;
 import com.library.android.dto.Award;
 import com.library.android.services.ConfigWS;
 import com.library.android.utils.Utils;
@@ -38,7 +39,7 @@ public class AwardServicesImpl {
 	}
 	
 	public List<Award> getAwardsList(){
-		List<Award> awardList = new 	ArrayList<Award>();
+		List<Award> awardList = new ArrayList<Award>();
 		String url = ConfigWS.GET_AWARDS;
 		try{
 			URL u = new URL(url);
@@ -86,7 +87,11 @@ public class AwardServicesImpl {
 				award.setDetail(json.getString("detail"));
 				award.setInfo(json.getString("info"));
 				award.setScore(Integer.valueOf(json.getString("score")));
-				award.setBitmap(getAwardPicture(json.getString("category")));
+				Bitmap bitmap = getAwardPicture(json.getString("category"));
+				if( bitmap != null){
+					award.setBitmap(bitmap);
+				}
+				
 			}
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
@@ -115,10 +120,12 @@ public class AwardServicesImpl {
             request.setEntity(se);
            
             HttpResponse httpResponse = client.execute(request);
+            if(httpResponse.getStatusLine().getStatusCode() == 200){
+            	InputStream inputStream = httpResponse.getEntity().getContent();
+                bitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeStream(inputStream), 50, 70, true);
+            } 
 			
-            InputStream inputStream = httpResponse.getEntity().getContent();
             
-            bitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeStream(inputStream), 50, 70, true);
 		}catch (Exception e){
 			
 		}

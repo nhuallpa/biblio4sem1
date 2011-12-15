@@ -1,10 +1,11 @@
 package com.library.android;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.library.android.dto.Award;
 import com.library.android.services.impl.AwardServicesImpl;
@@ -15,6 +16,7 @@ public class AwardDetailActivity extends Activity {
 	private TextView info;
 	private ImageView picture;
 	private LibraryHeaderView headerView;
+	private ProgressDialog dialog;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -24,19 +26,47 @@ public class AwardDetailActivity extends Activity {
 		picture = (ImageView) findViewById(R.id.award_detail_picture);
 		headerView = (LibraryHeaderView) findViewById(R.id.header_library_app2);
 		String awardId = getIntent().getExtras().getString("awardId");
-		showAwardDetail(awardId);
+		dialog = new ProgressDialog(this);
+		dialog.setMessage("Loading...");
+		initTask(awardId);
+//		showAwardDetail(awardId);
 	}
 
-	private void showAwardDetail(String awardId) {
-		Award award = AwardServicesImpl.getInstance().getAward(awardId);
-		if(award.getDetail() != null){
+	private void initTask(String awardId){
+		AwardListTask task = new AwardListTask();
+		dialog.show();
+		task.execute(awardId);
+	}
+	
+//	private void showAwardDetail(String awardId) {
+//		Award award = AwardServicesImpl.getInstance().getAward(awardId);
+//		if(award.getDetail() != null){
+//			headerView.setInfo(award.getDetail());
+//			info.setText(award.getInfo());
+//			picture.setImageBitmap(award.getBitmap());
+//			//TODO: implementar el layout
+//		} else {
+//			Toast.makeText(getApplicationContext(), "No se encontro el premio...", Toast.LENGTH_SHORT).show();
+//		}
+//		
+//	}
+	
+	private class AwardListTask extends AsyncTask<String, Void, Award>{
+		
+		@Override
+		protected Award doInBackground(String... params) {
+			Award award = AwardServicesImpl.getInstance().getAward(params[0]);
+			return award;
+		}
+		
+		@Override
+		protected void onPostExecute(Award award) {
 			headerView.setInfo(award.getDetail());
 			info.setText(award.getInfo());
 			picture.setImageBitmap(award.getBitmap());
-			//TODO: implementar el layout
-		} else {
-			Toast.makeText(getApplicationContext(), "No se encontro el premio...", Toast.LENGTH_SHORT).show();
+			dialog.dismiss();
 		}
+
 		
 	}
 
