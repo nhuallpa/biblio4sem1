@@ -24,8 +24,11 @@ import org.json.JSONObject;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 
+import com.library.android.R;
 import com.library.android.config.ConfigurationManager;
 import com.library.android.config.Constants;
 import com.library.android.dto.Book;
@@ -228,11 +231,13 @@ public class BookServicesImpl implements BookService {
             request.setEntity(se);
            
             HttpResponse httpResponse = client.execute(request);
-			
-            InputStream inputStream = httpResponse.getEntity().getContent();
-            
-            bitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeStream(inputStream), 50, 70, true);
-            
+            if(httpResponse.getStatusLine().getStatusCode() == 200){
+            	InputStream inputStream = httpResponse.getEntity().getContent();
+                Bitmap bitmapTemp = BitmapFactory.decodeStream(inputStream);
+                bitmap = Bitmap.createScaledBitmap(bitmapTemp, 50, 70, true);
+            } else {
+            	bitmap = BitmapFactory.decodeStream(context.getResources().openRawResource(R.raw.icon));
+            }
            
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
