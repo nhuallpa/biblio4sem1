@@ -142,6 +142,20 @@ class UserController {
 		User.list().contains(user) 
 	}
 	
+	def updateTags = {		
+		User user = session.user
+		if (!user){
+			goToHome()
+		}
+		User userFound = User.get(session.user.id)
+		if (userFound) {
+			String tags = params.get("user-tags-area")
+			userFound.addMyPreferencesTags(tags);
+			flash.message = "Tags updated"
+		}
+		redirect(controller:'user', action: 'viewProfile', params:[userId:userFound.id])
+	}
+	
 	/** MOBILE **/
 	
 	def getUser = {
@@ -259,7 +273,5 @@ class UserController {
 		render jsonData as JSON
 	}
 	
-	def updateTags = {
-		goToHome()
-	}
+	
 }

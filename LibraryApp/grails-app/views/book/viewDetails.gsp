@@ -69,6 +69,21 @@
               }              
             } else { alert("Geocode was unsuccessful due to: " + status); }
           });
+
+
+			$('#edit-tags-book-button').live('click', function(){
+				$('#fondo-popup').css('display', 'block');
+				$('#edit-tags-book').css('display','block');
+				var tags = "";
+				$('.tag-list li span').each(function(){
+					if (tags == "") {
+						tags = $(this).html();
+					} else {
+						tags = tags + ", " + $(this).html();	
+					}
+				});
+				$('#book-tags-area').html(tags);
+			});
       </script>
 	
 	

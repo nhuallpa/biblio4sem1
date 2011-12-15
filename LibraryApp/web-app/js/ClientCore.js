@@ -28,16 +28,6 @@ $(function() {
 		$('#login').css('display', 'block'); 
 	});
 
-	// reutilizar para Book y Profile
-	$('#edit-tags-profile-button').live('click', function(){
-		$('#fondo-popup').css('display', 'block');
-		$('#edit-tags-profile').css('display','block');
-	});
-	
-	$('#edit-tags-book-button').live('click', function(){
-		$('#fondo-popup').css('display', 'block');
-		$('#edit-tags-book').css('display','block');
-	});
 	/**
 	 * Registrase PopUp
 	 */

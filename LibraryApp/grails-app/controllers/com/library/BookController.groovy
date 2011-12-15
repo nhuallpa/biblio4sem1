@@ -187,6 +187,16 @@ class BookController {
 		[booksInTopFive:results]
 	}
 	
+	def updateTags = {
+		Book book = Book.get(params.idBook)
+		String tags = params["book-tags-area"]
+		if (book && tags) {
+			book.updateTags(tags)
+			
+		}
+		redirect(controller:'book', action:'viewDetails', params:[bookId:params.idBook])
+	}
+	
 	/** MOBILE **/
 	
 	def getLibrarys = {
@@ -333,9 +343,7 @@ class BookController {
 	
 	}
 	
-	def updateTags = {
-		goToHome()
-	}
+	
 	
 	void goToHome(){
 		redirect(uri: '/')

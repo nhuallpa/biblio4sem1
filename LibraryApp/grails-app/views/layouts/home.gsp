@@ -13,7 +13,6 @@
             <div class="centrar">
                 <h1 id="logo">The Map Of Books</h1>
                 <div id="bloque-derecho">
-<%--                	<g:link class="botones_header controller="book"  action="index">Books store</g:link>--%>
 					<div class="botones_header">
 						<a id="book_store" href="${createLink(controller:'book', action:'index')}">Books store</a>
                 		<a id="librarys" href="${createLink(controller:'library', action:'gmaps')}">Librarys</a>
@@ -54,24 +53,7 @@
 			<div class="container">
 				<div class="col-s-content">
 					<g:layoutBody />
-				</div><%--
-				<div class="large-sidebar">
-					<ul>
-						<g:if test="${session.user}">
-							<g:if test="${session.user.name.equals('admin') }">
-								<li><g:link controller="home"  action="administration">Administration</g:link></li>
-							</g:if>
-						</g:if>
-					</ul>
-					<g:if test="${session.user}">
-						<ul class="menu-vert">
-							<li><g:link controller="reservation" action="viewMyReservation">My reservation</g:link></li>
-							<li><g:link controller="comment" action="viewMyComments">My Comments</g:link></li>
-							<li><a href="#">Recommendation for me</a></li>
-						</ul>
-					</g:if>
-				</div>	
-			--%></div>
+				</div>
 		</div>
 		<div id="fondo-popup"></div>
         <div id="login" class="popup">
@@ -101,24 +83,6 @@
                 <a href="${createLink(controller:'user', action:'registration')}" id="boton-registrarse">Registrarse</a>
             </div>
         </div>
-        <%--<div id="registrarse" class="popup">
-            <div class="head">
-                <span>Registrarse</span>
-                <a href="#" id="boton-cerrar" class="icon icon-close boton-cerrar"></a>
-            </div>
-            <div class="body">
-                <form name="registrase" method="#" action="#">
-                    <span>Usuario</span><br/>
-                    <input type="text" name="user"/><br/>
-                    <span>Contraseña</span><br/>
-                    <input type="password" name="password"/><br/>
-                    <span>Repetir Contraseña</span><br/>
-                    <input type="password" name="re-password"/><br/>
-                    <input type="submit" value="Enviar"/>
-                </form>
-            </div>
-        </div>
-        --%>
         <div id="recuperar" class="popup">
             <div class="head">
                 <span>Recuperar Contraseña</span>
@@ -139,9 +103,9 @@
 		    </div>
 			<div class="body">
 			    <g:form controller="user" action="updateTags">
-					<g:textArea name="tags-area"></g:textArea>
+					<g:textArea name="user-tags-area"></g:textArea>
 					<g:hiddenField name="idUser" value="${session?.user?.id}"/>
-					<g:submitButton value="update" name="submit-tags"/>
+					<g:submitButton value="update" name="user-submit-tags"/>
 				</g:form>
 			</div>
 		</div>
@@ -152,9 +116,9 @@
 		    </div>
 			<div class="body">
 			    <g:form controller="book" action="updateTags">
-					<g:textArea name="tags-area"></g:textArea>
+					<g:textArea name="book-tags-area"></g:textArea>
 					<g:hiddenField name="idBook" value="${book?.id}"/>
-					<g:submitButton value="update" name="submit-tags"/>
+					<g:submitButton value="update" name="book-submit-tags"/>
 				</g:form>
 			</div>
 		</div>
