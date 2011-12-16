@@ -3,9 +3,13 @@ package com.library.android.mock;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
 import com.library.android.dto.Book;
 import com.library.android.dto.Comment;
 import com.library.android.dto.Library;
+import com.library.android.dto.Location;
 import com.library.android.dto.User;
 
 public class LibraryMocks {
@@ -58,9 +62,13 @@ public class LibraryMocks {
 	
 	
 	private LibraryMocks(){
-//		floridaLibrary = new Library("Florida Library",new Location("Florida 600", -34.60107, -58.37535));
-//		floresLibrary = new Library("Flores Library", new Location("Av Rivadavia 6800", -34.62845, -58.46118));
-//		liniersLibrary = new Library("Liniers Library", new Location("Av Rivadavia 11684", -34.63936, -58.52867));
+		floridaLibrary = new Library("1","Florida Library");
+		floresLibrary = new Library("2","Flores Library");
+		liniersLibrary = new Library("3","Liniers Library" );
+		
+		floridaLibrary.setLocation(new Location("Florida 600", -34.60107, -58.37535));
+		floresLibrary.setLocation(new Location("Av Rivadavia 6800", -34.62845, -58.46118));
+		liniersLibrary.setLocation(new Location("Av Rivadavia 11684", -34.63936, -58.52867));
 		
 		description1 = textDesc;
 		description2 = textDesc;
@@ -74,18 +82,19 @@ public class LibraryMocks {
 		description10 = textDesc;
 		description11 = textDesc;
 		
-//		book1 = new Book(new Long(1234), "Thinking in Java", "Autor 1", ConstantsMock.book1_picture, description1);
-//		book2 = new Book(new Long(6789),"Objective-C", "Autor 2",  ConstantsMock.book2_picture, description2);
-//		book3 = new Book(new Long(7894), "It","Autor 3", ConstantsMock.book3_picture, description3);
-//		book4 = new Book(new Long(4656), "Grails in Action","Dierk Koenig", ConstantsMock.book4_picture, description4);
-//		book5 = new Book(new Long(6547), "Groovy in Action", "Andrew Glover", ConstantsMock.book5_picture, description5);
-//		book6 = new Book(new Long(7461), "The Ruby Programming", "David Flanagan", ConstantsMock.book6_picture, description6);
-//		book7 = new Book(new Long(8714), "Hello, Android", "Ed Burnette", ConstantsMock.book7_picture, description7);
-//		book8 = new Book(new Long(1092), "BlackBerry for Dummies", "Robert Kao", ConstantsMock.book8_picture, description8);
-//		book9 = new Book(new Long(7671), "iPad 2", "J D Biersdorfer", ConstantsMock.book9_picture, description9);
-//		book10 = new Book(new Long(2345), "iPhone 4", "David Mark", ConstantsMock.book10_picture, description10);
-//		book11 = new Book(new Long(5786), "Pro C# and .NET", "Andrew W. Troelsen", ConstantsMock.book11_picture, description11);
-//		
+		book1 = new Book(new Long(1234), "Thinking in Java", "Autor1", getPicture(ConstantsMock.book1_picture), description1);
+	
+		book2 = new Book(new Long(6789),"Objective-C", "Autor2", getPicture(ConstantsMock.book2_picture), description2);
+		book3 = new Book(new Long(7894), "It", "Autor3", getPicture(ConstantsMock.book3_picture), description3);
+		book4 = new Book(new Long(4656), "Grails in Action", "Autor4", getPicture(ConstantsMock.book4_picture), description4);
+		book5 = new Book(new Long(6547), "Groovy in Action", "Autor5", getPicture(ConstantsMock.book5_picture), description5);
+		book6 = new Book(new Long(7461), "The Ruby Programming", "Autor6", getPicture(ConstantsMock.book6_picture), description6);
+		book7 = new Book(new Long(8714), "Hello, Android", "Autor7", getPicture(ConstantsMock.book7_picture), description7);
+		book8 = new Book(new Long(1092), "BlackBerry for Dummies", "Autor8", getPicture(ConstantsMock.book8_picture), description8);
+		book9 = new Book(new Long(7671), "iPad 2", "Autor9", getPicture(ConstantsMock.book9_picture), description9);
+		book10 = new Book(new Long(2345), "iPhone 4", "Autor10", getPicture(ConstantsMock.book10_picture), description10);
+		book11 = new Book(new Long(5786), "Pro C# and .NET", "Autor11", getPicture(ConstantsMock.book11_picture), description11);
+		
 		comment1 = new Comment("Feo libroo", 2);
 		comment2 = new Comment("Bastante bueno",4);
 		comment3 = new Comment("Zafa", 2);
@@ -100,6 +109,10 @@ public class LibraryMocks {
 	}
 	
 
+	private Bitmap getPicture(String root){
+		Bitmap bm = BitmapFactory.decodeFile("file:///android_asset/" + root);
+		return bm;
+	}
 	
 	public User getUser(){
 		return gonza;	
@@ -222,6 +235,22 @@ public class LibraryMocks {
 		 
 	public List<Library> getLibraries(){
 		return this.libraries;
+	}
+	
+	public Book getBookById(Long bookId){
+		Book book = null;
+		boolean founded = false;
+		int pos = 0;
+		while(!founded && pos < allBooks.size()){
+			Book item = allBooks.get(pos);
+			if(item.getBookId().equals(bookId)){
+				book = item;
+				founded = true;
+			}
+			pos++;
+		}
+		return book;
+		
 	}
 
 }

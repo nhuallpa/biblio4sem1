@@ -22,9 +22,12 @@ public class SplashActivity extends Activity {
             public void run() {
               ConfigurationManager config = ConfigurationManager.getInstance(getApplicationContext());
               if(config.checkNetwork().equals("OK")){
-            	  Intent i = new Intent(SplashActivity.this, BookListActivity.class);
-                  startActivity(i);
-              } 
+            	  config.setNetworlState(Constants.ONLINE);
+              } else {
+            	  config.setNetworlState(Constants.ONLINE);
+              }
+              Intent i = new Intent(SplashActivity.this, BookListActivity.class);
+              startActivity(i);
               finish();              
             }
         }, Constants.SPLASH_DISPLAY_LENGHT);

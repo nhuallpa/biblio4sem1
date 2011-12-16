@@ -15,6 +15,7 @@ import android.view.Window;
 import com.library.android.config.ConfigurationManager;
 import com.library.android.config.Constants;
 import com.library.android.dto.Book;
+import com.library.android.mock.LibraryMocks;
 import com.library.android.services.impl.BookServicesImpl;
 import com.library.android.view.BookListView;
 import com.library.android.view.LibraryHeaderView;
@@ -34,15 +35,23 @@ public class BookListActivity extends Activity {
         setContentView(R.layout.book_list_view);
         bookListView = (BookListView)findViewById(R.id.book_list);
         header = (LibraryHeaderView) findViewById(R.id.header_library_app);
+        config = ConfigurationManager.getInstance(this);
         dialog = new ProgressDialog(this);
         dialog.setMessage("Please wait!");
-       
-        init();
-        
+        String state = config.getNetworkState();
+        if(state.equals(Constants.ONLINE)){
+        	init();
+        } else {
+        	initMocks();
+        }
     }
     
-    private void init(){
-    	config = ConfigurationManager.getInstance(this);
+    private void initMocks() {
+    	bookListView.setBookList(LibraryMocks.getInstance().getTopBooks());
+	}
+
+	private void init(){
+    	
     	if(!config.checkNetwork().equals("OK")){
     		config.showErrorNetwork();
     	} else {

@@ -22,6 +22,7 @@ import com.library.android.config.Constants;
 import com.library.android.dto.Book;
 import com.library.android.dto.Library;
 import com.library.android.dto.States;
+import com.library.android.mock.LibraryMocks;
 import com.library.android.services.impl.BookServicesImpl;
 import com.library.android.services.impl.LibraryServicesImpl;
 import com.library.android.view.BookDetailView;
@@ -50,9 +51,30 @@ public class BookDetailActivity extends Activity {
 		dialog.setMessage("Please Wait!");
 		dialog.show();
 //		fillData();
-		init();
+		String state = ConfigurationManager.getInstance(getApplicationContext()).getNetworkState();
+		if(state.equals(Constants.ONLINE)){
+			init();
+		} else {
+			initMock();
+		}
+		
 	}
 	
+	private void initMock() {
+		Book book = LibraryMocks.getInstance().getBookById(Long.valueOf(bookId));
+		CommentBookListView comments = bookDetailView.getCommentList();
+		comments.setCommentList(book.getListOfComments());
+		bookDetailView.setBookTitle(book.getTitle());
+		bookDetailView.setBookAuthor(book.getAuthor());
+		bookDetailView.setBookState(book.getState().toString());
+		bookState = book.getState().toString();
+		bookDetailView.setBookISBN(String.valueOf(book.getISBN()));
+		bookDetailView.setBookPicture(BookServicesImpl.getInstance(ctx).getPicture(book.getTitle()));
+		bookDetailView.setBookDescription(book.getDescription());
+		bookName = book.getTitle();
+		dialog.dismiss();
+	}
+
 	private void init(){
 		ConfigurationManager config = ConfigurationManager.getInstance(getApplicationContext());
 		if(!config.checkNetwork().equals("OK")){

@@ -17,7 +17,7 @@ public class ConfigurationManager {
 	private String authKey = "";
 	private User myUser;
 	private String userId;
-	
+	private String networkState;
 	private Context context;
 	private SharedPreferences settings;
 	private static ConfigurationManager configurationManager;	
@@ -42,6 +42,14 @@ public class ConfigurationManager {
 	public boolean isLogged(){
 		
 		return !myUser.getName().equals("");
+	}
+	
+	public void setNetworlState(String state){
+		this.networkState = state;
+	}
+	
+	public String getNetworkState(){
+		return networkState;
 	}
 	
 	//borrar luego...
