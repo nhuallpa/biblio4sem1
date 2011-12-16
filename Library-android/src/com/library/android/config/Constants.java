@@ -33,5 +33,9 @@ public class Constants {
 	
 	public static String COMMENT_EXTRA = "Sent from my Android with Library Application";
 	public final static int SPLASH_DISPLAY_LENGHT = 5000;
+	
+	public static String NETWORK_STATE = "NETWORK_STATE";
+	public static String ONLINE = "ONLINE";
+	public static String OFFLINE = "OFFLINE";
 
 }
